@@ -1,0 +1,81 @@
+//
+// Created by tosiek on 04.12.2021.
+//
+
+#include "tablet.h"
+
+using namespace std;
+using namespace sf;
+
+tablet::tablet()
+{
+    this->plank.loadFromFile("Textures/plank.png");
+    this->look.setTexture(this->plank);
+    this->look.setScale(0.4,0.3);
+    this->font.loadFromFile(DEFAULT_FONT);
+    this->text.setFont(this->font);
+}
+//.......................................
+void tablet::create_tablet(string label, Vector2f possition)
+{
+    this->pos=possition;
+    this->sting_pos=this->pos+Vector2f(40,10);
+    this->name=label;
+    this->text.setString("Nazwa: "+this->name);
+    this->text.setPosition(this->sting_pos);
+    this->look.setPosition(this->pos);
+}
+//.....................................
+void tablet::draw(RenderWindow &W)
+{
+    W.draw(this->look);
+    W.draw(this->text);
+}
+//.....................................
+void tablet::TRIGGERED(int mposx, int mposy)
+{
+    if(this->look.getGlobalBounds().contains(mposx,mposy))
+    {
+        this->plank.loadFromFile("Textures/plank1.png");
+        this->look.setTexture(this->plank);
+        this->look.setScale(0.4,0.3);
+    }
+    else
+    {
+        if(!this->focuss)
+        {
+            this->plank.loadFromFile("Textures/plank.png");
+            this->look.setTexture(this->plank);
+            this->look.setScale(0.4,0.3);
+        }
+    }
+}
+//......................................
+bool tablet::onClick(int mposx,int mposy)
+{
+    if(this->look.getGlobalBounds().contains(mposx,mposy))
+        return true;
+    else
+        return false;
+}
+//......................................
+void tablet::focussed()
+{
+    this->focuss=true;
+    this->plank.loadFromFile("Textures/plank1.png");
+    this->look.setTexture(this->plank);
+    this->look.setScale(0.4,0.3);
+}
+//.......................................
+void tablet::notfocussed()
+{
+    this->focuss=false;
+    this->plank.loadFromFile("Textures/plank.png");
+    this->look.setTexture(this->plank);
+    this->look.setScale(0.4,0.3);
+}
+//,.......................................
+string tablet::return_name()
+{
+    return this->name;
+}
