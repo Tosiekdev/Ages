@@ -5,8 +5,7 @@
 using namespace std;
 using namespace sf;
 
-int main()
-{
+int main(){
     Application app1;
     app1.main_window();
     return 0;
