@@ -57,6 +57,18 @@ void Application::th_stuff() {
 
     //cool animation
     this->th_return_to_game.onFocus(x,y);
+
+    //increasing resources
+    if(this->resource_clock.getElapsedTime().asSeconds()>=1){
+        int time_passed=this->resource_clock.getElapsedTime().asSeconds();
+        this->human+=time_passed*farm;
+        this->rock+=time_passed*10*stone_pit;
+        this->wood+=time_passed*10*lumber_mill;
+        this->l_human.setCaption("People: "+to_string(this->human));
+        this->l_rock.setCaption("Stone: "+to_string(this->rock));
+        this->l_wood.setCaption("Wood: "+to_string(this->wood));
+        this->resource_clock.restart();
+    }
 }
 
 //drawing everything
@@ -69,6 +81,20 @@ void Application::display_townhall() {
     //labels
     for(int i=0; i<7; i++)
         this->l_buildings[i].show(this->screen);
+
+    //buildings demands
+    this->b_academy.show_demands(Vector2f(20,150),this->screen);
+    this->b_barracks.show_demands(Vector2f(20,250),this->screen);
+    this->b_church.show_demands(Vector2f(20,350),this->screen);
+    this->b_farm.show_demands(Vector2f(20,450),this->screen);
+    this->b_lumber.show_demands(Vector2f(20,550),this->screen);
+    this->b_stone.show_demands(Vector2f(20,650),this->screen);
+    this->b_town.show_demands(Vector2f(20,750),this->screen);
+
+    //your resources
+    this->l_human.show(this->screen);
+    this->l_rock.show(this->screen);
+    this->l_wood.show(this->screen);
 
     this->screen.display();
 }

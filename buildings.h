@@ -22,6 +22,7 @@ public:
     void upgrade(int &lvl,int &human, int &rock, int &wood); //upgrades building
     void create_building(string nm,string tx_path,int lvl,Vector2f pos,int ns,int nw,int np); //load asset for building
     void show(RenderWindow &W); //draws building with background
+    void show_demands(Vector2f pos, RenderWindow &window);
     bool isClicked(int posx, int posy); //check if building was clicked
 private:
     int level;
@@ -41,6 +42,9 @@ private:
     Vector2f star_possition;
     Label lvl_label;
     void create_star();
+
+    //demands
+    Label for_stone, for_wood, for_human;
 };
 
 

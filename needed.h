@@ -80,7 +80,15 @@ private:
     //town hall
     Button th_return_to_game;
     Label l_buildings[7];
-    map<int,string> num_to_names{{1,"Academy"},{2,"Barracks"},{3,"Church"},{4,"Farm"},{5,"Lumber Mill"},{6,"Stone Pit"},{7,"Town Hall"}};
+    map<int,string> num_to_names{
+        {1,"Academy"},
+        {2,"Barracks"},
+        {3,"Church"},
+        {4,"Farm"},
+        {5,"Lumber Mill"},
+        {6,"Stone Pit"},
+        {7,"Town Hall"}
+    };
 
     //window to make sure that user want exit without saving
     RenderWindow wsaving;

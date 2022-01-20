@@ -89,3 +89,16 @@ bool buildings::isClicked(int posx, int posy) {
     }else
         return false;
 }
+
+void buildings::show_demands(Vector2f pos, RenderWindow &window){
+    //prepare labels
+    this->for_human.create(DEFAULT_FONT,pos.x,pos.y,"People: "+ to_string(this->n_human),15);
+    this->for_stone.create(DEFAULT_FONT,pos.x+100,pos.y,"Stone: "+ to_string(this->n_stone),15);
+    this->for_wood.create(DEFAULT_FONT,pos.x+200,pos.y,"Wood: "+ to_string(this->n_wood),15);
+
+    //display demands
+    this->for_human.show(window);
+    this->for_stone.show(window);
+    this->for_wood.show(window);
+}
+
