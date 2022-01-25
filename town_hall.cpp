@@ -7,7 +7,7 @@
 using namespace sf;
 
 //set up everything
-void Application::create_townhall() {
+void Application::create_townhall(){
     this->th_return_to_game.create(40,100,5,5,"Return");
 
     //buildings label
@@ -16,10 +16,20 @@ void Application::create_townhall() {
         this->l_buildings[i].create(DEFAULT_FONT,20,y_position,this->num_to_names[i+1],40);
         y_position+=100;
     }
+
+    //changing resource info position
+    this->l_human.setPosition(Vector2f(200,5));
+    this->l_rock.setPosition(Vector2f(400,5));
+    this->l_wood.setPosition(Vector2f(600,5));
+
+    //changing resource info text
+    this->l_human.setCaption("People: "+to_string(this->human));
+    this->l_rock.setCaption("Stone: "+to_string(this->rock));
+    this->l_wood.setCaption("Wood: "+to_string(this->wood));
 }
 
 //main loop
-void Application::townhall() {
+void Application::townhall(){
     //handle event
     this->th_handle_event();
 
@@ -44,6 +54,16 @@ void Application::th_handle_event(){
 
             //button clicked
             if(this->th_return_to_game.onClick(a,b)){
+                //default resource info position
+                this->l_human.setPosition(Vector2f(620,5));
+                this->l_rock.setPosition(Vector2f(620,50));
+                this->l_wood.setPosition(Vector2f(620,95));
+
+                //default resource info text
+                this->l_human.setCaption(to_string(this->human));
+                this->l_rock.setCaption(to_string(this->rock));
+                this->l_wood.setCaption(to_string(this->wood));
+
                 this->scene=4;
             }
         }

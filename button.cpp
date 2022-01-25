@@ -29,10 +29,11 @@ void Button::create(int h,int w,int posx,int posy,String caption){
     //caption
     this->button_font.loadFromFile(DEFAULT_FONT);
     this->button_text.setFont(this->button_font);
+    this->button_text.setPosition(this->button_possition-Vector2f(100,100));
     this->button_text.setFillColor(Color::Black);
     this->button_text.setCharacterSize(18*this->button_height/40);
     this->button_text.setString(this->button_caption);
-    this->button_text.setPosition(this->button_possition+Vector2f(9,5));
+    this->button_text.setOrigin(this->button_text.getGlobalBounds().width/2,this->button_text.getGlobalBounds().height);
 }
 
 //Checking if button is clicked
@@ -51,10 +52,10 @@ void Button::show(RenderWindow &W){
 void Button::onFocus(int mposx,int mposy){
     if(this->button_sprite.getGlobalBounds().contains(mposx,mposy) && this->active){
         this->button_sprite.setScale(this->button_width/100+0.2,this->button_height/40+0.2);
-        this->button_text.setPosition(this->button_possition+Vector2f(5+this->button_width*0.1,5+this->button_height*0.1));
+        this->button_text.setPosition(this->button_possition+Vector2f(this->button_width/2+button_width/10,this->button_height/2+button_height/10));
     }else{
         this->button_sprite.setScale(this->button_width/100,this->button_height/40);
-        this->button_text.setPosition(this->button_possition+Vector2f(9,5));
+        this->button_text.setPosition(this->button_possition+Vector2f(this->button_width/2,this->button_height/2));
     }
 }
 
