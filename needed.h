@@ -44,6 +44,7 @@ private:
     string name,save_path;
     int academy,barracks,church,farm,lumber_mill,stone_pit,town_hall;
     buildings b_academy,b_barracks,b_church,b_farm,b_lumber,b_stone,b_town;
+    buildings *b_ptr[7];
     int human,rock,wood;
 
     //wexit

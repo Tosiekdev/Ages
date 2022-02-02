@@ -11,10 +11,10 @@ void Application::create_townhall(){
     this->th_return_to_game.create(40,100,5,5,"Return");
 
     //buildings label
-    int y_position=100;
+    float y_position=100.f;
     for(int i=0; i<7; i++){
-        this->l_buildings[i].create(DEFAULT_FONT,20,y_position,this->num_to_names[i+1],40);
-        y_position+=100;
+        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
+        y_position+=100.f;
     }
 
     //changing resource info position
@@ -44,7 +44,27 @@ void Application::townhall(){
 void Application::th_handle_event(){
     while(this->screen.pollEvent(this->e)){
         //closing
-        if (this->e.type == Event::Closed) this->screen.close();
+        if(this->e.type==Event::Closed) this->screen.close();
+
+        //tablets scrolling
+        if(this->e.type==Event::MouseWheelScrolled){
+            if(this->e.mouseWheelScroll.delta<0){
+                Vector2f buf_pos;
+                buf_pos=u_buildings[6].Return_position();
+                for(int i=6; i>0; i--){
+                    this->u_buildings[i].set_position(this->u_buildings[i-1].Return_position());
+                }
+                this->u_buildings[0].set_position(buf_pos);
+            }
+            if(this->e.mouseWheelScroll.delta>0){
+                Vector2f buf_pos;
+                buf_pos=u_buildings[0].Return_position();
+                for(int i=0; i<6; i++){
+                    this->u_buildings[i].set_position(this->u_buildings[i+1].Return_position());
+                }
+                this->u_buildings[6].set_position(buf_pos);
+            }
+        }
 
         //when you click on screen
         if(Mouse::isButtonPressed(Mouse::Left)){
@@ -100,17 +120,8 @@ void Application::display_townhall() {
     this->th_return_to_game.show(this->screen);
 
     //labels
-    for(auto &l_building:this->l_buildings)
-        l_building.show(this->screen);
-
-    //buildings demands
-    this->b_academy.show_demands(Vector2f(20,150),this->screen);
-    this->b_barracks.show_demands(Vector2f(20,250),this->screen);
-    this->b_church.show_demands(Vector2f(20,350),this->screen);
-    this->b_farm.show_demands(Vector2f(20,450),this->screen);
-    this->b_lumber.show_demands(Vector2f(20,550),this->screen);
-    this->b_stone.show_demands(Vector2f(20,650),this->screen);
-    this->b_town.show_demands(Vector2f(20,750),this->screen);
+    for(auto &u_building:this->u_buildings)
+        u_building.show(this->screen);
 
     //your resources
     this->l_human.show(this->screen);

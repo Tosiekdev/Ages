@@ -34,6 +34,7 @@ void Button::create(int h,int w,float posx,float posy,String caption){
     this->button_text.setCharacterSize(18*this->button_height/40);
     this->button_text.setString(this->button_caption);
     this->button_text.setOrigin(this->button_text.getGlobalBounds().width/2,this->button_text.getGlobalBounds().height);
+    this->button_text.setPosition(this->button_possition+Vector2f(this->button_width/2,this->button_height/2));
 }
 
 //Checking if button is clicked
@@ -62,5 +63,9 @@ void Button::onFocus(int mposx,int mposy){
 //this makes button clickable
 void Button::setActive(bool activity){
     this->active=activity;
+}
+
+void Button::set_position(Vector2f new_position){
+    this->button_possition=new_position;
 }
 

@@ -18,6 +18,9 @@ public:
     void create_upgrade(buildings* resp, std::string caption, sf::Vector2f pos);
     void show(sf::RenderWindow &W);
 
+    sf::Vector2f Return_position();
+    void set_position(Vector2f new_pos);
+
 private:
     //building that it is responsible for
     buildings *responsible{};
