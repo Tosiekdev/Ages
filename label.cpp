@@ -11,7 +11,7 @@ Label::Label(string path,int posx,int posy,String cap,int sized){
 }
 
 //Creating label
-void Label::create(string path,int posx,int posy,String cap,int sized){
+void Label::create(const string& path,float posx,float posy,const String& cap,int sized){
     //loading font
     this->label_font.loadFromFile(path);
 

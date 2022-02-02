@@ -211,7 +211,7 @@ void Application::save_game(){
 void Application::wo_saving(){
     //creating window
     this->wsaving.create(VideoMode(300,200),"Are you sure?",Style::Titlebar | Style::Close);
-    this->wsaving.setPosition(Vector2i(250,200));
+    this->wsaving.setPosition(Vector2i(250+this->screen.getPosition().x,200+this->screen.getPosition().y));
     this->wsaving.setMouseCursorGrabbed(true);
 
     //creating buttons

@@ -25,7 +25,7 @@ private:
     String button_caption;
 public:
     Button(int=40,int=100,int=0,int=0,String="In_dev");
-    void create(int h,int w,int posx,int posy,String caption);
+    void create(int h,int w,float posx,float posy,String caption);
     void setActive(bool activity);
     bool onClick(int mposx,int mposy);
     void show(RenderWindow &W);

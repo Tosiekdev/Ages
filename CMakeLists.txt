@@ -18,5 +18,12 @@ if(SFML_FOUND)
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
 endif()
 
-add_executable(Ages1 main.cpp needed.cpp needed.h button.cpp button.h label.cpp label.h textbox.cpp textbox.h tablet.cpp tablet.h clickable.cpp clickable.h buildings.cpp buildings.h game.cpp load.cpp create.cpp obstacle.cpp obstacle.h constants.h town_hall.cpp)
+add_executable(Ages1 main.cpp needed.cpp needed.h button.cpp button.h label.cpp label.h textbox.cpp textbox.h tablet.cpp tablet.h clickable.cpp clickable.h buildings.cpp buildings.h game.cpp load.cpp create.cpp obstacle.cpp obstacle.h constants.h town_hall.cpp Upgrade_tablet.cpp Upgrade_tablet.h)
 target_link_libraries (Ages1 sfml-graphics sfml-window sfml-system)
+
+find_package (Threads REQUIRED)
+
+target_link_libraries(Ages1
+        ${CMAKE_THREAD_LIBS_INIT}
+        sfml-graphics sfml-window sfml-system
+        )

@@ -156,7 +156,7 @@ void Application::m_stuff(){
 void Application::u_sure(RenderWindow &W){
     //creating window
     this->wexit.create(VideoMode(300,200),"Are you sure?",Style::Titlebar | Style::Close);
-    this->wexit.setPosition(Vector2i(250,200));
+    this->wexit.setPosition(Vector2i(250+W.getPosition().x,200+W.getPosition().y));
     this->wexit.setMouseCursorGrabbed(true);
 
     //creating buttons

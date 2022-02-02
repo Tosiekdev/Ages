@@ -80,7 +80,8 @@ void Application::th_stuff() {
 
     //increasing resources
     if(this->resource_clock.getElapsedTime().asSeconds()>=1){
-        int time_passed=this->resource_clock.getElapsedTime().asSeconds();
+        int time_passed;
+        time_passed=(int)this->resource_clock.getElapsedTime().asSeconds();
         this->human+=time_passed*farm;
         this->rock+=time_passed*10*stone_pit;
         this->wood+=time_passed*10*lumber_mill;
@@ -99,8 +100,8 @@ void Application::display_townhall() {
     this->th_return_to_game.show(this->screen);
 
     //labels
-    for(int i=0; i<7; i++)
-        this->l_buildings[i].show(this->screen);
+    for(auto &l_building:this->l_buildings)
+        l_building.show(this->screen);
 
     //buildings demands
     this->b_academy.show_demands(Vector2f(20,150),this->screen);

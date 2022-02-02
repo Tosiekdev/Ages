@@ -12,6 +12,7 @@
 #include <cstdio>
 #include <cmath>
 #include <map>
+#include <thread>
 
 #include "button.h"
 #include "label.h"
@@ -21,6 +22,7 @@
 #include "buildings.h"
 #include "obstacle.h"
 #include "constants.h"
+#include "Upgrade_tablet.h"
 
 using namespace sf;
 using namespace std;
@@ -80,6 +82,7 @@ private:
     //town hall
     Button th_return_to_game;
     Label l_buildings[7];
+    Upgrade_tablet u_buildings[7];
     map<int,string> num_to_names{
         {1,"Academy"},
         {2,"Barracks"},

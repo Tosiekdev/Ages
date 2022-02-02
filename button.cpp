@@ -12,7 +12,7 @@ Button::Button(int h,int w,int posx,int posy,String caption){
 }
 
 //creating button
-void Button::create(int h,int w,int posx,int posy,String caption){
+void Button::create(int h,int w,float posx,float posy,String caption){
     //assigning variables
     this->button_height=h;
     this->button_width=w;

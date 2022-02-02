@@ -38,7 +38,7 @@ void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,in
     //star to show level
     this->create_star();
 }
-
+;
 //Building upgrade
 void buildings::upgrade(int &lvl, int &human, int &rock, int &wood){
     if(this->n_human<=human && this->n_stone<=rock && this->n_wood <= wood){
@@ -84,7 +84,7 @@ void buildings::create_star(){
 }
 
 bool buildings::isClicked(int posx, int posy) {
-    if(this->view.getGlobalBounds().contains(posx,posy)){
+    if(this->view.getGlobalBounds().contains((float)posx,(float)posy)){
         return true;
     }else
         return false;
@@ -92,9 +92,9 @@ bool buildings::isClicked(int posx, int posy) {
 
 void buildings::show_demands(Vector2f pos, RenderWindow &window){
     //prepare labels
-    this->for_human.create(DEFAULT_FONT,pos.x,pos.y,"People: "+ to_string(this->n_human),15);
-    this->for_stone.create(DEFAULT_FONT,pos.x+100,pos.y,"Stone: "+ to_string(this->n_stone),15);
-    this->for_wood.create(DEFAULT_FONT,pos.x+200,pos.y,"Wood: "+ to_string(this->n_wood),15);
+    this->for_human.create(DEFAULT_FONT,(int)pos.x,(int)pos.y,"People: "+ to_string(this->n_human),15);
+    this->for_stone.create(DEFAULT_FONT,(int)pos.x+100,(int)pos.y,"Stone: "+ to_string(this->n_stone),15);
+    this->for_wood.create(DEFAULT_FONT,(int)pos.x+200,(int)pos.y,"Wood: "+ to_string(this->n_wood),15);
 
     //display demands
     this->for_human.show(window);
