@@ -18,11 +18,16 @@ public:
     void create_upgrade(buildings* resp, std::string caption, sf::Vector2f pos);
     void show(sf::RenderWindow &W);
 
+    void upgrade_building(int &human, int &rock, int &wood);
+
     sf::Vector2f Return_position();
     void set_position(Vector2f new_pos);
 
     void button_animation(Vector2i pos);
     bool button_clicked(Vector2i pos);
+
+    float get_time();
+    void update_timer(float time_passed);
 
 private:
     //building that it is responsible for
@@ -34,6 +39,9 @@ private:
     //timer for upgrade
     sf::Clock timer;
     sf::Vector2f position;
+    float time_left;
+    Label clock;
+
     Button upgrade;
 };
 

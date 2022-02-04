@@ -71,6 +71,7 @@ void Application::th_handle_event(){
             //getting mouse position
             int a=Mouse::getPosition(this->screen).x;
             int b=Mouse::getPosition(this->screen).y;
+            Vector2i mouse_pos=Mouse::getPosition(this->screen);
 
             //button clicked
             if(this->th_return_to_game.onClick(a,b)){
@@ -85,6 +86,11 @@ void Application::th_handle_event(){
                 this->l_wood.setCaption(to_string(this->wood));
 
                 this->scene=4;
+            }
+            for(int i=0; i<7; i++){
+                if(this->u_buildings[i].button_clicked(mouse_pos)){
+                    this->u_buildings[i].upgrade_building(this->human,this->rock,this->wood);
+                }
             }
         }
     }

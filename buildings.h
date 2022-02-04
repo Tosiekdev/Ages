@@ -19,11 +19,12 @@ class buildings
 {
 public:
     buildings(string="default",string="Textures/default.png",int=0,int=0,int=0,int=0,Vector2f=Vector2f(0,0));
-    void upgrade(int &lvl,int &human, int &rock, int &wood); //upgrades building
+    int take_resources(int &human, int &rock, int &wood); //upgrades building
     void create_building(string nm,string tx_path,int lvl,Vector2f pos,int ns,int nw,int np); //load asset for building
     void show(RenderWindow &W); //draws building with background
     void show_demands(Vector2f pos, RenderWindow &window);
     bool isClicked(int posx, int posy); //check if building was clicked
+    int get_level() const;
 private:
     int level;
     int n_stone,n_wood,n_human; //needed resources
@@ -45,6 +46,7 @@ private:
 
     //demands
     Label for_stone, for_wood, for_human;
+    bool in_upgrade;
 };
 
 

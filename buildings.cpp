@@ -9,6 +9,7 @@ using namespace std;
 using namespace sf;
 
 buildings::buildings(string the_name,string path_totext,int leveled,int need_s,int need_w,int need_g,Vector2f position){
+    this->in_upgrade=false;
     this->create_building(the_name,path_totext,leveled,position,need_s,need_w,need_g);
 }
 
@@ -39,23 +40,24 @@ void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,in
     this->create_star();
 }
 ;
-//Building upgrade
-void buildings::upgrade(int &lvl, int &human, int &rock, int &wood){
+//First part of upgrade, take resources
+int buildings::take_resources(int &human, int &rock, int &wood) {
     if(this->n_human<=human && this->n_stone<=rock && this->n_wood <= wood){
         //take resources
         human-=this->n_human;
         rock-=this->n_stone;
         wood-=this->n_wood;
 
-        //increase level
-        this->level++;
-        lvl++;
-
         //rise demands
         this->n_stone+=pow(n_stone,2/3);
         this->n_wood+=pow(n_wood,2/3);
         this->n_human+=pow(n_human,2/3);
+
+        this->in_upgrade=true;
+
+        return 1;
     }
+    return 0;
 }
 
 //Draw building
@@ -100,5 +102,9 @@ void buildings::show_demands(Vector2f pos, RenderWindow &window){
     this->for_human.show(window);
     this->for_stone.show(window);
     this->for_wood.show(window);
+}
+
+int buildings::get_level() const{
+    return this->level;
 }
 
