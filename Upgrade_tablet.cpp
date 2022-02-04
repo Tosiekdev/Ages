@@ -29,3 +29,11 @@ void Upgrade_tablet::set_position(Vector2f new_pos){
     this->upgrade.set_position(this->position+sf::Vector2f(600,0));
     this->name.setPosition(this->position);
 }
+
+void Upgrade_tablet::button_animation(Vector2i pos){
+    this->upgrade.onFocus(pos.x,pos.y);
+}
+
+bool Upgrade_tablet::button_clicked(Vector2i pos) {
+    return this->upgrade.onClick(pos.x,pos.y);
+}

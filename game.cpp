@@ -49,17 +49,7 @@ void Application::g_stuff(){
     this->return_to_menu.onFocus(x,y);
     this->save.onFocus(x,y);
 
-    //increasing resources
-    if(this->resource_clock.getElapsedTime().asSeconds()>=1){
-        int time_passed=this->resource_clock.getElapsedTime().asSeconds();
-        this->human+=time_passed*farm;
-        this->rock+=time_passed*10*stone_pit;
-        this->wood+=time_passed*10*lumber_mill;
-        this->l_human.setCaption(to_string(this->human));
-        this->l_rock.setCaption(to_string(this->rock));
-        this->l_wood.setCaption(to_string(this->wood));
-        this->resource_clock.restart();
-    }
+    //increasing resources is handled by thread
 }
 
 //Handling events
@@ -184,6 +174,7 @@ void Application::prepare_buildings(){
     this->b_town.create_building("Town Hall", "Textures/town_hall.png", this->town_hall, Vector2f(0,300), 75, 75, 12);
 }
 
+//saving game
 void Application::save_game(){
     //opening save
     fstream file;
@@ -255,6 +246,33 @@ void Application::wo_saving(){
         this->ns_pt2.show(this->wsaving);
 
         this->wsaving.display();
+    }
+}
+
+void Application::clocks(){
+    while(this->screen.isOpen()){
+        if(this->scene>3){
+            //increasing resources
+            if (this->resource_clock.getElapsedTime().asSeconds() >= 1) {
+                int time_passed = (int)this->resource_clock.getElapsedTime().asSeconds();
+                this->human += time_passed * farm;
+                this->rock += time_passed * 10 * stone_pit;
+                this->wood += time_passed * 10 * lumber_mill;
+                switch(scene){
+                    case 4:
+                        this->l_human.setCaption(to_string(this->human));
+                        this->l_rock.setCaption(to_string(this->rock));
+                        this->l_wood.setCaption(to_string(this->wood));
+                        break;
+                    case 5:
+                        this->l_human.setCaption("People: "+to_string(this->human));
+                        this->l_rock.setCaption("Stone: "+to_string(this->rock));
+                        this->l_wood.setCaption("Wood: "+to_string(this->wood));
+                        break;
+                }
+                this->resource_clock.restart();
+            }
+        }
     }
 }
 

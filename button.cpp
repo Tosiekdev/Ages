@@ -53,7 +53,7 @@ void Button::show(RenderWindow &W){
 void Button::onFocus(int mposx,int mposy){
     if(this->button_sprite.getGlobalBounds().contains(mposx,mposy) && this->active){
         this->button_sprite.setScale(this->button_width/100+0.2,this->button_height/40+0.2);
-        this->button_text.setPosition(this->button_possition+Vector2f(this->button_width/2+button_width/10,this->button_height/2+button_height/10));
+        this->button_text.setPosition(this->button_possition+Vector2f(this->button_width*0.6f,this->button_height*0.6f));
     }else{
         this->button_sprite.setScale(this->button_width/100,this->button_height/40);
         this->button_text.setPosition(this->button_possition+Vector2f(this->button_width/2,this->button_height/2));
@@ -67,5 +67,6 @@ void Button::setActive(bool activity){
 
 void Button::set_position(Vector2f new_position){
     this->button_possition=new_position;
+    this->button_sprite.setPosition(this->button_possition);
 }
 

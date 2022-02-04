@@ -99,6 +99,7 @@ private:
     Label no_save, ns_pt2;
     Event e_save;
     Button am_sure, not_sure;
+
 public:
     Application();
     void u_sure(RenderWindow &W);
@@ -148,6 +149,9 @@ public:
     void th_handle_event();
     void th_stuff();
     void display_townhall();
+
+    //threads functions
+    void clocks();
 };
 
 

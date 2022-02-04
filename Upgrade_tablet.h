@@ -21,6 +21,9 @@ public:
     sf::Vector2f Return_position();
     void set_position(Vector2f new_pos);
 
+    void button_animation(Vector2i pos);
+    bool button_clicked(Vector2i pos);
+
 private:
     //building that it is responsible for
     buildings *responsible{};

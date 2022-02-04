@@ -97,19 +97,11 @@ void Application::th_stuff() {
 
     //cool animation
     this->th_return_to_game.onFocus(x,y);
+    Vector2i mouse_pos=Mouse::getPosition(this->screen);
+    for(int i=0; i<7; i++)
+        this->u_buildings[i].button_animation(mouse_pos);
 
-    //increasing resources
-    if(this->resource_clock.getElapsedTime().asSeconds()>=1){
-        int time_passed;
-        time_passed=(int)this->resource_clock.getElapsedTime().asSeconds();
-        this->human+=time_passed*farm;
-        this->rock+=time_passed*10*stone_pit;
-        this->wood+=time_passed*10*lumber_mill;
-        this->l_human.setCaption("People: "+to_string(this->human));
-        this->l_rock.setCaption("Stone: "+to_string(this->rock));
-        this->l_wood.setCaption("Wood: "+to_string(this->wood));
-        this->resource_clock.restart();
-    }
+    //increasing resources is handled by thread
 }
 
 //drawing everything

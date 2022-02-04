@@ -59,6 +59,8 @@ Application::Application(){
 
 //Main thread of whole app
 void Application::main_window(){
+    //start clock thread
+    thread for_clocks(&Application::clocks, this);
     //scenes switching
     while(this->screen.isOpen()){
         switch(this->scene){
@@ -79,6 +81,7 @@ void Application::main_window(){
                 break;
         }
     }
+    for_clocks.join();
 }
 
 //Menu main thread
