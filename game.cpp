@@ -26,6 +26,13 @@ void Application::create_game(){
     this->l_human.create(DEFAULT_FONT,620,5,to_string(this->human),30);
     this->l_rock.create(DEFAULT_FONT,620,50,to_string(this->rock),30);
     this->l_wood.create(DEFAULT_FONT,620,95,to_string(this->wood),30);
+
+    //for town hall
+    float y_position=100.f;
+    for(int i=0; i<7; i++){
+        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
+        y_position+=100.f;
+    }
 }
 
 //Start main loop
@@ -165,7 +172,7 @@ void Application::create_buildings(){
 
 //assign values to proper building
 void Application::prepare_buildings(){
-    this->b_academy.create_building("Academy", "Textures/academy.png", this->academy, Vector2f(0,0), 100, 75, 10);
+    this->b_academy.create_building("Academy", "Textures/academy.png", this->academy, Vector2f(600,450), 100, 75, 10);
     this->b_barracks.create_building("Barracks", "Textures/barracks.png", this->barracks, Vector2f(100,100), 75, 75, 7);
     this->b_church.create_building("Church", "Textures/church.png", this->church, Vector2f(200,200), 50, 150, 10);
     this->b_farm.create_building("Farm", "Textures/farm.png", this->farm, Vector2f(300,300), 20, 60, 2);
@@ -199,6 +206,7 @@ void Application::save_game(){
     file.close();
 }
 
+//handle window which makes sure that player want to exit
 void Application::wo_saving(){
     //creating window
     this->wsaving.create(VideoMode(300,200),"Are you sure?",Style::Titlebar | Style::Close);
@@ -249,6 +257,7 @@ void Application::wo_saving(){
     }
 }
 
+//thread to count time
 void Application::clocks(){
     while(this->screen.isOpen()){
         if(this->scene>3){
@@ -272,8 +281,26 @@ void Application::clocks(){
                 }
                 this->resource_clock.restart();
             }
+            for(int i=0; i<7; i++){
+                if(this->u_buildings[i].get_time()>=1){
+                    if(this->u_buildings[i].update_timer(this->u_buildings[i].get_time())==3)
+                        this->assign_levels();
+                    this->u_buildings[i].reset_timer();
+                }
+            }
         }
     }
+}
+
+//assigns levels from buildings
+void Application::assign_levels(){
+    this->academy=this->b_academy.get_level();
+    this->barracks=this->b_barracks.get_level();
+    this->church=this->b_church.get_level();
+    this->farm=this->b_farm.get_level();
+    this->lumber_mill=this->b_lumber.get_level();
+    this->stone_pit=this->b_stone.get_level();
+    this->town_hall=this->b_town.get_level();
 }
 
 

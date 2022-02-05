@@ -42,16 +42,16 @@ void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,in
 ;
 //First part of upgrade, take resources
 int buildings::take_resources(int &human, int &rock, int &wood) {
-    if(this->n_human<=human && this->n_stone<=rock && this->n_wood <= wood){
+    if(this->n_human<=human && this->n_stone<=rock && this->n_wood <= wood && !this->in_upgrade && this->level<30){
         //take resources
         human-=this->n_human;
         rock-=this->n_stone;
         wood-=this->n_wood;
 
         //rise demands
-        this->n_stone+=pow(n_stone,2/3);
-        this->n_wood+=pow(n_wood,2/3);
-        this->n_human+=pow(n_human,2/3);
+        this->n_stone*=1.67;
+        this->n_wood*=1.67;
+        this->n_human*=1.67;
 
         this->in_upgrade=true;
 
@@ -106,5 +106,15 @@ void buildings::show_demands(Vector2f pos, RenderWindow &window){
 
 int buildings::get_level() const{
     return this->level;
+}
+
+bool buildings::status() {
+    return this->in_upgrade;
+}
+
+void buildings::end_upgrade(){
+    this->level++;
+    this->in_upgrade=false;
+    this->lvl_label.setCaption(to_string(this->level));
 }
 

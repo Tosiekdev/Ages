@@ -142,6 +142,7 @@ public:
     void prepare_buildings();
     void save_game();
     void wo_saving();
+    void assign_levels();
 
     //town hall
     void create_townhall();

@@ -27,7 +27,8 @@ public:
     bool button_clicked(Vector2i pos);
 
     float get_time();
-    void update_timer(float time_passed);
+    int update_timer(float time_passed);
+    void reset_timer();
 
 private:
     //building that it is responsible for
@@ -41,6 +42,7 @@ private:
     sf::Vector2f position;
     float time_left;
     Label clock;
+    sf::RectangleShape counting_down;
 
     Button upgrade;
 };

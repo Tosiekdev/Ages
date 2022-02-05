@@ -10,12 +10,7 @@ using namespace sf;
 void Application::create_townhall(){
     this->th_return_to_game.create(40,100,5,5,"Return");
 
-    //buildings label
-    float y_position=100.f;
-    for(int i=0; i<7; i++){
-        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
-        y_position+=100.f;
-    }
+    //buildings label inicialized in game.cpp
 
     //changing resource info position
     this->l_human.setPosition(Vector2f(200,5));
@@ -90,6 +85,9 @@ void Application::th_handle_event(){
             for(int i=0; i<7; i++){
                 if(this->u_buildings[i].button_clicked(mouse_pos)){
                     this->u_buildings[i].upgrade_building(this->human,this->rock,this->wood);
+                    this->l_human.setCaption("People: "+to_string(this->human));
+                    this->l_rock.setCaption("Stone: "+to_string(this->rock));
+                    this->l_wood.setCaption("Wood: "+to_string(this->wood));
                 }
             }
         }
