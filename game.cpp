@@ -29,7 +29,7 @@ void Application::create_game(){
 
     //for town hall
     float y_position=100.f;
-    for(int i=0; i<7; i++){
+    for(int i=0; i<8; i++){
         this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
         y_position+=100.f;
     }
@@ -111,6 +111,7 @@ void Application::display_game(){
     this->b_barracks.show(this->screen);
     this->b_farm.show(this->screen);
     this->b_stone.show(this->screen);
+    this->b_magazine.show(this->screen);
 
     this->screen.display();
 }
@@ -151,14 +152,16 @@ void Application::create_buildings(){
             case 7:
                 this->town_hall=stoi(input);
                 break;
-            //resources
             case 8:
+                this->magazine=stoi(input);
+            //resources
+            case 9:
                 this->human=stoi(input);
                 break;
-            case 9:
+            case 10:
                 this->wood=stoi(input);
                 break;
-            case 10:
+            case 11:
                 this->rock=stoi(input);
                 break;
         }
@@ -179,6 +182,7 @@ void Application::prepare_buildings(){
     this->b_lumber.create_building("Lumber mill", "Textures/default.png", this->lumber_mill, Vector2f(400,30), 65, 15, 2);
     this->b_stone.create_building("Stone pit", "Textures/default.png", this->stone_pit, Vector2f(500,300), 15, 65, 2);
     this->b_town.create_building("Town Hall", "Textures/town_hall.png", this->town_hall, Vector2f(0,300), 75, 75, 12);
+    this->b_magazine.create_building("Magazine", "Textures/magazine.png", this->magazine, Vector2f(0,450), 100, 50, 6);
 }
 
 //saving game
@@ -197,6 +201,7 @@ void Application::save_game(){
     file << this->lumber_mill << endl;
     file << this->stone_pit << endl;
     file << this->town_hall << endl;
+    file << this->magazine << endl;
 
     //resources;
     file << this->human << endl;
@@ -267,6 +272,20 @@ void Application::clocks(){
                 this->human += time_passed * farm;
                 this->rock += time_passed * 10 * stone_pit;
                 this->wood += time_passed * 10 * lumber_mill;
+
+                //full magazine
+                if(this->rock>pow(this->magazine,5/3)*1000){
+                    this->rock=pow(this->magazine,5/3)*1000;
+                    this->l_rock.setColor(Color::Red);
+                }else
+                    this->l_rock.setColor(Color::Black);
+
+                if(this->wood>pow(this->magazine,5/3)*1000){
+                    this->wood=pow(this->magazine,5/3)*1000;
+                    this->l_wood.setColor(Color::Red);
+                }else
+                    this->l_wood.setColor(Color::Black);
+
                 switch(scene){
                     case 4:
                         this->l_human.setCaption(to_string(this->human));
@@ -281,7 +300,7 @@ void Application::clocks(){
                 }
                 this->resource_clock.restart();
             }
-            for(int i=0; i<7; i++){
+            for(int i=0; i<8; i++){
                 if(this->u_buildings[i].get_time()>=1){
                     if(this->u_buildings[i].update_timer(this->u_buildings[i].get_time())==3)
                         this->assign_levels();
@@ -301,6 +320,7 @@ void Application::assign_levels(){
     this->lumber_mill=this->b_lumber.get_level();
     this->stone_pit=this->b_stone.get_level();
     this->town_hall=this->b_town.get_level();
+    this->magazine=this->b_magazine.get_level();
 }
 
 

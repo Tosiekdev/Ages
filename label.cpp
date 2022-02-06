@@ -62,3 +62,7 @@ void Label::setFont(string path){
     this->label_text.setFont(this->label_font);
 }
 
+void Label::setColor(Color new_color){
+    this->label_text.setFillColor(new_color);
+}
+

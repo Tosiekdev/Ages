@@ -28,6 +28,7 @@ public:
     void setSize(int new_size);
     void setPosition(Vector2f new_position);
     void setFont(string path);
+    void setColor(Color new_color);
     void create(const string& path,float posx,float posy,const String& cap,int sized);
 };
 

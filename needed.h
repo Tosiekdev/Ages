@@ -42,9 +42,9 @@ private:
 
     //village
     string name,save_path;
-    int academy,barracks,church,farm,lumber_mill,stone_pit,town_hall;
-    buildings b_academy,b_barracks,b_church,b_farm,b_lumber,b_stone,b_town;
-    buildings *b_ptr[7];
+    int academy,barracks,church,farm,lumber_mill,stone_pit,town_hall,magazine;
+    buildings b_academy,b_barracks,b_church,b_farm,b_lumber,b_stone,b_town,b_magazine;
+    buildings *b_ptr[8];
     int human,rock,wood;
 
     //wexit
@@ -82,8 +82,7 @@ private:
 
     //town hall
     Button th_return_to_game;
-    Label l_buildings[7];
-    Upgrade_tablet u_buildings[7];
+    Upgrade_tablet u_buildings[8];
     map<int,string> num_to_names{
         {1,"Academy"},
         {2,"Barracks"},
@@ -91,7 +90,8 @@ private:
         {4,"Farm"},
         {5,"Lumber Mill"},
         {6,"Stone Pit"},
-        {7,"Town Hall"}
+        {7,"Town Hall"},
+        {8,"Magazine"}
     };
 
     //window to make sure that user want exit without saving

@@ -45,8 +45,8 @@ void Application::th_handle_event(){
         if(this->e.type==Event::MouseWheelScrolled){
             if(this->e.mouseWheelScroll.delta<0){
                 Vector2f buf_pos;
-                buf_pos=u_buildings[6].Return_position();
-                for(int i=6; i>0; i--){
+                buf_pos=u_buildings[7].Return_position();
+                for(int i=7; i>0; i--){
                     this->u_buildings[i].set_position(this->u_buildings[i-1].Return_position());
                 }
                 this->u_buildings[0].set_position(buf_pos);
@@ -54,10 +54,10 @@ void Application::th_handle_event(){
             if(this->e.mouseWheelScroll.delta>0){
                 Vector2f buf_pos;
                 buf_pos=u_buildings[0].Return_position();
-                for(int i=0; i<6; i++){
+                for(int i=0; i<7; i++){
                     this->u_buildings[i].set_position(this->u_buildings[i+1].Return_position());
                 }
-                this->u_buildings[6].set_position(buf_pos);
+                this->u_buildings[7].set_position(buf_pos);
             }
         }
 
@@ -82,7 +82,9 @@ void Application::th_handle_event(){
 
                 this->scene=4;
             }
-            for(int i=0; i<7; i++){
+
+            //upgrading buildings
+            for(int i=0; i<8; i++){
                 if(this->u_buildings[i].button_clicked(mouse_pos)){
                     this->u_buildings[i].upgrade_building(this->human,this->rock,this->wood);
                     this->l_human.setCaption("People: "+to_string(this->human));
@@ -102,7 +104,9 @@ void Application::th_stuff() {
     //cool animation
     this->th_return_to_game.onFocus(x,y);
     Vector2i mouse_pos=Mouse::getPosition(this->screen);
-    for(int i=0; i<7; i++)
+
+    //upgrade box
+    for(int i=0; i<8; i++)
         this->u_buildings[i].button_animation(mouse_pos);
 
     //increasing resources is handled by thread

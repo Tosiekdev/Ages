@@ -17,6 +17,7 @@ Application::Application(){
     this->b_ptr[4]=&(this->b_lumber);
     this->b_ptr[5]=&(this->b_stone);
     this->b_ptr[6]=&(this->b_town);
+    this->b_ptr[7]=&(this->b_magazine);
 
     //settings
     this->height=600;
@@ -236,6 +237,7 @@ string Application::create_city(string calling){
     this->lumber_mill=1;
     this->stone_pit=1;
     this->town_hall=1;
+    this->magazine=1;
 
     //setting resources
     this->human=10;
@@ -259,6 +261,7 @@ string Application::create_city(string calling){
     file << this->lumber_mill << endl;
     file << this->stone_pit << endl;
     file << this->town_hall << endl;
+    file << this->magazine << endl;
 
     //resources;
     file << this->human << endl;
