@@ -21,7 +21,7 @@ private:
     Vector2f possition;
 public:
     void create_element(string path, Vector2f pos);
-    void onFocus(int mposx, int mposy);
+    bool onFocus(int mposx, int mposy);
     bool onClick(int mposx, int mposy);
     void draw_it(RenderWindow &W);
 };

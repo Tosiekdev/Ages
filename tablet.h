@@ -29,7 +29,7 @@ public:
     tablet();
     void create_tablet(string caption, Vector2f position);
     void draw(RenderWindow &W);
-    void TRIGGERED(int mposx, int mposy);
+    bool TRIGGERED(int mposx, int mposy);
     void focussed();
     void notfocussed();
     string return_name();

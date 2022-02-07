@@ -92,7 +92,7 @@ private:
         {5,"Lumber Mill"},
         {6,"Stone Pit"},
         {7,"Town Hall"},
-        {8,"Magazine"}
+        {8,"Warehouse"}
     };
     Label th_info;
 

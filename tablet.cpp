@@ -32,13 +32,14 @@ void tablet::draw(RenderWindow &W)
     W.draw(this->text);
 }
 //.....................................
-void tablet::TRIGGERED(int mposx, int mposy)
+bool tablet::TRIGGERED(int mposx, int mposy)
 {
     if(this->look.getGlobalBounds().contains(mposx,mposy))
     {
         this->plank.loadFromFile("Textures/plank1.png");
         this->look.setTexture(this->plank);
         this->look.setScale(0.4,0.3);
+        return true;
     }
     else
     {
@@ -47,6 +48,7 @@ void tablet::TRIGGERED(int mposx, int mposy)
             this->plank.loadFromFile("Textures/plank.png");
             this->look.setTexture(this->plank);
             this->look.setScale(0.4,0.3);
+            return false;
         }
     }
 }

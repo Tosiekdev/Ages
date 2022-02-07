@@ -49,15 +49,15 @@ void Application::game(){
 
 //Every frame stuff
 void Application::g_stuff(){
+    bool a[10];
     int x=Mouse::getPosition(this->screen).x;
     int y=Mouse::getPosition(this->screen).y;
 
     //cool animation
-    this->return_to_menu.onFocus(x,y);
-    this->save.onFocus(x,y);
+    a[8]=this->return_to_menu.onFocus(x,y);
+    a[9]=this->save.onFocus(x,y);
 
     //cool building animation
-    bool a[8];
     a[0]=this->b_academy.onFocus(x,y);
     a[1]=this->b_barracks.onFocus(x,y);
     a[2]=this->b_church.onFocus(x,y);
@@ -67,7 +67,7 @@ void Application::g_stuff(){
     a[6]=this->b_town.onFocus(x,y);
     a[7]=this->b_magazine.onFocus(x,y);
 
-    if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7])
+    if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7] || a[8] || a[9])
         this->cursor.loadFromSystem(Cursor::Hand);
     else
         this->cursor.loadFromSystem(Cursor::Arrow);
@@ -227,7 +227,7 @@ void Application::prepare_buildings(){
     this->b_lumber.create_building("Lumber mill", "Textures/default.png", this->lumber_mill, Vector2f(400,30), 65, 15, 2);
     this->b_stone.create_building("Stone pit", "Textures/default.png", this->stone_pit, Vector2f(500,300), 15, 65, 2);
     this->b_town.create_building("Town Hall", "Textures/town_hall.png", this->town_hall, Vector2f(0,300), 75, 75, 12);
-    this->b_magazine.create_building("Magazine", "Textures/magazine.png", this->magazine, Vector2f(0,450), 100, 50, 6);
+    this->b_magazine.create_building("Warehouse", "Textures/magazine.png", this->magazine, Vector2f(0,450), 100, 50, 6);
     for(int i=0; i<8; i++){
         this->u_buildings[i].update_level();
     }
@@ -300,8 +300,16 @@ void Application::wo_saving(){
         }
 
         //Button animation
-        this->am_sure.onFocus(Mouse::getPosition(this->wsaving).x,Mouse::getPosition(this->wsaving).y);
-        this->not_sure.onFocus(Mouse::getPosition(this->wsaving).x,Mouse::getPosition(this->wsaving).y);
+        bool a[2];
+        a[0]=this->am_sure.onFocus(Mouse::getPosition(this->wsaving).x,Mouse::getPosition(this->wsaving).y);
+        a[1]=this->not_sure.onFocus(Mouse::getPosition(this->wsaving).x,Mouse::getPosition(this->wsaving).y);
+
+        //cursor
+        if(a[0] || a[1])
+            this->cursor.loadFromSystem(Cursor::Hand);
+        else
+            this->cursor.loadFromSystem(Cursor::Arrow);
+        this->wsaving.setMouseCursor(this->cursor);
 
         //Drawing everything
         this->wsaving.clear(Color::White);

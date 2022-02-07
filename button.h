@@ -30,7 +30,7 @@ public:
     void setActive(bool activity);
     bool onClick(int mposx,int mposy);
     void show(RenderWindow &W);
-    void onFocus(int mposx,int mposy);
+    bool onFocus(int mposx,int mposy);
 };
 
 

@@ -42,11 +42,20 @@ void Application::f_handle_event(){
 
 //every frame stuff
 void Application::f_stuff(){
+    bool for_cursor[1];
     //cool animation
     int x=Mouse::getPosition(this->screen).x;
     int y=Mouse::getPosition(this->screen).y;
 
-    this->f_return_to_game.onFocus(x,y);
+    for_cursor[0]=this->f_return_to_game.onFocus(x,y);
+
+    //cursor
+    if(for_cursor[0]){
+        this->cursor.loadFromSystem(Cursor::Hand);
+    }
+    else
+        this->cursor.loadFromSystem(Cursor::Arrow);
+    this->screen.setMouseCursor(this->cursor);
 }
 
 //display everything

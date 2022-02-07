@@ -160,14 +160,22 @@ void Application::display_menu(){
 
 //Every frame stuff
 void Application::m_stuff(){
+    bool a[3];
     //getting mouse position
     int x=Mouse::getPosition(this->screen).x;
     int y=Mouse::getPosition(this->screen).y;
 
     //checking buttons focus
-    this->new_game.onFocus(x,y);
-    this->load_game.onFocus(x,y);
-    this->exit.onFocus(x,y);
+    a[0]=this->new_game.onFocus(x,y);
+    a[1]=this->load_game.onFocus(x,y);
+    a[2]=this->exit.onFocus(x,y);
+
+    //cursor
+    if(a[0] || a[1] || a[2])
+        this->cursor.loadFromSystem(Cursor::Hand);
+    else
+        this->cursor.loadFromSystem(Cursor::Arrow);
+    this->screen.setMouseCursor(this->cursor);
 }
 
 //Checking if user really wants to exit
@@ -206,8 +214,16 @@ void Application::u_sure(RenderWindow &W){
         }
 
         //Button animation
-        this->yes.onFocus(Mouse::getPosition(this->wexit).x,Mouse::getPosition(this->wexit).y);
-        this->no.onFocus(Mouse::getPosition(this->wexit).x,Mouse::getPosition(this->wexit).y);
+        bool a[2];
+        a[0]=this->yes.onFocus(Mouse::getPosition(this->wexit).x,Mouse::getPosition(this->wexit).y);
+        a[1]=this->no.onFocus(Mouse::getPosition(this->wexit).x,Mouse::getPosition(this->wexit).y);
+
+        //cursor
+        if(a[0] || a[1])
+            this->cursor.loadFromSystem(Cursor::Hand);
+        else
+            this->cursor.loadFromSystem(Cursor::Arrow);
+        this->wexit.setMouseCursor(this->cursor);
 
         //Drawing everything
         this->wexit.clear(Color::White);

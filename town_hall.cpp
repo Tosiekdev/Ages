@@ -115,6 +115,10 @@ void Application::th_stuff() {
         this->u_buildings[i].button_animation(mouse_pos);
 
     //increasing resources is handled by thread
+
+    //cursor
+    this->cursor.loadFromSystem(Cursor::Arrow);
+    this->screen.setMouseCursor(this->cursor);
 }
 
 //drawing everything

@@ -96,13 +96,21 @@ void Application::c_handle_event(){
 
 //Stuff to do
 void Application::c_stuff(){
+    bool a[3];
     int x=Mouse::getPosition(this->screen).x;
     int y=Mouse::getPosition(this->screen).y;
 
     //cool animation
-    this->return_button.onFocus(x,y);
-    this->ok_button.onFocus(x,y);
-    this->cancel_button.onFocus(x,y);
+    a[0]=this->return_button.onFocus(x,y);
+    a[1]=this->ok_button.onFocus(x,y);
+    a[2]=this->cancel_button.onFocus(x,y);
+
+    //cursor
+    if(a[0] || a[1] || a[2])
+        this->cursor.loadFromSystem(Cursor::Hand);
+    else
+        this->cursor.loadFromSystem(Cursor::Arrow);
+    this->screen.setMouseCursor(this->cursor);
 
     //hiding extra text
     while(this->textbox_rect()){

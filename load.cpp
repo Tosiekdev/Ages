@@ -99,16 +99,26 @@ void Application::l_handle_event(){
 
 //Things to do with every frame
 void Application::l_stuff(){
+    bool a[10];
     //getting mouse position
     int x=Mouse::getPosition(this->screen).x;
     int y=Mouse::getPosition(this->screen).y;
 
     //checking if any button is focussed
-    this->returning_button.onFocus(x,y);
-    this->load_button.onFocus(x,y);
-    this->remove_button.onFocus(x,y);
+    a[8]=this->up.onFocus(x,y);
+    a[9]=this->down.onFocus(x,y);
+    a[5]=this->returning_button.onFocus(x,y);
+    a[6]=this->load_button.onFocus(x,y);
+    a[7]=this->remove_button.onFocus(x,y);
     for(int i=0;i<5;i++) //tablets
-        this->t[i].TRIGGERED(x,y);
+        a[i]=this->t[i].TRIGGERED(x,y);
+
+    //cursor
+    if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7] || a[8] || a[9])
+        this->cursor.loadFromSystem(Cursor::Hand);
+    else
+        this->cursor.loadFromSystem(Cursor::Arrow);
+    this->screen.setMouseCursor(this->cursor);
 }
 
 //Frame drawing

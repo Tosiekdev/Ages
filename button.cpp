@@ -50,13 +50,15 @@ void Button::show(RenderWindow &W){
 }
 
 //Cool animation
-void Button::onFocus(int mposx,int mposy){
+bool Button::onFocus(int mposx,int mposy){
     if(this->button_sprite.getGlobalBounds().contains(mposx,mposy) && this->active){
         this->button_sprite.setScale(this->button_width/100+0.2,this->button_height/40+0.2);
         this->button_text.setPosition(this->button_possition+Vector2f(this->button_width*0.6f,this->button_height*0.6f));
+        return true;
     }else{
         this->button_sprite.setScale(this->button_width/100,this->button_height/40);
         this->button_text.setPosition(this->button_possition+Vector2f(this->button_width/2,this->button_height/2));
+        return false;
     }
 }
 
