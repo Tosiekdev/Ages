@@ -88,11 +88,11 @@ float Upgrade_tablet::get_time(){
 }
 
 //takes resources
-void Upgrade_tablet::upgrade_building(int &human, int &rock, int &wood){
+void Upgrade_tablet::upgrade_building(int &human, int &rock, int &wood, int bonus){
     if(this->responsible->take_resources(human,rock,wood)){
         this->timer.restart();
-        this->time_left = ((float) this->responsible->get_level() + 1.f) * 10;
-        this->update_timer(0);
+        this->time_left=((float)this->responsible->get_level()+1.f)*10;
+        this->update_timer((float)bonus);
     }
 }
 
@@ -115,10 +115,10 @@ int Upgrade_tablet::update_timer(float time_passed){
         this->clock.setCaption(m + ":" + s);
 
         //if time passed upgrade building
-        if(this->time_left==0){
+        if(this->time_left<=0){
             this->responsible->end_upgrade();
             this->counting_down.setSize(sf::Vector2f(300,50));
-            this->star_text.setCaption(std::to_string(this->responsible->get_level()));
+            this->update_level();
             this->star_text.center();
             return 3;
         }
@@ -136,3 +136,22 @@ int Upgrade_tablet::update_timer(float time_passed){
 void Upgrade_tablet::reset_timer(){
     this->timer.restart();
 }
+
+float Upgrade_tablet::get_left() const{
+    return this->time_left;
+}
+
+void Upgrade_tablet::set_left(float time,float th){
+    if(time!=0){
+        this->time_left=((float)this->responsible->get_level()+1.f)*10;
+        this->update_timer(th);
+        this->update_timer(this->time_left-time);
+    }else{
+        this->time_left=time;
+    }
+}
+
+void Upgrade_tablet::update_level(){
+    this->star_text.setCaption(std::to_string(this->responsible->get_level()));
+}
+

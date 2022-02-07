@@ -18,7 +18,7 @@ public:
     void create_upgrade(buildings* resp, std::string caption, sf::Vector2f pos);
     void show(sf::RenderWindow &W);
 
-    void upgrade_building(int &human, int &rock, int &wood);
+    void upgrade_building(int &human, int &rock, int &wood, int bonus);
 
     sf::Vector2f Return_position();
     void set_position(Vector2f new_pos);
@@ -29,6 +29,11 @@ public:
     float get_time();
     int update_timer(float time_passed);
     void reset_timer();
+
+    float get_left() const;
+    void set_left(float time, float th);
+
+    void update_level();
 
 private:
     //building that it is responsible for

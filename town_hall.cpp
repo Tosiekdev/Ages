@@ -21,6 +21,11 @@ void Application::create_townhall(){
     this->l_human.setCaption("People: "+to_string(this->human));
     this->l_rock.setCaption("Stone: "+to_string(this->rock));
     this->l_wood.setCaption("Wood: "+to_string(this->wood));
+
+    //info label
+    this->th_info.create(DEFAULT_FONT,10,100,"",30);
+    this->th_info.setCaption("In Town Hall you can upgrade your buildings.\n"
+                             "Upgrading Town Hall make upgrade's times shorter!");
 }
 
 //main loop
@@ -86,7 +91,7 @@ void Application::th_handle_event(){
             //upgrading buildings
             for(int i=0; i<8; i++){
                 if(this->u_buildings[i].button_clicked(mouse_pos)){
-                    this->u_buildings[i].upgrade_building(this->human,this->rock,this->wood);
+                    this->u_buildings[i].upgrade_building(this->human,this->rock,this->wood,this->town_hall);
                     this->l_human.setCaption("People: "+to_string(this->human));
                     this->l_rock.setCaption("Stone: "+to_string(this->rock));
                     this->l_wood.setCaption("Wood: "+to_string(this->wood));
@@ -118,6 +123,9 @@ void Application::display_townhall() {
 
     //buttons
     this->th_return_to_game.show(this->screen);
+
+    //info
+    this->th_info.show(this->screen);
 
     //labels
     for(auto &u_building:this->u_buildings)

@@ -27,6 +27,7 @@ public:
     bool isClicked(int posx, int posy); //check if building was clicked
     int get_level() const;
     bool status();
+    void set_status(bool new_status);
 private:
     int level;
     int n_stone,n_wood,n_human; //needed resources

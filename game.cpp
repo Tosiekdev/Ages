@@ -15,6 +15,13 @@ void Application::create_game(){
     //set clock to 0
     this->resource_clock.restart();
 
+    //for town hall
+    float y_position=205.f;
+    for(int i=0; i<8; i++){
+        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
+        y_position+=100.f;
+    }
+
     this->create_buildings();
 
     //resource plank
@@ -26,13 +33,6 @@ void Application::create_game(){
     this->l_human.create(DEFAULT_FONT,620,5,to_string(this->human),30);
     this->l_rock.create(DEFAULT_FONT,620,50,to_string(this->rock),30);
     this->l_wood.create(DEFAULT_FONT,620,95,to_string(this->wood),30);
-
-    //for town hall
-    float y_position=100.f;
-    for(int i=0; i<8; i++){
-        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
-        y_position+=100.f;
-    }
 }
 
 //Start main loop
@@ -164,6 +164,30 @@ void Application::create_buildings(){
             case 11:
                 this->rock=stoi(input);
                 break;
+            case 12:
+                this->u_buildings[0].set_left(stof(input),this->town_hall);
+                break;
+            case 13:
+                this->u_buildings[1].set_left(stof(input),this->town_hall);
+                break;
+            case 14:
+                this->u_buildings[2].set_left(stof(input),this->town_hall);
+                break;
+            case 15:
+                this->u_buildings[3].set_left(stof(input),this->town_hall);
+                break;
+            case 16:
+                this->u_buildings[4].set_left(stof(input),this->town_hall);
+                break;
+            case 17:
+                this->u_buildings[5].set_left(stof(input),this->town_hall);
+                break;
+            case 18:
+                this->u_buildings[6].set_left(stof(input),this->town_hall);
+                break;
+            case 19:
+                this->u_buildings[7].set_left(stof(input),this->town_hall);
+                break;
         }
         line_nr++;
     }
@@ -183,6 +207,9 @@ void Application::prepare_buildings(){
     this->b_stone.create_building("Stone pit", "Textures/default.png", this->stone_pit, Vector2f(500,300), 15, 65, 2);
     this->b_town.create_building("Town Hall", "Textures/town_hall.png", this->town_hall, Vector2f(0,300), 75, 75, 12);
     this->b_magazine.create_building("Magazine", "Textures/magazine.png", this->magazine, Vector2f(0,450), 100, 50, 6);
+    for(int i=0; i<8; i++){
+        this->u_buildings[i].update_level();
+    }
 }
 
 //saving game
@@ -207,6 +234,10 @@ void Application::save_game(){
     file << this->human << endl;
     file << this->wood << endl;
     file << this->rock << endl;
+
+    //upgrades time left
+    for(int i=0; i<8; i++)
+        file << this->u_buildings[i].get_left() << endl;
 
     file.close();
 }

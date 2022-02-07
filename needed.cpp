@@ -244,6 +244,10 @@ string Application::create_city(string calling){
     this->wood=100;
     this->rock=100;
 
+    //setting time left
+    for(int i=0; i<8; i++)
+        this->u_buildings[i].set_left(0,1);
+
     //writing new name to all saves file
     file.open("all_saves.txt",ios::out | ios::app);
     file << calling << endl;
@@ -267,6 +271,10 @@ string Application::create_city(string calling){
     file << this->human << endl;
     file << this->wood << endl;
     file << this->rock << endl;
+
+    //upgrades time left
+    for(int i=0; i<8; i++)
+        file << this->u_buildings[i].get_left() << endl;
 
     file.close();
 

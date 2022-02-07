@@ -93,6 +93,7 @@ private:
         {7,"Town Hall"},
         {8,"Magazine"}
     };
+    Label th_info;
 
     //window to make sure that user want exit without saving
     RenderWindow wsaving;

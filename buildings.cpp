@@ -120,3 +120,7 @@ void buildings::end_upgrade(){
     this->lvl_label.center();
 }
 
+void buildings::set_status(bool new_status){
+    this->in_upgrade=new_status;
+}
+
