@@ -25,9 +25,10 @@ public:
     void show(RenderWindow &W); //draws building with background
     void show_demands(Vector2f pos, RenderWindow &window);
     bool isClicked(int posx, int posy); //check if building was clicked
-    int get_level() const;
-    bool status();
-    void set_status(bool new_status);
+    bool onFocus(int pos_x, int pos_y);
+    int get_level() const;//returns level
+    bool status();//returns status
+    void set_status(bool new_status);//set status
 private:
     int level;
     int n_stone,n_wood,n_human; //needed resources

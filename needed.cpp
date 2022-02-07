@@ -27,6 +27,8 @@ Application::Application(){
     //Preparing window
     this->screen.create(VideoMode(this->width,this->height),"Ages",Style::Titlebar | Style::Close);
     this->screen.setFramerateLimit(this->max_fps);
+    this->cursor.loadFromSystem(Cursor::Arrow);
+    this->screen.setMouseCursor(this->cursor);
     this->possition.x=0;
     this->possition.y=0;
     this->screen.setPosition(this->possition);
@@ -79,6 +81,9 @@ void Application::main_window(){
                 break;
             case 5:
                 this->townhall();
+                break;
+            case 6:
+                this->m_farm();
                 break;
         }
     }

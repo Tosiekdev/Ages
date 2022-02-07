@@ -124,3 +124,10 @@ void buildings::set_status(bool new_status){
     this->in_upgrade=new_status;
 }
 
+bool buildings::onFocus(int pos_x, int pos_y){
+    if(this->view.getGlobalBounds().contains(pos_x,pos_y)){
+        return true;
+    }
+    return false;
+}
+

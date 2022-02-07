@@ -56,6 +56,23 @@ void Application::g_stuff(){
     this->return_to_menu.onFocus(x,y);
     this->save.onFocus(x,y);
 
+    //cool building animation
+    bool a[8];
+    a[0]=this->b_academy.onFocus(x,y);
+    a[1]=this->b_barracks.onFocus(x,y);
+    a[2]=this->b_church.onFocus(x,y);
+    a[3]=this->b_farm.onFocus(x,y);
+    a[4]=this->b_lumber.onFocus(x,y);
+    a[5]=this->b_stone.onFocus(x,y);
+    a[6]=this->b_town.onFocus(x,y);
+    a[7]=this->b_magazine.onFocus(x,y);
+
+    if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7])
+        this->cursor.loadFromSystem(Cursor::Hand);
+    else
+        this->cursor.loadFromSystem(Cursor::Arrow);
+    this->screen.setMouseCursor(this->cursor);
+
     //increasing resources is handled by thread
 }
 
@@ -77,6 +94,10 @@ void Application::g_handle_event(){
             if(this->b_town.isClicked(i,j)){
                 this->create_townhall();
                 this->scene=5;
+            }
+            if(this->b_farm.isClicked(i,j)){
+                this->create_farm();
+                this->scene=6;
             }
 
             //saving game
@@ -360,5 +381,3 @@ void Application::assign_levels(){
     this->town_hall=this->b_town.get_level();
     this->magazine=this->b_magazine.get_level();
 }
-
-

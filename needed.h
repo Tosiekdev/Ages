@@ -32,12 +32,13 @@ class Application
 private:
     RenderWindow screen;
     Vector2i possition;
+    Cursor cursor;
     Event e;
     int height,width,max_fps;
     int scene;
     /*
     1-menu 2-create 3-load 4-game
-    5-town_hall
+    5-town_hall 6-farm
     */
 
     //village
@@ -95,6 +96,10 @@ private:
     };
     Label th_info;
 
+    //farm
+    Button f_return_to_game;
+    Label f_info;
+
     //window to make sure that user want exit without saving
     RenderWindow wsaving;
     Label no_save, ns_pt2;
@@ -151,6 +156,13 @@ public:
     void th_handle_event();
     void th_stuff();
     void display_townhall();
+
+    //farm
+    void create_farm();
+    void m_farm();
+    void f_handle_event();
+    void f_stuff();
+    void display_farm();
 
     //threads functions
     void clocks();
