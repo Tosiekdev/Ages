@@ -4,9 +4,9 @@
 
 #include "obstacle.h"
 
-Obstacle::Obstacle(){
 
-}
+//beach-ass constructor
+Obstacle::Obstacle()= default;
 
 //set texture and position
 void Obstacle::create_obstacle(std::string texture_path, Vector2f new_scale, Vector2f pos){

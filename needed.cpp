@@ -8,6 +8,8 @@
 using namespace sf;
 using namespace std;
 
+
+//Constructor
 Application::Application(){
     //assigning pointers
     this->b_ptr[0]=&(this->b_academy);

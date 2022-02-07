@@ -329,9 +329,9 @@ void Application::clocks(){
             //increasing resources
             if (this->resource_clock.getElapsedTime().asSeconds() >= 1) {
                 int time_passed = (int)this->resource_clock.getElapsedTime().asSeconds();
-                this->human += time_passed * farm;
-                this->rock += time_passed * 10 * stone_pit;
-                this->wood += time_passed * 10 * lumber_mill;
+                this->human+=time_passed*1.2*farm;
+                this->rock+=time_passed*10*stone_pit;
+                this->wood+=time_passed*10*lumber_mill;
 
                 //full magazine
                 if(this->rock>=this->magazine*1296){
@@ -359,7 +359,7 @@ void Application::clocks(){
                         this->l_rock.setCaption(to_string(this->rock));
                         this->l_wood.setCaption(to_string(this->wood));
                         break;
-                    case 5:
+                    default:
                         this->l_human.setCaption("People: "+to_string(this->human));
                         this->l_rock.setCaption("Stone: "+to_string(this->rock));
                         this->l_wood.setCaption("Wood: "+to_string(this->wood));

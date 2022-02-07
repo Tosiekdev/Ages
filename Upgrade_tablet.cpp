@@ -73,8 +73,8 @@ void Upgrade_tablet::set_position(Vector2f new_pos){
 }
 
 //cool animation
-void Upgrade_tablet::button_animation(Vector2i pos){
-    this->upgrade.onFocus(pos.x,pos.y);
+bool Upgrade_tablet::button_animation(Vector2i pos){
+    return this->upgrade.onFocus(pos.x,pos.y);
 }
 
 //returns if button is clicked

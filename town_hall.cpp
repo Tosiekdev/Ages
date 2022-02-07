@@ -102,27 +102,31 @@ void Application::th_handle_event(){
 }
 
 //every frame backend
-void Application::th_stuff() {
+void Application::th_stuff(){
+    bool a[9];
     int x=Mouse::getPosition(this->screen).x;
     int y=Mouse::getPosition(this->screen).y;
 
     //cool animation
-    this->th_return_to_game.onFocus(x,y);
+    a[8]=this->th_return_to_game.onFocus(x,y);
     Vector2i mouse_pos=Mouse::getPosition(this->screen);
 
     //upgrade box
     for(int i=0; i<8; i++)
-        this->u_buildings[i].button_animation(mouse_pos);
+        a[i]=this->u_buildings[i].button_animation(mouse_pos);
 
     //increasing resources is handled by thread
 
     //cursor
-    this->cursor.loadFromSystem(Cursor::Arrow);
+    if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7] || a[8])
+        this->cursor.loadFromSystem(Cursor::Hand);
+    else
+        this->cursor.loadFromSystem(Cursor::Arrow);
     this->screen.setMouseCursor(this->cursor);
 }
 
 //drawing everything
-void Application::display_townhall() {
+void Application::display_townhall(){
     this->screen.clear(Color::White);
 
     //buttons

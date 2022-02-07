@@ -7,6 +7,7 @@
 using namespace std;
 using namespace sf;
 
+//Constructor
 tablet::tablet()
 {
     this->plank.loadFromFile("Textures/plank.png");
@@ -15,7 +16,8 @@ tablet::tablet()
     this->font.loadFromFile(DEFAULT_FONT);
     this->text.setFont(this->font);
 }
-//.......................................
+
+//This does constructor job
 void tablet::create_tablet(string label, Vector2f possition)
 {
     this->pos=possition;
@@ -25,13 +27,15 @@ void tablet::create_tablet(string label, Vector2f possition)
     this->text.setPosition(this->sting_pos);
     this->look.setPosition(this->pos);
 }
-//.....................................
+
+//This draws everything
 void tablet::draw(RenderWindow &W)
 {
     W.draw(this->look);
     W.draw(this->text);
 }
-//.....................................
+
+//cool animation background
 bool tablet::TRIGGERED(int mposx, int mposy)
 {
     if(this->look.getGlobalBounds().contains(mposx,mposy))
@@ -52,7 +56,8 @@ bool tablet::TRIGGERED(int mposx, int mposy)
         }
     }
 }
-//......................................
+
+//check if tablet is clicked
 bool tablet::onClick(int mposx,int mposy)
 {
     if(this->look.getGlobalBounds().contains(mposx,mposy))
@@ -60,7 +65,8 @@ bool tablet::onClick(int mposx,int mposy)
     else
         return false;
 }
-//......................................
+
+//changing texture if tablet has been clicked
 void tablet::focussed()
 {
     this->focuss=true;
@@ -68,7 +74,9 @@ void tablet::focussed()
     this->look.setTexture(this->plank);
     this->look.setScale(0.4,0.3);
 }
-//.......................................
+
+
+//oposite of focussed
 void tablet::notfocussed()
 {
     this->focuss=false;
@@ -76,7 +84,8 @@ void tablet::notfocussed()
     this->look.setTexture(this->plank);
     this->look.setScale(0.4,0.3);
 }
-//,.......................................
+
+//Returns name (wow)
 string tablet::return_name()
 {
     return this->name;

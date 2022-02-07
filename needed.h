@@ -98,7 +98,7 @@ private:
 
     //farm
     Button f_return_to_game;
-    Label f_info;
+    Label f_info, f_current, f_next, f_capacity, f_next_capacity;
 
     //window to make sure that user want exit without saving
     RenderWindow wsaving;

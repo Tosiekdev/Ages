@@ -7,6 +7,7 @@
 using namespace sf;
 using namespace std;
 
+//Beautifull animation
 bool clickable::onFocus(int mposx, int mposy){
     if(this->view.getGlobalBounds().contains(mposx,mposy)){
         this->view.setScale(1.1, 1.1);
@@ -15,14 +16,16 @@ bool clickable::onFocus(int mposx, int mposy){
         this->view.setScale(1,1);
     return false;
 }
-//..........................
+
+//check if object is clicked
 bool clickable::onClick(int mposx, int mposy){
     if(this->view.getGlobalBounds().contains(mposx,mposy))
         return true;
     else
         return false;
 }
-//...........................
+
+//create object
 void clickable::create_element(string path, Vector2f pos){
     this->look.loadFromFile(path);
     this->view.setTexture(this->look);
@@ -30,7 +33,8 @@ void clickable::create_element(string path, Vector2f pos){
     this->possition=pos;
     this->view.setPosition(this->possition);
 }
-//............................
+
+//Draw
 void clickable::draw_it(RenderWindow &W){
     W.draw(this->view);
 }

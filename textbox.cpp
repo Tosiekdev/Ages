@@ -7,6 +7,7 @@
 using namespace sf;
 using namespace std;
 
+//you know what it is
 textbox::textbox(string font, int SIZE, int posx, int posy){
     //font&text
     this->look.loadFromFile(font);
