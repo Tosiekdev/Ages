@@ -37,6 +37,11 @@ private:
     //building name
     Label name;
 
+    //level star
+    sf::Texture star;
+    sf::Sprite supernova;
+    Label star_text;
+
     //timer for upgrade
     sf::Clock timer;
     sf::Vector2f position;

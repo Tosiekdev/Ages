@@ -27,9 +27,9 @@ void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,in
     this->view.setPosition(this->possition);
 
     //set needed resources
-    this->n_human=np;
-    this->n_wood=nw;
-    this->n_stone=ns;
+    this->n_human=np*pow(1.67,this->level-1);
+    this->n_wood=nw*pow(1.67,this->level-1);
+    this->n_stone=ns*pow(1.67,this->level-1);
 
     //set label position
     this->s_name.setCaption(this->name);
@@ -82,7 +82,8 @@ void buildings::create_star(){
     this->star_view.setPosition(this->star_possition);
 
     //text
-    this->lvl_label.create(DEFAULT_FONT, this->star_possition.x+15, this->star_possition.y+5, to_string(this->level), 20);
+    this->lvl_label.create(DEFAULT_FONT, this->star_possition.x+20, this->star_possition.y+15, to_string(this->level), 15);
+    this->lvl_label.center();
 }
 
 bool buildings::isClicked(int posx, int posy) {
@@ -116,5 +117,6 @@ void buildings::end_upgrade(){
     this->level++;
     this->in_upgrade=false;
     this->lvl_label.setCaption(to_string(this->level));
+    this->lvl_label.center();
 }
 

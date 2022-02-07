@@ -11,6 +11,10 @@ Upgrade_tablet::Upgrade_tablet()=default;
 void Upgrade_tablet::show(RenderWindow &W){
     this->name.show(W);
 
+    //star
+    W.draw(this->supernova);
+    this->star_text.show(W);
+
     //showing building demands
     this->responsible->show_demands(this->position+Vector2f(0,50),W);
     this->upgrade.show(W);
@@ -24,7 +28,18 @@ void Upgrade_tablet::show(RenderWindow &W){
 void Upgrade_tablet::create_upgrade(buildings *resp, std::string caption, sf::Vector2f pos){
     this->position=pos;
     this->responsible=resp;
+
+    //building name
     this->name.create(DEFAULT_FONT,this->position.x,this->position.y,caption,40);
+
+    //star
+    this->star.loadFromFile("Textures/star.png");
+    this->supernova.setTexture(this->star);
+    this->supernova.setScale(0.08,0.08);
+    float width=this->position.x+this->name.getWidth();
+    this->supernova.setPosition(width+10,this->position.y-15);
+    this->star_text.create(DEFAULT_FONT,width+41,this->position.y+10,to_string(this->responsible->get_level()),25);
+    this->star_text.center();
 
     //button
     this->upgrade.create(40,100,this->position.x+600, this->position.y,"Upgrade");
@@ -53,6 +68,8 @@ void Upgrade_tablet::set_position(Vector2f new_pos){
     this->name.setPosition(this->position);//building name
     this->clock.setPosition(this->position+Vector2f(400,0));//timer
     this->counting_down.setPosition(this->position+Vector2f(300,0));//progress bar
+    this->supernova.setPosition(this->position.x+this->name.getWidth()+10,this->position.y-15);//star
+    this->star_text.setPosition(Vector2f(this->position.x+this->name.getWidth()+41,this->position.y+10));//star text
 }
 
 //cool animation
@@ -101,6 +118,8 @@ int Upgrade_tablet::update_timer(float time_passed){
         if(this->time_left==0){
             this->responsible->end_upgrade();
             this->counting_down.setSize(sf::Vector2f(300,50));
+            this->star_text.setCaption(std::to_string(this->responsible->get_level()));
+            this->star_text.center();
             return 3;
         }
 

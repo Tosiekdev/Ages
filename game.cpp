@@ -274,17 +274,24 @@ void Application::clocks(){
                 this->wood += time_passed * 10 * lumber_mill;
 
                 //full magazine
-                if(this->rock>pow(this->magazine,5/3)*1000){
-                    this->rock=pow(this->magazine,5/3)*1000;
+                if(this->rock>=this->magazine*1296){
+                    this->rock=this->magazine*1296;
                     this->l_rock.setColor(Color::Red);
                 }else
                     this->l_rock.setColor(Color::Black);
 
-                if(this->wood>pow(this->magazine,5/3)*1000){
-                    this->wood=pow(this->magazine,5/3)*1000;
+                if(this->wood>=this->magazine*1296){
+                    this->wood=this->magazine*1296;
                     this->l_wood.setColor(Color::Red);
                 }else
                     this->l_wood.setColor(Color::Black);
+
+                //full farm
+                if(this->human>=this->farm*83){
+                    this->human=this->farm*83;
+                    this->l_human.setColor(Color::Red);
+                }else
+                    this->l_human.setColor(Color::Black);
 
                 switch(scene){
                     case 4:

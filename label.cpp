@@ -66,3 +66,13 @@ void Label::setColor(Color new_color){
     this->label_text.setFillColor(new_color);
 }
 
+float Label::getWidth(){
+    return this->label_text.getGlobalBounds().width;
+}
+
+void Label::center(){
+    float x=this->label_text.getGlobalBounds().width/2;
+    float y=this->label_text.getGlobalBounds().height/2;
+    this->label_text.setOrigin(x,y);
+}
+
