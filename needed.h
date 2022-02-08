@@ -38,7 +38,7 @@ private:
     int scene;
     /*
     1-menu 2-create 3-load 4-game
-    5-town_hall 6-farm
+    5-town_hall 6-farm 7-lumber_mill
     */
 
     //village
@@ -100,6 +100,10 @@ private:
     Button f_return_to_game;
     Label f_info, f_current, f_next, f_capacity, f_next_capacity;
 
+    //lumber mill
+    Button lm_return_to_game;
+    Label lm_info, lm_current, lm_next;
+
     //window to make sure that user want exit without saving
     RenderWindow wsaving;
     Label no_save, ns_pt2;
@@ -110,6 +114,8 @@ public:
     Application();
     void u_sure(RenderWindow &W);
     void main_window();
+    void return_to_village();
+    void resources_1();
 
     //data interference
     string create_city(string calling);
@@ -163,6 +169,14 @@ public:
     void f_handle_event();
     void f_stuff();
     void display_farm();
+
+    //lumber mill
+    void create_lumber();
+    void lumber();
+    void lm_handle_event();
+    void lm_stuff();
+    void display_lumber();
+
 
     //threads functions
     void clocks();

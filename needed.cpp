@@ -87,6 +87,9 @@ void Application::main_window(){
             case 6:
                 this->m_farm();
                 break;
+            case 7:
+                this->lumber();
+                break;
         }
     }
     for_clocks.join();
@@ -304,3 +307,17 @@ string Application::create_city(string calling){
     return "";
 }
 
+//default returning to game
+void Application::return_to_village(){
+    //default resource info position
+    this->l_human.setPosition(Vector2f(620,5));
+    this->l_rock.setPosition(Vector2f(620,50));
+    this->l_wood.setPosition(Vector2f(620,95));
+
+    //default resource info text
+    this->l_human.setCaption(to_string(this->human));
+    this->l_rock.setCaption(to_string(this->rock));
+    this->l_wood.setCaption(to_string(this->wood));
+
+    this->scene=4;
+}

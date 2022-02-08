@@ -8,10 +8,8 @@
 void Application::create_farm(){
     this->f_return_to_game.create(40,100,5,5,"Return");
 
-    //resource info
-    this->l_human.setPosition(Vector2f(200,5));
-    this->l_rock.setPosition(Vector2f(400,5));
-    this->l_wood.setPosition(Vector2f(600,5));
+    //changing resource info look
+    this->resources_1();
 
     //info
     this->f_info.create(DEFAULT_FONT,5,100,"",30);
@@ -54,19 +52,7 @@ void Application::f_handle_event(){
             int j=Mouse::getPosition(this->screen).y;
 
             //buttons
-            if(this->f_return_to_game.onClick(i,j)){
-                //default resource info position
-                this->l_human.setPosition(Vector2f(620,5));
-                this->l_rock.setPosition(Vector2f(620,50));
-                this->l_wood.setPosition(Vector2f(620,95));
-
-                //default resource info text
-                this->l_human.setCaption(to_string(this->human));
-                this->l_rock.setCaption(to_string(this->rock));
-                this->l_wood.setCaption(to_string(this->wood));
-
-                this->scene=4;
-            }
+            if(this->f_return_to_game.onClick(i,j)) this->return_to_village();
         }
     }
 }

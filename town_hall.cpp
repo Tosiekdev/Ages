@@ -12,15 +12,8 @@ void Application::create_townhall(){
 
     //buildings label inicialized in game.cpp
 
-    //changing resource info position
-    this->l_human.setPosition(Vector2f(200,5));
-    this->l_rock.setPosition(Vector2f(400,5));
-    this->l_wood.setPosition(Vector2f(600,5));
-
-    //changing resource info text
-    this->l_human.setCaption("People: "+to_string(this->human));
-    this->l_rock.setCaption("Stone: "+to_string(this->rock));
-    this->l_wood.setCaption("Wood: "+to_string(this->wood));
+    //changing resource info look
+    this->resources_1();
 
     //info label
     this->th_info.create(DEFAULT_FONT,10,100,"",30);

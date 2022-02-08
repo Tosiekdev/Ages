@@ -99,6 +99,10 @@ void Application::g_handle_event(){
                 this->create_farm();
                 this->scene=6;
             }
+            if(this->b_lumber.isClicked(i,j)){
+                this->create_lumber();
+                this->scene=7;
+            }
 
             //saving game
             if(this->save.onClick(i,j)) this->save_game();
@@ -388,4 +392,17 @@ void Application::assign_levels(){
     this->stone_pit=this->b_stone.get_level();
     this->town_hall=this->b_town.get_level();
     this->magazine=this->b_magazine.get_level();
+}
+
+//setting resource info in buildings
+void Application::resources_1(){
+    //changing resource info position
+    this->l_human.setPosition(Vector2f(200,5));
+    this->l_rock.setPosition(Vector2f(400,5));
+    this->l_wood.setPosition(Vector2f(600,5));
+
+    //changing resource info text
+    this->l_human.setCaption("People: "+to_string(this->human));
+    this->l_rock.setCaption("Stone: "+to_string(this->rock));
+    this->l_wood.setCaption("Wood: "+to_string(this->wood));
 }
