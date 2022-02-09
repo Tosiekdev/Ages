@@ -2,12 +2,12 @@
 // Created by tosiek on 09.02.2022.
 //
 
-#ifndef AGES1_HANDLESTONEPIT_H
-#define AGES1_HANDLESTONEPIT_H
+#ifndef AGES1_HANDLELUMBERMILL_H
+#define AGES1_HANDLELUMBERMILL_H
 
 #include "HandleBuildings.h"
 
-class HandleStonePit : public HandleBuildings{
+class HandleLumberMill : public HandleBuildings{
 public:
     void handle_events(Event &event, RenderWindow &window, int &scene) override;
     void do_stuff(RenderWindow &window) override;
@@ -19,4 +19,4 @@ private:
 };
 
 
-#endif //AGES1_HANDLESTONEPIT_H
+#endif //AGES1_HANDLELUMBERMILL_H

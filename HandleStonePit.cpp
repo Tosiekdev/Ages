@@ -27,6 +27,7 @@ void HandleStonePit::do_stuff(RenderWindow &window){
     //cool animation
     a[0]=this->return_to_game.onFocus(x,y);
 
+    //changing cursor
     if(a[0])
         this->cursor.loadFromSystem(Cursor::Hand);
     else
@@ -45,6 +46,8 @@ void HandleStonePit::display(RenderWindow &window){
 
     //building info
     this->info.show(window);
+    this->next.show(window);
+    this->current.show(window);
 
     window.display();
 }
@@ -60,6 +63,13 @@ void HandleStonePit::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, i
     this->crete_info();
     this->info.setCaption("Stone Pit simply mine stone for upgrading buildings.\n"
                           "Higher level means, obviously, more stone!");
+    int stone=*this->building;
+    this->current.create(DEFAULT_FONT,400,300,"",30);
+    this->current.setCaption("Current stone growth: "+to_string(stone*60)+" rocks/minute");
+    this->current.center();
+    this->next.create(DEFAULT_FONT,400,350,"",30);
+    this->next.setCaption("Next level stone growth: "+to_string((stone+1)*60)+" rocks/minute");
+    this->next.center();
 
     //buttons
     this->create_return_button();

@@ -100,7 +100,7 @@ void Application::g_handle_event(){
                 this->scene=6;
             }
             if(this->b_lumber.isClicked(i,j)){
-                this->create_lumber();
+                this->lm_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->lumber_mill);
                 this->scene=7;
             }
             if(this->b_stone.isClicked(i,j)){

@@ -88,7 +88,7 @@ void Application::main_window(){
                 this->launch_farm();
                 break;
             case 7:
-                this->lumber();
+                this->launch_lm();
                 break;
             case 8:
                 this->launch_sp();

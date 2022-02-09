@@ -25,6 +25,7 @@
 #include "Upgrade_tablet.h"
 #include "HandleStonePit.h"
 #include "HandleFarm.h"
+#include "HandleLumberMill.h"
 
 using namespace sf;
 using namespace std;
@@ -103,7 +104,7 @@ private:
     HandleFarm farm_window;
 
     //lumber mill
-    Label lm_info, lm_current, lm_next;
+    HandleLumberMill lm_window;
 
     //stone pit
     HandleStonePit sp_window;
@@ -177,11 +178,7 @@ public:
     void launch_farm();
 
     //lumber mill
-    void create_lumber();
-    void lumber();
-    void lm_handle_event();
-    void lm_stuff();
-    void display_lumber();
+    void launch_lm();
 
     //stone pit
     void launch_sp();
