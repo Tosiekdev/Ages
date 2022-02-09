@@ -23,6 +23,8 @@
 #include "obstacle.h"
 #include "constants.h"
 #include "Upgrade_tablet.h"
+#include "HandleStonePit.h"
+#include "HandleFarm.h"
 
 using namespace sf;
 using namespace std;
@@ -38,7 +40,7 @@ private:
     int scene;
     /*
     1-menu 2-create 3-load 4-game
-    5-town_hall 6-farm 7-lumber_mill
+    5-town_hall 6-farm 7-lumber_mill 8-stone pit
     */
 
     //village
@@ -81,8 +83,9 @@ private:
     Label l_human, l_rock, l_wood;
     Clock resource_clock;
 
+    Button return_to_game;
+
     //town hall
-    Button th_return_to_game;
     Upgrade_tablet u_buildings[8];
     map<int,string> num_to_names{
         {1,"Academy"},
@@ -97,12 +100,13 @@ private:
     Label th_info;
 
     //farm
-    Button f_return_to_game;
-    Label f_info, f_current, f_next, f_capacity, f_next_capacity;
+    HandleFarm farm_window;
 
     //lumber mill
-    Button lm_return_to_game;
     Label lm_info, lm_current, lm_next;
+
+    //stone pit
+    HandleStonePit sp_window;
 
     //window to make sure that user want exit without saving
     RenderWindow wsaving;
@@ -156,6 +160,12 @@ public:
     void wo_saving();
     void assign_levels();
 
+    //return to game button
+    void create_return_button();
+    void show_return_button();
+    void return_button_clicked(int pos_x, int pos_y);
+    bool return_button_focused(int pos_x, int pos_y);
+
     //town hall
     void create_townhall();
     void townhall();
@@ -164,11 +174,7 @@ public:
     void display_townhall();
 
     //farm
-    void create_farm();
-    void m_farm();
-    void f_handle_event();
-    void f_stuff();
-    void display_farm();
+    void launch_farm();
 
     //lumber mill
     void create_lumber();
@@ -177,6 +183,8 @@ public:
     void lm_stuff();
     void display_lumber();
 
+    //stone pit
+    void launch_sp();
 
     //threads functions
     void clocks();

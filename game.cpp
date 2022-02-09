@@ -96,12 +96,16 @@ void Application::g_handle_event(){
                 this->scene=5;
             }
             if(this->b_farm.isClicked(i,j)){
-                this->create_farm();
+                this->farm_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->farm);
                 this->scene=6;
             }
             if(this->b_lumber.isClicked(i,j)){
                 this->create_lumber();
                 this->scene=7;
+            }
+            if(this->b_stone.isClicked(i,j)){
+                this->sp_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->stone_pit);
+                this->scene=8;
             }
 
             //saving game
@@ -405,4 +409,22 @@ void Application::resources_1(){
     this->l_human.setCaption("People: "+to_string(this->human));
     this->l_rock.setCaption("Stone: "+to_string(this->rock));
     this->l_wood.setCaption("Wood: "+to_string(this->wood));
+}
+
+
+//Return to game button controls
+void Application::create_return_button(){
+    this->return_to_game.create(40,100,5,5,"Return");
+}
+
+void Application::show_return_button(){
+    this->return_to_game.show(this->screen);
+}
+
+void Application::return_button_clicked(int pos_x, int pos_y){
+    if(this->return_to_game.onClick(pos_x,pos_y)) this->return_to_village();
+}
+
+bool Application::return_button_focused(int pos_x, int pos_y) {
+    return this->return_to_game.onFocus(pos_x,pos_y);
 }

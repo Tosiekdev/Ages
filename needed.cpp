@@ -85,10 +85,13 @@ void Application::main_window(){
                 this->townhall();
                 break;
             case 6:
-                this->m_farm();
+                this->launch_farm();
                 break;
             case 7:
                 this->lumber();
+                break;
+            case 8:
+                this->launch_sp();
                 break;
         }
     }

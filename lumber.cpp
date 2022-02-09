@@ -6,7 +6,7 @@
 
 //a'la constructor
 void Application::create_lumber(){
-    this->lm_return_to_game.create(40,100,5,5,"Return");
+    this->create_return_button();
 
     //info
     this->lm_info.create(DEFAULT_FONT,5,100,"",30);
@@ -49,7 +49,7 @@ void Application::lm_handle_event(){
             int i = Mouse::getPosition(this->screen).x;
             int j = Mouse::getPosition(this->screen).y;
 
-            if(this->lm_return_to_game.onClick(i,j)) this->return_to_village();
+            this->return_button_clicked(i,j);
         }
     }
 }
@@ -61,7 +61,7 @@ void Application::lm_stuff(){
     int y=Mouse::getPosition(this->screen).y;
 
     //cool animation
-    a[0]=this->lm_return_to_game.onFocus(x,y);
+    a[0]=this->return_button_focused(x,y);
 
     //cursor
     if(a[0]){
@@ -77,7 +77,7 @@ void Application::display_lumber(){
     this->screen.clear(Color::White);
 
     //buttons
-    this->lm_return_to_game.show(this->screen);
+    this->show_return_button();
 
     //info
     this->lm_info.show(this->screen);

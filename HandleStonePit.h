@@ -1,0 +1,19 @@
+//
+// Created by tosiek on 09.02.2022.
+//
+
+#ifndef AGES1_HANDLESTONEPIT_H
+#define AGES1_HANDLESTONEPIT_H
+
+#include "HandleBuildings.h"
+
+class HandleStonePit : public HandleBuildings{
+public:
+    void handle_events(Event &event, RenderWindow &window, int &scene) override;
+    void do_stuff(RenderWindow &window) override;
+    void display(RenderWindow &window) override;
+    void create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld) override;
+};
+
+
+#endif //AGES1_HANDLESTONEPIT_H

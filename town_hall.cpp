@@ -8,7 +8,7 @@ using namespace sf;
 
 //set up everything
 void Application::create_townhall(){
-    this->th_return_to_game.create(40,100,5,5,"Return");
+    this->create_return_button();
 
     //buildings label inicialized in game.cpp
 
@@ -67,19 +67,7 @@ void Application::th_handle_event(){
             Vector2i mouse_pos=Mouse::getPosition(this->screen);
 
             //button clicked
-            if(this->th_return_to_game.onClick(a,b)){
-                //default resource info position
-                this->l_human.setPosition(Vector2f(620,5));
-                this->l_rock.setPosition(Vector2f(620,50));
-                this->l_wood.setPosition(Vector2f(620,95));
-
-                //default resource info text
-                this->l_human.setCaption(to_string(this->human));
-                this->l_rock.setCaption(to_string(this->rock));
-                this->l_wood.setCaption(to_string(this->wood));
-
-                this->scene=4;
-            }
+            this->return_button_clicked(a,b);
 
             //upgrading buildings
             for(int i=0; i<8; i++){
@@ -101,7 +89,7 @@ void Application::th_stuff(){
     int y=Mouse::getPosition(this->screen).y;
 
     //cool animation
-    a[8]=this->th_return_to_game.onFocus(x,y);
+    a[8]=this->return_button_focused(x,y);
     Vector2i mouse_pos=Mouse::getPosition(this->screen);
 
     //upgrade box
@@ -123,7 +111,7 @@ void Application::display_townhall(){
     this->screen.clear(Color::White);
 
     //buttons
-    this->th_return_to_game.show(this->screen);
+    this->show_return_button();
 
     //info
     this->th_info.show(this->screen);
