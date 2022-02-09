@@ -47,7 +47,7 @@ void Application::c_handle_event(){
     while(this->screen.pollEvent(this->e)){
         //closing
         if(this->e.type==Event::Closed) this->screen.close();
-        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->u_sure(this->screen);
+        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow.create(this->screen,this->scene);
 
         //starting game when proper name is entered
         if(Keyboard::isKeyPressed(Keyboard::Enter)){

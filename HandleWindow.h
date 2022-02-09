@@ -10,7 +10,7 @@
 class HandleWindow{
 public:
     virtual void main_loop(sf::RenderWindow &window, int &scene)=0;
-    virtual void handle_event(int &scene)=0;
+    virtual void handle_event(int &scene, sf::RenderWindow &window)=0;
     virtual void do_stuff(sf::RenderWindow &window)=0;
     virtual void display(sf::RenderWindow &window)=0;
 

@@ -48,7 +48,7 @@ void Application::l_handle_event(){
     while(this->screen.pollEvent(this->e)){
         //exit
         if(this->e.type==Event::Closed) this->screen.close();
-        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->u_sure(this->screen);
+        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow.create(this->screen,this->scene);
 
         //events for pressing mouse
         if(Mouse::isButtonPressed(Mouse::Left)){

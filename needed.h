@@ -26,6 +26,7 @@
 #include "HandleStonePit.h"
 #include "HandleFarm.h"
 #include "HandleLumberMill.h"
+#include "HandleManu.h"
 
 using namespace sf;
 using namespace std;
@@ -50,18 +51,14 @@ private:
     buildings b_academy,b_barracks,b_church,b_farm,b_lumber,b_stone,b_town,b_magazine;
     buildings *b_ptr[8];
     int human,rock,wood;
-
-    //wexit
-    RenderWindow wexit;
-    Label sure;
-    Event exit_e;
-    Button yes,no;
-
-    //menu
-    Button new_game,load_game,exit;
     Texture background_menu_texture;
     Sprite background_menu_sprite;
-    Label ages,programmer,graphic,tosiek,iwa;
+
+    //wexit
+    ExitWindow exitWindow;
+
+    //menu
+    HandleManu menu;
 
     //create
     Button return_button,ok_button,cancel_button;
@@ -117,19 +114,12 @@ private:
 
 public:
     Application();
-    void u_sure(RenderWindow &W);
     void main_window();
     void return_to_village();
     void resources_1();
 
     //data interference
     string create_city(string calling);
-
-    //menu
-    void menu();
-    void m_handle_event();
-    void display_menu();
-    void m_stuff();
 
     //create
     void create_create();

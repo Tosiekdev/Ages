@@ -35,29 +35,25 @@ Application::Application(){
     this->possition.y=0;
     this->screen.setPosition(this->possition);
 
-    //Textures loading
     this->background_menu_texture.loadFromFile("Textures/background.png");
     this->background_menu_sprite.setTexture(this->background_menu_texture);
     this->background_menu_sprite.setPosition(0,0);
 
-    //Buttons
-    this->new_game.create(40,100,40,130,"New Game");
-    this->load_game.create(40,100,40,190,"Load Game");
-    this->exit.create(40,100,40,250,"Exit");
+    //preparing menu
+    this->menu.create();
 
-    //Captions
-    this->ages.create(DEFAULT_FONT,330,0,"Ages",60);
-    this->programmer.create(DEFAULT_FONT,500,395,"Programista:",40);
-    this->tosiek.create(DEFAULT_FONT,500,440,"Tosiek",35);
-    this->graphic.create(DEFAULT_FONT,500,485,"Grafika:",40);
-    this->iwa.create(DEFAULT_FONT,500,530,"Iwa",35);
-
+    //preparing create screen
     //Tablets
     Vector2f pp=Vector2f(200,40);//very soft
     for(int i=0;i<5;i++){
         this->t[i].create_tablet("-:-",pp);
         pp+=Vector2f(0,110);
     }
+    this->create_create();
+
+    //preparing load screen
+    this->create_load();
+
     //Scenes
     this->scene=1;
 }
@@ -70,7 +66,7 @@ void Application::main_window(){
     while(this->screen.isOpen()){
         switch(this->scene){
             case 1:
-                this->menu();
+                this->menu.main_loop(this->screen,this->scene);
                 break;
             case 2:
                 this->create();
@@ -96,150 +92,6 @@ void Application::main_window(){
         }
     }
     for_clocks.join();
-}
-
-//Menu main thread
-void Application::menu()
-{
-    //EVENT
-    this->m_handle_event();
-
-    //DO SOME STUFF
-    this->m_stuff();
-
-    //DISPLAY
-    this->display_menu();
-}
-
-//Events handling
-void Application::m_handle_event(){
-    while(this->screen.pollEvent(this->e)){
-        //Closing events
-        if(this->e.type==Event::Closed) this->screen.close();
-        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->u_sure(this->screen);
-
-        //Mouse pressed events
-        if(Mouse::isButtonPressed(Mouse::Left)){
-            //getting mouse position
-            int a=Mouse::getPosition(this->screen).x;
-            int b=Mouse::getPosition(this->screen).y;
-
-            //new game button
-            if(this->new_game.onClick(a,b)){
-                this->create_create();
-                this->scene=2;
-            }
-
-            //load game button
-            if(this->load_game.onClick(a,b)){
-                this->create_load();
-                this->scene=3;
-            }
-
-            //exit button
-            if(this->exit.onClick(a,b)){
-                this->screen.close();
-            }
-        }
-    }
-}
-
-//Drawing menu
-void Application::display_menu(){
-    this->screen.clear(Color::White);
-
-    //Background
-    this->screen.draw(this->background_menu_sprite);
-
-    //Captions
-    this->ages.show(this->screen);
-    this->programmer.show(this->screen);
-    this->tosiek.show(this->screen);
-    this->graphic.show(this->screen);
-    this->iwa.show(this->screen);
-
-    //Buttons
-    this->new_game.show(this->screen);
-    this->load_game.show(this->screen);
-    this->exit.show(this->screen);
-
-    this->screen.display();
-}
-
-//Every frame stuff
-void Application::m_stuff(){
-    bool a[3];
-    //getting mouse position
-    int x=Mouse::getPosition(this->screen).x;
-    int y=Mouse::getPosition(this->screen).y;
-
-    //checking buttons focus
-    a[0]=this->new_game.onFocus(x,y);
-    a[1]=this->load_game.onFocus(x,y);
-    a[2]=this->exit.onFocus(x,y);
-
-    //cursor
-    if(a[0] || a[1] || a[2])
-        this->cursor.loadFromSystem(Cursor::Hand);
-    else
-        this->cursor.loadFromSystem(Cursor::Arrow);
-    this->screen.setMouseCursor(this->cursor);
-}
-
-//Checking if user really wants to exit
-void Application::u_sure(RenderWindow &W){
-    //creating window
-    this->wexit.create(VideoMode(300,200),"Are you sure?",Style::Titlebar | Style::Close);
-    this->wexit.setPosition(Vector2i(250+W.getPosition().x,200+W.getPosition().y));
-    this->wexit.setMouseCursorGrabbed(true);
-
-    //creating buttons
-    this->yes.create(40,100,167,110,"Yes");
-    this->no.create(40,100,33,110,"No");
-    this->sure.create(DEFAULT_FONT,2,20,"Are sure you want exit?",28);
-
-    //Event handling
-    while(this->wexit.isOpen()){
-        while(this->wexit.pollEvent(this->exit_e)){
-            //Exit
-            if(this->exit_e.type==Event::Closed) this->wexit.close();
-
-            //Is button clicked?
-            if(this->exit_e.type==Event::MouseButtonPressed){
-                //Getting mouse position
-                int x=Mouse::getPosition(this->wexit).x;
-                int y=Mouse::getPosition(this->wexit).y;
-
-                //yes button
-                if(this->yes.onClick(x,y)){
-                    W.close();
-                    this->wexit.close();
-                }
-
-                //no button
-                if(this->no.onClick(x,y)) this->wexit.close();
-            }
-        }
-
-        //Button animation
-        bool a[2];
-        a[0]=this->yes.onFocus(Mouse::getPosition(this->wexit).x,Mouse::getPosition(this->wexit).y);
-        a[1]=this->no.onFocus(Mouse::getPosition(this->wexit).x,Mouse::getPosition(this->wexit).y);
-
-        //cursor
-        if(a[0] || a[1])
-            this->cursor.loadFromSystem(Cursor::Hand);
-        else
-            this->cursor.loadFromSystem(Cursor::Arrow);
-        this->wexit.setMouseCursor(this->cursor);
-
-        //Drawing everything
-        this->wexit.clear(Color::White);
-        this->yes.show(this->wexit);
-        this->no.show(this->wexit);
-        this->sure.show(this->wexit);
-        this->wexit.display();
-    }
 }
 
 //Creating city a' ka loading save
