@@ -10,7 +10,7 @@
 #include "label.h"
 #include "ExitWindow.h"
 
-class HandleManu : public HandleWindow{
+class HandleMenu : public HandleWindow{
 public:
     void create();
     void main_loop(sf::RenderWindow &window, int &scene) override;

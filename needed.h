@@ -58,7 +58,7 @@ private:
     ExitWindow exitWindow;
 
     //menu
-    HandleManu menu;
+    HandleMenu menu;
 
     //create
     Button return_button,ok_button,cancel_button;

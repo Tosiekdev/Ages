@@ -4,7 +4,7 @@
 
 #include "HandleManu.h"
 
-void HandleManu::create(){
+void HandleMenu::create(){
     //Textures loading
     this->background_menu_texture.loadFromFile("Textures/background.png");
     this->background_menu_sprite.setTexture(this->background_menu_texture);
@@ -23,13 +23,13 @@ void HandleManu::create(){
     this->iwa.create(DEFAULT_FONT,500,530,"Iwa",35);
 }
 
-void HandleManu::main_loop(RenderWindow &window, int &scene){
+void HandleMenu::main_loop(RenderWindow &window, int &scene){
     this->handle_event(scene,window);
     this->do_stuff(window);
     this->display(window);
 }
 
-void HandleManu::handle_event(int &scene, RenderWindow &window){
+void HandleMenu::handle_event(int &scene, RenderWindow &window){
     while(window.pollEvent(this->e)){
         if(this->e.type==Event::Closed) window.close();
         if((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow.create(window,scene);
@@ -58,7 +58,7 @@ void HandleManu::handle_event(int &scene, RenderWindow &window){
     }
 }
 
-void HandleManu::do_stuff(RenderWindow &window){
+void HandleMenu::do_stuff(RenderWindow &window){
     bool a[3];
     //getting mouse position
     int x=Mouse::getPosition(window).x;
@@ -77,7 +77,7 @@ void HandleManu::do_stuff(RenderWindow &window){
     window.setMouseCursor(this->cursor);
 }
 
-void HandleManu::display(RenderWindow &window){
+void HandleMenu::display(RenderWindow &window){
     window.clear(Color::White);
 
     //Background

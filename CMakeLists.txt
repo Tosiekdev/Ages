@@ -18,7 +18,7 @@ if(SFML_FOUND)
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
 endif()
 
-add_executable(Ages1 main.cpp needed.cpp needed.h button.cpp button.h label.cpp label.h textbox.cpp textbox.h tablet.cpp tablet.h clickable.cpp clickable.h buildings.cpp buildings.h game.cpp load.cpp create.cpp obstacle.cpp obstacle.h constants.h town_hall.cpp Upgrade_tablet.cpp Upgrade_tablet.h farm.cpp lumber.cpp stone.cpp HandleBuildings.cpp HandleBuildings.h HandleStonePit.cpp HandleStonePit.h HandleFarm.cpp HandleFarm.h HandleLumberMill.cpp HandleLumberMill.h HandleWindow.h HandleManu.cpp HandleManu.h ExitWindow.cpp ExitWindow.h)
+add_executable(Ages1 main.cpp needed.cpp needed.h button.cpp button.h label.cpp label.h textbox.cpp textbox.h tablet.cpp tablet.h clickable.cpp clickable.h buildings.cpp buildings.h game.cpp load.cpp create.cpp obstacle.cpp obstacle.h constants.h town_hall.cpp Upgrade_tablet.cpp Upgrade_tablet.h farm.cpp lumber.cpp stone.cpp HandleBuildings.cpp HandleBuildings.h HandleStonePit.cpp HandleStonePit.h HandleFarm.cpp HandleFarm.h HandleLumberMill.cpp HandleLumberMill.h HandleWindow.h HandleManu.cpp HandleManu.h ExitWindow.cpp ExitWindow.h HandleTownHall.cpp HandleTownHall.h)
 target_link_libraries (Ages1 sfml-graphics sfml-window sfml-system)
 
 find_package (Threads REQUIRED)
