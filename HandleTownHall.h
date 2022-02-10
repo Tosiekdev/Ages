@@ -23,6 +23,10 @@ public:
     void crete_ub(buildings* resp, sf::Vector2f pos, int index);
     void set_ub_left(int index,float time,float th);
     float get_ub_left(int index);
+    float ub_get_time(int index);
+    void ub_reset_timer(int index);
+    int ub_update_timer(int index, float time_passed);
+    void ub_update_level(int index);
 
 private:
     std::map<int,string> num_to_names{

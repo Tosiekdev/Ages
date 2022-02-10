@@ -78,7 +78,7 @@ void Application::main_window(){
                 this->game();
                 break;
             case 5:
-                this->townhall();
+                this->launch_th();
                 break;
             case 6:
                 this->launch_farm();
@@ -126,8 +126,10 @@ string Application::create_city(string calling){
     this->rock=100;
 
     //setting time left
-    for(int i=0; i<8; i++)
-        this->u_buildings[i].set_left(0,1);
+    //for(int i=0; i<8; i++)
+      //  this->u_buildings[i].set_left(0,1);
+   for(int i=0; i<8; i++)
+        this->th_window.set_ub_left(i,0,1);
 
     //writing new name to all saves file
     file.open("all_saves.txt",ios::out | ios::app);
@@ -155,7 +157,7 @@ string Application::create_city(string calling){
 
     //upgrades time left
     for(int i=0; i<8; i++)
-        file << this->u_buildings[i].get_left() << endl;
+        file << this->th_window.get_ub_left(i) << endl;
 
     file.close();
 

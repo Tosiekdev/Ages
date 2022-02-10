@@ -27,6 +27,7 @@
 #include "HandleFarm.h"
 #include "HandleLumberMill.h"
 #include "HandleManu.h"
+#include "HandleTownHall.h"
 
 using namespace sf;
 using namespace std;
@@ -84,18 +85,7 @@ private:
     Button return_to_game;
 
     //town hall
-    Upgrade_tablet u_buildings[8];
-    map<int,string> num_to_names{
-        {1,"Academy"},
-        {2,"Barracks"},
-        {3,"Church"},
-        {4,"Farm"},
-        {5,"Lumber Mill"},
-        {6,"Stone Pit"},
-        {7,"Town Hall"},
-        {8,"Warehouse"}
-    };
-    Label th_info;
+    HandleTownHall th_window;
 
     //farm
     HandleFarm farm_window;
@@ -151,18 +141,8 @@ public:
     void wo_saving();
     void assign_levels();
 
-    //return to game button
-    void create_return_button();
-    void show_return_button();
-    void return_button_clicked(int pos_x, int pos_y);
-    bool return_button_focused(int pos_x, int pos_y);
-
     //town hall
-    void create_townhall();
-    void townhall();
-    void th_handle_event();
-    void th_stuff();
-    void display_townhall();
+    void launch_th();
 
     //farm
     void launch_farm();

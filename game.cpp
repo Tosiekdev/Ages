@@ -18,9 +18,13 @@ void Application::create_game(){
     //for town hall
     float y_position=205.f;
     for(int i=0; i<8; i++){
-        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
+        this->th_window.crete_ub(this->b_ptr[i],Vector2f(20,y_position),i);
         y_position+=100.f;
     }
+    /*for(int i=0; i<8; i++){
+        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
+        y_position+=100.f;
+    }*/
 
     this->create_buildings();
 
@@ -92,7 +96,7 @@ void Application::g_handle_event(){
 
             //Buildings events
             if(this->b_town.isClicked(i,j)){
-                this->create_townhall();
+                this->th_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->town_hall);
                 this->scene=5;
             }
             if(this->b_farm.isClicked(i,j)){
@@ -194,28 +198,36 @@ void Application::create_buildings(){
                 this->rock=stoi(input);
                 break;
             case 12:
-                this->u_buildings[0].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(0, stof(input), this->town_hall);
+                //this->u_buildings[0].set_left(stof(input),this->town_hall);
                 break;
             case 13:
-                this->u_buildings[1].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(1,stof(input),this->town_hall);
+                //this->u_buildings[1].set_left(stof(input),this->town_hall);
                 break;
             case 14:
-                this->u_buildings[2].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(2,stof(input),this->town_hall);
+                //this->u_buildings[2].set_left(stof(input),this->town_hall);
                 break;
             case 15:
-                this->u_buildings[3].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(3,stof(input),this->town_hall);
+                //this->u_buildings[3].set_left(stof(input),this->town_hall);
                 break;
             case 16:
-                this->u_buildings[4].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(4,stof(input),this->town_hall);
+                //this->u_buildings[4].set_left(stof(input),this->town_hall);
                 break;
             case 17:
-                this->u_buildings[5].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(5,stof(input),this->town_hall);
+                //this->u_buildings[5].set_left(stof(input),this->town_hall);
                 break;
             case 18:
-                this->u_buildings[6].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(6,stof(input),this->town_hall);
+                //this->u_buildings[6].set_left(stof(input),this->town_hall);
                 break;
             case 19:
-                this->u_buildings[7].set_left(stof(input),this->town_hall);
+                this->th_window.set_ub_left(7,stof(input),this->town_hall);
+                //this->u_buildings[7].set_left(stof(input),this->town_hall);
                 break;
         }
         line_nr++;
@@ -237,7 +249,7 @@ void Application::prepare_buildings(){
     this->b_town.create_building("Town Hall", "Textures/town_hall.png", this->town_hall, Vector2f(0,300), 75, 75, 12);
     this->b_magazine.create_building("Warehouse", "Textures/magazine.png", this->magazine, Vector2f(0,450), 100, 50, 6);
     for(int i=0; i<8; i++){
-        this->u_buildings[i].update_level();
+        this->th_window.ub_update_level(i);
     }
 }
 
@@ -266,7 +278,7 @@ void Application::save_game(){
 
     //upgrades time left
     for(int i=0; i<8; i++)
-        file << this->u_buildings[i].get_left() << endl;
+        file << this->th_window.get_ub_left(i) << endl;
 
     file.close();
 }
@@ -376,11 +388,16 @@ void Application::clocks(){
                 this->resource_clock.restart();
             }
             for(int i=0; i<8; i++){
-                if(this->u_buildings[i].get_time()>=1){
+                if(this->th_window.ub_get_time(i)>=1){
+                    if(this->th_window.ub_update_timer(i,this->th_window.ub_get_time(i))==3)
+                        this->assign_levels();
+                    this->th_window.ub_reset_timer(i);
+                }
+                /*if(this->u_buildings[i].get_time()>=1){
                     if(this->u_buildings[i].update_timer(this->u_buildings[i].get_time())==3)
                         this->assign_levels();
                     this->u_buildings[i].reset_timer();
-                }
+                }*/
             }
         }
     }
@@ -409,22 +426,4 @@ void Application::resources_1(){
     this->l_human.setCaption("People: "+to_string(this->human));
     this->l_rock.setCaption("Stone: "+to_string(this->rock));
     this->l_wood.setCaption("Wood: "+to_string(this->wood));
-}
-
-
-//Return to game button controls
-void Application::create_return_button(){
-    this->return_to_game.create(40,100,5,5,"Return");
-}
-
-void Application::show_return_button(){
-    this->return_to_game.show(this->screen);
-}
-
-void Application::return_button_clicked(int pos_x, int pos_y){
-    if(this->return_to_game.onClick(pos_x,pos_y)) this->return_to_village();
-}
-
-bool Application::return_button_focused(int pos_x, int pos_y) {
-    return this->return_to_game.onFocus(pos_x,pos_y);
 }
