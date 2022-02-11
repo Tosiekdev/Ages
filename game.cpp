@@ -21,10 +21,6 @@ void Application::create_game(){
         this->th_window.crete_ub(this->b_ptr[i],Vector2f(20,y_position),i);
         y_position+=100.f;
     }
-    /*for(int i=0; i<8; i++){
-        this->u_buildings[i].create_upgrade(this->b_ptr[i],this->num_to_names[i+1],Vector2f(20,y_position));
-        y_position+=100.f;
-    }*/
 
     this->create_buildings();
 
@@ -199,35 +195,27 @@ void Application::create_buildings(){
                 break;
             case 12:
                 this->th_window.set_ub_left(0, stof(input), this->town_hall);
-                //this->u_buildings[0].set_left(stof(input),this->town_hall);
                 break;
             case 13:
                 this->th_window.set_ub_left(1,stof(input),this->town_hall);
-                //this->u_buildings[1].set_left(stof(input),this->town_hall);
                 break;
             case 14:
                 this->th_window.set_ub_left(2,stof(input),this->town_hall);
-                //this->u_buildings[2].set_left(stof(input),this->town_hall);
                 break;
             case 15:
                 this->th_window.set_ub_left(3,stof(input),this->town_hall);
-                //this->u_buildings[3].set_left(stof(input),this->town_hall);
                 break;
             case 16:
                 this->th_window.set_ub_left(4,stof(input),this->town_hall);
-                //this->u_buildings[4].set_left(stof(input),this->town_hall);
                 break;
             case 17:
                 this->th_window.set_ub_left(5,stof(input),this->town_hall);
-                //this->u_buildings[5].set_left(stof(input),this->town_hall);
                 break;
             case 18:
                 this->th_window.set_ub_left(6,stof(input),this->town_hall);
-                //this->u_buildings[6].set_left(stof(input),this->town_hall);
                 break;
             case 19:
                 this->th_window.set_ub_left(7,stof(input),this->town_hall);
-                //this->u_buildings[7].set_left(stof(input),this->town_hall);
                 break;
         }
         line_nr++;
@@ -393,11 +381,6 @@ void Application::clocks(){
                         this->assign_levels();
                     this->th_window.ub_reset_timer(i);
                 }
-                /*if(this->u_buildings[i].get_time()>=1){
-                    if(this->u_buildings[i].update_timer(this->u_buildings[i].get_time())==3)
-                        this->assign_levels();
-                    this->u_buildings[i].reset_timer();
-                }*/
             }
         }
     }
@@ -413,17 +396,4 @@ void Application::assign_levels(){
     this->stone_pit=this->b_stone.get_level();
     this->town_hall=this->b_town.get_level();
     this->magazine=this->b_magazine.get_level();
-}
-
-//setting resource info in buildings
-void Application::resources_1(){
-    //changing resource info position
-    this->l_human.setPosition(Vector2f(200,5));
-    this->l_rock.setPosition(Vector2f(400,5));
-    this->l_wood.setPosition(Vector2f(600,5));
-
-    //changing resource info text
-    this->l_human.setCaption("People: "+to_string(this->human));
-    this->l_rock.setCaption("Stone: "+to_string(this->rock));
-    this->l_wood.setCaption("Wood: "+to_string(this->wood));
 }

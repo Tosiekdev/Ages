@@ -143,6 +143,7 @@ float Upgrade_tablet::get_left() const{
 
 void Upgrade_tablet::set_left(float time,float th){
     if(time!=0){
+        this->responsible->set_status(true);
         this->time_left=((float)this->responsible->get_level()+1.f)*10;
         this->update_timer(th);
         this->update_timer(this->time_left-time);

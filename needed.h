@@ -82,8 +82,6 @@ private:
     Label l_human, l_rock, l_wood;
     Clock resource_clock;
 
-    Button return_to_game;
-
     //town hall
     HandleTownHall th_window;
 
@@ -105,8 +103,6 @@ private:
 public:
     Application();
     void main_window();
-    void return_to_village();
-    void resources_1();
 
     //data interference
     string create_city(string calling);
