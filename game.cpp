@@ -88,7 +88,9 @@ void Application::g_handle_event(){
             int j=Mouse::getPosition(this->screen).y;
 
             //Returning button event
-            if(this->return_to_menu.onClick(i,j)) this->wo_saving();
+            if(this->return_to_menu.onClick(i,j)){
+                this->wsWindow.create(this->screen,this->scene);
+            }
 
             //Buildings events
             if(this->b_town.isClicked(i,j)){
@@ -273,65 +275,6 @@ void Application::save_game(){
         file << this->th_window.get_ub_left(i) << endl;
 
     file.close();
-}
-
-//handle window which makes sure that player want to exit
-void Application::wo_saving(){
-    //creating window
-    this->wsaving.create(VideoMode(300,200),"Are you sure?",Style::Titlebar | Style::Close);
-    this->wsaving.setPosition(Vector2i(250+this->screen.getPosition().x,200+this->screen.getPosition().y));
-    this->wsaving.setMouseCursorGrabbed(true);
-
-    //creating buttons
-    this->am_sure.create(40,100,167,110,"Yes");
-    this->not_sure.create(40,100,33,110,"No");
-    this->no_save.create(DEFAULT_FONT,2,20,"Are sure you want exit?",28);
-    this->ns_pt2.create(DEFAULT_FONT,15,55,"All unsaved progress will be lost.",18);
-
-    //Event handling
-    while(this->wsaving.isOpen()){
-        while(this->wsaving.pollEvent(this->e_save)){
-            //Exit
-            if(this->e_save.type==Event::Closed) this->wsaving.close();
-
-            //Is button clicked?
-            if(this->e_save.type==Event::MouseButtonPressed){
-                //Getting mouse position
-                int x=Mouse::getPosition(this->wsaving).x;
-                int y=Mouse::getPosition(this->wsaving).y;
-
-                //yes button
-                if(this->am_sure.onClick(x,y)){
-                    this->scene=1;
-                    this->wsaving.close();
-                }
-
-                //no button
-                if(this->not_sure.onClick(x,y)) this->wsaving.close();
-            }
-        }
-
-        //Button animation
-        bool a[2];
-        a[0]=this->am_sure.onFocus(Mouse::getPosition(this->wsaving).x,Mouse::getPosition(this->wsaving).y);
-        a[1]=this->not_sure.onFocus(Mouse::getPosition(this->wsaving).x,Mouse::getPosition(this->wsaving).y);
-
-        //cursor
-        if(a[0] || a[1])
-            this->cursor.loadFromSystem(Cursor::Hand);
-        else
-            this->cursor.loadFromSystem(Cursor::Arrow);
-        this->wsaving.setMouseCursor(this->cursor);
-
-        //Drawing everything
-        this->wsaving.clear(Color::White);
-        this->am_sure.show(this->wsaving);
-        this->not_sure.show(this->wsaving);
-        this->no_save.show(this->wsaving);
-        this->ns_pt2.show(this->wsaving);
-
-        this->wsaving.display();
-    }
 }
 
 //thread to count time

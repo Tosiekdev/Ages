@@ -29,6 +29,7 @@
 #include "HandleManu.h"
 #include "HandleTownHall.h"
 #include "HandleWarehouse.h"
+#include "HandleWoSaving.h"
 
 using namespace sf;
 using namespace std;
@@ -99,10 +100,7 @@ private:
     HandleWarehouse wh_window;
 
     //window to make sure that user want exit without saving
-    RenderWindow wsaving;
-    Label no_save, ns_pt2;
-    Event e_save;
-    Button am_sure, not_sure;
+    HandleWoSaving wsWindow;
 
 public:
     Application();
@@ -138,7 +136,6 @@ public:
     void create_buildings();
     void prepare_buildings();
     void save_game();
-    void wo_saving();
     void assign_levels();
 
     //town hall
