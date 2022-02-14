@@ -107,6 +107,10 @@ void Application::g_handle_event(){
                 this->sp_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->stone_pit);
                 this->scene=8;
             }
+            if(this->b_magazine.isClicked(i,j)){
+                this->wh_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->magazine);
+                this->scene=9;
+            }
 
             //saving game
             if(this->save.onClick(i,j)) this->save_game();

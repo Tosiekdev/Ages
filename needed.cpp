@@ -89,6 +89,9 @@ void Application::main_window(){
             case 8:
                 this->launch_sp();
                 break;
+            case 9:
+                this->launch_wh();
+                break;
         }
     }
     for_clocks.join();

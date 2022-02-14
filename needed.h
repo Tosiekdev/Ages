@@ -28,6 +28,7 @@
 #include "HandleLumberMill.h"
 #include "HandleManu.h"
 #include "HandleTownHall.h"
+#include "HandleWarehouse.h"
 
 using namespace sf;
 using namespace std;
@@ -43,7 +44,7 @@ private:
     int scene;
     /*
     1-menu 2-create 3-load 4-game
-    5-town_hall 6-farm 7-lumber_mill 8-stone pit
+    5-town_hall 6-farm 7-lumber_mill 8-stone pit 9-ware house
     */
 
     //village
@@ -93,6 +94,9 @@ private:
 
     //stone pit
     HandleStonePit sp_window;
+
+    //warehouse
+    HandleWarehouse wh_window;
 
     //window to make sure that user want exit without saving
     RenderWindow wsaving;
@@ -148,6 +152,9 @@ public:
 
     //stone pit
     void launch_sp();
+
+    //warehouse
+    void launch_wh();
 
     //threads functions
     void clocks();
