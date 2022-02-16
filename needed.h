@@ -33,6 +33,7 @@
 #include "HandleWoSaving.h"
 #include "HandleAcademy.h"
 #include "HandleBarracks.h"
+#include "HandleGame.h"
 #include "SaveSystem.h"
 
 using namespace sf;
@@ -82,19 +83,7 @@ private:
     int down_level=0, focused_tablet;
 
     //game
-    Button return_to_menu, save;
-    Obstacle resource_plank, resource_man, resource_wood, resource_rock;
-    Label l_human, l_rock, l_wood;
-    Clock resource_clock;
-
-    HandleTownHall th_window; //town hall
-    HandleFarm farm_window;//farm
-    HandleLumberMill lm_window;//lumber mill
-    HandleStonePit sp_window;//stone pit
-    HandleWarehouse wh_window;//warehouse
-    HandleAcademy academy_window;//academy
-    HandleBarracks barracks_window;//barracks
-    HandleWoSaving wsWindow;//window to make sure that user want exit without saving
+    HandleGame game_window;
 
 public:
     Application();
@@ -122,17 +111,7 @@ public:
     void remove_save();
 
     //game
-    void create_game();
-    void game();
-    void g_handle_event();
-    void g_stuff();
-    void display_game();
-    void create_buildings();
-    void prepare_buildings();
-    void save_game();
-    void assign_levels();
-    void disactivate_buildings();
-    void activate_buildings();
+    void launch_game();
 
     void launch_th();//town hall
     void launch_farm();//farm
@@ -140,7 +119,7 @@ public:
     void launch_sp();//stone pit
     void launch_wh();//warehouse
     void launch_academy();//academy
-    void launch_barracks();
+    void launch_barracks();//barracks
 
     //threads functions
     void clocks();

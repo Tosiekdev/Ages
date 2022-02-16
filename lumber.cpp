@@ -5,5 +5,5 @@
 #include "needed.h"
 
 void Application::launch_lm(){
-    this->lm_window.main_loop(this->e, this->screen, this->scene);
+    this->game_window.launch_lm(this->screen,this->scene);
 }

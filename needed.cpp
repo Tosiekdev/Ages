@@ -75,7 +75,8 @@ void Application::main_window(){
                 this->load();
                 break;
             case 4:
-                this->game();
+                this->launch_game();
+                //this->game();
                 break;
             case 5:
                 this->launch_th();
@@ -112,6 +113,8 @@ string Application::create_city(string calling){
     string line;
     this->save_path=calling+".txt";
 
+    this->game_window.set_path(this->save_path);
+
     //checking if file already exists
     filecheck.open(this->save_path);
     if(filecheck) return "This village already exists!";
@@ -120,16 +123,13 @@ string Application::create_city(string calling){
     this->name=calling;
 
     //setting levels
-    for(int i=0; i<3; i++) this->levels[i]=0;
-    for(int i=3; i<8; i++) this->levels[i]=1;
+    this->game_window.set_levels();
 
     //setting resources
-    this->human=10;
-    this->wood=100;
-    this->rock=100;
+    this->game_window.set_resources();
 
    for(int i=0; i<8; i++)
-        this->th_window.set_ub_left(i,0,1);
+       this->game_window.set_ub_left(i,0,1);
 
     //writing new name to all saves file
     file.open("all_saves.txt",ios::out | ios::app);
@@ -137,7 +137,8 @@ string Application::create_city(string calling){
     file.close();
 
     //saving village properties
-    this->save_game();
+    //this->save_game();
+    this->game_window.save_game();
 
     return "";
 }

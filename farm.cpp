@@ -5,5 +5,5 @@
 #include "needed.h"
 
 void Application::launch_farm(){
-    this->farm_window.main_loop(this->e, this->screen, this->scene);
+    this->game_window.launch_farm(this->screen,this->scene);
 }

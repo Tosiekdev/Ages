@@ -82,7 +82,8 @@ void Application::l_handle_event(){
 
             //load button
             if(this->load_button.onClick(i,j)){
-                this->create_game();
+                //this->create_game();
+                this->game_window.create(this->save_path);
                 this->scene=4;
             }
 

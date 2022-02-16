@@ -5,5 +5,5 @@
 #include "needed.h"
 
 void Application::launch_sp(){
-    this->sp_window.main_loop(this->e, this->screen, this->scene);
+    this->game_window.launch_sp(this->screen,this->scene);
 }

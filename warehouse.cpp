@@ -5,5 +5,5 @@
 #include "needed.h"
 
 void Application::launch_wh(){
-    this->wh_window.main_loop(this->e, this->screen, this->scene);
+    this->game_window.launch_wh(this->screen,this->scene);
 }

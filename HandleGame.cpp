@@ -4,7 +4,10 @@
 
 #include "HandleGame.h"
 
-void HandleGame::create(){
+void HandleGame::create(string path){
+    //assign path
+    this->save_path=path;
+
     //buttons
     this->return_to_menu.create(40,100,5,5,"Return");
     this->save.create(40,100,130,5,"Save");
@@ -15,7 +18,7 @@ void HandleGame::create(){
     //for town hall
     float y_position=205.f;
     for(int i=0; i<8; i++){
-        this->th_window.crete_ub(&this->building[i],Vector2f(20,y_position),i);
+        this->th_window.crete_ub(&(this->building[i]),Vector2f(20,y_position),i);
         y_position+=100.f;
     }
 
@@ -111,6 +114,8 @@ void HandleGame::do_stuff(RenderWindow &window){
         this->cursor.loadFromSystem(Cursor::Arrow);
     window.setMouseCursor(this->cursor);
 
+    this->activate_buildings();
+
     //this->activate_buildings();
 }
 
@@ -179,58 +184,103 @@ void HandleGame::assign_levels(){
         this->levels[i]=this->building[i].get_level();
 }
 
-void HandleGame::clocks(sf::RenderWindow window, int scene){
-    while(window.isOpen()){
-        if(scene>3){
-            //increasing resources
-            if (this->resource_clock.getElapsedTime().asSeconds() >= 1) {
-                int time_passed = (int)this->resource_clock.getElapsedTime().asSeconds();
-                this->human+=time_passed*1.2*this->levels[3];
-                this->rock+=time_passed*10*this->levels[5];
-                this->wood+=time_passed*10*this->levels[4];
+void HandleGame::clocks(int scene){
+    if(scene>3){
+        //increasing resources
+        if (this->resource_clock.getElapsedTime().asSeconds() >= 1) {
+            int time_passed = (int)this->resource_clock.getElapsedTime().asSeconds();
+            this->human+=time_passed*1.2*this->levels[3];
+            this->rock+=time_passed*10*this->levels[5];
+            this->wood+=time_passed*10*this->levels[4];
 
-                //full magazine
-                if(this->rock>=this->levels[7]*1296){
-                    this->rock=this->levels[7]*1296;
-                    this->l_rock.setColor(Color::Red);
-                }else
-                    this->l_rock.setColor(Color::Black);
+            //full magazine
+            if(this->rock>=this->levels[7]*1296){
+                this->rock=this->levels[7]*1296;
+                this->l_rock.setColor(Color::Red);
+            }else
+                this->l_rock.setColor(Color::Black);
 
-                if(this->wood>=this->levels[7]*1296){
-                    this->wood=this->levels[7]*1296;
-                    this->l_wood.setColor(Color::Red);
-                }else
-                    this->l_wood.setColor(Color::Black);
+            if(this->wood>=this->levels[7]*1296){
+                this->wood=this->levels[7]*1296;
+                this->l_wood.setColor(Color::Red);
+            }else
+                this->l_wood.setColor(Color::Black);
 
-                //full farm
-                if(this->human>=this->levels[3]*83){
-                    this->human=this->levels[3]*83;
-                    this->l_human.setColor(Color::Red);
-                }else
-                    this->l_human.setColor(Color::Black);
+            //full farm
+            if(this->human>=this->levels[3]*83){
+                this->human=this->levels[3]*83;
+                this->l_human.setColor(Color::Red);
+            }else
+                this->l_human.setColor(Color::Black);
 
-                switch(scene){
-                    case 4:
-                        this->l_human.setCaption(to_string(this->human));
-                        this->l_rock.setCaption(to_string(this->rock));
-                        this->l_wood.setCaption(to_string(this->wood));
-                        break;
-                    default:
-                        this->l_human.setCaption("People: "+to_string(this->human));
-                        this->l_rock.setCaption("Stone: "+to_string(this->rock));
-                        this->l_wood.setCaption("Wood: "+to_string(this->wood));
-                        break;
-                }
-                this->resource_clock.restart();
+            switch(scene){
+                case 4:
+                    this->l_human.setCaption(to_string(this->human));
+                    this->l_rock.setCaption(to_string(this->rock));
+                    this->l_wood.setCaption(to_string(this->wood));
+                    break;
+                default:
+                    this->l_human.setCaption("People: "+to_string(this->human));
+                    this->l_rock.setCaption("Stone: "+to_string(this->rock));
+                    this->l_wood.setCaption("Wood: "+to_string(this->wood));
+                    break;
             }
-            for(int i=0; i<8; i++){
-                if(this->th_window.ub_get_time(i)>=1){
-                    if(this->th_window.ub_update_timer(i,this->th_window.ub_get_time(i))==3)
-                        this->assign_levels();
-                    this->th_window.ub_reset_timer(i);
-                }
+            this->resource_clock.restart();
+        }
+        for(int i=0; i<8; i++){
+            if(this->th_window.ub_get_time(i)>=1){
+                if(this->th_window.ub_update_timer(i,this->th_window.ub_get_time(i))==3)
+                    this->assign_levels();
+                this->th_window.ub_reset_timer(i);
             }
         }
     }
+}
+
+void HandleGame::launch_th(sf::RenderWindow &window, int &scene){
+    this->th_window.main_loop(this->e,window,scene);
+}
+
+void HandleGame::launch_farm(RenderWindow &window, int &scene){
+    this->farm_window.main_loop(this->e,window,scene);
+}
+
+void HandleGame::launch_lm(RenderWindow &window, int &scene){
+    this->lm_window.main_loop(this->e,window,scene);
+}
+
+void HandleGame::launch_sp(RenderWindow &window, int &scene){
+    this->sp_window.main_loop(this->e,window,scene);
+}
+
+void HandleGame::launch_wh(RenderWindow &window, int &scene){
+    this->wh_window.main_loop(this->e,window,scene);
+}
+
+void HandleGame::launch_academy(RenderWindow &window, int &scene){
+    this->academy_window.main_loop(this->e,window,scene);
+}
+
+void HandleGame::launch_barracks(RenderWindow &window, int &scene){
+    this->barracks_window.main_loop(this->e,window,scene);
+}
+
+void HandleGame::set_ub_left(int index, float time, float th){
+    this->th_window.set_ub_left(index,time, th);
+}
+
+void HandleGame::set_levels(){
+    for(int i=0; i<3; i++) this->levels[i]=0;
+    for(int i=3; i<8; i++) this->levels[i]=1;
+}
+
+void HandleGame::set_resources(){
+    this->human=10;
+    this->wood=100;
+    this->rock=100;
+}
+
+void HandleGame::set_path(string path){
+    this->save_path=path;
 }
 

@@ -27,7 +27,7 @@
 
 class HandleGame : public HandleWindow{
 public:
-    void create();
+    void create(string path);
     void main_loop(sf::RenderWindow &window, int &scene) override;
     void handle_event(int &scene, sf::RenderWindow &window) override;
     void do_stuff(sf::RenderWindow &window) override;
@@ -39,7 +39,22 @@ public:
     void create_buildings();
     void save_game();
     void assign_levels();
-    void clocks(sf::RenderWindow window, int scene);
+    void clocks(int scene);
+
+    void launch_th(sf::RenderWindow &window, int &scene);//town hall
+    void launch_farm(sf::RenderWindow &window, int &scene);//farm
+    void launch_lm(sf::RenderWindow &window, int &scene);//lumber mill
+    void launch_sp(sf::RenderWindow &window, int &scene);//stone pit
+    void launch_wh(sf::RenderWindow &window, int &scene);//warehouse
+    void launch_academy(sf::RenderWindow &window, int &scene);//academy
+    void launch_barracks(sf::RenderWindow &window, int &scene);//barracks
+
+    void set_ub_left(int index, float time, float th);
+
+    //for making game
+    void set_levels();
+    void set_resources();
+    void set_path(string path);
 
 private:
     std::array<buildings,8> building;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh

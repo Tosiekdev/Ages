@@ -5,5 +5,5 @@
 #include "needed.h"
 
 void Application::launch_academy(){
-    this->academy_window.main_loop(this->e, this->screen, this->scene);
+    this->game_window.launch_academy(this->screen,this->scene);
 }

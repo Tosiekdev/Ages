@@ -54,7 +54,7 @@ void Application::c_handle_event(){
             if(this->t1.return_caption()!=""){
                 string erro=this->create_city(this->t1.return_caption());
                 if(erro==""){
-                    this->create_game();
+                    this->game_window.create(this->save_path);
                     this->scene=4;
                 }
                 this->label2.setCaption(erro);
@@ -75,7 +75,7 @@ void Application::c_handle_event(){
                 if(this->t1.return_caption()!=""){
                     string erro=this->create_city(this->t1.return_caption());
                     if(erro==""){
-                        this->create_game();
+                        this->game_window.create(this->save_path);
                         this->scene=4;
                     }
                     this->label2.setCaption(erro);

@@ -5,5 +5,5 @@
 #include "needed.h"
 
 void Application::launch_barracks(){
-    this->barracks_window.main_loop(this->e, this->screen, this->scene);
+    this->game_window.launch_barracks(this->screen,this->scene);
 }
