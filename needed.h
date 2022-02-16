@@ -31,6 +31,8 @@
 #include "HandleTownHall.h"
 #include "HandleWarehouse.h"
 #include "HandleWoSaving.h"
+#include "HandleAcademy.h"
+#include "HandleBarracks.h"
 #include "SaveSystem.h"
 
 using namespace sf;
@@ -48,6 +50,7 @@ private:
     /*
     1-menu 2-create 3-load 4-game
     5-town_hall 6-farm 7-lumber_mill 8-stone pit 9-ware house
+    10-academy 11-barracks
     */
 
     //village
@@ -87,23 +90,14 @@ private:
     Label l_human, l_rock, l_wood;
     Clock resource_clock;
 
-    //town hall
-    HandleTownHall th_window;
-
-    //farm
-    HandleFarm farm_window;
-
-    //lumber mill
-    HandleLumberMill lm_window;
-
-    //stone pit
-    HandleStonePit sp_window;
-
-    //warehouse
-    HandleWarehouse wh_window;
-
-    //window to make sure that user want exit without saving
-    HandleWoSaving wsWindow;
+    HandleTownHall th_window; //town hall
+    HandleFarm farm_window;//farm
+    HandleLumberMill lm_window;//lumber mill
+    HandleStonePit sp_window;//stone pit
+    HandleWarehouse wh_window;//warehouse
+    HandleAcademy academy_window;//academy
+    HandleBarracks barracks_window;//barracks
+    HandleWoSaving wsWindow;//window to make sure that user want exit without saving
 
 public:
     Application();
@@ -143,20 +137,13 @@ public:
     void disactivate_buildings();
     void activate_buildings();
 
-    //town hall
-    void launch_th();
-
-    //farm
-    void launch_farm();
-
-    //lumber mill
-    void launch_lm();
-
-    //stone pit
-    void launch_sp();
-
-    //warehouse
-    void launch_wh();
+    void launch_th();//town hall
+    void launch_farm();//farm
+    void launch_lm();//lumber mill
+    void launch_sp();//stone pit
+    void launch_wh();//warehouse
+    void launch_academy();//academy
+    void launch_barracks();
 
     //threads functions
     void clocks();

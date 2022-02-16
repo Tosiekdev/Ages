@@ -92,6 +92,12 @@ void Application::main_window(){
             case 9:
                 this->launch_wh();
                 break;
+            case 10:
+                this->launch_academy();
+                break;
+            case 11:
+                this->launch_barracks();
+                break;
         }
     }
     for_clocks.join();

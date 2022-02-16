@@ -116,6 +116,14 @@ void Application::g_handle_event(){
                 this->wh_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->levels[7]);
                 this->scene=9;
             }
+            if(this->b_academy.isClicked(i,j)){
+                this->academy_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->levels[0]);
+                this->scene=10;
+            }
+            if(this->b_barracks.isClicked(i,j)){
+                this->barracks_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->levels[1]);
+                this->scene=11;
+            }
 
             //saving game
             if(this->save.onClick(i,j)) this->save_game();
