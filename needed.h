@@ -63,11 +63,8 @@ private:
     Texture background_menu_texture;
     Sprite background_menu_sprite;
 
-    //wexit
-    ExitWindow exitWindow;
-
-    //menu
-    HandleMenu menu;
+    ExitWindow exitWindow;//w_exit
+    HandleMenu menu;//menu
 
     //create
     Button return_button,ok_button,cancel_button;
