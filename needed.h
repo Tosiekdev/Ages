@@ -13,6 +13,7 @@
 #include <cmath>
 #include <map>
 #include <thread>
+#include <array>
 
 #include "button.h"
 #include "label.h"
@@ -30,6 +31,7 @@
 #include "HandleTownHall.h"
 #include "HandleWarehouse.h"
 #include "HandleWoSaving.h"
+#include "SaveSystem.h"
 
 using namespace sf;
 using namespace std;
@@ -50,9 +52,10 @@ private:
 
     //village
     string name,save_path;
-    int academy,barracks,church,farm,lumber_mill,stone_pit,town_hall,magazine;
+    SaveSystem save_system;
+    std::array<int,8> levels;//0-academy, 1-barracks, 2-church, 3-farm, 4-lumber, 5-stone, 6-town_hall,7-warehouse
     buildings b_academy,b_barracks,b_church,b_farm,b_lumber,b_stone,b_town,b_magazine;
-    buildings *b_ptr[8];
+    std::array<buildings*,8> b_ptr;
     int human,rock,wood;
     Texture background_menu_texture;
     Sprite background_menu_sprite;
@@ -137,6 +140,8 @@ public:
     void prepare_buildings();
     void save_game();
     void assign_levels();
+    void disactivate_buildings();
+    void activate_buildings();
 
     //town hall
     void launch_th();

@@ -29,6 +29,8 @@ public:
     int get_level() const;//returns level
     bool status();//returns status
     void set_status(bool new_status);//set status
+    void activate(); //make building clickable
+    void disactivate(); //make building unclickable
 private:
     int level;
     int n_stone,n_wood,n_human; //needed resources
@@ -39,6 +41,7 @@ private:
     Sprite view;
     Vector2f possition;
     Label s_name;
+    bool active;
 
     //star
     string lvl_caption;

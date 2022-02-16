@@ -9,6 +9,7 @@ using namespace std;
 using namespace sf;
 
 buildings::buildings(string the_name,string path_totext,int leveled,int need_s,int need_w,int need_g,Vector2f position){
+    this->active=true;
     this->in_upgrade=false;
     this->create_building(the_name,path_totext,leveled,position,need_s,need_w,need_g);
 }
@@ -86,8 +87,8 @@ void buildings::create_star(){
     this->lvl_label.center();
 }
 
-bool buildings::isClicked(int posx, int posy) {
-    if(this->view.getGlobalBounds().contains((float)posx,(float)posy)){
+bool buildings::isClicked(int posx, int posy){
+    if(this->view.getGlobalBounds().contains((float)posx,(float)posy) && this->active){
         return true;
     }else
         return false;
@@ -129,5 +130,13 @@ bool buildings::onFocus(int pos_x, int pos_y){
         return true;
     }
     return false;
+}
+
+void buildings::activate(){
+    this->active=true;
+}
+
+void buildings::disactivate(){
+    this->active=false;
 }
 

@@ -114,23 +114,14 @@ string Application::create_city(string calling){
     this->name=calling;
 
     //setting levels
-    this->academy=0;
-    this->barracks=0;
-    this->church=0;
-    this->farm=1;
-    this->lumber_mill=1;
-    this->stone_pit=1;
-    this->town_hall=1;
-    this->magazine=1;
+    for(int i=0; i<3; i++) this->levels[i]=0;
+    for(int i=3; i<8; i++) this->levels[i]=1;
 
     //setting resources
     this->human=10;
     this->wood=100;
     this->rock=100;
 
-    //setting time left
-    //for(int i=0; i<8; i++)
-      //  this->u_buildings[i].set_left(0,1);
    for(int i=0; i<8; i++)
         this->th_window.set_ub_left(i,0,1);
 
@@ -140,29 +131,7 @@ string Application::create_city(string calling){
     file.close();
 
     //saving village properties
-    file.open(save_path,ios::out);
-
-    //levels
-    file << this->name << endl;
-    file << this->academy << endl;
-    file << this->barracks << endl;
-    file << this->church << endl;
-    file << this->farm << endl;
-    file << this->lumber_mill << endl;
-    file << this->stone_pit << endl;
-    file << this->town_hall << endl;
-    file << this->magazine << endl;
-
-    //resources;
-    file << this->human << endl;
-    file << this->wood << endl;
-    file << this->rock << endl;
-
-    //upgrades time left
-    for(int i=0; i<8; i++)
-        file << this->th_window.get_ub_left(i) << endl;
-
-    file.close();
+    this->save_game();
 
     return "";
 }

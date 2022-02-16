@@ -239,10 +239,10 @@ void Application::remove_save(){
         copied.close();
 
         this->prepare_tablets();
-        this->error_message.setCaption("File removed succesfully");
+        this->error_message.setCaption("File removed succesfully!");
     }
     else{
-        this->error_message.setCaption("Failed to remove file");
+        this->error_message.setCaption("Failed to remove file!");
     }
 }
 
