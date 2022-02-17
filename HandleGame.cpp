@@ -6,7 +6,7 @@
 
 void HandleGame::create(string path){
     //assign path
-    this->save_path=path;
+    this->set_path(path);
 
     //buttons
     this->return_to_menu.create(40,100,5,5,"Return");
@@ -87,6 +87,10 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
                 this->barracks_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->levels[1]);
                 scene=11;
             }
+            if(this->building[2].isClicked(i,j)){
+                this->church_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,&this->rock,&this->wood,&this->levels[2]);
+                scene=12;
+            }
 
             //saving game
             if(this->save.onClick(i,j)) this->save_game();
@@ -95,28 +99,26 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
 }
 
 void HandleGame::do_stuff(RenderWindow &window){
-    bool a[10];
+    std::vector<bool> a;
     int x=Mouse::getPosition(window).x;
     int y=Mouse::getPosition(window).y;
 
     //cool building animation
     for(int i=0; i<8; i++)
-        a[i]=this->building[i].onFocus(x,y);
+        a.push_back(this->building[i].onFocus(x,y));
 
     //cool button animation
-    a[8]=this->return_to_menu.onFocus(x,y);
-    a[9]=this->save.onFocus(x,y);
+    a.push_back(this->return_to_menu.onFocus(x,y));
+    a.push_back(this->save.onFocus(x,y));
 
     //cursor change
-    if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7] || a[8] || a[9])
+    if(std::any_of(a.begin(),a.end(),[](bool i){return i;}))
         this->cursor.loadFromSystem(Cursor::Hand);
     else
         this->cursor.loadFromSystem(Cursor::Arrow);
     window.setMouseCursor(this->cursor);
 
     this->activate_buildings();
-
-    //this->activate_buildings();
 }
 
 void HandleGame::display(RenderWindow &window){
@@ -155,24 +157,24 @@ void HandleGame::activate_buildings(){
 
 void HandleGame::create_buildings(){
     //load data
-    this->saveSystem.load_save(this->save_path,this->levels,this->th_window,this->name,this->human,this->wood,this->rock);
+    this->saveSystem.load_save(this->save_path,this->levels,this->th_window,this->name,this->human,this->wood,this->rock,this->building);
 
     //make everything done
     this->prepare_buildings();
 }
 
 void HandleGame::prepare_buildings(){
-    this->building[0].create_building("Academy","Textures/academy.png",this->levels[0],Vector2f(600,450),100,75,10);
-    this->building[1].create_building("Barracks","Textures/barracks.png",this->levels[1],Vector2f(100,100),75,75,7);
-    this->building[2].create_building("Church","Textures/church.png", this->levels[2],Vector2f(200,200),50,150,10);
-    this->building[3].create_building("Farm","Textures/farm.png", this->levels[3],Vector2f(300,300),20,60,2);
-    this->building[4].create_building("Lumber mill","Textures/default.png",this->levels[4],Vector2f(400,30),65,15,2);
-    this->building[5].create_building("Stone pit","Textures/default.png",this->levels[5],Vector2f(500,300),15,65,2);
-    this->building[6].create_building("Town Hall","Textures/town_hall.png",this->levels[6],Vector2f(0,300),75,75,12);
-    this->building[7].create_building("Warehouse","Textures/magazine.png",this->levels[7],Vector2f(0,450),100,50,6);
-    //for(int i=0; i<8; i++){
-      //  this->th_window.ub_update_level(i);
-    //}
+    this->building[0].create_building("Academy","Textures/academy.png",this->levels[0],Vector2f(250,300),100,75,10);
+    this->building[1].create_building("Barracks","Textures/barracks.png",this->levels[1],Vector2f(50,300),75,75,7);
+    this->building[2].create_building("Church","Textures/church.png", this->levels[2],Vector2f(300,150),50,150,10);
+    this->building[3].create_building("Farm","Textures/farm.png", this->levels[3],Vector2f(600,450),20,60,2);
+    this->building[4].create_building("Lumber mill","Textures/default.png",this->levels[4],Vector2f(400,450),65,15,2);
+    this->building[5].create_building("Stone pit","Textures/default.png",this->levels[5],Vector2f(600,250),15,65,2);
+    this->building[6].create_building("Town Hall","Textures/town_hall.png",this->levels[6],Vector2f(100,100),75,75,12);
+    this->building[7].create_building("Warehouse","Textures/magazine.png",this->levels[7],Vector2f(150,450),100,50,6);
+    for(int i=0; i<8; i++){
+        this->th_window.ub_update_level(i);
+    }
 }
 
 void HandleGame::save_game(){
@@ -265,6 +267,10 @@ void HandleGame::launch_barracks(RenderWindow &window, int &scene){
     this->barracks_window.main_loop(this->e,window,scene);
 }
 
+void HandleGame::launch_church(RenderWindow &window, int &scene){
+    this->church_window.main_loop(this->e,window,scene);
+}
+
 void HandleGame::set_ub_left(int index, float time, float th){
     this->th_window.set_ub_left(index,time, th);
 }
@@ -283,4 +289,3 @@ void HandleGame::set_resources(){
 void HandleGame::set_path(string path){
     this->save_path=path;
 }
-

@@ -4,9 +4,6 @@
 
 #include "needed.h"
 
-using namespace sf;
-using namespace std;
-
 //thread to count time
 void Application::clocks(){
     while(this->screen.isOpen()){

@@ -27,6 +27,7 @@ public:
     bool isClicked(int posx, int posy); //check if building was clicked
     bool onFocus(int pos_x, int pos_y);//check if cursor is on the building
     int get_level() const;//returns level
+    void set_level(int lvl);//set new level
     bool status();//returns status
     void set_status(bool new_status);//set status
     void activate(); //make building clickable

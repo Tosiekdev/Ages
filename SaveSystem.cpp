@@ -4,7 +4,7 @@
 
 #include "SaveSystem.h"
 
-void SaveSystem::load_save(string save_path, std::array<int,8> &levels, HandleTownHall &th_window, string &name, int &human, int &wood, int &rock){
+void SaveSystem::load_save(string save_path, std::array<int,8> &levels,HandleTownHall &th_window,string &name,int &human,int &wood,int &rock,std::array<buildings,8> &b){
     fstream s_path;
     s_path.open(save_path,ios::in);
     string input;
@@ -38,8 +38,11 @@ void SaveSystem::load_save(string save_path, std::array<int,8> &levels, HandleTo
             case 7:
                 levels[6]=stoi(input);//townhall
                 break;
-            case 8:
+            case 8:{
                 levels[7]=stoi(input);//warehouse
+                for(int i=0; i<8; i++) b[i].set_level(levels[i]);
+            }
+                break;
                 //resources
             case 9:
                 human=stoi(input);

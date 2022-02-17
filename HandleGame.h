@@ -7,6 +7,8 @@
 
 #include <array>
 #include <map>
+#include <algorithm>
+#include <vector>
 
 #include "HandleWindow.h"
 #include "button.h"
@@ -24,6 +26,7 @@
 #include "HandleWoSaving.h"
 #include "HandleAcademy.h"
 #include "HandleBarracks.h"
+#include "HandleChurch.h"
 
 class HandleGame : public HandleWindow{
 public:
@@ -48,6 +51,7 @@ public:
     void launch_wh(sf::RenderWindow &window, int &scene);//warehouse
     void launch_academy(sf::RenderWindow &window, int &scene);//academy
     void launch_barracks(sf::RenderWindow &window, int &scene);//barracks
+    void launch_church(sf::RenderWindow &window, int &scene);//church
 
     void set_ub_left(int index, float time, float th);
 
@@ -88,6 +92,7 @@ private:
     HandleWarehouse wh_window;//warehouse
     HandleAcademy academy_window;//academy
     HandleBarracks barracks_window;//barracks
+    HandleChurch church_window;//church
 };
 
 

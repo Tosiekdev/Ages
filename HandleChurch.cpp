@@ -1,10 +1,10 @@
 //
-// Created by tosiek on 16.02.2022.
+// Created by tosiek on 17.02.2022.
 //
 
-#include "HandleAcademy.h"
+#include "HandleChurch.h"
 
-void HandleAcademy::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
+void HandleChurch::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info
     this->assign_values(lh,lr,lw,hn,rk,wd,bld);
 
@@ -13,16 +13,15 @@ void HandleAcademy::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, in
 
     //info
     this->crete_info();
-    this->info.setCaption("In Academy you discover new technologies which can\n"
-                          "improve yours army strength, or increase your resource\n"
-                          "production. Upgrading Academy helps you to discover\n"
-                          "more technologies!");
+    this->info.setCaption("In Church you can obtain God's grace which can help you\n"
+                          "in war, increase resource production and many more.\n"
+                          "Higher level means more grace!");
 
     //buttons
     this->create_return_button();
 }
 
-void HandleAcademy::handle_events(Event &event, RenderWindow &window, int &scene){
+void HandleChurch::handle_events(Event &event, RenderWindow &window, int &scene){
     while(window.pollEvent(event)) {
         if (event.type == Event::Closed) window.close();
 
@@ -37,7 +36,7 @@ void HandleAcademy::handle_events(Event &event, RenderWindow &window, int &scene
     }
 }
 
-void HandleAcademy::do_stuff(RenderWindow &window){
+void HandleChurch::do_stuff(RenderWindow &window){
     std::vector<bool> a;
     int x=Mouse::getPosition(window).x;
     int y=Mouse::getPosition(window).y;
@@ -54,7 +53,7 @@ void HandleAcademy::do_stuff(RenderWindow &window){
     window.setMouseCursor(this->cursor);
 }
 
-void HandleAcademy::display(RenderWindow &window){
+void HandleChurch::display(RenderWindow &window){
     window.clear(Color::White);
 
     //buttons

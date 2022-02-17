@@ -28,6 +28,7 @@ void Upgrade_tablet::show(RenderWindow &W){
 void Upgrade_tablet::create_upgrade(buildings *resp, std::string caption, sf::Vector2f pos){
     this->position=pos;
     this->responsible=resp;
+    this->responsible->set_status(false);
 
     //building name
     this->name.create(DEFAULT_FONT,this->position.x,this->position.y,caption,40);
@@ -145,8 +146,10 @@ void Upgrade_tablet::set_left(float time,float th){
     if(time!=0){
         this->responsible->set_status(true);
         this->time_left=((float)this->responsible->get_level()+1.f)*10;
+        std::cout << this->time_left-time << "\n";
         this->update_timer(th);
         this->update_timer(this->time_left-time);
+        this->time_left=time;
     }else{
         this->time_left=time;
     }

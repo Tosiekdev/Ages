@@ -11,16 +11,6 @@ using namespace std;
 
 //Constructor
 Application::Application(){
-    //assigning pointers
-    this->b_ptr[0]=&(this->b_academy);
-    this->b_ptr[1]=&(this->b_barracks);
-    this->b_ptr[2]=&(this->b_church);
-    this->b_ptr[3]=&(this->b_farm);
-    this->b_ptr[4]=&(this->b_lumber);
-    this->b_ptr[5]=&(this->b_stone);
-    this->b_ptr[6]=&(this->b_town);
-    this->b_ptr[7]=&(this->b_magazine);
-
     //settings
     this->height=600;
     this->width=800;
@@ -99,6 +89,9 @@ void Application::main_window(){
             case 11:
                 this->launch_barracks();
                 break;
+            case 12:
+                this->launch_church();
+                break;
         }
     }
     for_clocks.join();
@@ -137,7 +130,6 @@ string Application::create_city(string calling){
     file.close();
 
     //saving village properties
-    //this->save_game();
     this->game_window.save_game();
 
     return "";

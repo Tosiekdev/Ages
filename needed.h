@@ -23,18 +23,8 @@
 #include "buildings.h"
 #include "obstacle.h"
 #include "constants.h"
-#include "Upgrade_tablet.h"
-#include "HandleStonePit.h"
-#include "HandleFarm.h"
-#include "HandleLumberMill.h"
 #include "HandleManu.h"
-#include "HandleTownHall.h"
-#include "HandleWarehouse.h"
-#include "HandleWoSaving.h"
-#include "HandleAcademy.h"
-#include "HandleBarracks.h"
 #include "HandleGame.h"
-#include "SaveSystem.h"
 
 using namespace sf;
 using namespace std;
@@ -42,42 +32,37 @@ using namespace std;
 class Application
 {
 private:
-    RenderWindow screen;
-    Vector2i possition;
-    Cursor cursor;
-    Event e;
+    sf::RenderWindow screen;
+    sf::Vector2i possition;
+    sf::Cursor cursor;
+    sf::Event e;
     int height,width,max_fps;
     int scene;
     /*
     1-menu 2-create 3-load 4-game
     5-town_hall 6-farm 7-lumber_mill 8-stone pit 9-ware house
-    10-academy 11-barracks
+    10-academy 11-barracks 12-church
     */
 
     //village
     string name,save_path;
-    SaveSystem save_system;
-    std::array<int,8> levels;//0-academy, 1-barracks, 2-church, 3-farm, 4-lumber, 5-stone, 6-town_hall,7-warehouse
-    buildings b_academy,b_barracks,b_church,b_farm,b_lumber,b_stone,b_town,b_magazine;
-    std::array<buildings*,8> b_ptr;
     int human,rock,wood;
-    Texture background_menu_texture;
-    Sprite background_menu_sprite;
+    sf::Texture background_menu_texture;
+    sf::Sprite background_menu_sprite;
 
     ExitWindow exitWindow;//w_exit
     HandleMenu menu;//menu
 
     //create
     Button return_button,ok_button,cancel_button;
-    Texture plank,obstacle_t;
-    Sprite space,obstacle_s;
+    sf::Texture plank,obstacle_t;
+    sf::Sprite space,obstacle_s;
     Label label1,label2;
     textbox t1;
 
     //load
     Button returning_button,load_button,remove_button;
     tablet t[5];
-    Vector2f victor;
     clickable down,up;
     Label error_message;
     int down_level=0, focused_tablet;
@@ -110,8 +95,7 @@ public:
     void prepare_focused_tablets();
     void remove_save();
 
-    //game
-    void launch_game();
+    void launch_game();//game
 
     void launch_th();//town hall
     void launch_farm();//farm
@@ -120,6 +104,7 @@ public:
     void launch_wh();//warehouse
     void launch_academy();//academy
     void launch_barracks();//barracks
+    void launch_church();//church
 
     //threads functions
     void clocks();

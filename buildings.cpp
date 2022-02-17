@@ -140,3 +140,7 @@ void buildings::disactivate(){
     this->active=false;
 }
 
+void buildings::set_level(int lvl){
+    this->level=lvl;
+}
+
