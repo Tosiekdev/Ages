@@ -58,6 +58,7 @@ std::array<int, 3> SwordsMen::take_resources(int people,int iron,int money){
 //this happens when time needed to upgrade passed
 void SwordsMen::end_upgrade(){
     this->in_upgrade=false;
+    this->lives.push_back(this->hp);
 }
 
 void SwordsMen::reset_timer(){
@@ -101,8 +102,26 @@ int SwordsMen::attack_calculator(Type which){
 }
 
 void SwordsMen::take_damage(std::vector<int> damage){
-    std::vector<int> lives;
+    //full tells how many times every unit will get hit
+    //rest tells how many units will take extra hit
+    int full,rest;
+    int dmg_quantity=(int)damage.size();
 
-    for(int i=0; i<quantity; i++)
-        lives.push_back(this->hp);
+    int i=0;
+    while(i<dmg_quantity){
+        int j=0;
+        while(j<this->quantity){
+            if(i<dmg_quantity){
+                this->lives[j] -= damage[i * this->quantity + j];
+                j++;
+            }else break;
+        }
+        std::vector<int>::iterator x;
+        x=std::remove_if(this->lives.begin(),this->lives.end(),[](int a){return a<=0;});
+        this->quantity=(int)this->lives.size();
+    }
+}
+
+void SwordsMen::display_image(sf::RenderWindow window){
+    window.draw(this->view);
 }

@@ -32,6 +32,9 @@ public:
     int attack_calculator(Type which) override;
     void take_damage(std::vector<int> damage) override;
 
+    //displaying
+    void display_image(sf::RenderWindow window) override;
+
 private:
     Type type=SWORD_MAN;
 };
