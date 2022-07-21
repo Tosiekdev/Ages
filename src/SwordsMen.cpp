@@ -18,12 +18,8 @@ SwordsMen::SwordsMen(){
     this->upgrade_time=5;
 
     //set look
-    this->texture.loadFromFile("Textures/swordman.png");
+    this->texture.loadFromFile("Textures/swordsman.png");
     this->view.setTexture(this->texture);
-}
-
-void SwordsMen::set_position(sf::Vector2f pos){
-    this->view.setPosition(pos);
 }
 
 //to make showing unit easier
@@ -36,10 +32,7 @@ void SwordsMen::slide(float shift){
 //this happens when player try to make upgrade
 std::array<int, 3> SwordsMen::take_resources(int people,int iron,int money){
     //assign resources that we can return it
-    std::array<int,3> resources{};
-    resources[0]=people;
-    resources[1]=iron;
-    resources[2]=money;
+    std::array<int,3> resources{people,iron,money};
 
     if(this->n_people<=people,this->n_money<=money,this->n_iron<=iron){
         //take needed resources
@@ -59,22 +52,6 @@ std::array<int, 3> SwordsMen::take_resources(int people,int iron,int money){
 void SwordsMen::end_upgrade(){
     this->in_upgrade=false;
     this->lives.push_back(this->hp);
-}
-
-void SwordsMen::reset_timer(){
-    this->for_upgrade.restart();
-}
-
-void SwordsMen::get_time(){
-    this->for_upgrade.getElapsedTime().asSeconds();
-}
-
-float SwordsMen::get_time_left(){
-    return this->time_left;
-}
-
-void SwordsMen::load_left(float time){
-    this->time_left=time;
 }
 
 //returns vector of damage to hurt others
@@ -102,26 +79,12 @@ int SwordsMen::attack_calculator(Type which){
 }
 
 void SwordsMen::take_damage(std::vector<int> damage){
-    //full tells how many times every unit will get hit
-    //rest tells how many units will take extra hit
-    int full,rest;
-    int dmg_quantity=(int)damage.size();
-
-    int i=0;
-    while(i<dmg_quantity){
-        int j=0;
-        while(j<this->quantity){
-            if(i<dmg_quantity){
-                this->lives[j] -= damage[i * this->quantity + j];
-                j++;
-            }else break;
+    size_t j=0;
+    while(j<damage.size()){
+        if(lives[j%lives.size()]>0){
+            lives[j%lives.size()]-=damage[j];
+            j++;
         }
-        std::vector<int>::iterator x;
-        x=std::remove_if(this->lives.begin(),this->lives.end(),[](int a){return a<=0;});
-        this->quantity=(int)this->lives.size();
+        if(j>damage.size()){ break; }
     }
-}
-
-void SwordsMen::display_image(sf::RenderWindow window){
-    window.draw(this->view);
 }

@@ -11,27 +11,24 @@
 
 #include "constants.h"
 
-using namespace sf;
-using namespace std;
-
 class Label
 {
-    Font label_font;
-    Text label_text;
-    Vector2f label_possition;
-    String label_caption;
+    sf::Font label_font;
+    sf::Text label_text;
+    sf::Vector2f label_possition;
+    sf::String label_caption;
     int label_height;
 public:
-    explicit Label(string=DEFAULT_FONT,int=0,int=0,String="Programmer is a Jerk",int=20);
-    void show(RenderWindow &W);
-    void setCaption(string new_caption);
+    explicit Label(std::string=DEFAULT_FONT,int=0,int=0,sf::String="Programmer is a Jerk",int=20);
+    void show(sf::RenderWindow &W);
+    void setCaption(std::string new_caption);
     void setSize(int new_size);
-    void setPosition(Vector2f new_position);
-    void setFont(string path);
-    void setColor(Color new_color);
+    void setPosition(sf::Vector2f new_position);
+    void setFont(std::string path);
+    void setColor(sf::Color new_color);
     float getWidth();
     void center();
-    void create(const string& path,float posx,float posy,const String& cap,int sized);
+    void create(const std::string& path,float posx,float posy,const sf::String& cap,int sized);
 };
 
 

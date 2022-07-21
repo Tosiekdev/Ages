@@ -6,12 +6,12 @@
 
 using namespace sf;
 
-Label::Label(string path,int posx,int posy,String cap,int sized){
+Label::Label(std::string path,int posx,int posy,String cap,int sized){
     this->create(path,posx,posy,cap,sized);
 }
 
 //Creating label
-void Label::create(const string& path,float posx,float posy,const String& cap,int sized){
+void Label::create(const std::string& path,float posx,float posy,const String& cap,int sized){
     //loading font
     this->label_font.loadFromFile(path);
 
@@ -39,7 +39,7 @@ void Label::show(RenderWindow &W){
 }
 
 //New Caption
-void Label::setCaption(string new_caption){
+void Label::setCaption(std::string new_caption){
     this->label_caption=new_caption;
     this->label_text.setString(this->label_caption);
 }
@@ -57,7 +57,7 @@ void Label::setPosition(Vector2f new_position){
 }
 
 //new font
-void Label::setFont(string path){
+void Label::setFont(std::string path){
     this->label_font.loadFromFile(path);
     this->label_text.setFont(this->label_font);
 }

@@ -25,7 +25,7 @@ public:
     void show(RenderWindow &W);
     void set_position(int x,int y);
     void actualize(char sign);
-    void erease();
+    void erase();
     Text return_text();
     void hide();
     string return_caption();

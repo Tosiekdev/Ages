@@ -3,6 +3,10 @@ project(Ages1)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set(SFML_INCLUDE_DIR "/home/tosiek/Documents/SFML-2.5.1/include")
+set(SFML_LIBRARY_DIR "/home/tosiek/Documents/SFML-2.5.1/lib")
+set(SFML_DIR "/home/tosiek/Documents/SFML-2.5.1/lib/cmake/SFML")
+
 link_directories(SFML_LIBRARY_DIR)
 include_directories(SFML_INCLUDE_DIR)
 

@@ -20,7 +20,7 @@ public:
 private:
     sf::RenderWindow w_exit;
     Label sure;
-    Event exit_e;
+    sf::Event exit_e;
     Button yes,no;
     sf::Cursor cursor;
 };

@@ -184,7 +184,7 @@ void Application::prepare_tablets(){
 //Changing focused tablet's texture
 void Application::prepare_focused_tablets(){
     //resetting focus
-    for(int i=0;i<5;i++) this->t[i].notfocussed();
+    for(int i=0;i<5;i++) this->t[i].unfocused();
 
     //preparing to load
     if(this->focused_tablet>=0 && this->focused_tablet<5){

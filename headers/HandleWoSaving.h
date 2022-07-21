@@ -18,11 +18,11 @@ public:
     void display(sf::RenderWindow &window) override;
 
 private:
-    sf::RenderWindow wsaving;
+    sf::RenderWindow w_saving;
     Label no_save, ns_pt2;
-    Event e_save;
+    sf::Event e_save;
     Button am_sure, not_sure;
-    Cursor cursor;
+    sf::Cursor cursor;
 };
 
 

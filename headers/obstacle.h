@@ -8,17 +8,15 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-using namespace sf;
-
 class Obstacle{
 public:
     Obstacle();
-    void create_obstacle(std::string texture_path, Vector2f new_scale, Vector2f pos);
-    void draw(RenderWindow &W);
+    void create_obstacle(std::string texture_path, sf::Vector2f new_scale, sf::Vector2f pos);
+    void draw(sf::RenderWindow &W);
 private:
-    Texture look;
-    Sprite face;
-    Vector2f position;
+    sf::Texture look;
+    sf::Sprite face;
+    sf::Vector2f position;
 };
 
 

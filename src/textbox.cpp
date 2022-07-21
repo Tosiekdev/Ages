@@ -40,7 +40,7 @@ void textbox::actualize(char sign){
 }
 
 //deleting last character
-void textbox::erease(){
+void textbox::erase(){
     this->contains=this->contains.substr(0, this->contains.length()-1);
     this->output=this->contains+"_";
     this->view.setString(this->output);

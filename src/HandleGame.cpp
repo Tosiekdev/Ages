@@ -4,7 +4,7 @@
 
 #include "../headers/HandleGame.h"
 
-void HandleGame::create(string path){
+void HandleGame::create(std::string path){
     //assign path
     this->set_path(path);
 
@@ -18,25 +18,25 @@ void HandleGame::create(string path){
     //for town hall
     float y_position=205.f;
     for(int i=0; i<8; i++){
-        this->th_window.crete_ub(&(this->building[i]),Vector2f(20,y_position),i);
+        this->th_window.crete_ub(&(this->building[i]),sf::Vector2f(20,y_position),i);
         y_position+=100.f;
     }
 
     this->create_buildings();
 
     //resource plank
-    this->resource_plank.create_obstacle(PLANK, Vector2f(0.4,0.4),
-                                         Vector2f(564,0));
-    this->resource_man.create_obstacle("Textures/human.png", Vector2f(0.25, 0.25),
-                                       Vector2f(570,5));
-    this->resource_rock.create_obstacle("Textures/rock.png", Vector2f(0.4, 0.4),
-                                        Vector2f(570, 50));
-    this->resource_wood.create_obstacle("Textures/wood.png", Vector2f(0.125,0.125),
-                                        Vector2f(570, 95));
+    this->resource_plank.create_obstacle(PLANK, sf::Vector2f(0.4,0.4),
+                                         sf::Vector2f(564,0));
+    this->resource_man.create_obstacle("Textures/human.png",sf::Vector2f(0.25, 0.25),
+                                       sf::Vector2f(570,5));
+    this->resource_rock.create_obstacle("Textures/rock.png",sf::Vector2f(0.4, 0.4),
+                                        sf::Vector2f(570, 50));
+    this->resource_wood.create_obstacle("Textures/wood.png",sf::Vector2f(0.125,0.125),
+                                        sf::Vector2f(570, 95));
     //resource numbers
-    this->l_human.create(DEFAULT_FONT,620,5,to_string(this->human),30);
-    this->l_rock.create(DEFAULT_FONT,620,50,to_string(this->rock),30);
-    this->l_wood.create(DEFAULT_FONT,620,95,to_string(this->wood),30);
+    this->l_human.create(DEFAULT_FONT,620,5,std::to_string(this->human),30);
+    this->l_rock.create(DEFAULT_FONT,620,50,std::to_string(this->rock),30);
+    this->l_wood.create(DEFAULT_FONT,620,95,std::to_string(this->wood),30);
 }
 
 void HandleGame::main_loop(sf::RenderWindow &window, int &scene){
@@ -48,13 +48,13 @@ void HandleGame::main_loop(sf::RenderWindow &window, int &scene){
 void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
     while(window.pollEvent(this->e)){
         //exit
-        if (this->e.type==Event::Closed) window.close();
-        if ((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow.create(window, scene);
+        if (this->e.type==sf::Event::Closed) window.close();
+        if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))) this->exitWindow.create(window, scene);
 
-        if(Mouse::isButtonPressed(Mouse::Left)){
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
             //getting mouse position
-            int i = Mouse::getPosition(window).x;
-            int j = Mouse::getPosition(window).y;
+            int i = sf::Mouse::getPosition(window).x;
+            int j = sf::Mouse::getPosition(window).y;
 
             //Returning button event
             if(this->return_to_menu.onClick(i,j)){
@@ -110,10 +110,10 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
     }
 }
 
-void HandleGame::do_stuff(RenderWindow &window){
+void HandleGame::do_stuff(sf::RenderWindow &window){
     std::vector<bool> a;
-    int x=Mouse::getPosition(window).x;
-    int y=Mouse::getPosition(window).y;
+    int x=sf::Mouse::getPosition(window).x;
+    int y=sf::Mouse::getPosition(window).y;
 
     //cool building animation
     for(int i=0; i<8; i++)
@@ -125,16 +125,16 @@ void HandleGame::do_stuff(RenderWindow &window){
 
     //cursor change
     if(std::any_of(a.begin(),a.end(),[](bool i){return i;}))
-        this->cursor.loadFromSystem(Cursor::Hand);
+        this->cursor.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(Cursor::Arrow);
+        this->cursor.loadFromSystem(sf::Cursor::Arrow);
     window.setMouseCursor(this->cursor);
 
     this->activate_buildings();
 }
 
-void HandleGame::display(RenderWindow &window){
-    window.clear(Color::Green);
+void HandleGame::display(sf::RenderWindow &window){
+    window.clear(sf::Color::Green);
 
     //buttons
     this->return_to_menu.show(window);
@@ -159,7 +159,7 @@ void HandleGame::display(RenderWindow &window){
 
 void HandleGame::deactivate_buildings(){
     for(auto &i:this->building)
-        i.disactivate();
+        i.deactivate();
 }
 
 void HandleGame::activate_buildings(){
@@ -178,21 +178,21 @@ void HandleGame::create_buildings(){
 
 void HandleGame::prepare_buildings(){
     this->building[0].create_building("Academy","Textures/academy.png",this->levels[0],
-                                      Vector2f(250,300),100,75,10);
+                                      sf::Vector2f(250,300),100,75,10);
     this->building[1].create_building("Barracks","Textures/barracks.png",this->levels[1],
-                                      Vector2f(50,300),75,75,7);
+                                      sf::Vector2f(50,300),75,75,7);
     this->building[2].create_building("Church","Textures/church.png", this->levels[2],
-                                      Vector2f(300,150),50,150,10);
+                                      sf::Vector2f(300,150),50,150,10);
     this->building[3].create_building("Farm","Textures/farm.png", this->levels[3],
-                                      Vector2f(600,450),20,60,2);
+                                      sf::Vector2f(600,450),20,60,2);
     this->building[4].create_building("Lumber mill","Textures/default.png",this->levels[4],
-                                      Vector2f(400,450),65,15,2);
+                                      sf::Vector2f(400,450),65,15,2);
     this->building[5].create_building("Stone pit","Textures/default.png",this->levels[5],
-                                      Vector2f(600,250),15,65,2);
+                                      sf::Vector2f(600,250),15,65,2);
     this->building[6].create_building("Town Hall","Textures/town_hall.png",this->levels[6],
-                                      Vector2f(100,100),75,75,12);
+                                      sf::Vector2f(100,100),75,75,12);
     this->building[7].create_building("Warehouse","Textures/magazine.png",this->levels[7],
-                                      Vector2f(150,450),100,50,6);
+                                      sf::Vector2f(150,450),100,50,6);
     for(int i=0; i<8; i++){
         this->th_window.ub_update_level(i);
     }
@@ -220,33 +220,33 @@ void HandleGame::clocks(int scene){
             //full magazine
             if(this->rock>=this->levels[7]*1296){
                 this->rock=this->levels[7]*1296;
-                this->l_rock.setColor(Color::Red);
+                this->l_rock.setColor(sf::Color::Red);
             }else
-                this->l_rock.setColor(Color::Black);
+                this->l_rock.setColor(sf::Color::Black);
 
             if(this->wood>=this->levels[7]*1296){
                 this->wood=this->levels[7]*1296;
-                this->l_wood.setColor(Color::Red);
+                this->l_wood.setColor(sf::Color::Red);
             }else
-                this->l_wood.setColor(Color::Black);
+                this->l_wood.setColor(sf::Color::Black);
 
             //full farm
             if(this->human>=this->levels[3]*83){
                 this->human=this->levels[3]*83;
-                this->l_human.setColor(Color::Red);
+                this->l_human.setColor(sf::Color::Red);
             }else
-                this->l_human.setColor(Color::Black);
+                this->l_human.setColor(sf::Color::Black);
 
             switch(scene){
                 case 4:
-                    this->l_human.setCaption(to_string(this->human));
-                    this->l_rock.setCaption(to_string(this->rock));
-                    this->l_wood.setCaption(to_string(this->wood));
+                    this->l_human.setCaption(std::to_string(this->human));
+                    this->l_rock.setCaption(std::to_string(this->rock));
+                    this->l_wood.setCaption(std::to_string(this->wood));
                     break;
                 default:
-                    this->l_human.setCaption("People: "+to_string(this->human));
-                    this->l_rock.setCaption("Stone: "+to_string(this->rock));
-                    this->l_wood.setCaption("Wood: "+to_string(this->wood));
+                    this->l_human.setCaption("People: "+std::to_string(this->human));
+                    this->l_rock.setCaption("Stone: "+std::to_string(this->rock));
+                    this->l_wood.setCaption("Wood: "+std::to_string(this->wood));
                     break;
             }
             this->resource_clock.restart();
@@ -265,31 +265,31 @@ void HandleGame::launch_th(sf::RenderWindow &window, int &scene){
     this->th_window.main_loop(this->e,window,scene);
 }
 
-void HandleGame::launch_farm(RenderWindow &window, int &scene){
+void HandleGame::launch_farm(sf::RenderWindow &window, int &scene){
     this->farm_window.main_loop(this->e,window,scene);
 }
 
-void HandleGame::launch_lm(RenderWindow &window, int &scene){
+void HandleGame::launch_lm(sf::RenderWindow &window, int &scene){
     this->lm_window.main_loop(this->e,window,scene);
 }
 
-void HandleGame::launch_sp(RenderWindow &window, int &scene){
+void HandleGame::launch_sp(sf::RenderWindow &window, int &scene){
     this->sp_window.main_loop(this->e,window,scene);
 }
 
-void HandleGame::launch_wh(RenderWindow &window, int &scene){
+void HandleGame::launch_wh(sf::RenderWindow &window, int &scene){
     this->wh_window.main_loop(this->e,window,scene);
 }
 
-void HandleGame::launch_academy(RenderWindow &window, int &scene){
+void HandleGame::launch_academy(sf::RenderWindow &window, int &scene){
     this->academy_window.main_loop(this->e,window,scene);
 }
 
-void HandleGame::launch_barracks(RenderWindow &window, int &scene){
+void HandleGame::launch_barracks(sf::RenderWindow &window, int &scene){
     this->barracks_window.main_loop(this->e,window,scene);
 }
 
-void HandleGame::launch_church(RenderWindow &window, int &scene){
+void HandleGame::launch_church(sf::RenderWindow &window, int &scene){
     this->church_window.main_loop(this->e,window,scene);
 }
 
@@ -308,6 +308,6 @@ void HandleGame::set_resources(){
     this->rock=100;
 }
 
-void HandleGame::set_path(string path){
+void HandleGame::set_path(std::string path){
     this->save_path=std::move(path);
 }

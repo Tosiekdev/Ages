@@ -29,7 +29,7 @@ public:
     void ub_update_level(int index);
 
 private:
-    std::map<int,string> num_to_names{
+    std::map<int,std::string> num_to_names{
             {1,"Academy"},
             {2,"Barracks"},
             {3,"Church"},

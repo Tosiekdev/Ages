@@ -47,7 +47,7 @@ bool tablet::TRIGGERED(int mposx, int mposy)
     }
     else
     {
-        if(!this->focuss)
+        if(!this->focus)
         {
             this->plank.loadFromFile("Textures/plank.png");
             this->look.setTexture(this->plank);
@@ -69,7 +69,7 @@ bool tablet::onClick(int mposx,int mposy)
 //changing texture if tablet has been clicked
 void tablet::focussed()
 {
-    this->focuss=true;
+    this->focus=true;
     this->plank.loadFromFile("Textures/plank1.png");
     this->look.setTexture(this->plank);
     this->look.setScale(0.4,0.3);
@@ -77,9 +77,9 @@ void tablet::focussed()
 
 
 //oposite of focussed
-void tablet::notfocussed()
+void tablet::unfocused()
 {
-    this->focuss=false;
+    this->focus=false;
     this->plank.loadFromFile("Textures/plank.png");
     this->look.setTexture(this->plank);
     this->look.setScale(0.4,0.3);

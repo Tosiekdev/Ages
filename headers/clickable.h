@@ -10,20 +10,18 @@
 #include <iostream>
 #include <string>
 
-using namespace sf;
-using namespace std;
-
 class clickable
 {
 private:
-    Texture look;
-    Sprite view;
-    Vector2f possition;
+    sf::Texture look;
+    sf::Sprite view;
+    sf::Vector2f position;
+
 public:
-    void create_element(string path, Vector2f pos);
+    void create_element(std::string path, sf::Vector2f pos);
     bool onFocus(int mposx, int mposy);
     bool onClick(int mposx, int mposy);
-    void draw_it(RenderWindow &W);
+    void draw_it(sf::RenderWindow &W);
 };
 
 

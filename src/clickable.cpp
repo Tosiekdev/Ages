@@ -30,8 +30,8 @@ void clickable::create_element(string path, Vector2f pos){
     this->look.loadFromFile(path);
     this->view.setTexture(this->look);
     this->view.setScale(1,1);
-    this->possition=pos;
-    this->view.setPosition(this->possition);
+    this->position=pos;
+    this->view.setPosition(this->position);
 }
 
 //Draw

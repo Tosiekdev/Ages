@@ -13,13 +13,13 @@ class HandleBuildings{
 public:
     ~HandleBuildings();
     virtual void create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld)=0;
-    void main_loop(Event &event, RenderWindow &window, int &scene);
-    virtual void handle_events(Event &event, RenderWindow &window, int &scene)=0;
-    virtual void do_stuff(RenderWindow &window)=0;
-    virtual void display(RenderWindow &window)=0;
+    void main_loop(sf::Event &event, sf::RenderWindow &window, int &scene);
+    virtual void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene)=0;
+    virtual void do_stuff(sf::RenderWindow &window)=0;
+    virtual void display(sf::RenderWindow &window)=0;
     void create_return_button();
     void resource_look();
-    void show_resources(RenderWindow &window);
+    void show_resources(sf::RenderWindow &window);
     void crete_info();
     void return_to_village(int &scene);
     void assign_values(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld);

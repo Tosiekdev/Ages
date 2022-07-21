@@ -23,22 +23,22 @@ void HandleMenu::create(){
     this->iwa.create(DEFAULT_FONT,500,530,"Iwa",35);
 }
 
-void HandleMenu::main_loop(RenderWindow &window, int &scene){
+void HandleMenu::main_loop(sf::RenderWindow &window, int &scene){
     this->handle_event(scene,window);
     this->do_stuff(window);
     this->display(window);
 }
 
-void HandleMenu::handle_event(int &scene, RenderWindow &window){
+void HandleMenu::handle_event(int &scene, sf::RenderWindow &window){
     while(window.pollEvent(this->e)){
-        if(this->e.type==Event::Closed) window.close();
-        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow.create(window,scene);
+        if(this->e.type==sf::Event::Closed) window.close();
+        if((sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))) this->exitWindow.create(window,scene);
 
         //Mouse pressed events
-        if(Mouse::isButtonPressed(Mouse::Left)){
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
             //getting mouse position
-            int a=Mouse::getPosition(window).x;
-            int b=Mouse::getPosition(window).y;
+            int a=sf::Mouse::getPosition(window).x;
+            int b=sf::Mouse::getPosition(window).y;
 
             //new game button
             if(this->new_game.onClick(a,b)){
@@ -58,11 +58,11 @@ void HandleMenu::handle_event(int &scene, RenderWindow &window){
     }
 }
 
-void HandleMenu::do_stuff(RenderWindow &window){
+void HandleMenu::do_stuff(sf::RenderWindow &window){
     bool a[3];
     //getting mouse position
-    int x=Mouse::getPosition(window).x;
-    int y=Mouse::getPosition(window).y;
+    int x=sf::Mouse::getPosition(window).x;
+    int y=sf::Mouse::getPosition(window).y;
 
     //checking buttons focus
     a[0]=this->new_game.onFocus(x,y);
@@ -71,14 +71,14 @@ void HandleMenu::do_stuff(RenderWindow &window){
 
     //cursor
     if(a[0] || a[1] || a[2])
-        this->cursor.loadFromSystem(Cursor::Hand);
+        this->cursor.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(Cursor::Arrow);
+        this->cursor.loadFromSystem(sf::Cursor::Arrow);
     window.setMouseCursor(this->cursor);
 }
 
-void HandleMenu::display(RenderWindow &window){
-    window.clear(Color::White);
+void HandleMenu::display(sf::RenderWindow &window){
+    window.clear(sf::Color::White);
 
     //Background
     window.draw(this->background_menu_sprite);

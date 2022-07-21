@@ -8,7 +8,7 @@ void HandleBuildings::create_return_button(){
     this->return_to_game.create(40,100,5,5,"Return");
 }
 
-void HandleBuildings::main_loop(Event &event, RenderWindow &window, int &scene){
+void HandleBuildings::main_loop(sf::Event &event, sf::RenderWindow &window, int &scene){
     this->handle_events(event,window,scene);
     this->do_stuff(window);
     this->display(window);
@@ -16,17 +16,17 @@ void HandleBuildings::main_loop(Event &event, RenderWindow &window, int &scene){
 
 void HandleBuildings::resource_look(){
     //changing resource info position
-    this->l_human->setPosition(Vector2f(200,5));
-    this->l_rock->setPosition(Vector2f(400,5));
-    this->l_wood->setPosition(Vector2f(600,5));
+    this->l_human->setPosition(sf::Vector2f(200,5));
+    this->l_rock->setPosition(sf::Vector2f(400,5));
+    this->l_wood->setPosition(sf::Vector2f(600,5));
 
     //changing resource info text
-    this->l_human->setCaption("People: "+to_string(*this->human));
-    this->l_rock->setCaption("Stone: "+to_string(*this->rock));
-    this->l_wood->setCaption("Wood: "+to_string(*this->wood));
+    this->l_human->setCaption("People: "+std::to_string(*this->human));
+    this->l_rock->setCaption("Stone: "+std::to_string(*this->rock));
+    this->l_wood->setCaption("Wood: "+std::to_string(*this->wood));
 }
 
-void HandleBuildings::show_resources(RenderWindow &window){
+void HandleBuildings::show_resources(sf::RenderWindow &window){
     this->l_human->show(window);
     this->l_rock->show(window);
     this->l_wood->show(window);
@@ -34,14 +34,14 @@ void HandleBuildings::show_resources(RenderWindow &window){
 
 void HandleBuildings::return_to_village(int &scene){
     //default resource info position
-    this->l_human->setPosition(Vector2f(620,5));
-    this->l_rock->setPosition(Vector2f(620,50));
-    this->l_wood->setPosition(Vector2f(620,95));
+    this->l_human->setPosition(sf::Vector2f(620,5));
+    this->l_rock->setPosition(sf::Vector2f(620,50));
+    this->l_wood->setPosition(sf::Vector2f(620,95));
 
     //default resource info text
-    this->l_human->setCaption(to_string(*this->human));
-    this->l_rock->setCaption(to_string(*this->rock));
-    this->l_wood->setCaption(to_string(*this->wood));
+    this->l_human->setCaption(std::to_string(*this->human));
+    this->l_rock->setCaption(std::to_string(*this->rock));
+    this->l_wood->setCaption(std::to_string(*this->wood));
 
     scene=4;
 }

@@ -30,7 +30,7 @@
 
 class HandleGame : public HandleWindow{
 public:
-    void create(string path);
+    void create(std::string path);
     void main_loop(sf::RenderWindow &window, int &scene) override;
     void handle_event(int &scene, sf::RenderWindow &window) override;
     void do_stuff(sf::RenderWindow &window) override;
@@ -58,12 +58,12 @@ public:
     //for making game
     void set_levels();
     void set_resources();
-    void set_path(string path);
+    void set_path(std::string path);
 
 private:
     std::array<buildings,8> building;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh
     std::array<int,8> levels;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh
-    std::map<int,string> num_to_names{
+    std::map<int,std::string> num_to_names{
             {0,"Academy"},
             {1,"Barracks"},
             {2,"Church"},

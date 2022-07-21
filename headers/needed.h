@@ -26,9 +26,6 @@
 #include "HandleManu.h"
 #include "HandleGame.h"
 
-using namespace sf;
-using namespace std;
-
 class Application
 {
 private:

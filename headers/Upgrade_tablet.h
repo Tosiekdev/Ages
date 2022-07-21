@@ -22,10 +22,10 @@ public:
     void upgrade_building(int &human, int &rock, int &wood, int bonus);
 
     sf::Vector2f Return_position();
-    void set_position(Vector2f new_pos);
+    void set_position(sf::Vector2f new_pos);
 
-    bool button_animation(Vector2i pos);
-    bool button_clicked(Vector2i pos);
+    bool button_animation(sf::Vector2i pos);
+    bool button_clicked(sf::Vector2i pos);
 
     float get_time();
     int update_timer(float time_passed);

@@ -89,7 +89,7 @@ void Application::c_handle_event(){
                 char a=static_cast<char>(this->e.text.unicode);
                 this->t1.actualize(a);
             }
-            if(this->e.text.unicode==8) this->t1.erease();
+            if(this->e.text.unicode==8) this->t1.erase();
         }
     }
 }

@@ -22,13 +22,13 @@ void HandleAcademy::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, in
     this->create_return_button();
 }
 
-void HandleAcademy::handle_events(Event &event, RenderWindow &window, int &scene){
+void HandleAcademy::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
     while(window.pollEvent(event)) {
-        if (event.type == Event::Closed) window.close();
+        if (event.type == sf::Event::Closed) window.close();
 
-        if(Mouse::isButtonPressed(Mouse::Left)) {
-            int i = Mouse::getPosition(window).x;
-            int j = Mouse::getPosition(window).y;
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            int i = sf::Mouse::getPosition(window).x;
+            int j = sf::Mouse::getPosition(window).y;
 
             if(this->return_to_game.onClick(i,j)){
                 this->return_to_village(scene);
@@ -37,25 +37,25 @@ void HandleAcademy::handle_events(Event &event, RenderWindow &window, int &scene
     }
 }
 
-void HandleAcademy::do_stuff(RenderWindow &window){
+void HandleAcademy::do_stuff(sf::RenderWindow &window){
     std::vector<bool> a;
-    int x=Mouse::getPosition(window).x;
-    int y=Mouse::getPosition(window).y;
+    int x=sf::Mouse::getPosition(window).x;
+    int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
     a.push_back(this->return_to_game.onFocus(x,y));
 
-    Vector2i mouse_pos=Mouse::getPosition(window);
+    sf::Vector2i mouse_pos=sf::Mouse::getPosition(window);
 
     if(std::any_of(a.begin(),a.end(),[](bool i){return i;}))
-        this->cursor.loadFromSystem(Cursor::Hand);
+        this->cursor.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(Cursor::Arrow);
+        this->cursor.loadFromSystem(sf::Cursor::Arrow);
     window.setMouseCursor(this->cursor);
 }
 
-void HandleAcademy::display(RenderWindow &window){
-    window.clear(Color::White);
+void HandleAcademy::display(sf::RenderWindow &window){
+    window.clear(sf::Color::White);
 
     //buttons
     this->return_to_game.show(window);

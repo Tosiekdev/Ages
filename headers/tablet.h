@@ -12,27 +12,24 @@
 
 #include "constants.h"
 
-using namespace std;
-using namespace sf;
-
 class tablet
 {
 private:
-    Texture plank;
-    Sprite look;
-    Vector2f pos, sting_pos;
-    string name;
-    bool focuss=false;
-    Font font;
-    Text text;
+    sf::Texture plank;
+    sf::Sprite look;
+    sf::Vector2f pos, sting_pos;
+    std::string name;
+    bool focus=false;
+    sf::Font font;
+    sf::Text text;
 public:
     tablet();
-    void create_tablet(string caption, Vector2f position);
-    void draw(RenderWindow &W);
+    void create_tablet(std::string caption, sf::Vector2f position);
+    void draw(sf::RenderWindow &W);
     bool TRIGGERED(int mposx, int mposy);
     void focussed();
-    void notfocussed();
-    string return_name();
+    void unfocused();
+    std::string return_name();
     bool onClick(int mposx,int mposy);
 };
 

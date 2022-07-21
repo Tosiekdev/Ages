@@ -4,10 +4,10 @@
 
 #include "../headers/SaveSystem.h"
 
-void SaveSystem::load_save(string save_path, std::array<int,8> &levels,HandleTownHall &th_window,string &name,int &human,int &wood,int &rock,std::array<buildings,8> &b){
-    fstream s_path;
-    s_path.open(save_path,ios::in);
-    string input;
+void SaveSystem::load_save(std::string save_path, std::array<int,8> &levels,HandleTownHall &th_window,std::string &name,int &human,int &wood,int &rock,std::array<buildings,8> &b){
+    std::fstream s_path;
+    s_path.open(save_path,std::ios::in);
+    std::string input;
     int line_nr=0;
     while(!s_path.eof()){
         getline(s_path, input);
@@ -84,25 +84,25 @@ void SaveSystem::load_save(string save_path, std::array<int,8> &levels,HandleTow
 }
 
 void
-SaveSystem::save_game(string save_path, std::array<int, 8> levels, HandleTownHall &th_window, string &name, int &human,int &wood, int &rock){
+SaveSystem::save_game(std::string save_path, std::array<int, 8> levels, HandleTownHall &th_window, std::string &name, int &human,int &wood, int &rock){
     //opening save
-    fstream file;
-    file.open(save_path, ios::out);
+    std::fstream file;
+    file.open(save_path, std::ios::out);
 
     //save all data
     //levels
-    file << name << endl;
+    file << name << std::endl;
     for(auto &j:levels)
-        file << j << endl;
+        file << j << std::endl;
 
     //resources;
-    file << human << endl;
-    file << wood << endl;
-    file << rock << endl;
+    file << human << std::endl;
+    file << wood << std::endl;
+    file << rock << std::endl;
 
     //upgrades time left
     for(int i=0; i<8; i++)
-        file << th_window.get_ub_left(i) << endl;
+        file << th_window.get_ub_left(i) << std::endl;
 
     file.close();
 }

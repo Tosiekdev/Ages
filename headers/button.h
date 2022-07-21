@@ -10,26 +10,24 @@
 
 #include "constants.h"
 
-using namespace sf;
-
 class Button
 {
 private:
-    Texture button_texture;
-    Sprite button_sprite;
-    Font button_font;
-    Text button_text;
-    Vector2f button_possition;
+    sf::Texture button_texture;
+    sf::Sprite button_sprite;
+    sf::Font button_font;
+    sf::Text button_text;
+    sf:: Vector2f button_possition;
     int button_height, button_width;\
     bool active;
-    String button_caption;
+    sf::String button_caption;
 public:
-    Button(int=40,int=100,int=0,int=0,String="In_dev");
-    void create(int h,int w,float posx,float posy,String caption);
-    void set_position(Vector2f new_position);
+    Button(int=40,int=100,int=0,int=0,sf::String="In_dev");
+    void create(int h,int w,float posx,float posy,sf::String caption);
+    void set_position(sf::Vector2f new_position);
     void setActive(bool activity);
     bool onClick(int mposx,int mposy);
-    void show(RenderWindow &W);
+    void show(sf::RenderWindow &W);
     bool onFocus(int mposx,int mposy);
 };
 

@@ -20,11 +20,11 @@ public:
 
 private:
     Button new_game,load_game,exit;
-    Texture background_menu_texture;
-    Sprite background_menu_sprite;
+    sf::Texture background_menu_texture;
+    sf::Sprite background_menu_sprite;
     Label ages,programmer,graphic,tosiek,iwa;
-    Event e;
-    Cursor cursor;
+    sf::Event e;
+    sf::Cursor cursor;
     ExitWindow exitWindow;
 };
 

@@ -12,7 +12,7 @@ public:
     SwordsMen();
 
     //sprite
-    void set_position(sf::Vector2f pos) override;
+    void set_position(sf::Vector2f pos) override { this->view.setPosition(pos); }
     void slide(float shift) override;
 
     //upgrade
@@ -20,12 +20,12 @@ public:
     void end_upgrade() override;
 
     //timer
-    void reset_timer() override;
-    void get_time() override;
+    void reset_timer() override { this->for_upgrade.restart(); }
+    void get_time() override { this->for_upgrade.getElapsedTime().asSeconds(); }
 
     //save
-    float get_time_left() override;
-    void load_left(float time) override;
+    float get_time_left() override { return this->time_left; }
+    void load_left(float time) override { this->time_left=time; }
 
     //battle
     std::vector<int> give_damage(Type which,std::vector<int> old_damage) override;
@@ -33,7 +33,7 @@ public:
     void take_damage(std::vector<int> damage) override;
 
     //displaying
-    void display_image(sf::RenderWindow window) override;
+    void display_image(sf::RenderWindow window) override { window.draw(this->view); }
 
 private:
     Type type=SWORD_MAN;

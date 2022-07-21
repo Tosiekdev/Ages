@@ -136,7 +136,7 @@ void buildings::activate(){
     this->active=true;
 }
 
-void buildings::disactivate(){
+void buildings::deactivate(){
     this->active=false;
 }
 

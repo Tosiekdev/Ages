@@ -12,8 +12,8 @@
 
 class SaveSystem{
 public:
-    void load_save(string save_path, std::array<int,8> &levels, HandleTownHall &th_window, string &name, int &human, int &wood, int &rock, std::array<buildings,8> &b);
-    void save_game(string save_path, std::array<int,8> levels, HandleTownHall &th_window, string &name, int &human, int &wood, int &rock);
+    void load_save(std::string save_path, std::array<int,8> &levels, HandleTownHall &th_window, std::string &name, int &human, int &wood, int &rock, std::array<buildings,8> &b);
+    void save_game(std::string save_path, std::array<int,8> levels, HandleTownHall &th_window, std::string &name, int &human, int &wood, int &rock);
 
 };
 
