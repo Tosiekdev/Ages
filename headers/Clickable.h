@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 
-class clickable
+class Clickable
 {
 private:
     sf::Texture look;

@@ -8,19 +8,19 @@
 //beach-ass constructor
 Obstacle::Obstacle()= default;
 
-//set texture and position
+//set texture and _position
 void Obstacle::create_obstacle(std::string texture_path, sf::Vector2f new_scale, sf::Vector2f pos){
     //setting texture
-    this->look.loadFromFile(texture_path);
-    this->face.setTexture(this->look);
-    this->face.setScale(new_scale);
+    this->_look.loadFromFile(texture_path);
+    this->_face.setTexture(this->_look);
+    this->_face.setScale(new_scale);
 
-    //adjust position
-    this->position=pos;
-    this->face.setPosition(this->position);
+    //adjust _position
+    this->_position=pos;
+    this->_face.setPosition(this->_position);
 }
 
 //draw sprite
 void Obstacle::draw(sf::RenderWindow &W){
-    W.draw(this->face);
+    W.draw(this->_face);
 }

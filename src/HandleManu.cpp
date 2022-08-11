@@ -36,7 +36,7 @@ void HandleMenu::handle_event(int &scene, sf::RenderWindow &window){
 
         //Mouse pressed events
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-            //getting mouse position
+            //getting mouse _position
             int a=sf::Mouse::getPosition(window).x;
             int b=sf::Mouse::getPosition(window).y;
 
@@ -60,7 +60,7 @@ void HandleMenu::handle_event(int &scene, sf::RenderWindow &window){
 
 void HandleMenu::do_stuff(sf::RenderWindow &window){
     bool a[3];
-    //getting mouse position
+    //getting mouse _position
     int x=sf::Mouse::getPosition(window).x;
     int y=sf::Mouse::getPosition(window).y;
 

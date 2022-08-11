@@ -101,7 +101,7 @@ void Application::l_handle_event(){
 //Things to do with every frame
 void Application::l_stuff(){
     bool a[10];
-    //getting mouse position
+    //getting mouse _position
     int x=Mouse::getPosition(this->screen).x;
     int y=Mouse::getPosition(this->screen).y;
 
@@ -149,7 +149,7 @@ void Application::display_load(){
 
 //Reading data to create tablets
 void Application::prepare_tablets(){
-    //setting position
+    //setting _position
     Vector2f pp=Vector2f(200,40);//very soft
 
     for(int i=0;i<5;i++){

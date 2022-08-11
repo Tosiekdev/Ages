@@ -15,7 +15,7 @@ void Label::create(const std::string& path,float posx,float posy,const String& c
     //loading font
     this->label_font.loadFromFile(path);
 
-    //setting position
+    //setting _position
     this->label_possition.x=posx;
     this->label_possition.y=posy;
 
@@ -50,7 +50,7 @@ void Label::setSize(int new_size){
     this->label_text.setCharacterSize(this->label_height);
 }
 
-//new position
+//new _position
 void Label::setPosition(Vector2f new_position){
     this->label_possition=new_position;
     this->label_text.setPosition(this->label_possition);

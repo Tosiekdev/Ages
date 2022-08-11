@@ -60,7 +60,7 @@ bool Button::onFocus(int mposx,int mposy){
     }
 }
 
-//this makes button clickable
+//this makes button Clickable
 void Button::setActive(bool activity){
     this->active=activity;
 }

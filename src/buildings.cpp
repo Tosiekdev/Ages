@@ -23,7 +23,7 @@ void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,in
     this->look.loadFromFile(tx_path);
     this->view.setTexture(this->look);
 
-    //set position
+    //set _position
     this->possition=pos;
     this->view.setPosition(this->possition);
 
@@ -32,7 +32,7 @@ void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,in
     this->n_wood=nw*pow(1.67,this->level-1);
     this->n_stone=ns*pow(1.67,this->level-1);
 
-    //set label position
+    //set label _position
     this->s_name.setCaption(this->name);
     Vector2f l_pos=this->possition+Vector2f(10,100);
     this->s_name.setPosition(l_pos);

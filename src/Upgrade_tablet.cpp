@@ -57,12 +57,12 @@ void Upgrade_tablet::create_upgrade(buildings *resp, std::string caption, sf::Ve
     this->timer.restart();
 }
 
-//returns position
+//returns _position
 sf::Vector2f Upgrade_tablet::Return_position(){
     return this->position;
 }
 
-//new position
+//new _position
 void Upgrade_tablet::set_position(sf::Vector2f new_pos){
     this->position=new_pos;
     this->upgrade.set_position(this->position+sf::Vector2f(600,0));//button

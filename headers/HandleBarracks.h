@@ -6,8 +6,15 @@
 #define AGES1_HANDLEBARRACKS_H
 
 #include "HandleBuildings.h"
+#include "SwordsMen.h"
+#include "Clickable.h"
 
 class HandleBarracks : public HandleBuildings{
+    SwordsMen swordsMen;
+
+    Clickable slide_left;
+    Clickable slide_right;
+
 public:
     void create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld) override;
     void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene) override;

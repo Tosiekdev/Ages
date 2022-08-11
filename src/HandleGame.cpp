@@ -52,7 +52,7 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
         if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))) this->exitWindow.create(window, scene);
 
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-            //getting mouse position
+            //getting mouse _position
             int i = sf::Mouse::getPosition(window).x;
             int j = sf::Mouse::getPosition(window).y;
 

@@ -6,19 +6,25 @@
 
 void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info
-    this->assign_values(lh,lr,lw,hn,rk,wd,bld);
+    assign_values(lh,lr,lw,hn,rk,wd,bld);
 
-    //change resource look
-    this->resource_look();
+    //change resource _look
+    resource_look();
 
     //info
-    this->crete_info();
-    this->info.setCaption("In Barracks you train your soldiers to make your army\n"
+    crete_info();
+    info.setCaption("In Barracks you train your soldiers to make your army\n"
                           "bigger and stronger!\n"
                           "Upgrading Barracks allows you to train better units!");
 
+    //for training units
+    swordsMen.set_position(sf::Vector2f(5,250));
+
     //buttons
     this->create_return_button();
+
+    //slide buttons
+    slide_left.create_element("Textures/l_slide.png",sf::Vector2f(5,275));
 }
 
 void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
@@ -29,8 +35,8 @@ void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, i
             int i=sf::Mouse::getPosition(window).x;
             int j=sf::Mouse::getPosition(window).y;
 
-            if(this->return_to_game.onClick(i,j)){
-                this->return_to_village(scene);
+            if(return_to_game.onClick(i,j)){
+                return_to_village(scene);
             }
         }
     }
@@ -42,27 +48,33 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
-    a[0]=this->return_to_game.onFocus(x,y);
+    a[0]=return_to_game.onFocus(x,y);
 
     //changing cursor
     if(a[0])
-        this->cursor.loadFromSystem(sf::Cursor::Hand);
+        cursor.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(this->cursor);
+        cursor.loadFromSystem(sf::Cursor::Arrow);
+    window.setMouseCursor(cursor);
 }
 
 void HandleBarracks::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
-    this->return_to_game.show(window);
+    return_to_game.show(window);
 
     //resource info
-    this->show_resources(window);
+    show_resources(window);
+
+    //units training
+    swordsMen.display_image(window);
 
     //building info
-    this->info.show(window);
+    info.show(window);
+
+    //sliders
+    slide_left.draw_it(window);
 
     window.display();
 }

@@ -14,9 +14,9 @@ public:
     void create_obstacle(std::string texture_path, sf::Vector2f new_scale, sf::Vector2f pos);
     void draw(sf::RenderWindow &W);
 private:
-    sf::Texture look;
-    sf::Sprite face;
-    sf::Vector2f position;
+    sf::Texture _look;
+    sf::Sprite _face;
+    sf::Vector2f _position;
 };
 
 

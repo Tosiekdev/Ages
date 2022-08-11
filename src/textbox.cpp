@@ -27,7 +27,7 @@ void textbox::show(RenderWindow &W){
     W.draw(this->view);
 }
 
-//setting position
+//setting _position
 void textbox::set_position(int x,int y){
     this->view.setPosition(x,y);
 }

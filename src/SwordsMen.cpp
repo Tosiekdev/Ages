@@ -17,35 +17,9 @@ SwordsMen::SwordsMen(){
     this->n_money=10;
     this->upgrade_time=5;
 
-    //set look
+    //set _look
     this->texture.loadFromFile("Textures/swordsman.png");
     this->view.setTexture(this->texture);
-}
-
-//to make showing unit easier
-void SwordsMen::slide(float shift){
-    sf::Vector2f position=this->view.getPosition();
-    position.x+=shift;
-    this->view.setPosition(position);
-}
-
-//this happens when player try to make upgrade
-std::array<int, 3> SwordsMen::take_resources(int people,int iron,int money){
-    //assign resources that we can return it
-    std::array<int,3> resources{people,iron,money};
-
-    if(this->n_people<=people,this->n_money<=money,this->n_iron<=iron){
-        //take needed resources
-        resources[0]-=this->n_people;
-        resources[1]-=this->n_iron;
-        resources[2]-=this->n_money;
-
-        this->time_left=this->upgrade_time;
-
-        this->in_upgrade=true;
-    }
-
-    return resources;
 }
 
 //this happens when time needed to upgrade passed

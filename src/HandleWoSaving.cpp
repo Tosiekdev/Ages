@@ -34,7 +34,7 @@ void HandleWoSaving::handle_event(int &scene, sf::RenderWindow &window){
 
         //Is button clicked?
         if (this->e_save.type == sf::Event::MouseButtonPressed) {
-            //Getting mouse position
+            //Getting mouse _position
             int x = sf::Mouse::getPosition(this->w_saving).x;
             int y = sf::Mouse::getPosition(this->w_saving).y;
 

@@ -19,7 +19,7 @@
 #include "label.h"
 #include "textbox.h"
 #include "tablet.h"
-#include "clickable.h"
+#include "Clickable.h"
 #include "buildings.h"
 #include "obstacle.h"
 #include "constants.h"
@@ -60,7 +60,7 @@ private:
     //load
     Button returning_button,load_button,remove_button;
     tablet t[5];
-    clickable down,up;
+    Clickable down,up;
     Label error_message;
     int down_level=0, focused_tablet;
 

@@ -33,7 +33,7 @@ void ExitWindow::handle_event(int &scene, sf::RenderWindow &window){
 
         //Is button clicked?
         if(this->exit_e.type==sf::Event::MouseButtonPressed){
-            //Getting mouse position
+            //Getting mouse _position
             int x=sf::Mouse::getPosition(this->w_exit).x;
             int y=sf::Mouse::getPosition(this->w_exit).y;
 

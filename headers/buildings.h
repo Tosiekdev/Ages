@@ -27,8 +27,8 @@ public:
     void set_level(int lvl);//set new level
     bool status();//returns status
     void set_status(bool new_status);//set status
-    void activate(); //make building clickable
-    void deactivate(); //make building un-clickable
+    void activate(); //make building Clickable
+    void deactivate(); //make building un-Clickable
 private:
     int level;
     int n_stone,n_wood,n_human; //needed resources

@@ -13,10 +13,8 @@ public:
 
     //sprite
     void set_position(sf::Vector2f pos) override { this->view.setPosition(pos); }
-    void slide(float shift) override;
 
     //upgrade
-    std::array<int,3> take_resources(int people,int iron,int money) override;
     void end_upgrade() override;
 
     //timer
@@ -33,10 +31,10 @@ public:
     void take_damage(std::vector<int> damage) override;
 
     //displaying
-    void display_image(sf::RenderWindow window) override { window.draw(this->view); }
+    void display_image(sf::RenderWindow& window) override { window.draw(this->view); }
 
 private:
-    Type type=SWORD_MAN;
+    Type _type=SWORD_MAN;
 };
 
 

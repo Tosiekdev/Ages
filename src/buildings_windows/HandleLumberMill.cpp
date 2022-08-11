@@ -8,7 +8,7 @@ void HandleLumberMill::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk,
     //for resource info
     this->assign_values(lh,lr,lw,hn,rk,wd,bld);
 
-    //change resource look
+    //change resource _look
     this->resource_look();
 
     //info

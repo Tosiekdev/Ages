@@ -15,7 +15,7 @@ void HandleBuildings::main_loop(sf::Event &event, sf::RenderWindow &window, int 
 }
 
 void HandleBuildings::resource_look(){
-    //changing resource info position
+    //changing resource info _position
     this->l_human->setPosition(sf::Vector2f(200,5));
     this->l_rock->setPosition(sf::Vector2f(400,5));
     this->l_wood->setPosition(sf::Vector2f(600,5));
@@ -33,7 +33,7 @@ void HandleBuildings::show_resources(sf::RenderWindow &window){
 }
 
 void HandleBuildings::return_to_village(int &scene){
-    //default resource info position
+    //default resource info _position
     this->l_human->setPosition(sf::Vector2f(620,5));
     this->l_rock->setPosition(sf::Vector2f(620,50));
     this->l_wood->setPosition(sf::Vector2f(620,95));

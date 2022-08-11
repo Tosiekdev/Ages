@@ -2,13 +2,13 @@
 // Created by tosiek on 04.12.2021.
 //
 
-#include "../headers/clickable.h"
+#include "../headers/Clickable.h"
 
 using namespace sf;
 using namespace std;
 
 //Beautifull animation
-bool clickable::onFocus(int mposx, int mposy){
+bool Clickable::onFocus(int mposx, int mposy){
     if(this->view.getGlobalBounds().contains(mposx,mposy)){
         this->view.setScale(1.1, 1.1);
         return true;
@@ -18,7 +18,7 @@ bool clickable::onFocus(int mposx, int mposy){
 }
 
 //check if object is clicked
-bool clickable::onClick(int mposx, int mposy){
+bool Clickable::onClick(int mposx, int mposy){
     if(this->view.getGlobalBounds().contains(mposx,mposy))
         return true;
     else
@@ -26,7 +26,7 @@ bool clickable::onClick(int mposx, int mposy){
 }
 
 //create object
-void clickable::create_element(string path, Vector2f pos){
+void Clickable::create_element(string path, Vector2f pos){
     this->look.loadFromFile(path);
     this->view.setTexture(this->look);
     this->view.setScale(1,1);
@@ -35,7 +35,7 @@ void clickable::create_element(string path, Vector2f pos){
 }
 
 //Draw
-void clickable::draw_it(RenderWindow &W){
+void Clickable::draw_it(RenderWindow &W){
     W.draw(this->view);
 }
 
