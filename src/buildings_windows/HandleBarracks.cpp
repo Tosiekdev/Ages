@@ -18,13 +18,14 @@ void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, i
                           "Upgrading Barracks allows you to train better units!");
 
     //for training units
-    swordsMen.set_position(sf::Vector2f(5,250));
+    swordsMen.set_position(sf::Vector2f(52,250));
 
     //buttons
     this->create_return_button();
 
     //slide buttons
     slide_left.create_element("Textures/l_slide.png",sf::Vector2f(5,275));
+    slide_right.create_element("Textures/r_slide.png",sf::Vector2f(755,275));
 }
 
 void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
@@ -68,13 +69,14 @@ void HandleBarracks::display(sf::RenderWindow &window){
     show_resources(window);
 
     //units training
-    swordsMen.display_image(window);
+    swordsMen.show(window);
 
     //building info
     info.show(window);
 
     //sliders
     slide_left.draw_it(window);
+    slide_right.draw_it(window);
 
     window.display();
 }

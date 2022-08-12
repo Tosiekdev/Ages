@@ -13,6 +13,7 @@ public:
     Obstacle();
     void create_obstacle(std::string texture_path, sf::Vector2f new_scale, sf::Vector2f pos);
     void draw(sf::RenderWindow &W);
+    void set_position(sf::Vector2f pos) { _face.setPosition(pos); }
 private:
     sf::Texture _look;
     sf::Sprite _face;

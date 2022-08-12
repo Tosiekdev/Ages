@@ -29,3 +29,9 @@ void Soldier::slide(float shift){
     position.x+=shift;
     this->view.setPosition(position);
 }
+
+void Soldier::show(sf::RenderWindow &window){
+    window.draw(this->view);
+    name_.draw(window);
+    upgrade_.show(window);
+}

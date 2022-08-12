@@ -17,12 +17,12 @@ private:
     sf::Sprite button_sprite;
     sf::Font button_font;
     sf::Text button_text;
-    sf:: Vector2f button_possition;
+    sf:: Vector2f button_position;
     int button_height, button_width;\
     bool active;
     sf::String button_caption;
 public:
-    Button(int=40,int=100,int=0,int=0,sf::String="In_dev");
+    explicit Button(int=40,int=100,int=0,int=0,sf::String="In_dev");
     void create(int h,int w,float posx,float posy,sf::String caption);
     void set_position(sf::Vector2f new_position);
     void setActive(bool activity);

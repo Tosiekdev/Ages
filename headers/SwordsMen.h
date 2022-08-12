@@ -12,7 +12,7 @@ public:
     SwordsMen();
 
     //sprite
-    void set_position(sf::Vector2f pos) override { this->view.setPosition(pos); }
+    void set_position(sf::Vector2f pos) override;
 
     //upgrade
     void end_upgrade() override;
@@ -29,9 +29,6 @@ public:
     std::vector<int> give_damage(Type which,std::vector<int> old_damage) override;
     int attack_calculator(Type which) override;
     void take_damage(std::vector<int> damage) override;
-
-    //displaying
-    void display_image(sf::RenderWindow& window) override { window.draw(this->view); }
 
 private:
     Type _type=SWORD_MAN;

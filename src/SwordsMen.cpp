@@ -20,6 +20,10 @@ SwordsMen::SwordsMen(){
     //set _look
     this->texture.loadFromFile("Textures/swordsman.png");
     this->view.setTexture(this->texture);
+
+    //name and button to upgrade
+    name_.create_obstacle("Textures/plank.png",sf::Vector2f(0.1,0.1),sf::Vector2f(0,0));
+    upgrade_.create(60,100,0,0,"Upgrade");
 }
 
 //this happens when time needed to upgrade passed
@@ -61,4 +65,14 @@ void SwordsMen::take_damage(std::vector<int> damage){
         }
         if(j>damage.size()){ break; }
     }
+}
+
+void SwordsMen::set_position(sf::Vector2f pos){
+    this->view.setPosition(pos);
+
+    sf::Vector2f name_pos=pos+sf::Vector2f(-1,113);
+    name_.set_position(name_pos);
+
+    sf::Vector2f button_pos=name_pos+sf::Vector2f(1,35);
+    upgrade_.set_position(button_pos);
 }

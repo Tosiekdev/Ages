@@ -10,6 +10,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Battle.h"
+#include "button.h"
+#include "obstacle.h"
 
 class Soldier{
 public:
@@ -24,16 +26,21 @@ public:
     virtual float get_time_left()=0;
     virtual void load_left(float time)=0;
     virtual int attack_calculator(Type which)=0;
-    virtual void display_image(sf::RenderWindow& window)=0;
+    virtual void show(sf::RenderWindow& window);
 
 protected:
     int hp{}, attack{}, armor{}, quantity{}, n_people{}, n_iron{}, n_money{};
+
     std::vector<int> lives;
+
     float upgrade_time{}, time_left{};
     bool in_upgrade=false;
     sf::Clock for_upgrade;
+
     sf::Sprite view;
     sf::Texture texture;
+    Obstacle name_;
+    Button upgrade_;
 };
 
 
