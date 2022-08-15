@@ -51,7 +51,7 @@ Text textbox::return_text(){
     return this->view;
 }
 
-//fit text in prepared place (by deleting from view 1. char)
+//fit text in prepared place (by deleting from view_ 1. char)
 void textbox::hide(){
     this->output=this->output.substr(1,this->output.length()-1);
     this->view.setString(this->output);

@@ -181,7 +181,7 @@ void Application::prepare_tablets(){
     plik.close();
 }
 
-//Changing focused tablet's texture
+//Changing focused tablet's texture_
 void Application::prepare_focused_tablets(){
     //resetting focus
     for(int i=0;i<5;i++) this->t[i].unfocused();

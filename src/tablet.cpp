@@ -66,7 +66,7 @@ bool tablet::onClick(int mposx,int mposy)
         return false;
 }
 
-//changing texture if tablet has been clicked
+//changing texture_ if tablet has been clicked
 void tablet::focussed()
 {
     this->focus=true;

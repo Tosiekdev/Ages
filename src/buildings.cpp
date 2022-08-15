@@ -19,7 +19,7 @@ void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,in
     this->name=nm; //set name
     this->level=lvl; //set level
 
-    //set texture
+    //set texture_
     this->look.loadFromFile(tx_path);
     this->view.setTexture(this->look);
 
@@ -73,7 +73,7 @@ void buildings::show(RenderWindow &W){
 
 //creating star
 void buildings::create_star(){
-    //load texture
+    //load texture_
     this->star_look.loadFromFile("Textures/star.png");
     this->star_view.setTexture(this->star_look);
     this->star_view.setScale(0.05, 0.05);

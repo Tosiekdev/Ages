@@ -4,20 +4,18 @@
 
 #include "../headers/label.h"
 
-using namespace sf;
-
-Label::Label(std::string path,int posx,int posy,String cap,int sized){
-    this->create(path,posx,posy,cap,sized);
+Label::Label(std::string path, int pos_x, int posy, std::string cap, int sized){
+    this->create(path, static_cast<float>(pos_x), static_cast<float>(posy), cap, sized);
 }
 
 //Creating label
-void Label::create(const std::string& path,float posx,float posy,const String& cap,int sized){
+void Label::create(const std::string& path,float posx,float posy,const std::string& cap,int sized){
     //loading font
     this->label_font.loadFromFile(path);
 
     //setting _position
-    this->label_possition.x=posx;
-    this->label_possition.y=posy;
+    this->label_position.x=posx;
+    this->label_position.y=posy;
 
     //setting size and caption
     this->label_caption=cap;
@@ -27,14 +25,14 @@ void Label::create(const std::string& path,float posx,float posy,const String& c
     this->label_text.setFont(this->label_font);
     this->label_text.setString(this->label_caption);
     this->label_text.setCharacterSize(this->label_height);
-    this->label_text.setFillColor(Color::Black);
+    this->label_text.setFillColor(sf::Color::Black);
 
     //positioning
-    this->label_text.setPosition(this->label_possition);
+    this->label_text.setPosition(this->label_position);
 }
 
 //Drawing
-void Label::show(RenderWindow &W){
+void Label::show(sf::RenderWindow &W){
     W.draw(this->label_text);
 }
 
@@ -51,9 +49,9 @@ void Label::setSize(int new_size){
 }
 
 //new _position
-void Label::setPosition(Vector2f new_position){
-    this->label_possition=new_position;
-    this->label_text.setPosition(this->label_possition);
+void Label::setPosition(sf::Vector2f new_position){
+    this->label_position=new_position;
+    this->label_text.setPosition(this->label_position);
 }
 
 //new font
@@ -62,7 +60,7 @@ void Label::setFont(std::string path){
     this->label_text.setFont(this->label_font);
 }
 
-void Label::setColor(Color new_color){
+void Label::setColor(sf::Color new_color){
     this->label_text.setFillColor(new_color);
 }
 

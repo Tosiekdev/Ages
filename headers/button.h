@@ -21,6 +21,9 @@ private:
     int button_height, button_width;\
     bool active;
     sf::String button_caption;
+
+    void center();
+
 public:
     explicit Button(int=40,int=100,int=0,int=0,sf::String="In_dev");
     void create(int h,int w,float posx,float posy,sf::String caption);

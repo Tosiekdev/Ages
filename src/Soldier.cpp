@@ -15,9 +15,9 @@ std::array<int,3> Soldier::take_resources(int people,int iron,int money){
         resources[1]-=this->n_iron;
         resources[2]-=this->n_money;
 
-        this->time_left=this->upgrade_time;
+        this->time_left_=this->upgrade_time_;
 
-        this->in_upgrade=true;
+        this->in_upgrade_=true;
     }
 
     return resources;
@@ -25,13 +25,48 @@ std::array<int,3> Soldier::take_resources(int people,int iron,int money){
 
 //to make showing unit easier
 void Soldier::slide(float shift){
-    sf::Vector2f position=this->view.getPosition();
+    sf::Vector2f position=this->view_.getPosition();
     position.x+=shift;
-    this->view.setPosition(position);
+    this->view_.setPosition(position);
 }
 
 void Soldier::show(sf::RenderWindow &window){
-    window.draw(this->view);
+    window.draw(this->view_);
     name_.draw(window);
     upgrade_.show(window);
+}
+
+//returns vector of damage to hurt others
+std::vector<int> Soldier::give_damage(Type which,std::vector<int> old_damage){
+    for(int i=0; i<this->quantity; i++)
+        old_damage.push_back(this->attack_calculator(which));
+
+    return old_damage;
+}
+
+//this happens when time needed to upgrade passed
+void Soldier::end_upgrade(){
+    this->in_upgrade_=false;
+    this->lives_.push_back(this->hp);
+}
+
+void Soldier::set_position(sf::Vector2f pos){
+    this->view_.setPosition(pos);
+
+    sf::Vector2f name_pos=pos+sf::Vector2f(-1,113);
+    name_.set_position(name_pos);
+
+    sf::Vector2f button_pos=name_pos+sf::Vector2f(1,35);
+    upgrade_.set_position(button_pos);
+}
+
+void Soldier::take_damage(std::vector<int> damage){
+    size_t j=0;
+    while(j<damage.size()){
+        if(lives_[j % lives_.size()] > 0){
+            lives_[j % lives_.size()]-=damage[j];
+            j++;
+        }
+        if(j>damage.size()){ break; }
+    }
 }

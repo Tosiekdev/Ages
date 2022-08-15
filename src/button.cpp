@@ -18,10 +18,14 @@ void Button::create(int h,int w,float posx,float posy,sf::String caption){
     this->button_position.y=posy;
     this->button_caption=caption;
 
-    //view
+    //view_
     this->button_texture.loadFromFile("Textures/button.png");
     this->button_sprite.setTexture(this->button_texture);
-    this->button_sprite.setScale(this->button_width/100,this->button_height/40);
+
+    auto scale_x=static_cast<float>(button_width)/100.f;
+    auto scale_y=static_cast<float>(button_height)/40.f;
+    this->button_sprite.setScale(scale_x,scale_y);
+
     this->button_sprite.setPosition(this->button_position);
 
     //caption
@@ -31,8 +35,12 @@ void Button::create(int h,int w,float posx,float posy,sf::String caption){
     this->button_text.setFillColor(sf::Color::Black);
     this->button_text.setCharacterSize(18*this->button_height/40);
     this->button_text.setString(this->button_caption);
-    this->button_text.setOrigin(this->button_text.getGlobalBounds().width/2,this->button_text.getGlobalBounds().height);
-    this->button_text.setPosition(this->button_position + sf::Vector2f(this->button_width / 2, this->button_height / 2));
+
+    float origin_x=button_text.getGlobalBounds().width/2;
+    float origin_y=button_text.getGlobalBounds().height;
+    this->button_text.setOrigin(origin_x,origin_y);
+
+    center();
 }
 
 //Checking if button is clicked
@@ -50,12 +58,23 @@ void Button::show(sf::RenderWindow &W){
 //Cool animation
 bool Button::onFocus(int mposx,int mposy){
     if(this->button_sprite.getGlobalBounds().contains(mposx,mposy) && this->active){
-        this->button_sprite.setScale(this->button_width/100+0.2,this->button_height/40+0.2);
-        this->button_text.setPosition(this->button_position + sf::Vector2f(this->button_width * 0.6f, this->button_height * 0.6f));
+        auto scale_x=static_cast<float>(button_width)/100.f+0.2f;
+        auto scale_y=static_cast<float>(button_height)/40.f+0.2f;
+        this->button_sprite.setScale(scale_x,scale_y);
+
+        float more_x=static_cast<float>(button_width)*0.6f;
+        float more_y=static_cast<float>(button_height)*0.6f;
+        auto text_pos=button_position+sf::Vector2f(more_x,more_y);
+        this->button_text.setPosition(text_pos);
+
         return true;
     }else{
-        this->button_sprite.setScale(this->button_width/100,this->button_height/40);
-        this->button_text.setPosition(this->button_position + sf::Vector2f(this->button_width / 2, this->button_height / 2));
+        auto scale_x=static_cast<float>(button_width)/100.f;
+        auto scale_y=static_cast<float>(button_height)/40.f;
+        this->button_sprite.setScale(scale_x,scale_y);
+
+        center();
+
         return false;
     }
 }
@@ -68,6 +87,11 @@ void Button::setActive(bool activity){
 void Button::set_position(sf::Vector2f new_position){
     this->button_position=new_position;
     this->button_sprite.setPosition(this->button_position);
-
+    center();
 }
 
+void Button::center(){
+    float more_x=static_cast<float>(button_width)/2;
+    float more_y=static_cast<float>(button_height)/2;
+    this->button_text.setPosition(this->button_position+sf::Vector2f(more_x,more_y));
+}

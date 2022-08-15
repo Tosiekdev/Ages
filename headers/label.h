@@ -15,11 +15,11 @@ class Label
 {
     sf::Font label_font;
     sf::Text label_text;
-    sf::Vector2f label_possition;
-    sf::String label_caption;
+    sf::Vector2f label_position;
+    std::string label_caption;
     int label_height;
 public:
-    explicit Label(std::string=DEFAULT_FONT,int=0,int=0,sf::String="Programmer is a Jerk",int=20);
+    explicit Label(std::string=DEFAULT_FONT,int=0,int=0,std::string="Programmer is a Jerk",int=20);
     void show(sf::RenderWindow &W);
     void setCaption(std::string new_caption);
     void setSize(int new_size);
@@ -28,7 +28,7 @@ public:
     void setColor(sf::Color new_color);
     float getWidth();
     void center();
-    void create(const std::string& path,float posx,float posy,const sf::String& cap,int sized);
+    void create(const std::string& path,float posx,float posy,const std::string& cap,int sized);
 };
 
 
