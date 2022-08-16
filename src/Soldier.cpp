@@ -27,7 +27,7 @@ std::array<int,3> Soldier::train(int people, int iron, int money){
 void Soldier::slide(float shift){
     sf::Vector2f position=this->view_.getPosition();
     position.x+=shift;
-    this->view_.setPosition(position);
+    set_position(position);
 }
 
 void Soldier::show(sf::RenderWindow &window){
@@ -59,7 +59,7 @@ void Soldier::set_position(sf::Vector2f pos){
     sf::Vector2f name_pos=pos+sf::Vector2f(-1,113);
     name_.set_position(name_pos);
 
-    sf::Vector2f button_pos=name_pos+sf::Vector2f(1,35);
+    sf::Vector2f button_pos=name_pos+sf::Vector2f(26,35);
     upgrade_.set_position(button_pos);
 
     sf::Vector2f count_pos=name_pos+sf::Vector2f(56,12);

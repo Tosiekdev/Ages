@@ -39,20 +39,32 @@ void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, i
             if(return_to_game.onClick(i,j)){
                 return_to_village(scene);
             }
+
+            if(slide_left.onClick(i,j)){
+                swordsMen.slide(-135);
+            }
+
+            if(slide_right.onClick(i,j)){
+                swordsMen.slide(135);
+            }
         }
     }
 }
 
 void HandleBarracks::do_stuff(sf::RenderWindow &window){
-    bool a[1];
+    std::vector<bool> anim;
     int x=sf::Mouse::getPosition(window).x;
     int y=sf::Mouse::getPosition(window).y;
+    sf::Vector2i m_pos=sf::Mouse::getPosition(window);
 
     //cool animation
-    a[0]=return_to_game.onFocus(x,y);
+    anim.push_back(return_to_game.onFocus(x,y));
+    anim.push_back(swordsMen.animate_buttons(m_pos));
+    anim.push_back(slide_left.onFocus(x,y));
+    anim.push_back(slide_right.onFocus(x,y));
 
     //changing cursor
-    if(a[0])
+    if(std::count(anim.begin(),anim.end(),true))
         cursor.loadFromSystem(sf::Cursor::Hand);
     else
         cursor.loadFromSystem(sf::Cursor::Arrow);

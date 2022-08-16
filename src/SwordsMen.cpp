@@ -25,7 +25,7 @@ SwordsMen::SwordsMen(){
     name_.create_obstacle("Textures/plank.png",sf::Vector2f(0.1,0.1),sf::Vector2f(0,0));
     counter_.create(DEFAULT_FONT,0,0,"Swordsman: "+std::to_string(quantity),12);
     counter_.center();
-    upgrade_.create(30,112,0,0,"Train");
+    upgrade_.create(30,60,0,0,"Train");
 }
 
 int SwordsMen::attack_calculator(Type which){

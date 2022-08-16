@@ -57,7 +57,8 @@ void Button::show(sf::RenderWindow &W){
 
 //Cool animation
 bool Button::onFocus(int mposx,int mposy){
-    if(this->button_sprite.getGlobalBounds().contains(mposx,mposy) && this->active){
+    auto cast=[](int z){return static_cast<float>(z);};
+    if(this->button_sprite.getGlobalBounds().contains(cast(mposx),cast(mposy)) && this->active){
         auto scale_x=static_cast<float>(button_width)/100.f+0.2f;
         auto scale_y=static_cast<float>(button_height)/40.f+0.2f;
         this->button_sprite.setScale(scale_x,scale_y);

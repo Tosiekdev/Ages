@@ -36,6 +36,11 @@ public:
     virtual float get_time_left() { return this->time_left_; }
     virtual void load_left(float time) { this->time_left_=time; }
 
+    //interacting with buttons
+    virtual bool animate_buttons(sf::Vector2i mouse_pos) {
+        return upgrade_.onFocus(mouse_pos.x,mouse_pos.y);
+    }
+
     virtual void show(sf::RenderWindow& window);
 
 protected:
