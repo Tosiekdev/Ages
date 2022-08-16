@@ -12,6 +12,7 @@
 #include "Battle.h"
 #include "button.h"
 #include "obstacle.h"
+#include "label.h"
 
 class Soldier{
 public:
@@ -25,10 +26,11 @@ public:
     virtual void slide(float shift);
 
     //upgrading
-    virtual std::array<int,3> take_resources(int people,int iron,int money);
+    virtual std::array<int,3> train(int people, int iron, int money);
     virtual void end_upgrade();
     virtual void reset_timer() { for_upgrade_.restart(); }
     virtual void get_time() { for_upgrade_.getElapsedTime().asSeconds(); }
+    virtual void update_counter()=0;
 
     //saving&loading
     virtual float get_time_left() { return this->time_left_; }
@@ -49,6 +51,7 @@ protected:
     sf::Texture texture_;
     Obstacle name_;
     Button upgrade_;
+    Label counter_;
 };
 
 

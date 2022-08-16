@@ -4,8 +4,8 @@
 
 #include "../headers/Soldier.h"
 
-//this happens when player try to make upgrade
-std::array<int,3> Soldier::take_resources(int people,int iron,int money){
+//this happens when player try to make train
+std::array<int,3> Soldier::train(int people, int iron, int money){
     //assign resources that we can return it
     std::array<int,3> resources{people,iron,money};
 
@@ -34,6 +34,7 @@ void Soldier::show(sf::RenderWindow &window){
     window.draw(this->view_);
     name_.draw(window);
     upgrade_.show(window);
+    counter_.show(window);
 }
 
 //returns vector of damage to hurt others
@@ -44,10 +45,12 @@ std::vector<int> Soldier::give_damage(Type which,std::vector<int> old_damage){
     return old_damage;
 }
 
-//this happens when time needed to upgrade passed
+//this happens when time needed to train passed
 void Soldier::end_upgrade(){
-    this->in_upgrade_=false;
-    this->lives_.push_back(this->hp);
+    in_upgrade_=false;
+    lives_.push_back(this->hp);
+    quantity++;
+    update_counter();
 }
 
 void Soldier::set_position(sf::Vector2f pos){
@@ -58,13 +61,20 @@ void Soldier::set_position(sf::Vector2f pos){
 
     sf::Vector2f button_pos=name_pos+sf::Vector2f(1,35);
     upgrade_.set_position(button_pos);
+
+    sf::Vector2f count_pos=name_pos+sf::Vector2f(56,12);
+    counter_.setPosition(count_pos);
 }
 
 void Soldier::take_damage(std::vector<int> damage){
     size_t j=0;
     while(j<damage.size()){
-        if(lives_[j % lives_.size()] > 0){
-            lives_[j % lives_.size()]-=damage[j];
+        auto index=j%lives_.size();
+        if(lives_[index] > 0){
+            lives_[index]-=damage[j];
+            if(lives_[index]<=0){
+                quantity--;
+            }
             j++;
         }
         if(j>damage.size()){ break; }

@@ -11,6 +11,9 @@ class SwordsMen : public Soldier{
 public:
     SwordsMen();
 
+    //train
+    void update_counter() override;
+
     //battle
     int attack_calculator(Type which) override;
 

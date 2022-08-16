@@ -21,9 +21,11 @@ SwordsMen::SwordsMen(){
     this->texture_.loadFromFile("Textures/swordsman.png");
     this->view_.setTexture(this->texture_);
 
-    //name and button to upgrade
+    //name and button to training
     name_.create_obstacle("Textures/plank.png",sf::Vector2f(0.1,0.1),sf::Vector2f(0,0));
-    upgrade_.create(30,100,0,0,"Upgrade");
+    counter_.create(DEFAULT_FONT,0,0,"Swordsman: "+std::to_string(quantity),12);
+    counter_.center();
+    upgrade_.create(30,112,0,0,"Train");
 }
 
 int SwordsMen::attack_calculator(Type which){
@@ -40,4 +42,10 @@ int SwordsMen::attack_calculator(Type which){
         case LIGHT_CAVALRY:
             return hit;
     }
+}
+
+void SwordsMen::update_counter(){
+    std::string count=std::to_string(quantity);
+    counter_.setCaption("Swordsman: "+count);
+    counter_.center();
 }
