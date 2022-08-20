@@ -4,6 +4,8 @@
 
 #include "../../headers/HandleBarracks.h"
 
+#define SLIDE 117
+
 void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info
     assign_values(lh,lr,lw,hn,rk,wd,bld);
@@ -19,6 +21,7 @@ void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, i
 
     //for training units
     swordsMen.set_position(sf::Vector2f(52,250));
+    spearman.set_position(sf::Vector2f(169,250));
 
     //buttons
     this->create_return_button();
@@ -41,11 +44,11 @@ void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, i
             }
 
             if(slide_left.onClick(i,j)){
-                swordsMen.slide(-135);
+               slide_to_left();
             }
 
             if(slide_right.onClick(i,j)){
-                swordsMen.slide(135);
+                slide_to_right();
             }
         }
     }
@@ -60,6 +63,7 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     //cool animation
     anim.push_back(return_to_game.onFocus(x,y));
     anim.push_back(swordsMen.animate_buttons(m_pos));
+    anim.push_back(spearman.animate_buttons(m_pos));
     anim.push_back(slide_left.onFocus(x,y));
     anim.push_back(slide_right.onFocus(x,y));
 
@@ -82,6 +86,7 @@ void HandleBarracks::display(sf::RenderWindow &window){
 
     //units training
     swordsMen.show(window);
+    spearman.show(window);
 
     //building info
     info.show(window);
@@ -91,4 +96,40 @@ void HandleBarracks::display(sf::RenderWindow &window){
     slide_right.draw_it(window);
 
     window.display();
+}
+
+void HandleBarracks::slide_to_left(){
+    swordsMen.slide(-SLIDE);
+    if(swordsMen.get_position().x<52){
+        swordsMen.slide(-SLIDE);
+    }
+    if(swordsMen.get_position().x>638){
+        swordsMen.slide(-SLIDE);
+    }
+
+    spearman.slide(-SLIDE);
+    if(spearman.get_position().x<52){
+        spearman.slide(-SLIDE);
+    }
+    if(spearman.get_position().x>638){
+        spearman.slide(-SLIDE);
+    }
+}
+
+void HandleBarracks::slide_to_right(){
+    swordsMen.slide(SLIDE);
+    if(swordsMen.get_position().x<52){
+        swordsMen.slide(SLIDE);
+    }
+    if(swordsMen.get_position().x>638){
+        swordsMen.slide(SLIDE);
+    }
+
+    spearman.slide(SLIDE);
+    if(spearman.get_position().x<52){
+        spearman.slide(SLIDE);
+    }
+    if(spearman.get_position().x>638){
+        spearman.slide(SLIDE);
+    }
 }

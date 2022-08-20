@@ -4,6 +4,13 @@
 
 #include "../headers/Soldier.h"
 
+Soldier::Soldier(){
+    pTexture_.loadFromFile(PLANK);
+    plank_.setTexture(pTexture_);
+
+    plank_.setScale(0.186,0.186);
+}
+
 //this happens when player try to make train
 std::array<int,3> Soldier::train(int people, int iron, int money){
     //assign resources that we can return it
@@ -35,6 +42,12 @@ void Soldier::show(sf::RenderWindow &window){
     name_.draw(window);
     upgrade_.show(window);
     counter_.show(window);
+
+    //stats
+    window.draw(plank_);
+    hp_.show(window);
+    dmg_.show(window);
+    arm_.show(window);
 }
 
 //returns vector of damage to hurt others
@@ -64,6 +77,18 @@ void Soldier::set_position(sf::Vector2f pos){
 
     sf::Vector2f count_pos=name_pos+sf::Vector2f(56,12);
     counter_.setPosition(count_pos);
+
+    sf::Vector2f plank_pos=name_pos+sf::Vector2f(0,70);
+    plank_.setPosition(plank_pos);
+
+    sf::Vector2f hp_pos=plank_pos+sf::Vector2f(25,5);
+    hp_.setPosition(hp_pos);
+
+    sf::Vector2f dmg_pos=hp_pos+sf::Vector2f(0,17);
+    dmg_.setPosition(dmg_pos);
+
+    sf::Vector2f arm_pos=dmg_pos+sf::Vector2f(0,17);
+    arm_.setPosition(arm_pos);
 }
 
 void Soldier::take_damage(std::vector<int> damage){
@@ -79,4 +104,11 @@ void Soldier::take_damage(std::vector<int> damage){
         }
         if(j>damage.size()){ break; }
     }
+}
+
+void Soldier::set_stats(){
+    int size=12;
+    hp_.create(DEFAULT_FONT,0,0,"HP: "+std::to_string(hp),size);
+    dmg_.create(DEFAULT_FONT,0,0,"Damage: "+std::to_string(attack),size);
+    arm_.create(DEFAULT_FONT,0,0,"Armor: "+std::to_string(armor),size);
 }

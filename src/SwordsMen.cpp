@@ -18,7 +18,7 @@ SwordsMen::SwordsMen(){
     this->upgrade_time_=5;
 
     //set _look
-    this->texture_.loadFromFile("Textures/swordsman.png");
+    this->texture_.loadFromFile("Textures/Units/swordsman.png");
     this->view_.setTexture(this->texture_);
 
     //name and button to training
@@ -26,6 +26,9 @@ SwordsMen::SwordsMen(){
     counter_.create(DEFAULT_FONT,0,0,"Swordsman: "+std::to_string(quantity),12);
     counter_.center();
     upgrade_.create(30,60,0,0,"Train");
+
+    //stats show
+    set_stats();
 }
 
 int SwordsMen::attack_calculator(Type which){

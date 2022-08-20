@@ -15,7 +15,12 @@
 #include "label.h"
 
 class Soldier{
+protected:
+    void set_stats();
+
 public:
+    Soldier();
+
     //battle
     virtual std::vector<int> give_damage(Type which, std::vector<int> old_damage);
     virtual void take_damage(std::vector<int> damage);
@@ -23,6 +28,7 @@ public:
 
     //positioning
     virtual void set_position(sf::Vector2f pos);
+    virtual sf::Vector2f get_position() { return view_.getPosition(); }
     virtual void slide(float shift);
 
     //upgrading
@@ -54,6 +60,12 @@ protected:
 
     sf::Sprite view_;
     sf::Texture texture_;
+
+    //for showing stats
+    sf::Sprite plank_;
+    sf::Texture pTexture_;
+    Label hp_, dmg_, arm_;
+
     Obstacle name_;
     Button upgrade_;
     Label counter_;

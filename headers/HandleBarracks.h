@@ -7,13 +7,18 @@
 
 #include "HandleBuildings.h"
 #include "SwordsMen.h"
+#include "spearman.h"
 #include "Clickable.h"
 
 class HandleBarracks : public HandleBuildings{
     SwordsMen swordsMen;
+    Spearman spearman;
 
     Clickable slide_left;
     Clickable slide_right;
+
+    void slide_to_left();
+    void slide_to_right();
 
 public:
     void create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld) override;
