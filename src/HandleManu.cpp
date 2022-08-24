@@ -69,7 +69,7 @@ void HandleMenu::do_stuff(sf::RenderWindow &window){
     a[1]=this->load_game.onFocus(x,y);
     a[2]=this->exit.onFocus(x,y);
 
-    //cursor
+    //cursor_
     if(a[0] || a[1] || a[2])
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else

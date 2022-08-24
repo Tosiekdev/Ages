@@ -67,7 +67,7 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     anim.push_back(slide_left.onFocus(x,y));
     anim.push_back(slide_right.onFocus(x,y));
 
-    //changing cursor
+    //changing cursor_
     if(std::count(anim.begin(),anim.end(),true))
         cursor.loadFromSystem(sf::Cursor::Hand);
     else

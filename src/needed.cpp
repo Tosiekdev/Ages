@@ -5,124 +5,119 @@
 #include "../headers/needed.h"
 #include "../headers/button.h"
 
-using namespace sf;
-using namespace std;
-
-
 //Constructor
 Application::Application(){
     //settings
-    this->height=600;
-    this->width=800;
-    this->max_fps=60;
+    height_=600;
+    width_=800;
+    maxFps_=60;
 
     //Preparing window
-    this->screen.create(VideoMode(this->width,this->height),"Ages",Style::Titlebar | Style::Close);
-    this->screen.setFramerateLimit(this->max_fps);
-    this->cursor.loadFromSystem(Cursor::Arrow);
-    this->screen.setMouseCursor(this->cursor);
-    this->possition.x=0;
-    this->possition.y=0;
-    this->screen.setPosition(this->possition);
+    screen_.create(VideoMode(width_,this->height_),"Ages",Style::Titlebar | Style::Close);
+    screen_.setFramerateLimit(maxFps_);
+    cursor_.loadFromSystem(Cursor::Arrow);
+    screen_.setMouseCursor(cursor_);
+    position_.x=0;
+    position_.y=0;
+    screen_.setPosition(position_);
 
-    this->background_menu_texture.loadFromFile("Textures/background.png");
-    this->background_menu_sprite.setTexture(this->background_menu_texture);
-    this->background_menu_sprite.setPosition(0,0);
+    backgroundMenuTexture_.loadFromFile("Textures/background.png");
+    backgroundMenuSprite_.setTexture(backgroundMenuTexture_);
+    backgroundMenuSprite_.setPosition(0, 0);
 
-    //preparing menu
-    this->menu.create();
+    //preparing menu_
+    menu_.create();
 
-    //preparing create screen
+    //preparing create screen_
     //Tablets
     Vector2f pp=Vector2f(200,40);//very soft
-    for(int i=0;i<5;i++){
-        this->t[i].create_tablet("-:-",pp);
+    for(auto & i:t_){
+        i.create_tablet("-:-",pp);
         pp+=Vector2f(0,110);
     }
-    this->create_create();
+    create_create();
 
-    //preparing load screen
-    this->create_load();
+    //preparing load screen_
+    create_load();
 
     //Scenes
-    this->scene=1;
+    scene_=1;
 }
 
 //Main thread of whole app
 void Application::main_window(){
     //start clock thread
-    thread for_clocks(&Application::clocks, this);
+    thread forClocks(&Application::clocks, this);
     //scenes switching
-    while(this->screen.isOpen()){
-        switch(this->scene){
+    while(screen_.isOpen()){
+        switch(scene_){
             case 1:
-                this->menu.main_loop(this->screen,this->scene);
+                menu_.main_loop(screen_, scene_);
                 break;
             case 2:
-                this->create();
+                create();
                 break;
             case 3:
-                this->load();
+                load();
                 break;
             case 4:
-                this->launch_game();
-                //this->game();
+                launch_game();
                 break;
             case 5:
-                this->launch_th();
+                launch_th();
                 break;
             case 6:
-                this->launch_farm();
+                launch_farm();
                 break;
             case 7:
-                this->launch_lm();
+                launch_lm();
                 break;
             case 8:
-                this->launch_sp();
+                launch_sp();
                 break;
             case 9:
-                this->launch_wh();
+                launch_wh();
                 break;
             case 10:
-                this->launch_academy();
+                launch_academy();
                 break;
             case 11:
-                this->launch_barracks();
+                launch_barracks();
                 break;
             case 12:
-                this->launch_church();
+                launch_church();
                 break;
         }
     }
-    for_clocks.join();
+    forClocks.join();
 }
 
 //Creating city a' ka loading save
-string Application::create_city(string calling){
+string Application::create_city(const string& calling){
 
     //creating needed variables
     fstream file;
-    ifstream filecheck;
+    ifstream fileCheck;
     string line;
-    this->save_path=calling+".txt";
+    savePath_= calling + ".txt";
 
-    this->game_window.set_path(this->save_path);
+    gameWindow_.set_path(savePath_);
 
     //checking if file already exists
-    filecheck.open(this->save_path);
-    if(filecheck) return "This village already exists!";
+    fileCheck.open(savePath_);
+    if(fileCheck) return "This village already exists!";
 
     //setting name
-    this->name=calling;
+    name=calling;
 
     //setting levels
-    this->game_window.set_levels();
+    gameWindow_.set_levels();
 
     //setting resources
-    this->game_window.set_resources();
+    gameWindow_.set_resources();
 
    for(int i=0; i<8; i++)
-       this->game_window.set_ub_left(i,0,1);
+       gameWindow_.set_ub_left(i, 0, 1);
 
     //writing new name to all saves file
     file.open("all_saves.txt",ios::out | ios::app);
@@ -130,7 +125,7 @@ string Application::create_city(string calling){
     file.close();
 
     //saving village properties
-    this->game_window.save_game();
+    gameWindow_.save_game();
 
     return "";
 }

@@ -7,5 +7,5 @@
 using namespace sf;
 
 void Application::launch_th(){
-    this->game_window.launch_th(this->screen,this->scene);
+    this->gameWindow_.launch_th(this->screen_, this->scene_);
 }

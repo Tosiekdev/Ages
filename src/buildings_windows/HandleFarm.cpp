@@ -64,8 +64,8 @@ void HandleFarm::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *
     //info
     this->crete_info();
     this->info.setCaption("Farm reproduces people. Higher level equals more\n"
-                          "people per second. Also upgrading farm gives space for\n"
-                          "more and more human beings!");
+                          "people per second. Also upgrading farm gives space_ for\n"
+                          "more and more human_ beings!");
     int farm=*this->building;
     this->f_current.create(DEFAULT_FONT,400,300,"Current population growth: "+
                             std::to_string(((int)(farm*1.2))*60)+"ppl/minute",30);

@@ -5,5 +5,5 @@
 #include "../headers/needed.h"
 
 void Application::launch_church(){
-    this->game_window.launch_church(this->screen,this->scene);
+    this->gameWindow_.launch_church(this->screen_, this->scene_);
 }

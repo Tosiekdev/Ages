@@ -29,50 +29,50 @@
 class Application
 {
 private:
-    sf::RenderWindow screen;
-    sf::Vector2i possition;
-    sf::Cursor cursor;
-    sf::Event e;
-    int height,width,max_fps;
-    int scene;
+    sf::RenderWindow screen_;
+    sf::Vector2i position_;
+    sf::Cursor cursor_;
+    sf::Event e_;
+    int height_,width_,maxFps_;
+    int scene_;
     /*
-    1-menu 2-create 3-load 4-game
+    1-menu_ 2-create 3-load 4-game
     5-town_hall 6-farm 7-lumber_mill 8-stone pit 9-ware house
     10-academy 11-barracks 12-church
     */
 
     //village
-    string name,save_path;
-    int human,rock,wood;
-    sf::Texture background_menu_texture;
-    sf::Sprite background_menu_sprite;
+    string name,savePath_;
+    int human_,rock_,wood_;
+    sf::Texture backgroundMenuTexture_;
+    sf::Sprite backgroundMenuSprite_;
 
-    ExitWindow exitWindow;//w_exit
-    HandleMenu menu;//menu
+    ExitWindow exitWindow_;//w_exit
+    HandleMenu menu_;//menu_
 
     //create
-    Button return_button,ok_button,cancel_button;
-    sf::Texture plank,obstacle_t;
-    sf::Sprite space,obstacle_s;
-    Label label1,label2;
-    textbox t1;
+    Button returnButton_,okButton_,cancelButton_;
+    sf::Texture plank_,obstacleT_;
+    sf::Sprite space_,obstacleS_;
+    Label label1_,label2_;
+    textbox t1_;
 
     //load
-    Button returning_button,load_button,remove_button;
-    tablet t[5];
-    Clickable down,up;
-    Label error_message;
-    int down_level=0, focused_tablet;
+    Button returningButton_,loadButton_,removeButton_;
+    tablet t_[5];
+    Clickable down_,up_;
+    Label errorMessage_;
+    int downLevel_=0, focusedTablet_;
 
     //game
-    HandleGame game_window;
+    HandleGame gameWindow_;
 
 public:
     Application();
     void main_window();
 
     //data interference
-    string create_city(string calling);
+    string create_city(const string& calling);
 
     //create
     void create_create();

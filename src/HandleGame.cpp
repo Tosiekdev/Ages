@@ -24,7 +24,7 @@ void HandleGame::create(std::string path){
 
     this->create_buildings();
 
-    //resource plank
+    //resource plank_
     this->resource_plank.create_obstacle(PLANK, sf::Vector2f(0.4,0.4),
                                          sf::Vector2f(564,0));
     this->resource_man.create_obstacle("Textures/human.png",sf::Vector2f(0.25, 0.25),
@@ -123,7 +123,7 @@ void HandleGame::do_stuff(sf::RenderWindow &window){
     a.push_back(this->return_to_menu.onFocus(x,y));
     a.push_back(this->save.onFocus(x,y));
 
-    //cursor change
+    //cursor_ change
     if(std::any_of(a.begin(),a.end(),[](bool i){return i;}))
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else
@@ -140,7 +140,7 @@ void HandleGame::display(sf::RenderWindow &window){
     this->return_to_menu.show(window);
     this->save.show(window);
 
-    //resource plank
+    //resource plank_
     this->resource_plank.draw(window);
     this->resource_man.draw(window);
     this->resource_rock.draw(window);

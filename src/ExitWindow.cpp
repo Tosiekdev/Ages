@@ -55,7 +55,7 @@ void ExitWindow::do_stuff(sf::RenderWindow &window){
     a[0]=this->yes.onFocus(sf::Mouse::getPosition(this->w_exit).x,sf::Mouse::getPosition(this->w_exit).y);
     a[1]=this->no.onFocus(sf::Mouse::getPosition(this->w_exit).x,sf::Mouse::getPosition(this->w_exit).y);
 
-    //cursor
+    //cursor_
     if(a[0] || a[1])
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else

@@ -5,5 +5,5 @@
 #include "../headers/needed.h"
 
 void Application::launch_academy(){
-    this->game_window.launch_academy(this->screen,this->scene);
+    this->gameWindow_.launch_academy(this->screen_, this->scene_);
 }

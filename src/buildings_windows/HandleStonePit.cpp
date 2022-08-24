@@ -27,7 +27,7 @@ void HandleStonePit::do_stuff(sf::RenderWindow &window){
     //cool animation
     a[0]=this->return_to_game.onFocus(x,y);
 
-    //changing cursor
+    //changing cursor_
     if(a[0])
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else

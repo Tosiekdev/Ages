@@ -13,15 +13,15 @@ void HandleLumberMill::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk,
 
     //info
     this->crete_info();
-    this->info.setCaption("Lumber Mill takes care about your wood supply.\n"
+    this->info.setCaption("Lumber Mill takes care about your wood_ supply.\n"
                           "Those are needed to upgrade buildings.\n"
-                          "Higher level means more wood!");
+                          "Higher level means more wood_!");
     int lumber=*this->building;
     this->current.create(DEFAULT_FONT,400,300,"",30);
-    this->current.setCaption("Current wood growth: "+std::to_string(lumber*60)+" rocks/minute");
+    this->current.setCaption("Current wood_ growth: "+std::to_string(lumber*60)+" rocks/minute");
     this->current.center();
     this->next.create(DEFAULT_FONT,400,350,"",30);
-    this->next.setCaption("Next level wood growth: "+std::to_string((lumber+1)*60)+" rocks/minute");
+    this->next.setCaption("Next level wood_ growth: "+std::to_string((lumber+1)*60)+" rocks/minute");
     this->next.center();
 
     //buttons
@@ -51,7 +51,7 @@ void HandleLumberMill::do_stuff(sf::RenderWindow &window){
     //cool animation
     a[0]=this->return_to_game.onFocus(x,y);
 
-    //changing cursor
+    //changing cursor_
     if(a[0])
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else

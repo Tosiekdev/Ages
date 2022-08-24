@@ -14,7 +14,7 @@ void HandleWarehouse::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, 
     //info
     this->crete_info();
     this->info.setCaption("In Warehouse you store your goods. Upgrading it gives\n"
-                          "you more space!");
+                          "you more space_!");
     int warehouse=*this->building;
     this->current.create(DEFAULT_FONT,400,300,"",30);
     this->current.setCaption("Current capacity: "+std::to_string(warehouse*1296));
@@ -50,7 +50,7 @@ void HandleWarehouse::do_stuff(sf::RenderWindow &window){
     //cool animation
     a[0]=this->return_to_game.onFocus(x,y);
 
-    //changing cursor
+    //changing cursor_
     if(a[0])
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else

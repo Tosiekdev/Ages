@@ -56,7 +56,7 @@ void HandleWoSaving::do_stuff(sf::RenderWindow &window){
     a[0]=this->am_sure.onFocus(sf::Mouse::getPosition(this->w_saving).x,sf::Mouse::getPosition(this->w_saving).y);
     a[1]=this->not_sure.onFocus(sf::Mouse::getPosition(this->w_saving).x,sf::Mouse::getPosition(this->w_saving).y);
 
-    //cursor
+    //cursor_
     if(a[0] || a[1])
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else

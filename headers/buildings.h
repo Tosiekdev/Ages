@@ -22,7 +22,7 @@ public:
     void show(sf::RenderWindow &W); //draws building with background
     void show_demands(sf::Vector2f pos, sf::RenderWindow &window);
     bool isClicked(int posx, int posy); //check if building was clicked
-    bool onFocus(int pos_x, int pos_y);//check if cursor is on the building
+    bool onFocus(int pos_x, int pos_y);//check if cursor_ is on the building
     int get_level() const;//returns level
     void set_level(int lvl);//set new level
     bool status();//returns status

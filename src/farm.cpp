@@ -5,5 +5,5 @@
 #include "../headers/needed.h"
 
 void Application::launch_farm(){
-    this->game_window.launch_farm(this->screen,this->scene);
+    this->gameWindow_.launch_farm(this->screen_, this->scene_);
 }

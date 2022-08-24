@@ -83,8 +83,8 @@ void buildings::create_star(){
     this->star_view.setPosition(this->star_possition);
 
     //text
-    this->lvl_label.create(DEFAULT_FONT, this->star_possition.x+20, this->star_possition.y+15, to_string(this->level), 15);
-    this->lvl_label.center();
+    lvl_label.create(DEFAULT_FONT,star_possition.x+20,star_possition.y+15,to_string(this->level),15);
+    lvl_label.center();
 }
 
 bool buildings::isClicked(int posx, int posy){
