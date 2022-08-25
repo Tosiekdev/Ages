@@ -20,8 +20,9 @@ void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, i
                           "Upgrading Barracks allows you to train better units!");
 
     //for training units
-    swordsMen.set_position(sf::Vector2f(52,250));
-    spearman.set_position(sf::Vector2f(169,250));
+    swordsMen_.set_position(sf::Vector2f(52,250));
+    spearman_.set_position(sf::Vector2f(169,250));
+    archer_.set_position(sf::Vector2f(286,250));
 
     //buttons
     this->create_return_button();
@@ -62,10 +63,11 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
 
     //cool animation
     anim.push_back(return_to_game.onFocus(x,y));
-    anim.push_back(swordsMen.animate_buttons(m_pos));
-    anim.push_back(spearman.animate_buttons(m_pos));
+    anim.push_back(swordsMen_.animate_buttons(m_pos));
+    anim.push_back(spearman_.animate_buttons(m_pos));
+    anim.push_back(archer_.animate_buttons(m_pos));
     anim.push_back(slide_left.onFocus(x,y));
-    anim.push_back(slide_right.onFocus(x,y));
+    if(swordsMen_.get_position().x<52){ anim.push_back(slide_right.onFocus(x,y)); }
 
     //changing cursor_
     if(std::count(anim.begin(),anim.end(),true))
@@ -85,8 +87,9 @@ void HandleBarracks::display(sf::RenderWindow &window){
     show_resources(window);
 
     //units training
-    swordsMen.show(window);
-    spearman.show(window);
+    swordsMen_.show(window);
+    spearman_.show(window);
+    archer_.show(window);
 
     //building info
     info.show(window);
@@ -99,37 +102,37 @@ void HandleBarracks::display(sf::RenderWindow &window){
 }
 
 void HandleBarracks::slide_to_left(){
-    swordsMen.slide(-SLIDE);
-    if(swordsMen.get_position().x<52){
-        swordsMen.slide(-SLIDE);
-    }
-    if(swordsMen.get_position().x>638){
-        swordsMen.slide(-SLIDE);
+    swordsMen_.slide(-SLIDE);
+    if(swordsMen_.get_position().x<52){
+        swordsMen_.slide(-SLIDE);
     }
 
-    spearman.slide(-SLIDE);
-    if(spearman.get_position().x<52){
-        spearman.slide(-SLIDE);
+    spearman_.slide(-SLIDE);
+    if(spearman_.get_position().x<52){
+        spearman_.slide(-SLIDE);
     }
-    if(spearman.get_position().x>638){
-        spearman.slide(-SLIDE);
+
+    archer_.slide(-SLIDE);
+    if(archer_.get_position().x<52){
+        archer_.slide(-SLIDE);
     }
 }
 
 void HandleBarracks::slide_to_right(){
-    swordsMen.slide(SLIDE);
-    if(swordsMen.get_position().x<52){
-        swordsMen.slide(SLIDE);
-    }
-    if(swordsMen.get_position().x>638){
-        swordsMen.slide(SLIDE);
-    }
+    if(swordsMen_.get_position().x<52){
+        swordsMen_.slide(SLIDE);
+        if (swordsMen_.get_position().x<52){
+            swordsMen_.slide(SLIDE);
+        }
 
-    spearman.slide(SLIDE);
-    if(spearman.get_position().x<52){
-        spearman.slide(SLIDE);
-    }
-    if(spearman.get_position().x>638){
-        spearman.slide(SLIDE);
+        spearman_.slide(SLIDE);
+        if (spearman_.get_position().x<52){
+            spearman_.slide(SLIDE);
+        }
+
+        archer_.slide(SLIDE);
+        if (archer_.get_position().x<52){
+            archer_.slide(SLIDE);
+        }
     }
 }

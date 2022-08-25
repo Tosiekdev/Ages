@@ -6,15 +6,15 @@
 
 Spearman::Spearman(){
     //set stats
-    this->hp=80;
-    this->armor=45;
-    this->attack=85;
-    this->quantity=0;
+    this->hp_=80;
+    this->armor_=45;
+    this->attack_=85;
+    this->quantity_=0;
 
     //set demands
-    this->n_iron=4;
-    this->n_people=1;
-    this->n_money=8;
+    this->nIron_=4;
+    this->nPeople_=1;
+    this->nMoney_=8;
     this->upgrade_time_=4;
 
     //set _look
@@ -23,7 +23,7 @@ Spearman::Spearman(){
 
     //name and button to training
     name_.create_obstacle("Textures/plank.png",sf::Vector2f(0.1,0.1),sf::Vector2f(0,0));
-    counter_.create(DEFAULT_FONT,0,0,"Spearman: "+std::to_string(quantity),12);
+    counter_.create(DEFAULT_FONT, 0, 0,"Spearman: "+std::to_string(quantity_), 12);
     counter_.center();
     upgrade_.create(30,60,0,0,"Train");
 
@@ -32,7 +32,7 @@ Spearman::Spearman(){
 }
 
 void Spearman::update_counter(){
-    std::string count=std::to_string(quantity);
+    std::string count=std::to_string(quantity_);
     counter_.setCaption("Spearman: "+count);
     counter_.center();
 }
@@ -40,14 +40,14 @@ void Spearman::update_counter(){
 int Spearman::attack_calculator(Type which){
     switch(which){
         case SWORD_MAN:
-            return (int)((double)attack*0.95);
+            return (int)((double)attack_ * 0.95);
         case BOW_MAN:
-            return (int)((double)attack*1.5);
+            return (int)((double)attack_ * 1.5);
         case SPEAR_MAN:
-            return attack;
+            return attack_;
         case HEAVY_CAVALRY:
-            return (int)((double)attack*1.3);
+            return (int)((double)attack_ * 1.3);
         case LIGHT_CAVALRY:
-            return (int)((double)attack*1.55);
+            return (int)((double)attack_ * 1.55);
     }
 }

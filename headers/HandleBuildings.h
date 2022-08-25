@@ -11,7 +11,6 @@
 
 class HandleBuildings{
 public:
-    virtual ~HandleBuildings();
     virtual void create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld)=0;
     void main_loop(sf::Event &event, sf::RenderWindow &window, int &scene);
     virtual void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene)=0;

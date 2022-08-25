@@ -64,14 +64,3 @@ void HandleBuildings::assign_values(Label *lh, Label *lr, Label *lw, int *hn, in
     //building lvl
     this->building=bld;
 }
-
-HandleBuildings::~HandleBuildings(){
-    delete l_human;
-    delete l_rock;
-    delete l_wood;
-
-    delete human;
-    delete rock;
-    delete wood;
-    delete building;
-}

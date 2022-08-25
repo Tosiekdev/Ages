@@ -2,8 +2,8 @@
 // Created by tosiek on 21.02.2022.
 //
 
-#ifndef AGES1_SWORDSMEN_H
-#define AGES1_SWORDSMEN_H
+#ifndef AGES1_SWORDSMAN_H
+#define AGES1_SWORDSMAN_H
 
 #include "Soldier.h"
 
@@ -22,4 +22,4 @@ private:
 };
 
 
-#endif //AGES1_SWORDSMEN_H
+#endif //AGES1_SWORDSMAN_H

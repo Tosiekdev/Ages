@@ -50,7 +50,7 @@ public:
     virtual void show(sf::RenderWindow& window);
 
 protected:
-    int hp{}, attack{}, armor{}, quantity{}, n_people{}, n_iron{}, n_money{};
+    int hp_{}, attack_{}, armor_{}, quantity_{}, nPeople_{}, nIron_{}, nMoney_{};
 
     std::vector<int> lives_;
 
@@ -64,7 +64,7 @@ protected:
     //for showing stats
     sf::Sprite plank_;
     sf::Texture pTexture_;
-    Label hp_, dmg_, arm_;
+    Label lHp_, dmg_, arm_;
 
     Obstacle name_;
     Button upgrade_;

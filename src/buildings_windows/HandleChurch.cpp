@@ -67,14 +67,3 @@ void HandleChurch::display(sf::RenderWindow &window){
 
     window.display();
 }
-
-HandleChurch::~HandleChurch(){
-    delete l_human;
-    delete l_rock;
-    delete l_wood;
-
-    delete human;
-    delete rock;
-    delete wood;
-    delete building;
-}

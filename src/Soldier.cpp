@@ -16,11 +16,11 @@ std::array<int,3> Soldier::train(int people, int iron, int money){
     //assign resources that we can return it
     std::array<int,3> resources{people,iron,money};
 
-    if(this->n_people<=people && this->n_money<=money && this->n_iron<=iron){
+    if(this->nPeople_ <= people && this->nMoney_ <= money && this->nIron_ <= iron){
         //take needed resources
-        resources[0]-=this->n_people;
-        resources[1]-=this->n_iron;
-        resources[2]-=this->n_money;
+        resources[0]-=this->nPeople_;
+        resources[1]-=this->nIron_;
+        resources[2]-=this->nMoney_;
 
         this->time_left_=this->upgrade_time_;
 
@@ -45,14 +45,14 @@ void Soldier::show(sf::RenderWindow &window){
 
     //stats
     window.draw(plank_);
-    hp_.show(window);
+    lHp_.show(window);
     dmg_.show(window);
     arm_.show(window);
 }
 
 //returns vector of damage to hurt others
 std::vector<int> Soldier::give_damage(Type which,std::vector<int> old_damage){
-    for(int i=0; i<this->quantity; i++)
+    for(int i=0; i<this->quantity_; i++)
         old_damage.push_back(this->attack_calculator(which));
 
     return old_damage;
@@ -61,8 +61,8 @@ std::vector<int> Soldier::give_damage(Type which,std::vector<int> old_damage){
 //this happens when time needed to train passed
 void Soldier::end_upgrade(){
     in_upgrade_=false;
-    lives_.push_back(this->hp);
-    quantity++;
+    lives_.push_back(this->hp_);
+    quantity_++;
     update_counter();
 }
 
@@ -82,7 +82,7 @@ void Soldier::set_position(sf::Vector2f pos){
     plank_.setPosition(plank_pos);
 
     sf::Vector2f hp_pos=plank_pos+sf::Vector2f(25,5);
-    hp_.setPosition(hp_pos);
+    lHp_.setPosition(hp_pos);
 
     sf::Vector2f dmg_pos=hp_pos+sf::Vector2f(0,17);
     dmg_.setPosition(dmg_pos);
@@ -98,7 +98,7 @@ void Soldier::take_damage(std::vector<int> damage){
         if(lives_[index] > 0){
             lives_[index]-=damage[j];
             if(lives_[index]<=0){
-                quantity--;
+                quantity_--;
             }
             j++;
         }
@@ -108,7 +108,7 @@ void Soldier::take_damage(std::vector<int> damage){
 
 void Soldier::set_stats(){
     int size=12;
-    hp_.create(DEFAULT_FONT,0,0,"HP: "+std::to_string(hp),size);
-    dmg_.create(DEFAULT_FONT,0,0,"Damage: "+std::to_string(attack),size);
-    arm_.create(DEFAULT_FONT,0,0,"Armor: "+std::to_string(armor),size);
+    lHp_.create(DEFAULT_FONT, 0, 0, "HP: " + std::to_string(hp_), size);
+    dmg_.create(DEFAULT_FONT, 0, 0,"Damage: "+std::to_string(attack_), size);
+    arm_.create(DEFAULT_FONT, 0, 0,"Armor: "+std::to_string(armor_), size);
 }

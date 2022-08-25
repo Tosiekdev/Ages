@@ -6,13 +6,15 @@
 #define AGES1_HANDLEBARRACKS_H
 
 #include "HandleBuildings.h"
-#include "SwordsMen.h"
+#include "swordsman.h"
 #include "spearman.h"
+#include "archer.h"
 #include "Clickable.h"
 
 class HandleBarracks : public HandleBuildings{
-    SwordsMen swordsMen;
-    Spearman spearman;
+    SwordsMen swordsMen_;
+    Spearman spearman_;
+    Archer archer_;
 
     Clickable slide_left;
     Clickable slide_right;
