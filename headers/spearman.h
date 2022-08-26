@@ -5,7 +5,7 @@
 #ifndef AGES1_SPEARMAN_H
 #define AGES1_SPEARMAN_H
 
-#include "Soldier.h"
+#include "soldier.h"
 
 class Spearman : public Soldier{
 public:

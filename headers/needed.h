@@ -23,8 +23,8 @@
 #include "buildings.h"
 #include "obstacle.h"
 #include "constants.h"
-#include "HandleManu.h"
-#include "HandleGame.h"
+#include "handlemenu.h"
+#include "handlegame.h"
 
 class Application
 {

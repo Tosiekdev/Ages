@@ -1,15 +1,15 @@
 //
-// Created by tosiek on 25.08.22.
+// Created by tosiek on 26.08.22.
 //
 
-#ifndef AGES1_ARCHER_H
-#define AGES1_ARCHER_H
+#ifndef AGES1_HEAVYCAVALRY_H
+#define AGES1_HEAVYCAVALRY_H
 
 #include "soldier.h"
 
-class Archer : public Soldier{
+class HeavyCavalry : public Soldier {
 public:
-    Archer();
+    HeavyCavalry();
 
     //train
     void update_counter() override;
@@ -22,4 +22,4 @@ private:
 };
 
 
-#endif //AGES1_ARCHER_H
+#endif //AGES1_HEAVYCAVALRY_H
