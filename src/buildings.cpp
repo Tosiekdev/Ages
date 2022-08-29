@@ -61,7 +61,7 @@ int buildings::take_resources(int &human, int &rock, int &wood) {
     return 0;
 }
 
-//Draw building
+//Draw building_
 void buildings::show(RenderWindow &W){
     if(this->level>0){
         W.draw(this->view);

@@ -24,6 +24,8 @@ void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, i
     spearman_.set_position(sf::Vector2f(169,250));
     archer_.set_position(sf::Vector2f(286,250));
     heavyCavalry_.set_position(sf::Vector2f(403,250));
+    lightCavalry_.set_position(sf::Vector2f(520,250));
+    knight_.set_position(sf::Vector2f(637,250));
 
     //buttons
     this->create_return_button();
@@ -69,6 +71,8 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     anim.push_back(spearman_.animate_buttons(m_pos));
     anim.push_back(archer_.animate_buttons(m_pos));
     anim.push_back(heavyCavalry_.animate_buttons(m_pos));
+    anim.push_back(lightCavalry_.animate_buttons(m_pos));
+    anim.push_back(knight_.animate_buttons(m_pos));
 
     anim.push_back(slideLeft_.onFocus(x, y));
     if(swordsMen_.get_position().x<52){ anim.push_back(slideRight_.onFocus(x, y)); }
@@ -95,8 +99,10 @@ void HandleBarracks::display(sf::RenderWindow &window){
     spearman_.show(window);
     archer_.show(window);
     heavyCavalry_.show(window);
+    lightCavalry_.show(window);
+    knight_.show(window);
 
-    //building info
+    //building_ info
     info.show(window);
 
     //sliders
@@ -126,6 +132,16 @@ void HandleBarracks::slide_to_left(){
     if(heavyCavalry_.get_position().x<52){
         heavyCavalry_.slide(-SLIDE);
     }
+
+    lightCavalry_.slide(-SLIDE);
+    if(lightCavalry_.get_position().x<52){
+        lightCavalry_.slide(-SLIDE);
+    }
+
+    knight_.slide(-SLIDE);
+    if(knight_.get_position().x<52){
+        knight_.slide(-SLIDE);
+    }
 }
 
 void HandleBarracks::slide_to_right(){
@@ -148,6 +164,16 @@ void HandleBarracks::slide_to_right(){
         heavyCavalry_.slide(SLIDE);
         if(heavyCavalry_.get_position().x<52){
             heavyCavalry_.slide(SLIDE);
+        }
+
+        lightCavalry_.slide(SLIDE);
+        if(lightCavalry_.get_position().x<52){
+            lightCavalry_.slide(SLIDE);
+        }
+
+        knight_.slide(SLIDE);
+        if(knight_.get_position().x<52){
+            knight_.slide(SLIDE);
         }
     }
 }

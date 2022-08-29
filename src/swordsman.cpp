@@ -44,6 +44,14 @@ int SwordsMen::attack_calculator(Type which){
             return (int)((double)hit*0.75);
         case LIGHT_CAVALRY:
             return hit;
+        case KNIGHT:
+            return (int)((double)hit*0.77);
+        case CROSSBOWMAN:
+            return (int)((double)hit*1.3);
+        case BILLMAN:
+            return hit;
+        case AXEMAN:
+            return (int)((double)hit*1.1);
     }
 }
 

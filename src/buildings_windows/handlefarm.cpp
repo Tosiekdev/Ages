@@ -43,7 +43,7 @@ void HandleFarm::display(sf::RenderWindow &window){
     //resource info
     this->show_resources(window);
 
-    //building info
+    //building_ info
     this->info.show(window);
     this->f_current.show(window);
     this->f_next.show(window);
@@ -74,10 +74,10 @@ void HandleFarm::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *
                             std::to_string(((int)((farm+1)*1.2))*60)+"ppl/minute",30);
     this->f_next.center();
     this->f_capacity.create(DEFAULT_FONT,400,400,"Current farm capacity: "+
-                            std::to_string(farm*83)+" people",30);
+                            std::to_string(farm*156)+" people",30);
     this->f_capacity.center();
     this->f_next_capacity.create(DEFAULT_FONT,400,450,"Next level farm capacity: "+
-                            std::to_string((farm+1)*83)+" people",30);
+                            std::to_string((farm+1)*156)+" people",30);
     this->f_next_capacity.center();
 
     //buttons

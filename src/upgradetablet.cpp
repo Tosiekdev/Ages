@@ -15,7 +15,7 @@ void Upgrade_tablet::show(sf::RenderWindow &W){
     W.draw(this->supernova);
     this->star_text.show(W);
 
-    //showing building demands
+    //showing building_ demands
     this->responsible->show_demands(this->position+sf::Vector2f(0,50),W);
     this->upgrade.show(W);
     if(this->responsible->status()){
@@ -30,7 +30,7 @@ void Upgrade_tablet::create_upgrade(buildings *resp, std::string caption, sf::Ve
     this->responsible=resp;
     this->responsible->set_status(false);
 
-    //building name
+    //building_ name
     this->name.create(DEFAULT_FONT,this->position.x,this->position.y,caption,40);
 
     //star
@@ -66,7 +66,7 @@ sf::Vector2f Upgrade_tablet::Return_position(){
 void Upgrade_tablet::set_position(sf::Vector2f new_pos){
     this->position=new_pos;
     this->upgrade.set_position(this->position+sf::Vector2f(600,0));//button
-    this->name.setPosition(this->position);//building name
+    this->name.setPosition(this->position);//building_ name
     this->clock.setPosition(this->position+sf::Vector2f(400,0));//timer
     this->counting_down.setPosition(this->position+sf::Vector2f(300,0));//progress bar
     this->supernova.setPosition(this->position.x+this->name.getWidth()+10,this->position.y-15);//star
@@ -115,7 +115,7 @@ int Upgrade_tablet::update_timer(float time_passed){
             s = "0" + std::to_string(seconds);
         this->clock.setCaption(m + ":" + s);
 
-        //if time passed upgrade building
+        //if time passed upgrade building_
         if(this->time_left<=0){
             this->responsible->end_upgrade();
             this->counting_down.setSize(sf::Vector2f(300,50));

@@ -18,7 +18,7 @@ public:
     int attack_calculator(Type which) override;
 
 private:
-    Type type_=BOW_MAN;
+    Type type_=HEAVY_CAVALRY;
 };
 
 

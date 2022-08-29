@@ -37,10 +37,10 @@ public:
     void update_level();
 
 private:
-    //building that it is responsible for
+    //building_ that it is responsible for
     buildings *responsible{};
 
-    //building name
+    //building_ name
     Label name;
 
     //level star

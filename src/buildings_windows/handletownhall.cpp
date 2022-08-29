@@ -99,7 +99,7 @@ void HandleTownHall::display(sf::RenderWindow &window){
     for(auto &u_building:this->u_buildings)
         u_building.show(window);
 
-    //building info
+    //building_ info
     this->info.show(window);
 
     window.display();

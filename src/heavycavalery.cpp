@@ -7,8 +7,8 @@
 HeavyCavalry::HeavyCavalry(){
     //set stats
     hp_=200;
-    armor_=25;
-    attack_=60;
+    armor_=75;
+    attack_=120;
     quantity_=0;
 
     //set demands

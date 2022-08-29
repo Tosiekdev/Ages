@@ -110,7 +110,7 @@ string Application::create_city(const string& calling){
     //setting name
     name=calling;
 
-    //setting levels
+    //setting levels_
     gameWindow_.set_levels();
 
     //setting resources

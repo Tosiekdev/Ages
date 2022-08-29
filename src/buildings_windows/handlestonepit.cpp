@@ -44,7 +44,7 @@ void HandleStonePit::display(sf::RenderWindow &window){
     //resource info
     this->show_resources(window);
 
-    //building info
+    //building_ info
     this->info.show(window);
     this->next.show(window);
     this->current.show(window);

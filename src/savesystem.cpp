@@ -90,7 +90,7 @@ SaveSystem::save_game(std::string save_path, std::array<int, 8> levels, HandleTo
     file.open(save_path, std::ios::out);
 
     //save all data
-    //levels
+    //levels_
     file << name << std::endl;
     for(auto &j:levels)
         file << j << std::endl;

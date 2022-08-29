@@ -18,7 +18,7 @@ void HandleGame::create(std::string path){
     //for town hall
     float y_position=205.f;
     for(int i=0; i<8; i++){
-        this->th_window.crete_ub(&(this->building[i]),sf::Vector2f(20,y_position),i);
+        this->th_window.crete_ub(&(this->building_[i]), sf::Vector2f(20, y_position), i);
         y_position+=100.f;
     }
 
@@ -63,44 +63,44 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
             }
 
             //Buildings events
-            if(this->building[6].isClicked(i,j)){
+            if(this->building_[6].isClicked(i, j)){
                 this->th_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                       &this->rock,&this->wood,&this->levels[6]);
+                                       &this->rock,&this->wood,&this->levels_[6]);
                 scene=5;
             }
-            if(this->building[3].isClicked(i,j)){
+            if(this->building_[3].isClicked(i, j)){
                 this->farm_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                         &this->rock,&this->wood,&this->levels[3]);
+                                         &this->rock,&this->wood,&this->levels_[3]);
                 scene=6;
             }
-            if(this->building[4].isClicked(i,j)){
+            if(this->building_[4].isClicked(i, j)){
                 this->lm_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                       &this->rock,&this->wood,&this->levels[4]);
+                                       &this->rock,&this->wood,&this->levels_[4]);
                 scene=7;
             }
-            if(this->building[5].isClicked(i,j)){
+            if(this->building_[5].isClicked(i, j)){
                 this->sp_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                       &this->rock,&this->wood,&this->levels[5]);
+                                       &this->rock,&this->wood,&this->levels_[5]);
                 scene=8;
             }
-            if(this->building[7].isClicked(i,j)){
+            if(this->building_[7].isClicked(i, j)){
                 this->wh_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                       &this->rock,&this->wood,&this->levels[7]);
+                                       &this->rock,&this->wood,&this->levels_[7]);
                 scene=9;
             }
-            if(this->building[0].isClicked(i,j)){
+            if(this->building_[0].isClicked(i, j)){
                 this->academy_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                            &this->rock,&this->wood,&this->levels[0]);
+                                            &this->rock,&this->wood,&this->levels_[0]);
                 scene=10;
             }
-            if(this->building[1].isClicked(i,j)){
+            if(this->building_[1].isClicked(i, j)){
                 this->barracks_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                             &this->rock,&this->wood,&this->levels[1]);
+                                             &this->rock,&this->wood,&this->levels_[1]);
                 scene=11;
             }
-            if(this->building[2].isClicked(i,j)){
+            if(this->building_[2].isClicked(i, j)){
                 this->church_window.create(&this->l_human,&this->l_rock,&this->l_wood,&this->human,
-                                           &this->rock,&this->wood,&this->levels[2]);
+                                           &this->rock,&this->wood,&this->levels_[2]);
                 scene=12;
             }
 
@@ -115,9 +115,9 @@ void HandleGame::do_stuff(sf::RenderWindow &window){
     int x=sf::Mouse::getPosition(window).x;
     int y=sf::Mouse::getPosition(window).y;
 
-    //cool building animation
+    //cool building_ animation
     for(int i=0; i<8; i++)
-        a.push_back(this->building[i].onFocus(x,y));
+        a.push_back(this->building_[i].onFocus(x, y));
 
     //cool button animation
     a.push_back(this->return_to_menu.onFocus(x,y));
@@ -151,102 +151,103 @@ void HandleGame::display(sf::RenderWindow &window){
     this->l_wood.show(window);
 
     //buildings
-    for(auto &i:building)
+    for(auto &i:building_)
         i.show(window);
 
     window.display();
 }
 
 void HandleGame::deactivate_buildings(){
-    for(auto &i:this->building)
+    for(auto &i:this->building_)
         i.deactivate();
 }
 
 void HandleGame::activate_buildings(){
-    for(auto &i:this->building)
+    for(auto &i:this->building_)
         i.activate();
 }
 
 void HandleGame::create_buildings(){
     //load data
-    this->saveSystem.load_save(this->save_path,this->levels,this->th_window,this->name,this->human,
-                               this->wood,this->rock,this->building);
+    this->saveSystem.load_save(this->save_path, this->levels_, this->th_window, this->name, this->human,
+                               this->wood, this->rock, this->building_);
 
     //make everything done
     this->prepare_buildings();
 }
 
 void HandleGame::prepare_buildings(){
-    this->building[0].create_building("Academy","Textures/academy.png",this->levels[0],
-                                      sf::Vector2f(250,300),100,75,10);
-    this->building[1].create_building("Barracks","Textures/barracks.png",this->levels[1],
-                                      sf::Vector2f(50,300),75,75,7);
-    this->building[2].create_building("Church","Textures/church.png", this->levels[2],
-                                      sf::Vector2f(300,150),50,150,10);
-    this->building[3].create_building("Farm","Textures/farm.png", this->levels[3],
-                                      sf::Vector2f(600,450),20,60,2);
-    this->building[4].create_building("Lumber mill","Textures/default.png",this->levels[4],
-                                      sf::Vector2f(400,450),65,15,2);
-    this->building[5].create_building("Stone pit","Textures/default.png",this->levels[5],
-                                      sf::Vector2f(600,250),15,65,2);
-    this->building[6].create_building("Town Hall","Textures/town_hall.png",this->levels[6],
-                                      sf::Vector2f(100,100),75,75,12);
-    this->building[7].create_building("Warehouse","Textures/magazine.png",this->levels[7],
-                                      sf::Vector2f(150,450),100,50,6);
+    this->building_[0].create_building("Academy", "Textures/academy.png", this->levels_[0],
+                                       sf::Vector2f(250,300), 100, 75, 10);
+    this->building_[1].create_building("Barracks", "Textures/barracks.png", this->levels_[1],
+                                       sf::Vector2f(50,300), 75, 75, 7);
+    this->building_[2].create_building("Church", "Textures/church.png", this->levels_[2],
+                                       sf::Vector2f(300,150), 50, 150, 10);
+    this->building_[3].create_building("Farm", "Textures/farm.png", this->levels_[3],
+                                       sf::Vector2f(600,450), 20, 60, 2);
+    this->building_[4].create_building("Lumber mill", "Textures/default.png", this->levels_[4],
+                                       sf::Vector2f(400,450), 65, 15, 2);
+    this->building_[5].create_building("Stone pit", "Textures/default.png", this->levels_[5],
+                                       sf::Vector2f(600,250), 15, 65, 2);
+    this->building_[6].create_building("Town Hall", "Textures/town_hall.png", this->levels_[6],
+                                       sf::Vector2f(100,100), 75, 75, 12);
+    this->building_[7].create_building("Warehouse", "Textures/magazine.png", this->levels_[7],
+                                       sf::Vector2f(150,450), 100, 50, 6);
     for(int i=0; i<8; i++){
         this->th_window.ub_update_level(i);
     }
 }
 
 void HandleGame::save_game(){
-    this->saveSystem.save_game(this->save_path,this->levels,this->th_window,this->name,
-                               this->human,this->wood,this->rock);
+    this->saveSystem.save_game(this->save_path, this->levels_, this->th_window, this->name,
+                               this->human, this->wood, this->rock);
 }
 
 void HandleGame::assign_levels(){
     for(int i=0; i<8; i++)
-        this->levels[i]=this->building[i].get_level();
+        this->levels_[i]=this->building_[i].get_level();
 }
 
 void HandleGame::clocks(int scene){
     if(scene>3){
         //increasing resources
-        if (this->resource_clock.getElapsedTime().asSeconds() >= 1) {
-            int time_passed = (int)this->resource_clock.getElapsedTime().asSeconds();
-            this->human+=static_cast<int>(time_passed*1.2*this->levels[3]);
-            this->rock+=time_passed*10*this->levels[5];
-            this->wood+=time_passed*10*this->levels[4];
+        if (resource_clock.getElapsedTime().asSeconds() >= 1) {
+            int time_passed = (int)resource_clock.getElapsedTime().asSeconds();
+            human+=static_cast<int>(time_passed * 1.2 * levels_[3]);
+            rock+= time_passed * 10 * levels_[5];
+            wood+= time_passed * 10 * levels_[4];
 
             //full magazine
-            if(this->rock>=this->levels[7]*1296){
-                this->rock=this->levels[7]*1296;
-                this->l_rock.setColor(sf::Color::Red);
-            }else
-                this->l_rock.setColor(sf::Color::Black);
+            if(rock >= levels_[7] * 1296){
+                rock= levels_[7] * 1296;
+                l_rock.setColor(sf::Color::Red);
+            }else{
+                l_rock.setColor(sf::Color::Black);
+            }
 
-            if(this->wood>=this->levels[7]*1296){
-                this->wood=this->levels[7]*1296;
-                this->l_wood.setColor(sf::Color::Red);
+            if(wood >= levels_[7] * 1296){
+                wood= levels_[7] * 1296;
+                l_wood.setColor(sf::Color::Red);
             }else
-                this->l_wood.setColor(sf::Color::Black);
+                l_wood.setColor(sf::Color::Black);
 
             //full farm
-            if(this->human>=this->levels[3]*83){
-                this->human=this->levels[3]*83;
-                this->l_human.setColor(sf::Color::Red);
+            if(human >= levels_[3] * 156){
+                human= levels_[3] * 156;
+                l_human.setColor(sf::Color::Red);
             }else
-                this->l_human.setColor(sf::Color::Black);
+                l_human.setColor(sf::Color::Black);
 
             switch(scene){
                 case 4:
-                    this->l_human.setCaption(std::to_string(this->human));
-                    this->l_rock.setCaption(std::to_string(this->rock));
-                    this->l_wood.setCaption(std::to_string(this->wood));
+                    l_human.setCaption(std::to_string(human));
+                    l_rock.setCaption(std::to_string(rock));
+                    l_wood.setCaption(std::to_string(wood));
                     break;
                 default:
-                    this->l_human.setCaption("People: "+std::to_string(this->human));
-                    this->l_rock.setCaption("Stone: "+std::to_string(this->rock));
-                    this->l_wood.setCaption("Wood: "+std::to_string(this->wood));
+                    l_human.setCaption("People: "+std::to_string(human));
+                    l_rock.setCaption("Stone: "+std::to_string(rock));
+                    l_wood.setCaption("Wood: "+std::to_string(wood));
                     break;
             }
             this->resource_clock.restart();
@@ -298,8 +299,8 @@ void HandleGame::set_ub_left(int index, float time, float th){
 }
 
 void HandleGame::set_levels(){
-    for(int i=0; i<3; i++) this->levels[i]=0;
-    for(int i=3; i<8; i++) this->levels[i]=1;
+    for(int i=0; i<3; i++) this->levels_[i]=0;
+    for(int i=3; i<8; i++) this->levels_[i]=1;
 }
 
 void HandleGame::set_resources(){

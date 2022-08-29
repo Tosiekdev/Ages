@@ -61,6 +61,6 @@ void HandleBuildings::assign_values(Label *lh, Label *lr, Label *lw, int *hn, in
     this->rock=rk;
     this->wood=wd;
 
-    //building lvl
+    //building_ lvl
     this->building=bld;
 }

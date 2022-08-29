@@ -10,13 +10,17 @@
 #include "spearman.h"
 #include "archer.h"
 #include "heavycavalery.h"
-#include "Clickable.h"
+#include "lightcavalry.h"
+#include "knight.h"
+#include "clickable.h"
 
 class HandleBarracks : public HandleBuildings{
     SwordsMen swordsMen_;
     Spearman spearman_;
     Archer archer_;
     HeavyCavalry heavyCavalry_;
+    LightCavalry lightCavalry_;
+    Knight knight_;
 
     Clickable slideLeft_;
     Clickable slideRight_;

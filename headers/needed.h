@@ -19,7 +19,7 @@
 #include "label.h"
 #include "textbox.h"
 #include "tablet.h"
-#include "Clickable.h"
+#include "clickable.h"
 #include "buildings.h"
 #include "obstacle.h"
 #include "constants.h"
