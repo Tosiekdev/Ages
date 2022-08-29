@@ -26,6 +26,7 @@ void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, i
     heavyCavalry_.set_position(sf::Vector2f(403,250));
     lightCavalry_.set_position(sf::Vector2f(520,250));
     knight_.set_position(sf::Vector2f(637,250));
+    crossbowman_.set_position(sf::Vector2f(871,250));
 
     //buttons
     this->create_return_button();
@@ -73,6 +74,7 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     anim.push_back(heavyCavalry_.animate_buttons(m_pos));
     anim.push_back(lightCavalry_.animate_buttons(m_pos));
     anim.push_back(knight_.animate_buttons(m_pos));
+    anim.push_back(crossbowman_.animate_buttons(m_pos));
 
     anim.push_back(slideLeft_.onFocus(x, y));
     if(swordsMen_.get_position().x<52){ anim.push_back(slideRight_.onFocus(x, y)); }
@@ -101,6 +103,7 @@ void HandleBarracks::display(sf::RenderWindow &window){
     heavyCavalry_.show(window);
     lightCavalry_.show(window);
     knight_.show(window);
+    crossbowman_.show(window);
 
     //building_ info
     info.show(window);
@@ -113,67 +116,39 @@ void HandleBarracks::display(sf::RenderWindow &window){
 }
 
 void HandleBarracks::slide_to_left(){
-    swordsMen_.slide(-SLIDE);
-    if(swordsMen_.get_position().x<52){
-        swordsMen_.slide(-SLIDE);
-    }
-
-    spearman_.slide(-SLIDE);
-    if(spearman_.get_position().x<52){
-        spearman_.slide(-SLIDE);
-    }
-
-    archer_.slide(-SLIDE);
-    if(archer_.get_position().x<52){
-        archer_.slide(-SLIDE);
-    }
-
-    heavyCavalry_.slide(-SLIDE);
-    if(heavyCavalry_.get_position().x<52){
-        heavyCavalry_.slide(-SLIDE);
-    }
-
-    lightCavalry_.slide(-SLIDE);
-    if(lightCavalry_.get_position().x<52){
-        lightCavalry_.slide(-SLIDE);
-    }
-
-    knight_.slide(-SLIDE);
-    if(knight_.get_position().x<52){
-        knight_.slide(-SLIDE);
-    }
+    left_slider(swordsMen_);
+    left_slider(spearman_);
+    left_slider(archer_);
+    left_slider(heavyCavalry_);
+    left_slider(lightCavalry_);
+    left_slider(knight_);
+    left_slider(crossbowman_);
 }
 
 void HandleBarracks::slide_to_right(){
     if(swordsMen_.get_position().x<52){
-        swordsMen_.slide(SLIDE);
-        if (swordsMen_.get_position().x<52){
-            swordsMen_.slide(SLIDE);
-        }
+        right_slider(swordsMen_);
+        right_slider(spearman_);
+        right_slider(archer_);
+        right_slider(heavyCavalry_);
+        right_slider(lightCavalry_);
+        right_slider(knight_);
+        right_slider(crossbowman_);
+    }
+}
 
-        spearman_.slide(SLIDE);
-        if (spearman_.get_position().x<52){
-            spearman_.slide(SLIDE);
-        }
+template<class T>
+void HandleBarracks::left_slider(T &card){
+    card.slide(-SLIDE);
+    if(card.get_position().x<52 || card.get_position().x>637){
+        card.slide(-SLIDE);
+    }
+}
 
-        archer_.slide(SLIDE);
-        if (archer_.get_position().x<52){
-            archer_.slide(SLIDE);
-        }
-
-        heavyCavalry_.slide(SLIDE);
-        if(heavyCavalry_.get_position().x<52){
-            heavyCavalry_.slide(SLIDE);
-        }
-
-        lightCavalry_.slide(SLIDE);
-        if(lightCavalry_.get_position().x<52){
-            lightCavalry_.slide(SLIDE);
-        }
-
-        knight_.slide(SLIDE);
-        if(knight_.get_position().x<52){
-            knight_.slide(SLIDE);
-        }
+template<class T>
+void HandleBarracks::right_slider(T& card){
+    card.slide(SLIDE);
+    if(card.get_position().x<52 || card.get_position().x>637){
+        card.slide(SLIDE);
     }
 }

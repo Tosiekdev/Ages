@@ -50,5 +50,13 @@ int Archer::attack_calculator(Type which){
             return (int)((double)hit*0.5);
         case LIGHT_CAVALRY:
             return (int)((double)hit*0.7);
+        case KNIGHT:
+            return (int)((double)hit*0.92);
+        case CROSSBOWMAN:
+            return (int)((double)hit*0.91);
+        case BILLMAN:
+            return (int)((double)hit*1.1);
+        case AXEMAN:
+            return (int)((double)hit*1.2);
     }
 }
