@@ -2,7 +2,7 @@
 // Created by tosiek on 09.02.2022.
 //
 
-#include "../../headers/handlefarm.h"
+#include "../../headers/buildings-windows/handlefarm.h"
 
 void HandleFarm::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
     while(window.pollEvent(event)){

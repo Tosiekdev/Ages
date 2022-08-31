@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-#include "constants.h"
+#include "../constants.h"
 
 class Label
 {

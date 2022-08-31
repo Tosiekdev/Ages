@@ -2,7 +2,7 @@
 // Created by tosiek on 11.08.22.
 //
 
-#include "../headers/soldier.h"
+#include "../../headers/units/soldier.h"
 
 Soldier::Soldier(){
     pTexture_.loadFromFile(PLANK);

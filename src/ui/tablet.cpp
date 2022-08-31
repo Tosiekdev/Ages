@@ -2,7 +2,7 @@
 // Created by tosiek on 04.12.2021.
 //
 
-#include "../headers/tablet.h"
+#include "../../headers/ui/tablet.h"
 
 using namespace std;
 using namespace sf;

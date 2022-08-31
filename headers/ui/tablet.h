@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 
-#include "constants.h"
+#include "../constants.h"
 
 class tablet
 {

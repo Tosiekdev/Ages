@@ -2,7 +2,7 @@
 // Created by tosiek on 09.02.2022.
 //
 
-#include "../../headers/handlebuildings.h"
+#include "../../headers/buildings-windows/handlebuildings.h"
 
 void HandleBuildings::create_return_button(){
     this->return_to_game.create(40,100,5,5,"Return");

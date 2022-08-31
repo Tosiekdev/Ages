@@ -2,7 +2,7 @@
 // Created by tosiek on 04.12.2021.
 //
 
-#include "../headers/clickable.h"
+#include "../../headers/ui/clickable.h"
 
 using namespace sf;
 using namespace std;

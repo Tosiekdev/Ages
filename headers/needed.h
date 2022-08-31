@@ -15,13 +15,13 @@
 #include <thread>
 #include <array>
 
-#include "button.h"
-#include "label.h"
-#include "textbox.h"
-#include "tablet.h"
-#include "clickable.h"
+#include "ui/button.h"
+#include "ui/label.h"
+#include "ui/textbox.h"
+#include "ui/tablet.h"
+#include "ui/clickable.h"
 #include "buildings.h"
-#include "obstacle.h"
+#include "ui/obstacle.h"
 #include "constants.h"
 #include "handlemenu.h"
 #include "handlegame.h"

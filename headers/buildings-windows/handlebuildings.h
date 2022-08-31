@@ -5,8 +5,8 @@
 #ifndef AGES1_HANDLEBUILDINGS_H
 #define AGES1_HANDLEBUILDINGS_H
 
-#include "button.h"
-#include "label.h"
+#include "../ui/button.h"
+#include "../ui/label.h"
 #include <string>
 
 class HandleBuildings{
@@ -22,6 +22,7 @@ public:
     void crete_info();
     void return_to_village(int &scene);
     void assign_values(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld);
+
 protected:
     Button return_to_game;
     Label *l_human, *l_rock, *l_wood;

@@ -2,7 +2,7 @@
 // Created by tosiek on 29.12.2021.
 //
 
-#include "../headers/obstacle.h"
+#include "../../headers/ui/obstacle.h"
 
 
 //beach-ass constructor

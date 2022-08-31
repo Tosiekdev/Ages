@@ -2,7 +2,7 @@
 // Created by tosiek on 16.02.2022.
 //
 
-#include "../../headers/handlebarracks.h"
+#include "../../headers/buildings-windows/handlebarracks.h"
 
 #define SLIDE 117
 
@@ -20,16 +20,18 @@ void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, i
                           "Upgrading Barracks allows you to train better units!");
 
     //for training units
-    swordsMen_.set_position(sf::Vector2f(52,250));
+    swordsman_.set_position(sf::Vector2f(52, 250));
     spearman_.set_position(sf::Vector2f(169,250));
     archer_.set_position(sf::Vector2f(286,250));
     heavyCavalry_.set_position(sf::Vector2f(403,250));
     lightCavalry_.set_position(sf::Vector2f(520,250));
     knight_.set_position(sf::Vector2f(637,250));
     crossbowman_.set_position(sf::Vector2f(871,250));
+    billman_.set_position(sf::Vector2f(1105,250));
+    axeman_.set_position(sf::Vector2f(1339,250));
 
     //buttons
-    this->create_return_button();
+    create_return_button();
 
     //slide buttons
     slideLeft_.create_element("Textures/l_slide.png", sf::Vector2f(5, 275));
@@ -68,16 +70,18 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     //cool animation
     anim.push_back(return_to_game.onFocus(x,y));
 
-    anim.push_back(swordsMen_.animate_buttons(m_pos));
+    anim.push_back(swordsman_.animate_buttons(m_pos));
     anim.push_back(spearman_.animate_buttons(m_pos));
     anim.push_back(archer_.animate_buttons(m_pos));
     anim.push_back(heavyCavalry_.animate_buttons(m_pos));
     anim.push_back(lightCavalry_.animate_buttons(m_pos));
     anim.push_back(knight_.animate_buttons(m_pos));
     anim.push_back(crossbowman_.animate_buttons(m_pos));
+    anim.push_back(billman_.animate_buttons(m_pos));
+    anim.push_back(axeman_.animate_buttons(m_pos));
 
-    anim.push_back(slideLeft_.onFocus(x, y));
-    if(swordsMen_.get_position().x<52){ anim.push_back(slideRight_.onFocus(x, y)); }
+    if(axeman_.get_position().x>637){ anim.push_back(slideLeft_.onFocus(x, y)); }
+    if(swordsman_.get_position().x<52){ anim.push_back(slideRight_.onFocus(x, y)); }
 
     //changing cursor_
     if(std::count(anim.begin(),anim.end(),true))
@@ -97,13 +101,15 @@ void HandleBarracks::display(sf::RenderWindow &window){
     show_resources(window);
 
     //units training
-    swordsMen_.show(window);
+    swordsman_.show(window);
     spearman_.show(window);
     archer_.show(window);
     heavyCavalry_.show(window);
     lightCavalry_.show(window);
     knight_.show(window);
     crossbowman_.show(window);
+    billman_.show(window);
+    axeman_.show(window);
 
     //building_ info
     info.show(window);
@@ -116,24 +122,30 @@ void HandleBarracks::display(sf::RenderWindow &window){
 }
 
 void HandleBarracks::slide_to_left(){
-    left_slider(swordsMen_);
-    left_slider(spearman_);
-    left_slider(archer_);
-    left_slider(heavyCavalry_);
-    left_slider(lightCavalry_);
-    left_slider(knight_);
-    left_slider(crossbowman_);
+    if(axeman_.get_position().x>637){
+        left_slider(swordsman_);
+        left_slider(spearman_);
+        left_slider(archer_);
+        left_slider(heavyCavalry_);
+        left_slider(lightCavalry_);
+        left_slider(knight_);
+        left_slider(crossbowman_);
+        left_slider(billman_);
+        left_slider(axeman_);
+    }
 }
 
 void HandleBarracks::slide_to_right(){
-    if(swordsMen_.get_position().x<52){
-        right_slider(swordsMen_);
+    if(swordsman_.get_position().x<52){
+        right_slider(swordsman_);
         right_slider(spearman_);
         right_slider(archer_);
         right_slider(heavyCavalry_);
         right_slider(lightCavalry_);
         right_slider(knight_);
         right_slider(crossbowman_);
+        right_slider(billman_);
+        right_slider(axeman_);
     }
 }
 

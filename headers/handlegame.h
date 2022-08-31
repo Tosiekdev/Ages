@@ -11,22 +11,22 @@
 #include <vector>
 
 #include "handlewindow.h"
-#include "button.h"
-#include "label.h"
+#include "ui/button.h"
+#include "ui/label.h"
 #include "exitwindow.h"
 #include "handlewosaving.h"
-#include "obstacle.h"
+#include "ui/obstacle.h"
 #include "buildings.h"
 #include "savesystem.h"
-#include "handlestonepit.h"
-#include "handlefarm.h"
-#include "handlelumbermill.h"
-#include "handletownhall.h"
-#include "handlewarehouse.h"
+#include "buildings-windows/handlestonepit.h"
+#include "buildings-windows/handlefarm.h"
+#include "buildings-windows/handlelumbermill.h"
+#include "buildings-windows/handletownhall.h"
+#include "buildings-windows/handlewarehouse.h"
 #include "handlewosaving.h"
-#include "handleacademy.h"
-#include "handlebarracks.h"
-#include "handlechurch.h"
+#include "buildings-windows/handleacademy.h"
+#include "buildings-windows/handlebarracks.h"
+#include "buildings-windows/handlechurch.h"
 
 class HandleGame : public HandleWindow{
 public:

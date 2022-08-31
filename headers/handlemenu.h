@@ -6,8 +6,8 @@
 #define AGES1_HANDLEMENU_H
 
 #include "handlewindow.h"
-#include "button.h"
-#include "label.h"
+#include "ui/button.h"
+#include "ui/label.h"
 #include "exitwindow.h"
 
 class HandleMenu : public HandleWindow{

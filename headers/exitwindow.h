@@ -6,8 +6,8 @@
 #define AGES1_EXITWINDOW_H
 
 #include "handlewindow.h"
-#include "label.h"
-#include "button.h"
+#include "ui/label.h"
+#include "ui/button.h"
 
 class ExitWindow : public HandleWindow{
 public:

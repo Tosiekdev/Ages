@@ -7,9 +7,9 @@
 
 #include "soldier.h"
 
-class SwordsMen : public Soldier{
+class Swordsman : public Soldier{
 public:
-    SwordsMen();
+    Swordsman();
 
     //train
     void update_counter() override;

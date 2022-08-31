@@ -9,10 +9,10 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "battle.h"
-#include "button.h"
-#include "obstacle.h"
-#include "label.h"
+#include "../battle.h"
+#include "../ui/button.h"
+#include "../ui/obstacle.h"
+#include "../ui/label.h"
 
 class Soldier{
 protected:

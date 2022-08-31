@@ -2,7 +2,7 @@
 // Created by tosiek on 09.02.2022.
 //
 
-#include "../../headers/handletownhall.h"
+#include "../../headers/buildings-windows/handletownhall.h"
 
 void HandleTownHall::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info

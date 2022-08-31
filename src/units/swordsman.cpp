@@ -2,9 +2,9 @@
 // Created by tosiek on 21.02.2022.
 //
 
-#include "../headers/swordsman.h"
+#include "../../headers/units/swordsman.h"
 
-SwordsMen::SwordsMen(){
+Swordsman::Swordsman(){
     //set stats
     hp_=100;
     armor_=50;
@@ -31,7 +31,13 @@ SwordsMen::SwordsMen(){
     set_stats();
 }
 
-int SwordsMen::attack_calculator(Type which){
+void Swordsman::update_counter(){
+    std::string count=std::to_string(quantity_);
+    counter_.setCaption("Swordsman: "+count);
+    counter_.center();
+}
+
+int Swordsman::attack_calculator(Type which){
     int hit=attack_;
     switch(which){
         case SWORD_MAN:
@@ -53,10 +59,4 @@ int SwordsMen::attack_calculator(Type which){
         case AXEMAN:
             return (int)((double)hit*1.1);
     }
-}
-
-void SwordsMen::update_counter(){
-    std::string count=std::to_string(quantity_);
-    counter_.setCaption("Swordsman: "+count);
-    counter_.center();
 }

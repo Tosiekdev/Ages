@@ -2,7 +2,7 @@
 // Created by tosiek on 29.08.22.
 //
 
-#include "../headers/crossbowman.h"
+#include "../../headers/units/crossbowman.h"
 
 Crossbowman::Crossbowman(){
     //set stats

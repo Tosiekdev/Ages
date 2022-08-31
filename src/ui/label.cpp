@@ -2,7 +2,7 @@
 // Created by tosiek on 04.12.2021.
 //
 
-#include "../headers/label.h"
+#include "../../headers/ui/label.h"
 
 Label::Label(std::string path, int pos_x, int posy, std::string cap, int sized){
     this->create(path, static_cast<float>(pos_x), static_cast<float>(posy), cap, sized);

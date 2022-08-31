@@ -2,7 +2,7 @@
 // Created by tosiek on 29.08.22.
 //
 
-#include "../headers/lightcavalry.h"
+#include "../../headers/units/lightcavalry.h"
 
 LightCavalry::LightCavalry(){
 //set stats

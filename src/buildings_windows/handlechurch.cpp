@@ -2,7 +2,7 @@
 // Created by tosiek on 17.02.2022.
 //
 
-#include "../../headers/handlechurch.h"
+#include "../../headers/buildings-windows/handlechurch.h"
 
 void HandleChurch::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info

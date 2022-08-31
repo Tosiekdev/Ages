@@ -2,7 +2,7 @@
 // Created by tosiek on 04.12.2021.
 //
 
-#include "../headers/textbox.h"
+#include "../../headers/ui/textbox.h"
 
 using namespace sf;
 using namespace std;

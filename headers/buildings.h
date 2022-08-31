@@ -10,7 +10,7 @@
 #include <cmath>
 #include <string>
 
-#include "label.h"
+#include "ui/label.h"
 
 class buildings
 {

@@ -6,8 +6,8 @@
 #define AGES1_HANDLETOWNHALL_H
 
 #include "handlebuildings.h"
-#include "upgradetablet.h"
-#include "buildings.h"
+#include "../upgradetablet.h"
+#include "../buildings.h"
 
 #include <map>
 

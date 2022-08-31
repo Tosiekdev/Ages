@@ -2,7 +2,7 @@
 // Created by tosiek on 09.02.2022.
 //
 
-#include "../../headers/handlelumbermill.h"
+#include "../../headers/buildings-windows/handlelumbermill.h"
 
 void HandleLumberMill::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info

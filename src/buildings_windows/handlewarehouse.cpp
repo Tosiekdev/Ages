@@ -2,7 +2,7 @@
 // Created by tosiek on 14.02.2022.
 //
 
-#include "../../headers/handlewarehouse.h"
+#include "../../headers/buildings-windows/handlewarehouse.h"
 
 void HandleWarehouse::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info

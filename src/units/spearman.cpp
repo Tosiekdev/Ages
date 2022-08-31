@@ -2,7 +2,7 @@
 // Created by tosiek on 20.08.22.
 //
 
-#include "../headers/spearman.h"
+#include "../../headers/units/spearman.h"
 
 Spearman::Spearman(){
     //set stats
@@ -49,5 +49,13 @@ int Spearman::attack_calculator(Type which){
             return (int)((double)attack_ * 1.3);
         case LIGHT_CAVALRY:
             return (int)((double)attack_ * 1.55);
+        case KNIGHT:
+            return (int)((double)attack_ * 0.86);
+        case CROSSBOWMAN:
+            return (int)((double)attack_ * 1.25);
+        case BILLMAN:
+            return (int)((double)attack_ * 0.83);
+        case AXEMAN:
+            return (int)((double)attack_ * 0.95);
     }
 }

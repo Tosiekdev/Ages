@@ -2,7 +2,7 @@
 // Created by tosiek on 26.08.22.
 //
 
-#include "../headers/heavycavalery.h"
+#include "../../headers/units/heavycavalery.h"
 
 HeavyCavalry::HeavyCavalry(){
     //set stats

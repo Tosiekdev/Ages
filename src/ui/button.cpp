@@ -2,7 +2,7 @@
 // Created by tosiek on 04.12.2021.
 //
 
-#include "../headers/button.h"
+#include "../../headers/ui/button.h"
 
 Button::Button(int h,int w,int posx,int posy,sf::String caption){
     this->create(h,w,posx,posy,caption);

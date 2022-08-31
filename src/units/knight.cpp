@@ -2,7 +2,7 @@
 // Created by tosiek on 29.08.22.
 //
 
-#include "../headers/knight.h"
+#include "../../headers/units/knight.h"
 
 Knight::Knight(){
     //set stats

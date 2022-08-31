@@ -6,23 +6,29 @@
 #define AGES1_HANDLEBARRACKS_H
 
 #include "handlebuildings.h"
-#include "swordsman.h"
-#include "spearman.h"
-#include "archer.h"
-#include "heavycavalery.h"
-#include "lightcavalry.h"
-#include "knight.h"
-#include "crossbowman.h"
-#include "clickable.h"
+
+#include "../units/swordsman.h"
+#include "../units/spearman.h"
+#include "../units/archer.h"
+#include "../units/heavycavalery.h"
+#include "../units/lightcavalry.h"
+#include "../units/knight.h"
+#include "../units/crossbowman.h"
+#include "../units/billman.h"
+#include "../units/axeman.h"
+
+#include "../ui/clickable.h"
 
 class HandleBarracks : public HandleBuildings{
-    SwordsMen swordsMen_;
+    Swordsman swordsman_;
     Spearman spearman_;
     Archer archer_;
     HeavyCavalry heavyCavalry_;
     LightCavalry lightCavalry_;
     Knight knight_;
     Crossbowman crossbowman_;
+    Billman billman_;
+    Axeman axeman_;
 
     Clickable slideLeft_;
     Clickable slideRight_;

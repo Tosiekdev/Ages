@@ -8,7 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "constants.h"
+#include "../constants.h"
 
 class Button
 {

@@ -2,7 +2,7 @@
 // Created by tosiek on 16.02.2022.
 //
 
-#include "../../headers/handleacademy.h"
+#include "../../headers/buildings-windows/handleacademy.h"
 
 void HandleAcademy::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
     //for resource info
