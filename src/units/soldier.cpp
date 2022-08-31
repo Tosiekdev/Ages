@@ -22,9 +22,9 @@ std::array<int,3> Soldier::train(int people, int iron, int money){
         resources[1]-=this->nIron_;
         resources[2]-=this->nMoney_;
 
-        this->time_left_=this->upgrade_time_;
+        this->timeLeft_=this->upgradeTime_;
 
-        this->in_upgrade_=true;
+        this->inUpgrade_=true;
     }
 
     return resources;
@@ -60,7 +60,7 @@ std::vector<int> Soldier::give_damage(Type which,std::vector<int> old_damage){
 
 //this happens when time needed to train passed
 void Soldier::end_upgrade(){
-    in_upgrade_=false;
+    inUpgrade_=false;
     lives_.push_back(this->hp_);
     quantity_++;
     update_counter();

@@ -15,7 +15,7 @@ Archer::Archer(){
     nIron_=2;
     nPeople_=1;
     nMoney_=5;
-    upgrade_time_=2;
+    upgradeTime_=2;
 
     //set _look
     texture_.loadFromFile("Textures/Units/archer.png");

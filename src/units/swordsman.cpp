@@ -15,7 +15,7 @@ Swordsman::Swordsman(){
     nIron_=5;
     nPeople_=1;
     nMoney_=10;
-    upgrade_time_=5;
+    upgradeTime_=5;
 
     //set _look
     texture_.loadFromFile("Textures/Units/swordsman.png");

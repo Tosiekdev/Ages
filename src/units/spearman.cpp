@@ -15,7 +15,7 @@ Spearman::Spearman(){
     this->nIron_=4;
     this->nPeople_=1;
     this->nMoney_=8;
-    this->upgrade_time_=4;
+    this->upgradeTime_=4;
 
     //set _look
     this->texture_.loadFromFile("Textures/Units/spearman.png");

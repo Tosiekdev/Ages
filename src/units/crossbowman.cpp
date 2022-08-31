@@ -15,7 +15,7 @@ Crossbowman::Crossbowman(){
     nIron_=3;
     nPeople_=1;
     nMoney_=6;
-    upgrade_time_=3;
+    upgradeTime_=3;
 
     //set _look
     texture_.loadFromFile("Textures/Units/crossbowman.png");

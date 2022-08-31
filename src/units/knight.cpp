@@ -15,7 +15,7 @@ Knight::Knight(){
     nIron_=6;
     nPeople_=2;
     nMoney_=13;
-    upgrade_time_=7;
+    upgradeTime_=7;
 
     //set _look
     texture_.loadFromFile("Textures/Units/knight.png");

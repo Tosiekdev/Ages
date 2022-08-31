@@ -18,7 +18,7 @@ public:
     int attack_calculator(Type which) override;
 
 private:
-    Type _type=KNIGHT;
+    Type type_=KNIGHT;
 };
 
 

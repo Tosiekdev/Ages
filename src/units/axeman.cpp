@@ -15,7 +15,7 @@ Axeman::Axeman(){
     nIron_=4;
     nPeople_=1;
     nMoney_=8;
-    upgrade_time_=5;
+    upgradeTime_=5;
 
     //set _look
     texture_.loadFromFile("Textures/Units/axeman.png");

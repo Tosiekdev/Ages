@@ -15,7 +15,7 @@ HeavyCavalry::HeavyCavalry(){
     nIron_=15;
     nPeople_=3;
     nMoney_=20;
-    upgrade_time_=10;
+    upgradeTime_=10;
 
     //set _look
     texture_.loadFromFile("Textures/Units/h_cavalry.png");

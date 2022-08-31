@@ -34,13 +34,13 @@ public:
     //upgrading
     virtual std::array<int,3> train(int people, int iron, int money);
     virtual void end_upgrade();
-    virtual void reset_timer() { for_upgrade_.restart(); }
-    virtual void get_time() { for_upgrade_.getElapsedTime().asSeconds(); }
+    virtual void reset_timer() { forUpgrade_.restart(); }
+    virtual void get_time() { forUpgrade_.getElapsedTime().asSeconds(); }
     virtual void update_counter()=0;
 
     //saving&loading
-    virtual float get_time_left() { return this->time_left_; }
-    virtual void load_left(float time) { this->time_left_=time; }
+    virtual float get_time_left() { return this->timeLeft_; }
+    virtual void load_left(float time) { this->timeLeft_=time; }
 
     //interacting with buttons
     virtual bool animate_buttons(sf::Vector2i mouse_pos) {
@@ -54,9 +54,9 @@ protected:
 
     std::vector<int> lives_;
 
-    float upgrade_time_{}, time_left_{};
-    bool in_upgrade_=false;
-    sf::Clock for_upgrade_;
+    float upgradeTime_{}, timeLeft_{};
+    bool inUpgrade_=false;
+    sf::Clock forUpgrade_;
 
     sf::Sprite view_;
     sf::Texture texture_;

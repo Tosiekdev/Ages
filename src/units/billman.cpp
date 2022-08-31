@@ -15,7 +15,7 @@ Billman::Billman(){
     nIron_=6;
     nPeople_=1;
     nMoney_=10;
-    upgrade_time_=5;
+    upgradeTime_=5;
 
     //set _look
     texture_.loadFromFile("Textures/Units/billman.png");

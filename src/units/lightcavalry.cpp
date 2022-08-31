@@ -15,7 +15,7 @@ LightCavalry::LightCavalry(){
     nIron_=12;
     nPeople_=3;
     nMoney_=16;
-    upgrade_time_=8;
+    upgradeTime_=8;
 
     //set _look
     texture_.loadFromFile("Textures/Units/l_cavalry.png");
