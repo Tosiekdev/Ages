@@ -38,7 +38,7 @@ void Soldier::slide(float shift){
 }
 
 void Soldier::show(sf::RenderWindow &window){
-    window.draw(this->view_);
+    window.draw(view_);
     name_.draw(window);
     upgrade_.show(window);
     counter_.show(window);

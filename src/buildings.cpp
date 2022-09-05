@@ -5,15 +5,6 @@
 #include "../headers/buildings.h"
 #include "../headers/needed.h"
 
-using namespace std;
-using namespace sf;
-
-buildings::buildings(string the_name,string path_totext,int leveled,int need_s,int need_w,int need_g,Vector2f position){
-    this->active=true;
-    this->in_upgrade=false;
-    this->create_building(the_name,path_totext,leveled,position,need_s,need_w,need_g);
-}
-
 //Building initiation
 void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,int ns,int nw,int np){
     this->name=nm; //set name

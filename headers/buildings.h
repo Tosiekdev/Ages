@@ -15,7 +15,6 @@
 class buildings
 {
 public:
-    buildings(std::string="default",std::string="Textures/default.png",int=0,int=0,int=0,int=0,sf::Vector2f=sf::Vector2f(0,0));
     int take_resources(int &human, int &rock, int &wood); //takes resources
     void end_upgrade(); //finalize upgrade
     void create_building(std::string nm,std::string tx_path,int lvl,sf::Vector2f pos,int ns,int nw,int np); //load asset for building_

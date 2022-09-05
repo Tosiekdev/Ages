@@ -185,7 +185,7 @@ void HandleGame::prepare_buildings(){
                                        sf::Vector2f(300,150), 50, 150, 10);
     this->building_[3].create_building("Farm", "Textures/farm.png", this->levels_[3],
                                        sf::Vector2f(600,450), 20, 60, 2);
-    this->building_[4].create_building("Lumber mill", "Textures/default.png", this->levels_[4],
+    this->building_[4].create_building("Lumber mill", "Textures/lumbermill.png", this->levels_[4],
                                        sf::Vector2f(400,450), 65, 15, 2);
     this->building_[5].create_building("Stone pit", "Textures/default.png", this->levels_[5],
                                        sf::Vector2f(600,250), 15, 65, 2);

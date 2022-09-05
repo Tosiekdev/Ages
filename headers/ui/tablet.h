@@ -19,7 +19,7 @@ private:
     sf::Sprite look;
     sf::Vector2f pos, sting_pos;
     std::string name;
-    bool focus=false;
+    bool focus_=false;
     sf::Font font;
     sf::Text text;
 public:

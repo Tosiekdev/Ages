@@ -183,7 +183,7 @@ void Application::prepare_tablets(){
 
 //Changing focused tablet's texture_
 void Application::prepare_focused_tablets(){
-    //resetting focus
+    //resetting focus_
     for(auto & i:t_) i.unfocused();
 
     //preparing to load
@@ -208,10 +208,10 @@ void Application::prepare_focused_tablets(){
 //Removing save
 void Application::remove_save(){
     //preparing save to delete
-    int b= this->savePath_.length() + 1;
-    char a[b]={0};
-    for(int z=0;z<b;z++) a[z]=this->savePath_[z];
-    int removing=remove(a);
+    int b=savePath_.length() + 1;
+    std::string a={0};
+    for(int z=0;z<b;z++) a+=savePath_[z];
+    int removing=remove(a.c_str());
 
     //updating all saves file
     if(removing==0){

@@ -64,7 +64,7 @@ void HandleMenu::do_stuff(sf::RenderWindow &window){
     int x=sf::Mouse::getPosition(window).x;
     int y=sf::Mouse::getPosition(window).y;
 
-    //checking buttons focus
+    //checking buttons focus_
     a[0]=this->new_game.onFocus(x,y);
     a[1]=this->load_game.onFocus(x,y);
     a[2]=this->exit.onFocus(x,y);
