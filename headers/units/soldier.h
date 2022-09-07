@@ -5,6 +5,7 @@
 #ifndef AGES1_SOLDIER_H
 #define AGES1_SOLDIER_H
 
+#include <iostream>
 #include <array>
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -13,6 +14,8 @@
 #include "../ui/button.h"
 #include "../ui/obstacle.h"
 #include "../ui/label.h"
+
+#include "../trainingwindow.h"
 
 class Soldier{
 protected:
@@ -37,6 +40,7 @@ public:
     virtual void reset_timer() { forUpgrade_.restart(); }
     virtual void get_time() { forUpgrade_.getElapsedTime().asSeconds(); }
     virtual void update_counter()=0;
+    virtual void launch_window(sf::RenderWindow &window)=0;
 
     //saving&loading
     virtual float get_time_left() { return this->timeLeft_; }
@@ -46,6 +50,7 @@ public:
     virtual bool animate_buttons(sf::Vector2i mouse_pos) {
         return upgrade_.onFocus(mouse_pos.x,mouse_pos.y);
     }
+    virtual bool train_click(sf::Vector2i mouse_pos){ return upgrade_.onClick(mouse_pos.x,mouse_pos.y); }
 
     virtual void show(sf::RenderWindow& window);
 
@@ -57,6 +62,7 @@ protected:
     float upgradeTime_{}, timeLeft_{};
     bool inUpgrade_=false;
     sf::Clock forUpgrade_;
+    TrainingWindow window1_;
 
     sf::Sprite view_;
     sf::Texture texture_;

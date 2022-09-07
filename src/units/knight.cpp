@@ -60,3 +60,7 @@ int Knight::attack_calculator(Type which){
             return (int)((double)hit*1.43);
     }
 }
+
+void Knight::launch_window(sf::RenderWindow &window){
+    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Knight",window);
+}

@@ -59,3 +59,7 @@ int Spearman::attack_calculator(Type which){
             return (int)((double)attack_ * 0.95);
     }
 }
+
+void Spearman::launch_window(sf::RenderWindow &window){
+    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Spearman",window);
+}

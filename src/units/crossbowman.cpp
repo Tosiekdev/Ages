@@ -60,3 +60,7 @@ int Crossbowman::attack_calculator(Type which){
             return (int)((double)hit*1.32);
     }
 }
+
+void Crossbowman::launch_window(sf::RenderWindow &window){
+    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Crossbowman",window);
+}

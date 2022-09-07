@@ -45,6 +45,7 @@ void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, i
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
             int i=sf::Mouse::getPosition(window).x;
             int j=sf::Mouse::getPosition(window).y;
+            auto pos=sf::Mouse::getPosition(window);
 
             if(return_to_game.onClick(i,j)){
                 return_to_village(scene);
@@ -56,6 +57,10 @@ void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, i
 
             if(slideRight_.onClick(i, j)){
                 slide_to_right();
+            }
+
+            if(swordsman_.train_click(pos)){
+                swordsman_.launch_window(window);
             }
         }
     }

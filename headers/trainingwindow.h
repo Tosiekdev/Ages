@@ -5,23 +5,21 @@
 #ifndef AGES1_TRAININGWINDOW_H
 #define AGES1_TRAININGWINDOW_H
 
-#include "handlewindow.h"
 #include "ui/label.h"
 #include "ui/button.h"
 
-class TrainingWindow : public HandleWindow {
+class TrainingWindow {
 public:
-    void create(int nMoney, int nPeople, int nIron, int upgTime, std::string unitName);
-    void main_loop(sf::RenderWindow &window, int &scene) override;
-    bool handle_event(sf::RenderWindow &window);
-    void display(sf::RenderWindow &window) override;
+    void create(int nMoney, int nPeople, int nIron, int upgTime, const std::string& unitName,sf::RenderWindow &W);
+    void main_loop();
+    void handle_event();
+    void display();
 
 private:
     sf::RenderWindow window_;
     Label sure_;
-    sf::Event exit_e;
-    Button yes,no;
-    sf::Cursor cursor;
+    sf::Event event_;
+    sf::Cursor cursor_;
 };
 
 

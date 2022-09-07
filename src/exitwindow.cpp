@@ -6,7 +6,8 @@
 
 void ExitWindow::create(sf::RenderWindow &W, int &scene){
     //creating window
-    wExit_.create(sf::VideoMode(300, 200), "Are you sure_?", sf::Style::Titlebar | sf::Style::Close);
+    sf::VideoMode mode=sf::VideoMode(300,200);
+    wExit_.create(mode,"Are you sure?",sf::Style::Titlebar | sf::Style::Close);
     wExit_.setPosition(sf::Vector2i(250 + W.getPosition().x, 200 + W.getPosition().y));
     wExit_.setMouseCursorGrabbed(true);
 

@@ -60,3 +60,7 @@ int Archer::attack_calculator(Type which){
             return (int)((double)hit*1.2);
     }
 }
+
+void Archer::launch_window(sf::RenderWindow &window){
+    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Archer",window);
+}

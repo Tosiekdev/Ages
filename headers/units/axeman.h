@@ -17,6 +17,9 @@ public:
     //battle
     int attack_calculator(Type which) override;
 
+    //upgrading
+    void launch_window(sf::RenderWindow &window) override;
+
 private:
     Type type_=AXEMAN;
 };
