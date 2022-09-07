@@ -85,7 +85,7 @@ void tablet::unfocused()
     this->look.setScale(0.4,0.3);
 }
 
-//Returns name (wow)
+//Returns name_ (wow)
 string tablet::return_name()
 {
     return this->name;

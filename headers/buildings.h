@@ -17,40 +17,40 @@ class buildings
 public:
     int take_resources(int &human, int &rock, int &wood); //takes resources
     void end_upgrade(); //finalize upgrade
-    void create_building(std::string nm,std::string tx_path,int lvl,sf::Vector2f pos,int ns,int nw,int np); //load asset for building_
+    void create_building(std::string nm,const std::string& tx_path,int lvl,sf::Vector2f pos,int ns,int nw,int np); //load asset for building_
     void show(sf::RenderWindow &W); //draws building_ with background
     void show_demands(sf::Vector2f pos, sf::RenderWindow &window);
-    bool isClicked(int posx, int posy); //check if building_ was clicked
+    bool isClicked(int posX, int posY); //check if building_ was clicked
     bool onFocus(int pos_x, int pos_y);//check if cursor_ is on the building_
-    int get_level() const;//returns level
-    void set_level(int lvl);//set new level
-    bool status();//returns status
+    int get_level() const;//returns level_
+    void set_level(int lvl);//set new level_
+    bool status() const;//returns status
     void set_status(bool new_status);//set status
     void activate(); //make building_ Clickable
     void deactivate(); //make building_ un-Clickable
 private:
-    int level;
-    int n_stone,n_wood,n_human; //needed resources
+    int level_;
+    int nStone_,nWood_,nHuman_; //needed resources
 
     //building_
-    std::string name;
-    sf::Texture look;
-    sf::Sprite view;
-    sf::Vector2f possition;
-    Label s_name;
-    bool active;
+    std::string name_;
+    sf::Texture look_;
+    sf::Sprite view_;
+    sf::Vector2f possition_;
+    Label sName_;
+    bool active_;
 
     //star
     std::string lvl_caption;
-    sf::Texture star_look;
-    sf::Sprite star_view;
-    sf::Vector2f star_possition;
-    Label lvl_label;
+    sf::Texture starLook_;
+    sf::Sprite starView_;
+    sf::Vector2f starPossition_;
+    Label lvlLabel_;
     void create_star();
 
     //demands
-    Label for_stone, for_wood, for_human;
-    bool in_upgrade;
+    Label forStone_, forWood_, forHuman_;
+    bool inUpgrade_;
 };
 
 

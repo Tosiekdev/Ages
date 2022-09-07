@@ -21,7 +21,7 @@ Swordsman::Swordsman(){
     texture_.loadFromFile("Textures/Units/swordsman.png");
     view_.setTexture(this->texture_);
 
-    //name and button to training
+    //name_ and button to training
     name_.create_obstacle("Textures/plank.png",sf::Vector2f(0.1,0.1),sf::Vector2f(0,0));
     counter_.create(DEFAULT_FONT, 0, 0,"Swordsman: "+std::to_string(quantity_), 12);
     counter_.center();

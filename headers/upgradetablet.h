@@ -40,10 +40,10 @@ private:
     //building_ that it is responsible for
     buildings *responsible{};
 
-    //building_ name
+    //building_ name_
     Label name;
 
-    //level star
+    //level_ star
     sf::Texture star;
     sf::Sprite supernova;
     Label star_text;

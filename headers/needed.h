@@ -47,7 +47,7 @@ private:
     sf::Texture backgroundMenuTexture_;
     sf::Sprite backgroundMenuSprite_;
 
-    ExitWindow exitWindow_;//w_exit
+    ExitWindow exitWindow_;//wExit_
     HandleMenu menu_;//menu_
 
     //create

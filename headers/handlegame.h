@@ -77,7 +77,7 @@ private:
     ExitWindow exitWindow;
     sf::Event e;
     sf::Cursor cursor;
-    sf::Clock resource_clock;
+    sf::Clock resourceClock_, humanClock_;
     Button return_to_menu, save;
     Obstacle resource_plank, resource_man, resource_wood, resource_rock;
     Label l_human, l_rock, l_wood;

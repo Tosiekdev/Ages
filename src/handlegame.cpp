@@ -13,7 +13,8 @@ void HandleGame::create(std::string path){
     this->save.create(40,100,130,5,"Save");
 
     //set clock to 0
-    this->resource_clock.restart();
+    resourceClock_.restart();
+    humanClock_.restart();
 
     //for town hall
     float y_position=205.f;
@@ -211,9 +212,13 @@ void HandleGame::assign_levels(){
 void HandleGame::clocks(int scene){
     if(scene>3){
         //increasing resources
-        if (resource_clock.getElapsedTime().asSeconds() >= 1) {
-            int time_passed = (int)resource_clock.getElapsedTime().asSeconds();
-            human+=static_cast<int>(time_passed * 1.2 * levels_[3]);
+        if(humanClock_.getElapsedTime().asSeconds()>=10){
+            float time_passed = (float)humanClock_.getElapsedTime().asSeconds();
+            human+=static_cast<int>(time_passed*0.12*levels_[3]);
+            humanClock_.restart();
+        }
+        if (resourceClock_.getElapsedTime().asSeconds() >= 1) {
+            int time_passed = (int)resourceClock_.getElapsedTime().asSeconds();
             rock+= time_passed * 10 * levels_[5];
             wood+= time_passed * 10 * levels_[4];
 
@@ -250,7 +255,7 @@ void HandleGame::clocks(int scene){
                     l_wood.setCaption("Wood: "+std::to_string(wood));
                     break;
             }
-            this->resource_clock.restart();
+            this->resourceClock_.restart();
         }
         for(int i=0; i<8; i++){
             if(this->th_window.ub_get_time(i)>=1){

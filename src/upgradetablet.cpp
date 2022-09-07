@@ -30,7 +30,7 @@ void Upgrade_tablet::create_upgrade(buildings *resp, std::string caption, sf::Ve
     this->responsible=resp;
     this->responsible->set_status(false);
 
-    //building_ name
+    //building_ name_
     this->name.create(DEFAULT_FONT,this->position.x,this->position.y,caption,40);
 
     //star
@@ -66,7 +66,7 @@ sf::Vector2f Upgrade_tablet::Return_position(){
 void Upgrade_tablet::set_position(sf::Vector2f new_pos){
     this->position=new_pos;
     this->upgrade.set_position(this->position+sf::Vector2f(600,0));//button
-    this->name.setPosition(this->position);//building_ name
+    this->name.setPosition(this->position);//building_ name_
     this->clock.setPosition(this->position+sf::Vector2f(400,0));//timer
     this->counting_down.setPosition(this->position+sf::Vector2f(300,0));//progress bar
     this->supernova.setPosition(this->position.x+this->name.getWidth()+10,this->position.y-15);//star

@@ -168,7 +168,7 @@ void Application::prepare_tablets(){
         //reading line
         getline(plik,save_name);
 
-        //setting proper name
+        //setting proper name_
         if(nr_line-this->downLevel_ >= 0 && nr_line - this->downLevel_ <= 4){
             if(save_name!="")
                 this->t_[nr_line - this->downLevel_].create_tablet(save_name, pos);

@@ -15,13 +15,13 @@ void HandleLumberMill::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk,
     this->crete_info();
     this->info.setCaption("Lumber Mill takes care about your wood_ supply.\n"
                           "Those are needed to upgrade buildings.\n"
-                          "Higher level means more wood_!");
+                          "Higher level_ means more wood_!");
     int lumber=*this->building;
     this->current.create(DEFAULT_FONT,400,300,"",30);
     this->current.setCaption("Current wood_ growth: "+std::to_string(lumber*60)+" rocks/minute");
     this->current.center();
     this->next.create(DEFAULT_FONT,400,350,"",30);
-    this->next.setCaption("Next level wood_ growth: "+std::to_string((lumber+1)*60)+" rocks/minute");
+    this->next.setCaption("Next level_ wood_ growth: "+std::to_string((lumber+1)*60)+" rocks/minute");
     this->next.center();
 
     //buttons

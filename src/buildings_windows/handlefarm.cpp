@@ -63,20 +63,20 @@ void HandleFarm::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *
 
     //info
     this->crete_info();
-    this->info.setCaption("Farm reproduces people. Higher level equals more\n"
+    this->info.setCaption("Farm reproduces people. Higher level_ equals more\n"
                           "people per second. Also upgrading farm gives space_ for\n"
                           "more and more human_ beings!");
     int farm=*this->building;
     this->f_current.create(DEFAULT_FONT,400,300,"Current population growth: "+
-                            std::to_string(((int)(farm*1.2))*60)+"ppl/minute",30);
+                            std::to_string(((int)((float)farm*1.2))*6)+"ppl/minute",30);
     this->f_current.center();
-    this->f_next.create(DEFAULT_FONT,400,350,"Next level population growth: "+
-                            std::to_string(((int)((farm+1)*1.2))*60)+"ppl/minute",30);
+    this->f_next.create(DEFAULT_FONT,400,350,"Next level_ population growth: "+
+                            std::to_string(((int)((float)(farm+1)*1.2))*6)+"ppl/minute",30);
     this->f_next.center();
     this->f_capacity.create(DEFAULT_FONT,400,400,"Current farm capacity: "+
                             std::to_string(farm*156)+" people",30);
     this->f_capacity.center();
-    this->f_next_capacity.create(DEFAULT_FONT,400,450,"Next level farm capacity: "+
+    this->f_next_capacity.create(DEFAULT_FONT,400,450,"Next level_ farm capacity: "+
                             std::to_string((farm+1)*156)+" people",30);
     this->f_next_capacity.center();
 

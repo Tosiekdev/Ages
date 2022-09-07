@@ -107,7 +107,7 @@ string Application::create_city(const string& calling){
     fileCheck.open(savePath_);
     if(fileCheck) return "This village already exists!";
 
-    //setting name
+    //setting name_
     name=calling;
 
     //setting levels_
@@ -119,7 +119,7 @@ string Application::create_city(const string& calling){
    for(int i=0; i<8; i++)
        gameWindow_.set_ub_left(i, 0, 1);
 
-    //writing new name to all saves file
+    //writing new name_ to all saves file
     file.open("all_saves.txt",ios::out | ios::app);
     file << calling << endl;
     file.close();

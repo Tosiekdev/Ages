@@ -20,7 +20,7 @@ void Application::create_create(){
     this->space_.setScale(0.5, 0.5);
 
     //Caption
-    this->label1_.create(DEFAULT_FONT, 320, 205, "Enter name:", 30);
+    this->label1_.create(DEFAULT_FONT, 320, 205, "Enter name_:", 30);
     this->label2_.create(DEFAULT_FONT, 275, 275, "", 20);
 
     //Textbox
@@ -49,7 +49,7 @@ void Application::c_handle_event(){
         if(this->e_.type == Event::Closed) this->screen_.close();
         if((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow_.create(this->screen_, this->scene_);
 
-        //starting game when proper name is entered
+        //starting game when proper name_ is entered
         if(Keyboard::isKeyPressed(Keyboard::Enter)){
             if(this->t1_.return_caption() != ""){
                 string erro=this->create_city(this->t1_.return_caption());

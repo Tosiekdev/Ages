@@ -20,7 +20,7 @@ void HandleWarehouse::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, 
     this->current.setCaption("Current capacity: "+std::to_string(warehouse*1296));
     this->current.center();
     this->next.create(DEFAULT_FONT,400,350,"",30);
-    this->next.setCaption("Next level capacity: "+std::to_string((warehouse+1)*1296));
+    this->next.setCaption("Next level_ capacity: "+std::to_string((warehouse+1)*1296));
     this->next.center();
 
     //buttons

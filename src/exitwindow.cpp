@@ -6,45 +6,45 @@
 
 void ExitWindow::create(sf::RenderWindow &W, int &scene){
     //creating window
-    this->w_exit.create(sf::VideoMode(300,200),"Are you sure?",sf::Style::Titlebar | sf::Style::Close);
-    this->w_exit.setPosition(sf::Vector2i(250+W.getPosition().x,200+W.getPosition().y));
-    this->w_exit.setMouseCursorGrabbed(true);
+    wExit_.create(sf::VideoMode(300, 200), "Are you sure_?", sf::Style::Titlebar | sf::Style::Close);
+    wExit_.setPosition(sf::Vector2i(250 + W.getPosition().x, 200 + W.getPosition().y));
+    wExit_.setMouseCursorGrabbed(true);
 
     //creating buttons
-    this->yes.create(40,100,167,110,"Yes");
-    this->no.create(40,100,33,110,"No");
-    this->sure.create(DEFAULT_FONT,2,20,"Are sure you want exit?",28);
+    yes_.create(40, 100, 167, 110, "Yes");
+    no_.create(40, 100, 33, 110, "No");
+    sure_.create(DEFAULT_FONT, 2, 20, "Are sure_ you want exit?", 28);
 
-    this->main_loop(W,scene);
+    main_loop(W,scene);
 }
 
 void ExitWindow::main_loop(sf::RenderWindow &window, int &scene){
-    while(this->w_exit.isOpen()) {
-        this->handle_event(scene,window);
-        this->do_stuff(window);
-        this->display(window);
+    while(wExit_.isOpen()) {
+        handle_event(scene,window);
+        do_stuff(window);
+        display(window);
     }
 }
 
 void ExitWindow::handle_event(int &scene, sf::RenderWindow &window){
-    while(this->w_exit.pollEvent(this->exit_e)){
+    while(wExit_.pollEvent(exitE_)){
         //Exit
-        if(this->exit_e.type==sf::Event::Closed) this->w_exit.close();
+        if(exitE_.type == sf::Event::Closed) wExit_.close();
 
         //Is button clicked?
-        if(this->exit_e.type==sf::Event::MouseButtonPressed){
+        if(exitE_.type == sf::Event::MouseButtonPressed){
             //Getting mouse _position
-            int x=sf::Mouse::getPosition(this->w_exit).x;
-            int y=sf::Mouse::getPosition(this->w_exit).y;
+            int x=sf::Mouse::getPosition(wExit_).x;
+            int y=sf::Mouse::getPosition(wExit_).y;
 
-            //yes button
-            if(this->yes.onClick(x,y)){
+            //yes_ button
+            if(yes_.onClick(x, y)){
                 window.close();
-                this->w_exit.close();
+                wExit_.close();
             }
 
-            //no button
-            if(this->no.onClick(x,y)) this->w_exit.close();
+            //no_ button
+            if(no_.onClick(x, y)) wExit_.close();
         }
     }
 }
@@ -52,22 +52,24 @@ void ExitWindow::handle_event(int &scene, sf::RenderWindow &window){
 void ExitWindow::do_stuff(sf::RenderWindow &window){
     //Button animation
     bool a[2];
-    a[0]=this->yes.onFocus(sf::Mouse::getPosition(this->w_exit).x,sf::Mouse::getPosition(this->w_exit).y);
-    a[1]=this->no.onFocus(sf::Mouse::getPosition(this->w_exit).x,sf::Mouse::getPosition(this->w_exit).y);
+    int posX=sf::Mouse::getPosition(wExit_).x;
+    int posY=sf::Mouse::getPosition(wExit_).y;
+    a[0]=yes_.onFocus(posX,posY);
+    a[1]=no_.onFocus(posX,posY);
 
     //cursor_
     if(a[0] || a[1])
-        this->cursor.loadFromSystem(sf::Cursor::Hand);
+        cursor_.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(sf::Cursor::Arrow);
-    this->w_exit.setMouseCursor(this->cursor);
+        cursor_.loadFromSystem(sf::Cursor::Arrow);
+    wExit_.setMouseCursor(cursor_);
 }
 
 void ExitWindow::display(sf::RenderWindow &window){
     //Drawing everything
-    this->w_exit.clear(sf::Color::White);
-    this->yes.show(this->w_exit);
-    this->no.show(this->w_exit);
-    this->sure.show(this->w_exit);
-    this->w_exit.display();
+    wExit_.clear(sf::Color::White);
+    yes_.show(wExit_);
+    no_.show(wExit_);
+    sure_.show(wExit_);
+    wExit_.display();
 }

@@ -18,11 +18,11 @@ public:
     void display(sf::RenderWindow &window) override;
 
 private:
-    sf::RenderWindow w_exit;
-    Label sure;
-    sf::Event exit_e;
-    Button yes,no;
-    sf::Cursor cursor;
+    sf::RenderWindow wExit_;
+    Label sure_;
+    sf::Event exitE_;
+    Button yes_,no_;
+    sf::Cursor cursor_;
 };
 
 

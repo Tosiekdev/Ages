@@ -15,7 +15,7 @@ void HandleChurch::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int
     this->crete_info();
     this->info.setCaption("In Church you can obtain God's grace which can help you\n"
                           "in war, increase resource production and many more.\n"
-                          "Higher level means more grace!");
+                          "Higher level_ means more grace!");
 
     //buttons
     this->create_return_button();

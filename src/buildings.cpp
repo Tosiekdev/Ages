@@ -2,50 +2,51 @@
 // Created by tosiek on 04.12.2021.
 //
 
+#include <utility>
+
 #include "../headers/buildings.h"
-#include "../headers/needed.h"
 
 //Building initiation
-void buildings::create_building(string nm,string tx_path,int lvl,Vector2f pos,int ns,int nw,int np){
-    this->name=nm; //set name
-    this->level=lvl; //set level
+void buildings::create_building(std::string nm,const std::string& tx_path,int lvl,sf::Vector2f pos,int ns,int nw,int np){
+    name_=std::move(nm); //set name_
+    level_=lvl; //set level_
 
     //set texture_
-    this->look.loadFromFile(tx_path);
-    this->view.setTexture(this->look);
+    look_.loadFromFile(tx_path);
+    view_.setTexture(look_);
 
     //set _position
-    this->possition=pos;
-    this->view.setPosition(this->possition);
+    possition_=pos;
+    view_.setPosition(possition_);
 
     //set needed resources
-    this->n_human=np*pow(1.67,this->level-1);
-    this->n_wood=nw*pow(1.67,this->level-1);
-    this->n_stone=ns*pow(1.67,this->level-1);
+    nHuman_= static_cast<int>(np * pow(1.67,level_ - 1));
+    nWood_= static_cast<int>(nw * pow(1.67,level_ - 1));
+    nStone_= static_cast<int>(ns * pow(1.67,level_ - 1));
 
     //set label _position
-    this->s_name.setCaption(this->name);
-    Vector2f l_pos=this->possition+Vector2f(10,100);
-    this->s_name.setPosition(l_pos);
+    sName_.setCaption(name_);
+    sf::Vector2f l_pos= possition_ + sf::Vector2f(10, 100);
+    sName_.setPosition(l_pos);
 
-    //star to show level
-    this->create_star();
+    //star to show level_
+    create_star();
 }
-;
+
 //First part of upgrade, take resources
 int buildings::take_resources(int &human, int &rock, int &wood) {
-    if(this->n_human<=human && this->n_stone<=rock && this->n_wood <= wood && !this->in_upgrade && this->level<30){
+    if(nHuman_ <= human && nStone_ <= rock && nWood_ <= wood && !inUpgrade_ && level_ < 30){
         //take resources
-        human-=this->n_human;
-        rock-=this->n_stone;
-        wood-=this->n_wood;
+        human-=nHuman_;
+        rock-=nStone_;
+        wood-=nWood_;
 
         //rise demands
-        this->n_stone*=1.67;
-        this->n_wood*=1.67;
-        this->n_human*=1.67;
+        nStone_*=1.67;
+        nWood_*=1.67;
+        nHuman_*=1.67;
 
-        this->in_upgrade=true;
+        this->inUpgrade_=true;
 
         return 1;
     }
@@ -53,85 +54,81 @@ int buildings::take_resources(int &human, int &rock, int &wood) {
 }
 
 //Draw building_
-void buildings::show(RenderWindow &W){
-    if(this->level>0){
-        W.draw(this->view);
-        W.draw(this->star_view);
-        this->lvl_label.show(W);
-        this->s_name.show(W);
+void buildings::show(sf::RenderWindow &W){
+    if(level_ > 0){
+        W.draw(view_);
+        W.draw(starView_);
+        lvlLabel_.show(W);
+        sName_.show(W);
     }
 }
 
 //creating star
 void buildings::create_star(){
     //load texture_
-    this->star_look.loadFromFile("Textures/star.png");
-    this->star_view.setTexture(this->star_look);
-    this->star_view.setScale(0.05, 0.05);
+    starLook_.loadFromFile("Textures/star.png");
+    starView_.setTexture(starLook_);
+    starView_.setScale(0.05, 0.05);
 
     //positioning
-    this->star_possition=this->possition+Vector2f(125, 0);
-    this->star_view.setPosition(this->star_possition);
+    starPossition_= possition_ + sf::Vector2f(125, 0);
+    starView_.setPosition(starPossition_);
 
     //text
-    lvl_label.create(DEFAULT_FONT,star_possition.x+20,star_possition.y+15,to_string(this->level),15);
-    lvl_label.center();
+    float labelPosX=starPossition_.x+20;
+    float labelPosY=starPossition_.y+15;
+    lvlLabel_.create(DEFAULT_FONT,labelPosX,labelPosY,std::to_string(level_),15);
+    lvlLabel_.center();
 }
 
-bool buildings::isClicked(int posx, int posy){
-    if(this->view.getGlobalBounds().contains((float)posx,(float)posy) && this->active){
-        return true;
-    }else
-        return false;
+bool buildings::isClicked(int posX, int posY){
+    return view_.getGlobalBounds().contains((float)posX, (float)posY) && active_;
 }
 
-void buildings::show_demands(Vector2f pos, RenderWindow &window){
+void buildings::show_demands(sf::Vector2f pos, sf::RenderWindow &window){
     //prepare labels
-    this->for_human.create(DEFAULT_FONT,(int)pos.x,(int)pos.y,"People: "+ to_string(this->n_human),15);
-    this->for_stone.create(DEFAULT_FONT,(int)pos.x+100,(int)pos.y,"Stone: "+ to_string(this->n_stone),15);
-    this->for_wood.create(DEFAULT_FONT,(int)pos.x+200,(int)pos.y,"Wood: "+ to_string(this->n_wood),15);
+    forHuman_.create(DEFAULT_FONT,pos.x,pos.y,"People: " + std::to_string(nHuman_),15);
+    forStone_.create(DEFAULT_FONT,pos.x+100,pos.y,"Stone: "+std::to_string(nStone_),15);
+    forWood_.create(DEFAULT_FONT,pos.x+200,pos.y,"Wood: "+std::to_string(nWood_),15);
 
     //display demands
-    this->for_human.show(window);
-    this->for_stone.show(window);
-    this->for_wood.show(window);
+    forHuman_.show(window);
+    forStone_.show(window);
+    forWood_.show(window);
 }
 
 int buildings::get_level() const{
-    return this->level;
+    return level_;
 }
 
-bool buildings::status() {
-    return this->in_upgrade;
+bool buildings::status() const {
+    return inUpgrade_;
 }
 
 void buildings::end_upgrade(){
-    this->level++;
-    this->in_upgrade=false;
-    this->lvl_label.setCaption(to_string(this->level));
-    this->lvl_label.center();
+    level_++;
+    inUpgrade_=false;
+    lvlLabel_.setCaption(std::to_string(this->level_));
+    lvlLabel_.center();
 }
 
 void buildings::set_status(bool new_status){
-    this->in_upgrade=new_status;
+    inUpgrade_=new_status;
 }
 
 bool buildings::onFocus(int pos_x, int pos_y){
-    if(this->view.getGlobalBounds().contains(pos_x,pos_y)){
-        return true;
-    }
-    return false;
+    return view_.getGlobalBounds().contains((float)pos_x,(float)pos_y);
 }
 
 void buildings::activate(){
-    this->active=true;
+    active_=true;
 }
 
 void buildings::deactivate(){
-    this->active=false;
+    active_=false;
 }
 
 void buildings::set_level(int lvl){
-    this->level=lvl;
+    level_=lvl;
 }
 
