@@ -4,9 +4,10 @@
 
 #include "../../headers/buildings-windows/handletownhall.h"
 
-void HandleTownHall::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
+void
+HandleTownHall::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) {
     //for resource info
-    this->assign_values(lh,lr,lw,hn,rk,wd,bld);
+    assign_values(lh,lr,lw,lm,hn,rk,wd,bld,moni);
 
     //change resource _look
     this->resource_look();
@@ -26,21 +27,23 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
 
         //tablets scrolling
         if(event.type==sf::Event::MouseWheelScrolled){
+            //scrolling down
             if(event.mouseWheelScroll.delta<0){
                 sf::Vector2f buf_pos;
-                buf_pos=u_buildings[7].Return_position();
-                for(int i=7; i>0; i--){
+                buf_pos=u_buildings[8].Return_position();
+                for(int i=8; i>0; i--){
                     this->u_buildings[i].set_position(this->u_buildings[i-1].Return_position());
                 }
                 this->u_buildings[0].set_position(buf_pos);
             }
+            //scrolling up
             if(event.mouseWheelScroll.delta>0){
                 sf::Vector2f buf_pos;
                 buf_pos=u_buildings[0].Return_position();
-                for(int i=0; i<7; i++){
+                for(int i=0; i<8; i++){
                     this->u_buildings[i].set_position(this->u_buildings[i+1].Return_position());
                 }
-                this->u_buildings[7].set_position(buf_pos);
+                this->u_buildings[8].set_position(buf_pos);
             }
         }
 
@@ -54,9 +57,9 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
             }
 
             //upgrading buildings
-            for(int a=0; a<8; a++){
-                if(this->u_buildings[a].button_clicked(mouse_pos)){
-                    this->u_buildings[a].upgrade_building(*this->human,*this->rock,*this->wood,*this->building);
+            for(auto & u_building : this->u_buildings){
+                if(u_building.button_clicked(mouse_pos)){
+                    u_building.upgrade_building(*this->human,*this->rock,*this->wood,*this->building);
                     this->l_human->setCaption("People: "+std::to_string(*this->human));
                     this->l_rock->setCaption("Stone: "+std::to_string(*this->rock));
                     this->l_wood->setCaption("Wood: "+std::to_string(*this->wood));
@@ -67,19 +70,19 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
 }
 
 void HandleTownHall::do_stuff(sf::RenderWindow &window){
-    bool a[9];
+    std::vector<bool> a;
     int x=sf::Mouse::getPosition(window).x;
     int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
-    a[0]=this->return_to_game.onFocus(x,y);
+    a.push_back(return_to_game.onFocus(x,y));
 
     sf::Vector2i mouse_pos=sf::Mouse::getPosition(window);
     //upgrade box
-    for(int i=0; i<8; i++)
-        a[i+1]=this->u_buildings[i].button_animation(mouse_pos);
+    for(auto &i:u_buildings)
+        a.push_back(i.button_animation(mouse_pos));
 
-    if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7] || a[8])
+    if(std::count(a.begin(),a.end(),true))
         this->cursor.loadFromSystem(sf::Cursor::Hand);
     else
         this->cursor.loadFromSystem(sf::Cursor::Arrow);

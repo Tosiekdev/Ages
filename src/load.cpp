@@ -208,10 +208,7 @@ void Application::prepare_focused_tablets(){
 //Removing save
 void Application::remove_save(){
     //preparing save to delete
-    int b=savePath_.length() + 1;
-    std::string a={0};
-    for(int z=0;z<b;z++) a+=savePath_[z];
-    int removing=remove(a.c_str());
+    int removing=remove(savePath_.c_str());
 
     //updating all saves file
     if(removing==0){
@@ -243,7 +240,7 @@ void Application::remove_save(){
         this->errorMessage_.setCaption("File removed succesfully!");
     }
     else{
-        this->errorMessage_.setCaption("Failed to remove file!");
+        this->errorMessage_.setCaption("Failed to remove file!"+ to_string(removing));
     }
 }
 

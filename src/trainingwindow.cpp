@@ -14,7 +14,7 @@ void TrainingWindow::create(int nMoney,int nPeople,int nIron,int upgTime,const s
     //creating info-window
     sf::VideoMode mode=sf::VideoMode(450,300);
     window_.create(mode,"Train "+unitName,sf::Style::Titlebar | sf::Style::Close);
-    sf::Vector2i windowPos=W.getPosition()+sf::Vector2i(250,75);
+    sf::Vector2i windowPos=W.getPosition()+sf::Vector2i(175,150);
     window_.setPosition(windowPos);
 
     //creating info to show in upgrade window
@@ -51,8 +51,10 @@ void TrainingWindow::handle_event(){
             }
 
             if(minus_.onClick(mPosX,mPosY)){
-                quantity_--;
-                set_captions();
+                if(quantity_>=2){
+                    quantity_--;
+                    set_captions();
+                }
             }
         }
     }

@@ -6,9 +6,10 @@
 
 #define SLIDE 117
 
-void HandleBarracks::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
+void
+HandleBarracks::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) {
     //for resource info
-    assign_values(lh,lr,lw,hn,rk,wd,bld);
+    assign_values(lh,lr,lw,lm,hn,rk,wd,bld,moni);
 
     //change resource _look
     resource_look();
@@ -59,9 +60,7 @@ void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, i
                 slide_to_right();
             }
 
-            if(swordsman_.train_click(pos)){
-                swordsman_.launch_window(window);
-            }
+            launch_windows(pos,window);
         }
     }
 }
@@ -167,5 +166,24 @@ void HandleBarracks::right_slider(T& card){
     card.slide(SLIDE);
     if(card.get_position().x<52 || card.get_position().x>637){
         card.slide(SLIDE);
+    }
+}
+
+void HandleBarracks::launch_windows(sf::Vector2i mPos, sf::RenderWindow& window){
+    launch_single(mPos,window,swordsman_);
+    launch_single(mPos,window,spearman_);
+    launch_single(mPos,window,archer_);
+    launch_single(mPos,window,heavyCavalry_);
+    launch_single(mPos,window,lightCavalry_);
+    launch_single(mPos,window,knight_);
+    launch_single(mPos,window,crossbowman_);
+    launch_single(mPos,window,billman_);
+    launch_single(mPos,window,axeman_);
+}
+
+template<class T>
+void HandleBarracks::launch_single(sf::Vector2i mPos, sf::RenderWindow &window, T& unit){
+    if(unit.train_click(mPos)){
+        unit.launch_window(window);
     }
 }

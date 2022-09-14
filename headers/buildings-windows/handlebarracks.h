@@ -52,8 +52,22 @@ class HandleBarracks : public HandleBuildings{
     template<class T>
             void right_slider(T& card);
 
+    /**
+     * Function to checking if train button of any unit is clicked
+     * @param mPos Mouse position in the moment of click
+     */
+    void launch_windows(sf::Vector2i mPos, sf::RenderWindow& window);
+
+    /**
+     * Function checking single unit to open training window.
+     * @tparam T Type of unit.
+     * @param window Main window of the game, needed to proper display of training window.
+     */
+    template<class T>
+            void launch_single(sf::Vector2i mPos, sf::RenderWindow& window, T& unit);
+
 public:
-    void create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld) override;
+    void create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) override;
     void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene) override;
     void do_stuff(sf::RenderWindow &window) override;
     void display(sf::RenderWindow &window) override;

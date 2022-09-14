@@ -4,9 +4,10 @@
 
 #include "../../headers/buildings-windows/handlewarehouse.h"
 
-void HandleWarehouse::create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld){
+void
+HandleWarehouse::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) {
     //for resource info
-    this->assign_values(lh,lr,lw,hn,rk,wd,bld);
+    assign_values(lh,lr,lw,lm,hn,rk,wd,bld,moni);
 
     //change resource _look
     this->resource_look();

@@ -61,8 +61,8 @@ public:
     void set_path(std::string path);
 
 private:
-    std::array<buildings,8> building_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh
-    std::array<int,8> levels_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh
+    std::array<buildings,9> building_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank
+    std::array<int, 9> levels_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank
     std::map<int,std::string> numToNames{
             {0,"Academy"},
             {1,"Barracks"},
@@ -71,21 +71,22 @@ private:
             {4,"Lumber Mill"},
             {5,"Stone Pit"},
             {6,"Town Hall"},
-            {7,"Warehouse"}
+            {7,"Warehouse"},
+            {8,"Bank"}
     };
-    int human, rock, wood;
+    int human_, rock_, wood_, money_;
     ExitWindow exitWindow;
     sf::Event e;
     sf::Cursor cursor;
     sf::Clock resourceClock_, humanClock_;
     Button return_to_menu, save;
-    Obstacle resource_plank, resource_man, resource_wood, resource_rock;
-    Label l_human, l_rock, l_wood;
-    std::string save_path, name;
+    Obstacle resourcePlank_, resourceMan_, resourceWood_, resourceRock_, resourceMoney_;
+    Label lHuman_, lRock_, lWood_, lMoney_;
+    std::string savePath_, name_;
     SaveSystem saveSystem;
     HandleWoSaving wsWindow;
 
-    HandleTownHall th_window; //town hall
+    HandleTownHall thWindow_; //town hall
     HandleFarm farm_window;//farm
     HandleLumberMill lm_window;//lumber mill
     HandleStonePit sp_window;//stone pit

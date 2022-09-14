@@ -4,7 +4,10 @@
 
 #include "../headers/savesystem.h"
 
-void SaveSystem::load_save(std::string save_path, std::array<int,8> &levels,HandleTownHall &th_window,std::string &name,int &human,int &wood,int &rock,std::array<buildings,8> &b){
+void
+SaveSystem::load_save(std::string save_path, std::array<int, 9> &levels, HandleTownHall &th_window, std::string &name,
+                      int &human,
+                      int &wood, int &rock, int &money, std::array<buildings, 9> &b) {
     std::fstream s_path;
     s_path.open(save_path,std::ios::in);
     std::string input;
@@ -38,44 +41,51 @@ void SaveSystem::load_save(std::string save_path, std::array<int,8> &levels,Hand
             case 7:
                 levels[6]=stoi(input);//townhall
                 break;
-            case 8:{
+            case 8:
                 levels[7]=stoi(input);//warehouse
-                for(int i=0; i<8; i++) b[i].set_level(levels[i]);
-            }
+                break;
+            case 9:
+                levels[8]=std::stoi(input);
+                for(int i=0; i<9; i++) b[i].set_level(levels[i]);
                 break;
                 //resources
-            case 9:
+            case 10:
                 human=stoi(input);
                 break;
-            case 10:
+            case 11:
                 wood=stoi(input);
                 break;
-            case 11:
+            case 12:
                 rock=stoi(input);
                 break;
-            case 12:
+            case 13:
+                money=stoi(input);
+            case 14:
                 th_window.set_ub_left(0, stof(input),levels[6]);
                 break;
-            case 13:
+            case 15:
                 th_window.set_ub_left(1,stof(input),levels[6]);
                 break;
-            case 14:
+            case 16:
                 th_window.set_ub_left(2,stof(input),levels[6]);
                 break;
-            case 15:
+            case 17:
                 th_window.set_ub_left(3,stof(input),levels[6]);
                 break;
-            case 16:
+            case 18:
                 th_window.set_ub_left(4,stof(input),levels[6]);
                 break;
-            case 17:
+            case 19:
                 th_window.set_ub_left(5,stof(input),levels[6]);
                 break;
-            case 18:
+            case 20:
                 th_window.set_ub_left(6,stof(input),levels[6]);
                 break;
-            case 19:
+            case 21:
                 th_window.set_ub_left(7,stof(input),levels[6]);
+                break;
+            case 22:
+                th_window.set_ub_left(8,std::stof(input),levels[6]);
                 break;
         }
         line_nr++;
@@ -84,7 +94,9 @@ void SaveSystem::load_save(std::string save_path, std::array<int,8> &levels,Hand
 }
 
 void
-SaveSystem::save_game(std::string save_path, std::array<int, 8> levels, HandleTownHall &th_window, std::string &name, int &human,int &wood, int &rock){
+SaveSystem::save_game(std::string save_path, std::array<int, 9> &levels, HandleTownHall &th_window, std::string &name,
+                      int &human,
+                      int &wood, int &rock, int &money) {
     //opening save
     std::fstream file;
     file.open(save_path, std::ios::out);
@@ -99,9 +111,10 @@ SaveSystem::save_game(std::string save_path, std::array<int, 8> levels, HandleTo
     file << human << std::endl;
     file << wood << std::endl;
     file << rock << std::endl;
+    file << money << std::endl;
 
     //upgrades time left
-    for(int i=0; i<8; i++)
+    for(int i=0; i<9; i++)
         file << th_window.get_ub_left(i) << std::endl;
 
     file.close();

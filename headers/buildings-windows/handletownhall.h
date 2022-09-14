@@ -17,7 +17,7 @@ public:
     void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene) override;
     void do_stuff(sf::RenderWindow &window) override;
     void display(sf::RenderWindow &window) override;
-    void create(Label *lh, Label *lr, Label *lw, int *hn, int *rk, int *wd, int *bld) override;
+    void create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) override;
 
     //uniq
     void crete_ub(buildings* resp, sf::Vector2f pos, int index);
@@ -37,9 +37,10 @@ private:
             {5,"Lumber Mill"},
             {6,"Stone Pit"},
             {7,"Town Hall"},
-            {8,"Warehouse"}
+            {8,"Warehouse"},
+            {9,"Bank"}
     };
-    Upgrade_tablet u_buildings[8];
+    Upgrade_tablet u_buildings[9];
 };
 
 

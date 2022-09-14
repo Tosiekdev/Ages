@@ -50,7 +50,7 @@ void Label::setSize(int new_size){
 
 //new _position
 void Label::setPosition(sf::Vector2f new_position){
-    this->label_position=new_position;
+    label_position=new_position;
     this->label_text.setPosition(this->label_position);
 }
 
