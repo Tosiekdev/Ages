@@ -99,9 +99,9 @@ void Application::main_window(){
 string Application::create_city(const string& calling){
 
     //creating needed variables
-    fstream file;
-    ifstream fileCheck;
-    string line;
+    std::fstream file;
+    std::ifstream fileCheck;
+    std::string line;
     savePath_= calling + ".txt";
 
     gameWindow_.set_path(savePath_);
@@ -124,7 +124,7 @@ string Application::create_city(const string& calling){
 
     //writing new name_ to all saves file
     file.open("all_saves.txt",ios::out | ios::app);
-    file << calling << endl;
+    file << calling << std::endl;
     file.close();
 
     //saving village properties

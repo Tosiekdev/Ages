@@ -17,10 +17,10 @@ void HandleBuildings::main_loop(sf::Event &event, sf::RenderWindow &window, int 
 void HandleBuildings::resource_look(){
     //changing resource info _position
     lHuman_->setPosition(sf::Vector2f(150, 5));
-    lRock_->setPosition(sf::Vector2f(290, 5));
-    lWood_->setPosition(sf::Vector2f(430, 5));
-    lMoney_->setPosition(sf::Vector2f(570,5));
-    lIron_->setPosition(sf::Vector2f(710,5));
+    lRock_->setPosition(sf::Vector2f(270, 5));
+    lWood_->setPosition(sf::Vector2f(410, 5));
+    lMoney_->setPosition(sf::Vector2f(550,5));
+    lIron_->setPosition(sf::Vector2f(690,5));
 
     //changing resource info text
     lHuman_->setCaption("People: " + std::to_string(*human_));

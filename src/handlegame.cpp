@@ -92,8 +92,8 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
                 scene=8;
             }
             if(building_[7].isClicked(i, j)){
-                whWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, nullptr, &human_,
-                                 &rock_, &wood_, &money_, nullptr, &levels_[7]);
+                whWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
+                                 &rock_,&wood_,&money_,&iron_, &levels_[7]);
                 scene=9;
             }
             if(building_[0].isClicked(i, j)){
@@ -186,7 +186,8 @@ void HandleGame::activate_buildings(){
 
 void HandleGame::create_buildings(){
     //load data
-    saveSystem.load_save(savePath_, levels_, thWindow_, name_, human_, wood_, rock_, money_, building_);
+    saveSystem.load_save(savePath_, levels_, thWindow_, name_, human_, wood_, rock_, money_, iron_,
+                         building_);
 
     //make everything done
     this->prepare_buildings();
@@ -217,7 +218,7 @@ void HandleGame::prepare_buildings(){
 }
 
 void HandleGame::save_game(){
-    saveSystem.save_game(savePath_,levels_,thWindow_,name_,human_,wood_,rock_,money_);
+    saveSystem.save_game(savePath_, levels_, thWindow_, name_, human_, wood_, rock_, money_, iron_);
 }
 
 void HandleGame::assign_levels(){
@@ -253,6 +254,13 @@ void HandleGame::clocks(int scene){
                 lWood_.setColor(sf::Color::Red);
             }else
                 lWood_.setColor(sf::Color::Black);
+
+            if(iron_>=levels_[7]*1296){
+                iron_=levels_[7]*1296;
+                lIron_.setColor(sf::Color::Red);
+            }else{
+                lIron_.setColor(sf::Color::Black);
+            }
 
             //full farm
             if(human_ >= levels_[3] * 156){
