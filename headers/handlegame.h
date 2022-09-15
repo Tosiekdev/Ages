@@ -63,8 +63,8 @@ public:
     void set_path(std::string path);
 
 private:
-    std::array<buildings,9> building_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank
-    std::array<int, 9> levels_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank
+    std::array<buildings,10> building_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank 9-iron mine
+    std::array<int, 10> levels_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank 9-iron mine
     std::map<int,std::string> numToNames{
             {0,"Academy"},
             {1,"Barracks"},
@@ -74,7 +74,8 @@ private:
             {5,"Stone Pit"},
             {6,"Town Hall"},
             {7,"Warehouse"},
-            {8,"Bank"}
+            {8,"Bank"},
+            {9,"Iron Mine"}
     };
     int human_, rock_, wood_, money_, iron_;
     ExitWindow exitWindow;

@@ -18,7 +18,7 @@ void HandleGame::create(std::string path){
 
     //for town hall
     float y_position=205.f;
-    for(int i=0; i<9; i++){
+    for(int i=0; i<10; i++){
         this->thWindow_.crete_ub(&(this->building_[i]), sf::Vector2f(20, y_position), i);
         y_position+=100.f;
     }
@@ -209,10 +209,12 @@ void HandleGame::prepare_buildings(){
     building_[6].create_building("Town Hall", "Textures/town_hall.png",levels_[6],
                                        sf::Vector2f(100,100), 75, 75, 12);
     building_[7].create_building("Warehouse", "Textures/magazine.png",levels_[7],
-                                       sf::Vector2f(150,450), 100, 50, 6);
+                                       sf::Vector2f(75,450), 100, 50, 6);
     building_[8].create_building("Bank", "Textures/default.png",levels_[8],
                                        sf::Vector2f(465,150), 100, 50, 6);
-    for(int i=0; i<9; i++){
+    building_[9].create_building("Iron Mine", "Textures/default.png",levels_[9],
+                                 sf::Vector2f(250,450), 100, 50, 6);
+    for(int i=0; i<10; i++){
         this->thWindow_.ub_update_level(i);
     }
 }

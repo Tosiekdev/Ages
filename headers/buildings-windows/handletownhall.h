@@ -39,9 +39,10 @@ private:
             {6,"Stone Pit"},
             {7,"Town Hall"},
             {8,"Warehouse"},
-            {9,"Bank"}
+            {9,"Bank"},
+            {10,"Iron Mine"}
     };
-    Upgrade_tablet u_buildings[9];
+    Upgrade_tablet u_buildings[10];
 };
 
 

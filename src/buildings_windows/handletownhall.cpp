@@ -32,8 +32,8 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
             //scrolling down
             if(event.mouseWheelScroll.delta<0){
                 sf::Vector2f buf_pos;
-                buf_pos=u_buildings[8].Return_position();
-                for(int i=8; i>0; i--){
+                buf_pos=u_buildings[9].Return_position();
+                for(int i=9; i>0; i--){
                     this->u_buildings[i].set_position(this->u_buildings[i-1].Return_position());
                 }
                 this->u_buildings[0].set_position(buf_pos);
@@ -42,10 +42,10 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
             if(event.mouseWheelScroll.delta>0){
                 sf::Vector2f buf_pos;
                 buf_pos=u_buildings[0].Return_position();
-                for(int i=0; i<8; i++){
+                for(int i=0; i<9; i++){
                     this->u_buildings[i].set_position(this->u_buildings[i+1].Return_position());
                 }
-                this->u_buildings[8].set_position(buf_pos);
+                this->u_buildings[9].set_position(buf_pos);
             }
         }
 
