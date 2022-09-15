@@ -54,9 +54,11 @@ void HandleFarm::display(sf::RenderWindow &window){
     window.display();
 }
 
-void HandleFarm::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) {
+void HandleFarm::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni,
+                        int *iron,
+                        int *bld) {
     //for resource info
-    assign_values(lh,lr,lw,lm,hn,rk,wd,bld,moni);
+    assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
     this->resource_look();
@@ -65,7 +67,7 @@ void HandleFarm::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int
     this->crete_info();
     this->info.setCaption("Farm reproduces people. Higher level equals more\n"
                           "people per second. Also upgrading farm gives space for\n"
-                          "more and more human beings!");
+                          "more and more human_ beings!");
     int farm=*this->building_;
     this->f_current.create(DEFAULT_FONT,400,300,"Current population growth: "+
                             std::to_string(((int)((float)farm*1.2))*6)+"ppl/minute",30);

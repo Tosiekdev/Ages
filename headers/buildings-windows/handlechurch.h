@@ -9,7 +9,8 @@
 
 class HandleChurch : public HandleBuildings{
 public:
-    void create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) override;
+    void create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni, int *iron,
+                int *bld) override;
     void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene) override;
     void do_stuff(sf::RenderWindow &window) override;
     void display(sf::RenderWindow &window) override;

@@ -76,14 +76,14 @@ private:
             {7,"Warehouse"},
             {8,"Bank"}
     };
-    int human_, rock_, wood_, money_;
+    int human_, rock_, wood_, money_, iron_;
     ExitWindow exitWindow;
     sf::Event e_;
     sf::Cursor cursor;
     sf::Clock resourceClock_, humanClock_;
     Button returnToMenu_, save;
-    Obstacle resourcePlank_, resourceMan_, resourceWood_, resourceRock_, resourceMoney_;
-    Label lHuman_, lRock_, lWood_, lMoney_;
+    Obstacle resourcePlank_, resourceMan_, resourceWood_, resourceRock_, resourceMoney_, resourceIron_;
+    Label lHuman_, lRock_, lWood_, lMoney_, lIron_;
     std::string savePath_, name_;
     SaveSystem saveSystem;
     HandleWoSaving wsWindow;

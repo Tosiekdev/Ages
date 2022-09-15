@@ -5,9 +5,11 @@
 #include "../../headers/buildings-windows/handletownhall.h"
 
 void
-HandleTownHall::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) {
+HandleTownHall::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni,
+                       int *iron,
+                       int *bld) {
     //for resource info
-    assign_values(lh,lr,lw,lm,hn,rk,wd,bld,moni);
+    assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
     this->resource_look();
@@ -59,10 +61,10 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
             //upgrading buildings
             for(auto & u_building : this->u_buildings){
                 if(u_building.button_clicked(mouse_pos)){
-                    u_building.upgrade_building(*this->human,*this->rock,*this->wood,*this->building_);
-                    this->l_human->setCaption("People: "+std::to_string(*this->human));
-                    this->l_rock->setCaption("Stone: "+std::to_string(*this->rock));
-                    this->l_wood->setCaption("Wood: "+std::to_string(*this->wood));
+                    u_building.upgrade_building(*this->human_, *this->rock_, *this->wood_, *this->building_);
+                    this->lHuman_->setCaption("People: " + std::to_string(*this->human_));
+                    this->lRock_->setCaption("Stone: " + std::to_string(*this->rock_));
+                    this->lWood_->setCaption("Wood: " + std::to_string(*this->wood_));
                 }
             }
         }

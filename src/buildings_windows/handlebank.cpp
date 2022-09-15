@@ -54,9 +54,11 @@ void HandleBank::display(sf::RenderWindow &window){
     window.display();
 }
 
-void HandleBank::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld){
+void HandleBank::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni,
+                        int *iron,
+                        int *bld) {
 //for resource info
-    assign_values(lh,lr,lw,lm,hn,rk,wd,bld,moni);
+    assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
     this->resource_look();
