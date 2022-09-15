@@ -70,5 +70,5 @@ void HandleBuildings::assign_values(Label *lh, Label *lr, Label *lw, Label *lm, 
     money_=moni;
 
     //building_ lvl
-    this->building=bld;
+    this->building_=bld;
 }

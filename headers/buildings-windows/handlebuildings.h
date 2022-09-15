@@ -28,7 +28,7 @@ protected:
     Label *l_human, *l_rock, *l_wood, *lMoney_;
     Label info;
     sf::Cursor cursor;
-    int *human, *rock, *wood, *building, *money_;
+    int *human, *rock, *wood, *building_, *money_;
 };
 
 

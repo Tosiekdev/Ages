@@ -17,7 +17,7 @@ HandleLumberMill::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, in
     this->info.setCaption("Lumber Mill takes care about your wood_ supply.\n"
                           "Those are needed to upgrade buildings.\n"
                           "Higher level_ means more wood_!");
-    int lumber=*this->building;
+    int lumber=*this->building_;
     this->current.create(DEFAULT_FONT,400,300,"",30);
     this->current.setCaption("Current wood_ growth: "+std::to_string(lumber*60)+" rocks/minute");
     this->current.center();

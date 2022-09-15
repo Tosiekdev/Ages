@@ -16,7 +16,7 @@ HandleWarehouse::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int
     this->crete_info();
     this->info.setCaption("In Warehouse you store your goods. Upgrading it gives\n"
                           "you more space_!");
-    int warehouse=*this->building;
+    int warehouse=*this->building_;
     this->current.create(DEFAULT_FONT,400,300,"",30);
     this->current.setCaption("Current capacity: "+std::to_string(warehouse*1296));
     this->current.center();

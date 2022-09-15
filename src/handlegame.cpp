@@ -9,7 +9,7 @@ void HandleGame::create(std::string path){
     this->set_path(path);
 
     //buttons
-    this->return_to_menu.create(40,100,5,5,"Return");
+    this->returnToMenu_.create(40, 100, 5, 5, "Return");
     this->save.create(40,100,130,5,"Save");
 
     //set clock to 0
@@ -26,7 +26,7 @@ void HandleGame::create(std::string path){
     this->create_buildings();
 
     //resource plank
-    resourcePlank_.create_obstacle(PLANK, sf::Vector2f(0.4, 0.4),
+    resourcePlank_.create_obstacle(PLANK, sf::Vector2f(0.4, 0.43),
                                    sf::Vector2f(564,0));
     resourceMan_.create_obstacle("Textures/human.png", sf::Vector2f(0.2, 0.2),
                                  sf::Vector2f(570,5));
@@ -51,9 +51,9 @@ void HandleGame::main_loop(sf::RenderWindow &window, int &scene){
 }
 
 void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
-    while(window.pollEvent(this->e)){
+    while(window.pollEvent(this->e_)){
         //exit
-        if (this->e.type==sf::Event::Closed) window.close();
+        if (this->e_.type == sf::Event::Closed) window.close();
         if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))) this->exitWindow.create(window, scene);
 
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
@@ -62,7 +62,7 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
             int j = sf::Mouse::getPosition(window).y;
 
             //Returning button event
-            if(this->return_to_menu.onClick(i,j)){
+            if(returnToMenu_.onClick(i, j)){
                 this->deactivate_buildings();
                 this->wsWindow.create(window,scene);
             }
@@ -74,39 +74,44 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
                 scene=5;
             }
             if(this->building_[3].isClicked(i, j)){
-                this->farm_window.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
-                                         &rock_,&wood_,&money_,&levels_[3]);
+                this->farmWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, &human_,
+                                         &rock_, &wood_, &money_, &levels_[3]);
                 scene=6;
             }
             if(this->building_[4].isClicked(i, j)){
-                this->lm_window.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
-                                       &rock_,&wood_,&money_,&levels_[4]);
+                this->lmWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, &human_,
+                                       &rock_, &wood_, &money_, &levels_[4]);
                 scene=7;
             }
             if(this->building_[5].isClicked(i, j)){
-                this->sp_window.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
-                                       &rock_,&wood_,&money_,&levels_[5]);
+                this->spWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, &human_,
+                                       &rock_, &wood_, &money_, &levels_[5]);
                 scene=8;
             }
             if(this->building_[7].isClicked(i, j)){
-                this->wh_window.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
-                                       &rock_,&wood_,&money_,&levels_[7]);
+                this->whWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, &human_,
+                                       &rock_, &wood_, &money_, &levels_[7]);
                 scene=9;
             }
             if(this->building_[0].isClicked(i, j)){
-                this->academy_window.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
-                                            &rock_,&wood_,&money_,&levels_[0]);
+                this->academyWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, &human_,
+                                            &rock_, &wood_, &money_, &levels_[0]);
                 scene=10;
             }
             if(this->building_[1].isClicked(i, j)){
-                this->barracks_window.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
-                                             &rock_,&wood_,&money_,&levels_[1]);
+                this->barracksWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, &human_,
+                                             &rock_, &wood_, &money_, &levels_[1]);
                 scene=11;
             }
             if(this->building_[2].isClicked(i, j)){
-                this->church_window.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
-                                           &rock_,&wood_,&money_,&levels_[2]);
+                this->churchWindow_.create(&lHuman_, &lRock_, &lWood_, &lMoney_, &human_,
+                                           &rock_, &wood_, &money_, &levels_[2]);
                 scene=12;
+            }
+            if(building_[8].isClicked(i,j)){
+                bankWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&human_,
+                                   &rock_,&wood_,&money_,&levels_[8]);
+                scene=13;
             }
 
             //saving game
@@ -125,7 +130,7 @@ void HandleGame::do_stuff(sf::RenderWindow &window){
         a.push_back(i.onFocus(x, y));
 
     //cool button animation
-    a.push_back(this->return_to_menu.onFocus(x,y));
+    a.push_back(this->returnToMenu_.onFocus(x, y));
     a.push_back(this->save.onFocus(x,y));
 
     //cursor_ change
@@ -142,7 +147,7 @@ void HandleGame::display(sf::RenderWindow &window){
     window.clear(sf::Color::Green);
 
     //buttons
-    this->return_to_menu.show(window);
+    this->returnToMenu_.show(window);
     this->save.show(window);
 
     //resource plank_
@@ -225,8 +230,9 @@ void HandleGame::clocks(int scene){
         }
         if (resourceClock_.getElapsedTime().asSeconds() >= 1) {
             int time_passed = (int)resourceClock_.getElapsedTime().asSeconds();
-            rock_+= time_passed * 10 * levels_[5];
-            wood_+= time_passed * 10 * levels_[4];
+            rock_+=time_passed*levels_[5];
+            wood_+=time_passed*levels_[4];
+            money_+=time_passed*3*levels_[8];
 
             //full magazine
             if(rock_ >= levels_[7] * 1296){
@@ -248,6 +254,14 @@ void HandleGame::clocks(int scene){
                 lHuman_.setColor(sf::Color::Red);
             }else
                 lHuman_.setColor(sf::Color::Black);
+
+            //full safe
+            if(money_>=levels_[8]*2048){
+                money_=levels_[8]*2048;
+                lMoney_.setColor(sf::Color::Red);
+            }else{
+                lMoney_.setColor(sf::Color::Black);
+            }
 
             switch(scene){
                 case 4:
@@ -277,44 +291,48 @@ void HandleGame::clocks(int scene){
 }
 
 void HandleGame::launch_th(sf::RenderWindow &window, int &scene){
-    this->thWindow_.main_loop(this->e, window, scene);
+    thWindow_.main_loop(this->e_, window, scene);
 }
 
 void HandleGame::launch_farm(sf::RenderWindow &window, int &scene){
-    this->farm_window.main_loop(this->e,window,scene);
+    farmWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::launch_lm(sf::RenderWindow &window, int &scene){
-    this->lm_window.main_loop(this->e,window,scene);
+    lmWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::launch_sp(sf::RenderWindow &window, int &scene){
-    this->sp_window.main_loop(this->e,window,scene);
+    spWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::launch_wh(sf::RenderWindow &window, int &scene){
-    this->wh_window.main_loop(this->e,window,scene);
+    whWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::launch_academy(sf::RenderWindow &window, int &scene){
-    this->academy_window.main_loop(this->e,window,scene);
+    academyWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::launch_barracks(sf::RenderWindow &window, int &scene){
-    this->barracks_window.main_loop(this->e,window,scene);
+    barracksWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::launch_church(sf::RenderWindow &window, int &scene){
-    this->church_window.main_loop(this->e,window,scene);
+    churchWindow_.main_loop(e_, window, scene);
+}
+
+void HandleGame::launch_bank(sf::RenderWindow &window, int &scene){
+    bankWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::set_ub_left(int index, float time, float th){
-    this->thWindow_.set_ub_left(index, time, th);
+    thWindow_.set_ub_left(index, time, th);
 }
 
 void HandleGame::set_levels(){
     for(int i=0; i<3; i++) this->levels_[i]=0;
-    for(int i=3; i<8; i++) this->levels_[i]=1;
+    for(int i=3; i<9; i++) this->levels_[i]=1;
 }
 
 void HandleGame::set_resources(){

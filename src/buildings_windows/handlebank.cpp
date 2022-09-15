@@ -1,10 +1,10 @@
 //
-// Created by tosiek on 09.02.2022.
+// Created by tosiek on 15.09.22.
 //
 
-#include "../../headers/buildings-windows/handlefarm.h"
+#include "../../headers/buildings-windows/handlebank.h"
 
-void HandleFarm::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
+void HandleBank::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
     while(window.pollEvent(event)){
         if(event.type==sf::Event::Closed) window.close();
 
@@ -19,7 +19,7 @@ void HandleFarm::handle_events(sf::Event &event, sf::RenderWindow &window, int &
     }
 }
 
-void HandleFarm::do_stuff(sf::RenderWindow &window){
+void HandleBank::do_stuff(sf::RenderWindow &window){
     bool a[1];
     int x=sf::Mouse::getPosition(window).x;
     int y=sf::Mouse::getPosition(window).y;
@@ -34,7 +34,7 @@ void HandleFarm::do_stuff(sf::RenderWindow &window){
     window.setMouseCursor(this->cursor);
 }
 
-void HandleFarm::display(sf::RenderWindow &window){
+void HandleBank::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
@@ -54,8 +54,8 @@ void HandleFarm::display(sf::RenderWindow &window){
     window.display();
 }
 
-void HandleFarm::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld) {
-    //for resource info
+void HandleBank::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int *rk, int *wd, int *moni, int *bld){
+//for resource info
     assign_values(lh,lr,lw,lm,hn,rk,wd,bld,moni);
 
     //change resource _look
@@ -63,21 +63,21 @@ void HandleFarm::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int
 
     //info
     this->crete_info();
-    this->info.setCaption("Farm reproduces people. Higher level equals more\n"
-                          "people per second. Also upgrading farm gives space for\n"
-                          "more and more human beings!");
-    int farm=*this->building_;
-    this->f_current.create(DEFAULT_FONT,400,300,"Current population growth: "+
-                            std::to_string(((int)((float)farm*1.2))*6)+"ppl/minute",30);
+    this->info.setCaption("Bank is place where money are created. You can also\n"
+                          "make deals with other villages here. Higher bank's level\n"
+                          "gives you more money and better position at marketplace.");
+    int bank=*building_;
+    this->f_current.create(DEFAULT_FONT,400,300,"Current Money growth: "+
+                                                std::to_string(bank*3*60)+"coins/minute",30);
     this->f_current.center();
-    this->f_next.create(DEFAULT_FONT,400,350,"Next level population growth: "+
-                            std::to_string(((int)((float)(farm+1)*1.2))*6)+"ppl/minute",30);
+    this->f_next.create(DEFAULT_FONT,400,350,"Next level money growth: "+
+                                             std::to_string((bank+1)*3*60)+"coins/minute",30);
     this->f_next.center();
-    this->f_capacity.create(DEFAULT_FONT,400,400,"Current farm capacity: "+
-                            std::to_string(farm*156)+" people",30);
+    this->f_capacity.create(DEFAULT_FONT,400,400,"Current safe capacity: "+
+                                                 std::to_string(bank*2048)+" coins",30);
     this->f_capacity.center();
-    this->f_next_capacity.create(DEFAULT_FONT,400,450,"Next level farm capacity: "+
-                            std::to_string((farm+1)*156)+" people",30);
+    this->f_next_capacity.create(DEFAULT_FONT,400,450,"Next level safe capacity: "+
+                                                      std::to_string((bank+1)*2048)+" coins",30);
     this->f_next_capacity.center();
 
     //buttons

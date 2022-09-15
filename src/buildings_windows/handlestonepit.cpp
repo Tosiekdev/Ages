@@ -63,8 +63,8 @@ HandleStonePit::create(Label *lh, Label *lr, Label *lw, Label *lm, int *hn, int 
     //info
     this->crete_info();
     this->info.setCaption("Stone Pit simply mine stone for upgrading buildings.\n"
-                          "Higher level_ means, obviously, more stone!");
-    int stone=*this->building;
+                          "Higher level means, obviously, more stone!");
+    int stone=*this->building_;
     this->current.create(DEFAULT_FONT,400,300,"",30);
     this->current.setCaption("Current stone growth: "+std::to_string(stone*60)+" rocks/minute");
     this->current.center();

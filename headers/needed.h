@@ -38,7 +38,7 @@ private:
     /*
     1-menu_ 2-create 3-load 4-game
     5-town_hall 6-farm 7-lumber_mill 8-stone pit 9-ware house
-    10-academy 11-barracks 12-church
+    10-academy 11-barracks 12-church 13-bank
     */
 
     //village
@@ -102,6 +102,9 @@ public:
     void launch_academy();//academy
     void launch_barracks();//barracks
     void launch_church();//church
+    void launch_bank(){
+        gameWindow_.launch_bank(screen_,scene_);
+    }
 
     //thread functions
     void clocks();

@@ -15,7 +15,7 @@ public:
     void load_save(std::string save_path, std::array<int, 9> &levels, HandleTownHall &th_window, std::string &name,
                    int &human,
                    int &wood, int &rock, int &money, std::array<buildings, 9> &b);
-    void save_game(std::string save_path, std::array<int, 9> &levels, HandleTownHall &th_window, std::string &name,
+    static void save_game(const std::string& save_path, std::array<int, 9> &levels, HandleTownHall &th_window, std::string &name,
                    int &human,
                    int &wood, int &rock, int &money);
 

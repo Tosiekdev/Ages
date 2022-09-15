@@ -44,9 +44,10 @@ SaveSystem::load_save(std::string save_path, std::array<int, 9> &levels, HandleT
             case 8:
                 levels[7]=stoi(input);//warehouse
                 break;
-            case 9:
-                levels[8]=std::stoi(input);
-                for(int i=0; i<9; i++) b[i].set_level(levels[i]);
+            case 9:{
+                levels[8] = std::stoi(input);//bank
+                for (int i = 0; i < 9; i++) b[i].set_level(levels[i]);
+            }
                 break;
                 //resources
             case 10:
@@ -60,6 +61,7 @@ SaveSystem::load_save(std::string save_path, std::array<int, 9> &levels, HandleT
                 break;
             case 13:
                 money=stoi(input);
+                break;
             case 14:
                 th_window.set_ub_left(0, stof(input),levels[6]);
                 break;
@@ -94,7 +96,7 @@ SaveSystem::load_save(std::string save_path, std::array<int, 9> &levels, HandleT
 }
 
 void
-SaveSystem::save_game(std::string save_path, std::array<int, 9> &levels, HandleTownHall &th_window, std::string &name,
+SaveSystem::save_game(const std::string& save_path, std::array<int, 9> &levels, HandleTownHall &th_window, std::string &name,
                       int &human,
                       int &wood, int &rock, int &money) {
     //opening save

@@ -50,7 +50,7 @@ private:
 
     //demands
     Label forStone_, forWood_, forHuman_;
-    bool inUpgrade_;
+    bool inUpgrade_=false;
 };
 
 

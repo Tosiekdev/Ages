@@ -59,7 +59,7 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
             //upgrading buildings
             for(auto & u_building : this->u_buildings){
                 if(u_building.button_clicked(mouse_pos)){
-                    u_building.upgrade_building(*this->human,*this->rock,*this->wood,*this->building);
+                    u_building.upgrade_building(*this->human,*this->rock,*this->wood,*this->building_);
                     this->l_human->setCaption("People: "+std::to_string(*this->human));
                     this->l_rock->setCaption("Stone: "+std::to_string(*this->rock));
                     this->l_wood->setCaption("Wood: "+std::to_string(*this->wood));

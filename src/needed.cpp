@@ -87,6 +87,9 @@ void Application::main_window(){
             case 12:
                 launch_church();
                 break;
+            case 13:
+                launch_bank();
+                break;
         }
     }
     forClocks.join();

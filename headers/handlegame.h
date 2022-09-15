@@ -27,6 +27,7 @@
 #include "buildings-windows/handleacademy.h"
 #include "buildings-windows/handlebarracks.h"
 #include "buildings-windows/handlechurch.h"
+#include "buildings-windows/handlebank.h"
 
 class HandleGame : public HandleWindow{
 public:
@@ -52,6 +53,7 @@ public:
     void launch_academy(sf::RenderWindow &window, int &scene);//academy
     void launch_barracks(sf::RenderWindow &window, int &scene);//barracks
     void launch_church(sf::RenderWindow &window, int &scene);//church
+    void launch_bank(sf::RenderWindow &window, int &scene);//bank
 
     void set_ub_left(int index, float time, float th);
 
@@ -76,10 +78,10 @@ private:
     };
     int human_, rock_, wood_, money_;
     ExitWindow exitWindow;
-    sf::Event e;
+    sf::Event e_;
     sf::Cursor cursor;
     sf::Clock resourceClock_, humanClock_;
-    Button return_to_menu, save;
+    Button returnToMenu_, save;
     Obstacle resourcePlank_, resourceMan_, resourceWood_, resourceRock_, resourceMoney_;
     Label lHuman_, lRock_, lWood_, lMoney_;
     std::string savePath_, name_;
@@ -87,13 +89,14 @@ private:
     HandleWoSaving wsWindow;
 
     HandleTownHall thWindow_; //town hall
-    HandleFarm farm_window;//farm
-    HandleLumberMill lm_window;//lumber mill
-    HandleStonePit sp_window;//stone pit
-    HandleWarehouse wh_window;//warehouse
-    HandleAcademy academy_window;//academy
-    HandleBarracks barracks_window;//barracks
-    HandleChurch church_window;//church
+    HandleFarm farmWindow_;//farm
+    HandleLumberMill lmWindow_;//lumber mill
+    HandleStonePit spWindow_;//stone pit
+    HandleWarehouse whWindow_;//warehouse
+    HandleAcademy academyWindow_;//academy
+    HandleBarracks barracksWindow_;//barracks
+    HandleChurch churchWindow_;//church
+    HandleBank bankWindow_;//bank
 };
 
 
