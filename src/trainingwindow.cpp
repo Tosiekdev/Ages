@@ -11,23 +11,23 @@ void TrainingWindow::create(int nMoney,int nPeople,int nIron,int upgTime,const s
     iron_=nIron;
     time_=upgTime;
 
-    //creating info-window
+    //creating info_-window
     sf::VideoMode mode=sf::VideoMode(450,300);
     window_.create(mode,"Train "+unitName,sf::Style::Titlebar | sf::Style::Close);
     sf::Vector2i windowPos=W.getPosition()+sf::Vector2i(175,150);
     window_.setPosition(windowPos);
 
-    //creating info to show in upgrade window
+    //creating info_ to show in upgrade window
     sure_.create(DEFAULT_FONT,225,100,"",30);
 
-    //info about quantity of units to train
+    //info_ about quantity of units to train
     count_.create(DEFAULT_FONT,90,155,"Quantity",30);
     counter_.create(DEFAULT_FONT,300,163,"1",30);
     counter_.center();
     plus_.create_element("Textures/plus.png",sf::Vector2f(320,155));
     minus_.create_element("Textures/minus.png",sf::Vector2f(250,155));
 
-    //info which is changed relatively to the quantity
+    //info_ which is changed relatively to the quantity
     set_captions();
 
     //starting window

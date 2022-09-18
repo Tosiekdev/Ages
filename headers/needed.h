@@ -105,6 +105,9 @@ public:
     void launch_bank(){
         gameWindow_.launch_bank(screen_,scene_);
     }
+    void launch_irmine(){
+        gameWindow_.launch_irmine(screen_,scene_);
+    }
 
     //thread functions
     void clocks();

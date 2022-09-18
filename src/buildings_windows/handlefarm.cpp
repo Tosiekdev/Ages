@@ -6,14 +6,18 @@
 
 void HandleFarm::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
     while(window.pollEvent(event)){
-        if(event.type==sf::Event::Closed) window.close();
+        //closing window
+        if(event.type==sf::Event::Closed){
+            window.close();
+        }
 
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
             int i=sf::Mouse::getPosition(window).x;
             int j=sf::Mouse::getPosition(window).y;
 
-            if(this->return_to_game.onClick(i,j)){
-                this->return_to_village(scene);
+            //returning to game's main window
+            if(returnToGame_.onClick(i, j)){
+                return_to_village(scene);
             }
         }
     }
@@ -25,30 +29,31 @@ void HandleFarm::do_stuff(sf::RenderWindow &window){
     int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
-    a[0]=this->return_to_game.onFocus(x,y);
+    a[0]=returnToGame_.onFocus(x, y);
 
-    if(a[0])
-        this->cursor.loadFromSystem(sf::Cursor::Hand);
-    else
-        this->cursor.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(this->cursor);
+    if(a[0]){
+        cursor_.loadFromSystem(sf::Cursor::Hand);
+    }else{
+        cursor_.loadFromSystem(sf::Cursor::Arrow);
+    }
+    window.setMouseCursor(cursor_);
 }
 
 void HandleFarm::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
-    this->return_to_game.show(window);
+    returnToGame_.show(window);
 
-    //resource info
-    this->show_resources(window);
+    //resource info_
+    show_resources(window);
 
-    //building_ info
-    this->info.show(window);
-    this->f_current.show(window);
-    this->f_next.show(window);
-    this->f_capacity.show(window);
-    this->f_next_capacity.show(window);
+    //building_ info_
+    info_.show(window);
+    fCurrent_.show(window);
+    fNext_.show(window);
+    fCapacity_.show(window);
+    fNextCapacity_.show(window);
 
 
     window.display();
@@ -61,27 +66,27 @@ void HandleFarm::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, i
     assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
-    this->resource_look();
+    resource_look();
 
-    //info
-    this->crete_info();
-    this->info.setCaption("Farm reproduces people. Higher level equals more\n"
+    //info_
+    crete_info();
+    info_.setCaption("Farm reproduces people. Higher level equals more\n"
                           "people per second. Also upgrading farm gives space for\n"
                           "more and more human_ beings!");
-    int farm=*this->building_;
-    this->f_current.create(DEFAULT_FONT,400,300,"Current population growth: "+
-                            std::to_string(((int)((float)farm*1.2))*6)+"ppl/minute",30);
-    this->f_current.center();
-    this->f_next.create(DEFAULT_FONT,400,350,"Next level population growth: "+
-                            std::to_string(((int)((float)(farm+1)*1.2))*6)+"ppl/minute",30);
-    this->f_next.center();
-    this->f_capacity.create(DEFAULT_FONT,400,400,"Current farm capacity: "+
-                            std::to_string(farm*156)+" people",30);
-    this->f_capacity.center();
-    this->f_next_capacity.create(DEFAULT_FONT,400,450,"Next level farm capacity: "+
-                            std::to_string((farm+1)*156)+" people",30);
-    this->f_next_capacity.center();
+    int farm=*building_;
+    fCurrent_.create(DEFAULT_FONT, 400, 300, "Current population growth: " +
+                                                   std::to_string(((int)((float)farm*1.2))*6) + "ppl/minute", 30);
+    fCurrent_.center();
+    fNext_.create(DEFAULT_FONT, 400, 350, "Next level population growth: " +
+                                                std::to_string(((int)((float)(farm+1)*1.2))*6) + "ppl/minute", 30);
+    fNext_.center();
+    fCapacity_.create(DEFAULT_FONT, 400, 400, "Current farm capacity: " +
+                                                    std::to_string(farm*156) + " people", 30);
+    fCapacity_.center();
+    fNextCapacity_.create(DEFAULT_FONT, 400, 450, "Next level farm capacity: " +
+                                                        std::to_string((farm+1)*156) + " people", 30);
+    fNextCapacity_.center();
 
     //buttons
-    this->create_return_button();
+    create_return_button();
 }

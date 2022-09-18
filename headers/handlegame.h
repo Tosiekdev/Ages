@@ -28,6 +28,7 @@
 #include "buildings-windows/handlebarracks.h"
 #include "buildings-windows/handlechurch.h"
 #include "buildings-windows/handlebank.h"
+#include "buildings-windows/handleironmine.h"
 
 class HandleGame : public HandleWindow{
 public:
@@ -45,6 +46,11 @@ public:
     void assign_levels();
     void clocks(int scene);
 
+    /**
+     * Functions responsible for launching corresponding building-windows
+     * @param window Window on which everything is displayed
+     * @param scene Main window scene if need to be switched
+     */
     void launch_th(sf::RenderWindow &window, int &scene);//town hall
     void launch_farm(sf::RenderWindow &window, int &scene);//farm
     void launch_lm(sf::RenderWindow &window, int &scene);//lumber mill
@@ -54,6 +60,7 @@ public:
     void launch_barracks(sf::RenderWindow &window, int &scene);//barracks
     void launch_church(sf::RenderWindow &window, int &scene);//church
     void launch_bank(sf::RenderWindow &window, int &scene);//bank
+    void launch_irmine(sf::RenderWindow &window, int &scene);//iron mine
 
     void set_ub_left(int index, float time, float th);
 
@@ -86,8 +93,8 @@ private:
     Obstacle resourcePlank_, resourceMan_, resourceWood_, resourceRock_, resourceMoney_, resourceIron_;
     Label lHuman_, lRock_, lWood_, lMoney_, lIron_;
     std::string savePath_, name_;
-    SaveSystem saveSystem;
-    HandleWoSaving wsWindow;
+    SaveSystem saveSystem_;
+    HandleWoSaving wsWindow_;
 
     HandleTownHall thWindow_; //town hall
     HandleFarm farmWindow_;//farm
@@ -98,6 +105,9 @@ private:
     HandleBarracks barracksWindow_;//barracks
     HandleChurch churchWindow_;//church
     HandleBank bankWindow_;//bank
+    HandleIronMine ironMineWindow_;//iron mine
+
+    void check_building_clicked(int &scene, int i, int j);
 };
 
 

@@ -46,7 +46,7 @@ int buildings::take_resources(int &human, int &rock, int &wood) {
         nWood_*=1.67;
         nHuman_*=1.67;
 
-        this->inUpgrade_=true;
+        inUpgrade_=true;
 
         return 1;
     }

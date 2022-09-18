@@ -1,13 +1,13 @@
 //
-// Created by tosiek on 09.02.2022.
+// Created by tosiek on 18.09.22.
 //
 
-#ifndef AGES1_HANDLEFARM_H
-#define AGES1_HANDLEFARM_H
+#ifndef AGES1_HANDLEIRONMINE_H
+#define AGES1_HANDLEIRONMINE_H
 
 #include "handlebuildings.h"
 
-class HandleFarm : public HandleBuildings{
+class HandleIronMine : public HandleBuildings {
 public:
     //default
     void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene) override;
@@ -17,8 +17,8 @@ public:
                 int *bld) override;
 
 private:
-    Label fCurrent_, fNext_, fCapacity_, fNextCapacity_;
+    Label current_, next_;
 };
 
 
-#endif //AGES1_HANDLEFARM_H
+#endif //AGES1_HANDLEIRONMINE_H

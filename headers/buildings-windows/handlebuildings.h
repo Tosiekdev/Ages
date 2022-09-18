@@ -27,10 +27,10 @@ public:
                        int *bld, int *moni, int *iron);
 
 protected:
-    Button return_to_game;
+    Button returnToGame_;
     Label *lHuman_, *lRock_, *lWood_, *lMoney_, *lIron_;
-    Label info;
-    sf::Cursor cursor;
+    Label info_;
+    sf::Cursor cursor_;
     int *human_, *rock_, *wood_, *building_, *money_, *iron_;
 };
 

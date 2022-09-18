@@ -12,7 +12,7 @@ void HandleBank::handle_events(sf::Event &event, sf::RenderWindow &window, int &
             int i=sf::Mouse::getPosition(window).x;
             int j=sf::Mouse::getPosition(window).y;
 
-            if(this->return_to_game.onClick(i,j)){
+            if(this->returnToGame_.onClick(i, j)){
                 this->return_to_village(scene);
             }
         }
@@ -25,26 +25,26 @@ void HandleBank::do_stuff(sf::RenderWindow &window){
     int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
-    a[0]=this->return_to_game.onFocus(x,y);
+    a[0]=this->returnToGame_.onFocus(x, y);
 
     if(a[0])
-        this->cursor.loadFromSystem(sf::Cursor::Hand);
+        this->cursor_.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(this->cursor);
+        this->cursor_.loadFromSystem(sf::Cursor::Arrow);
+    window.setMouseCursor(this->cursor_);
 }
 
 void HandleBank::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
-    this->return_to_game.show(window);
+    this->returnToGame_.show(window);
 
-    //resource info
+    //resource info_
     this->show_resources(window);
 
-    //building_ info
-    this->info.show(window);
+    //building_ info_
+    this->info_.show(window);
     this->f_current.show(window);
     this->f_next.show(window);
     this->f_capacity.show(window);
@@ -57,15 +57,15 @@ void HandleBank::display(sf::RenderWindow &window){
 void HandleBank::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni,
                         int *iron,
                         int *bld) {
-//for resource info
+//for resource info_
     assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
     this->resource_look();
 
-    //info
+    //info_
     this->crete_info();
-    this->info.setCaption("Bank is place where money are created. You can also\n"
+    this->info_.setCaption("Bank is place where money are created. You can also\n"
                           "make deals with other villages here. Higher bank's level\n"
                           "gives you more money and better position at marketplace.");
     int bank=*building_;

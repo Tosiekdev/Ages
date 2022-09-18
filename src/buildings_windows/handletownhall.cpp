@@ -8,15 +8,15 @@ void
 HandleTownHall::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni,
                        int *iron,
                        int *bld) {
-    //for resource info
+    //for resource info_
     assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
     this->resource_look();
 
-    //info
+    //info_
     this->crete_info();
-    this->info.setCaption("In Town Hall you can upgrade your buildings.\n"
+    this->info_.setCaption("In Town Hall you can upgrade your buildings.\n"
                           "Upgrading Town Hall make upgrade's times shorter!");
 
     //buttons
@@ -32,20 +32,20 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
             //scrolling down
             if(event.mouseWheelScroll.delta<0){
                 sf::Vector2f buf_pos;
-                buf_pos=u_buildings[9].Return_position();
+                buf_pos=upgrBuildings_[9].Return_position();
                 for(int i=9; i>0; i--){
-                    this->u_buildings[i].set_position(this->u_buildings[i-1].Return_position());
+                    this->upgrBuildings_[i].set_position(this->upgrBuildings_[i - 1].Return_position());
                 }
-                this->u_buildings[0].set_position(buf_pos);
+                this->upgrBuildings_[0].set_position(buf_pos);
             }
             //scrolling up
             if(event.mouseWheelScroll.delta>0){
                 sf::Vector2f buf_pos;
-                buf_pos=u_buildings[0].Return_position();
+                buf_pos=upgrBuildings_[0].Return_position();
                 for(int i=0; i<9; i++){
-                    this->u_buildings[i].set_position(this->u_buildings[i+1].Return_position());
+                    this->upgrBuildings_[i].set_position(this->upgrBuildings_[i + 1].Return_position());
                 }
-                this->u_buildings[9].set_position(buf_pos);
+                this->upgrBuildings_[9].set_position(buf_pos);
             }
         }
 
@@ -54,17 +54,17 @@ void HandleTownHall::handle_events(sf::Event &event, sf::RenderWindow &window, i
             int j=sf::Mouse::getPosition(window).y;
             sf::Vector2i mouse_pos=sf::Mouse::getPosition(window);
 
-            if(this->return_to_game.onClick(i,j)){
+            if(this->returnToGame_.onClick(i, j)){
                 this->return_to_village(scene);
             }
 
             //upgrading buildings
-            for(auto & u_building : this->u_buildings){
+            for(auto & u_building : upgrBuildings_){
                 if(u_building.button_clicked(mouse_pos)){
-                    u_building.upgrade_building(*this->human_, *this->rock_, *this->wood_, *this->building_);
-                    this->lHuman_->setCaption("People: " + std::to_string(*this->human_));
-                    this->lRock_->setCaption("Stone: " + std::to_string(*this->rock_));
-                    this->lWood_->setCaption("Wood: " + std::to_string(*this->wood_));
+                    u_building.upgrade_building(*human_,*rock_,*wood_,*building_);
+                    lHuman_->setCaption("People: " + std::to_string(*human_));
+                    lRock_->setCaption("Stone: " + std::to_string(*rock_));
+                    lWood_->setCaption("Wood: " + std::to_string(*wood_));
                 }
             }
         }
@@ -77,63 +77,63 @@ void HandleTownHall::do_stuff(sf::RenderWindow &window){
     int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
-    a.push_back(return_to_game.onFocus(x,y));
+    a.push_back(returnToGame_.onFocus(x, y));
 
     sf::Vector2i mouse_pos=sf::Mouse::getPosition(window);
     //upgrade box
-    for(auto &i:u_buildings)
+    for(auto &i:upgrBuildings_)
         a.push_back(i.button_animation(mouse_pos));
 
     if(std::count(a.begin(),a.end(),true))
-        this->cursor.loadFromSystem(sf::Cursor::Hand);
+        this->cursor_.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(this->cursor);
+        this->cursor_.loadFromSystem(sf::Cursor::Arrow);
+    window.setMouseCursor(this->cursor_);
 }
 
 void HandleTownHall::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
-    this->return_to_game.show(window);
+    this->returnToGame_.show(window);
 
-    //resource info
+    //resource info_
     this->show_resources(window);
 
     //labels
-    for(auto &u_building:this->u_buildings)
+    for(auto &u_building:this->upgrBuildings_)
         u_building.show(window);
 
-    //building_ info
-    this->info.show(window);
+    //building_ info_
+    this->info_.show(window);
 
     window.display();
 }
 
 void HandleTownHall::crete_ub(buildings *resp, sf::Vector2f pos, int index){
-    this->u_buildings[index].create_upgrade(resp,this->num_to_names[index+1],pos);
+    this->upgrBuildings_[index].create_upgrade(resp, this->num_to_names[index + 1], pos);
 }
 
 void HandleTownHall::set_ub_left(int index, float time, float th){
-    this->u_buildings[index].set_left(time,th);
+    this->upgrBuildings_[index].set_left(time, th);
 }
 
 float HandleTownHall::get_ub_left(int index){
-    return this->u_buildings[index].get_left();
+    return this->upgrBuildings_[index].get_left();
 }
 
 float HandleTownHall::ub_get_time(int index) {
-    return this->u_buildings[index].get_time();
+    return this->upgrBuildings_[index].get_time();
 }
 
 void HandleTownHall::ub_reset_timer(int index){
-    this->u_buildings[index].reset_timer();
+    this->upgrBuildings_[index].reset_timer();
 }
 
 int HandleTownHall::ub_update_timer(int index, float time_passed) {
-    return this->u_buildings[index].update_timer(time_passed);
+    return this->upgrBuildings_[index].update_timer(time_passed);
 }
 
 void HandleTownHall::ub_update_level(int index){
-    this->u_buildings[index].update_level();
+    this->upgrBuildings_[index].update_level();
 }

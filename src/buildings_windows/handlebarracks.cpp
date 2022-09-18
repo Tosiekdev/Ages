@@ -10,15 +10,15 @@ void
 HandleBarracks::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni,
                        int *iron,
                        int *bld) {
-    //for resource info
+    //for resource info_
     assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
     resource_look();
 
-    //info
+    //info_
     crete_info();
-    info.setCaption("In Barracks you train your soldiers to make your army\n"
+    info_.setCaption("In Barracks you train your soldiers to make your army\n"
                           "bigger and stronger!\n"
                           "Upgrading Barracks allows you to train better units!");
 
@@ -50,7 +50,7 @@ void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, i
             int j=sf::Mouse::getPosition(window).y;
             auto pos=sf::Mouse::getPosition(window);
 
-            if(return_to_game.onClick(i,j)){
+            if(returnToGame_.onClick(i, j)){
                 return_to_village(scene);
             }
 
@@ -74,7 +74,7 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     sf::Vector2i m_pos=sf::Mouse::getPosition(window);
 
     //cool animation
-    anim.push_back(return_to_game.onFocus(x,y));
+    anim.push_back(returnToGame_.onFocus(x, y));
 
     anim.push_back(swordsman_.animate_buttons(m_pos));
     anim.push_back(spearman_.animate_buttons(m_pos));
@@ -91,19 +91,19 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
 
     //changing cursor_
     if(std::count(anim.begin(),anim.end(),true))
-        cursor.loadFromSystem(sf::Cursor::Hand);
+        cursor_.loadFromSystem(sf::Cursor::Hand);
     else
-        cursor.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(cursor);
+        cursor_.loadFromSystem(sf::Cursor::Arrow);
+    window.setMouseCursor(cursor_);
 }
 
 void HandleBarracks::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
-    return_to_game.show(window);
+    returnToGame_.show(window);
 
-    //resource info
+    //resource info_
     show_resources(window);
 
     //units training
@@ -117,8 +117,8 @@ void HandleBarracks::display(sf::RenderWindow &window){
     billman_.show(window);
     axeman_.show(window);
 
-    //building_ info
-    info.show(window);
+    //building_ info_
+    info_.show(window);
 
     //sliders
     slideLeft_.draw_it(window);

@@ -90,6 +90,9 @@ void Application::main_window(){
             case 13:
                 launch_bank();
                 break;
+            case 14:
+                launch_irmine();
+                break;
         }
     }
     forClocks.join();
@@ -119,7 +122,7 @@ string Application::create_city(const string& calling){
     //setting resources
     gameWindow_.set_resources();
 
-   for(int i=0; i<8; i++)
+   for(int i=0; i<10; i++)
        gameWindow_.set_ub_left(i, 0, 1);
 
     //writing new name_ to all saves file

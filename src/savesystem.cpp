@@ -46,11 +46,9 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
             case 9:
                 levels[8] = std::stoi(input);//bank
                 break;
-            case 10:{
-                levels[9] = std::stoi(input);//bank
+            case 10:
+                levels[9]=std::stoi(input);//iron mine
                 for (int i = 0; i < 10; i++) b[i].set_level(levels[i]);
-            }
-                break;
                 //resources
             case 11:
                 human=stoi(input);
@@ -67,6 +65,7 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
             case 15:
                 iron=stoi(input);
                 break;
+                //time left
             case 16:
                 th_window.set_ub_left(0, stof(input),levels[6]);
                 break;
@@ -93,6 +92,9 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
                 break;
             case 24:
                 th_window.set_ub_left(8,std::stof(input),levels[6]);
+                break;
+            case 25:
+                th_window.set_ub_left(9,std::stof(input),levels[6]);
                 break;
         }
         line_nr++;

@@ -42,7 +42,7 @@ private:
             {9,"Bank"},
             {10,"Iron Mine"}
     };
-    Upgrade_tablet u_buildings[10];
+    Upgrade_tablet upgrBuildings_[10];
 };
 
 
