@@ -157,21 +157,21 @@ void HandleGame::create_buildings(){
 
 void HandleGame::prepare_buildings(){
     //creating every building
-    building_[0].create_building("Academy", "Textures/academy.png",levels_[0],
+    building_[0].create_building("Academy", "Textures/Buildings/academy.png",levels_[0],
                                        sf::Vector2f(250,300), 100, 75, 10);
-    building_[1].create_building("Barracks", "Textures/barracks.png",levels_[1],
+    building_[1].create_building("Barracks", "Textures/Buildings/barracks.png",levels_[1],
                                        sf::Vector2f(50,300), 75, 75, 7);
-    building_[2].create_building("Church", "Textures/church.png",levels_[2],
+    building_[2].create_building("Church", "Textures/Buildings/church.png",levels_[2],
                                        sf::Vector2f(300,150), 50, 150, 10);
-    building_[3].create_building("Farm", "Textures/farm.png",levels_[3],
+    building_[3].create_building("Farm", "Textures/Buildings/farm.png",levels_[3],
                                        sf::Vector2f(600,450), 20, 60, 2);
-    building_[4].create_building("Lumber mill", "Textures/lumbermill.png",levels_[4],
+    building_[4].create_building("Lumber mill", "Textures/Buildings/lumbermill.png",levels_[4],
                                        sf::Vector2f(400,450), 65, 15, 2);
     building_[5].create_building("Stone pit", "Textures/default.png",levels_[5],
                                        sf::Vector2f(600,250), 15, 65, 2);
-    building_[6].create_building("Town Hall", "Textures/town_hall.png",levels_[6],
+    building_[6].create_building("Town Hall", "Textures/Buildings/town_hall.png",levels_[6],
                                        sf::Vector2f(100,100), 75, 75, 12);
-    building_[7].create_building("Warehouse", "Textures/magazine.png",levels_[7],
+    building_[7].create_building("Warehouse", "Textures/Buildings/magazine.png",levels_[7],
                                        sf::Vector2f(75,450), 100, 50, 6);
     building_[8].create_building("Bank", "Textures/default.png",levels_[8],
                                        sf::Vector2f(465,150), 100, 50, 6);
