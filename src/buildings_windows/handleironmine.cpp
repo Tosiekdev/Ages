@@ -62,8 +62,8 @@ void HandleIronMine::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *l
 
     //info_
     crete_info();
-    info_.setCaption("In Iron Mine humans simply digging the hole, seeking for iron.\n"
-                     "Higher gives you more iron!");
+    info_.setCaption("In Iron Mine humans simply digging the hole, seeking for\n"
+                     "iron. Higher level gives you more iron!");
     int lvl=*building_;
     current_.create(DEFAULT_FONT, 400, 300, "Current iron growth: " +
                                              std::to_string(lvl*60) + " iron/minute", 30);
