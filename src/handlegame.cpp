@@ -2,15 +2,17 @@
 // Created by tosiek on 16.02.2022.
 //
 
+#include <utility>
+
 #include "../headers/handlegame.h"
 
 void HandleGame::create(std::string path){
     //assign path
-    this->set_path(path);
+    set_path(std::move(path));
 
     //buttons
-    this->returnToMenu_.create(40, 100, 5, 5, "Return");
-    this->save.create(40,100,130,5,"Save");
+    returnToMenu_.create(40, 100, 5, 5, "Return");
+    save.create(40,100,130,5,"Save");
 
     //set clock to 0
     resourceClock_.restart();
@@ -19,11 +21,11 @@ void HandleGame::create(std::string path){
     //for town hall
     float y_position=205.f;
     for(int i=0; i<10; i++){
-        this->thWindow_.crete_ub(&(this->building_[i]), sf::Vector2f(20, y_position), i);
+        thWindow_.crete_ub(&(building_[i]), sf::Vector2f(20, y_position), i);
         y_position+=100.f;
     }
 
-    this->create_buildings();
+    create_buildings();
 
     //resource plank
     resourcePlank_.create_obstacle(PLANK, sf::Vector2f(0.4, 0.43),
@@ -48,9 +50,9 @@ void HandleGame::create(std::string path){
 }
 
 void HandleGame::main_loop(sf::RenderWindow &window, int &scene){
-    this->handle_event(scene,window);
-    this->do_stuff(window);
-    this->display(window);
+    handle_event(scene,window);
+    do_stuff(window);
+    display(window);
 }
 
 void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
@@ -154,6 +156,7 @@ void HandleGame::create_buildings(){
 }
 
 void HandleGame::prepare_buildings(){
+    //creating every building
     building_[0].create_building("Academy", "Textures/academy.png",levels_[0],
                                        sf::Vector2f(250,300), 100, 75, 10);
     building_[1].create_building("Barracks", "Textures/barracks.png",levels_[1],
@@ -174,6 +177,8 @@ void HandleGame::prepare_buildings(){
                                        sf::Vector2f(465,150), 100, 50, 6);
     building_[9].create_building("Iron Mine", "Textures/default.png",levels_[9],
                                  sf::Vector2f(250,450), 100, 50, 6);
+
+    //updating building levels in town hall
     for(int i=0; i<10; i++){
         thWindow_.ub_update_level(i);
     }
@@ -190,13 +195,14 @@ void HandleGame::assign_levels(){
 
 void HandleGame::clocks(int scene){
     if(scene>3){
-        //increasing resources
         if(humanClock_.getElapsedTime().asSeconds()>=10){
+            //increasing amount of people
             float time_passed = (float)humanClock_.getElapsedTime().asSeconds();
             human_+=static_cast<int>(time_passed * 0.12 * levels_[3]);
             humanClock_.restart();
         }
-        if (resourceClock_.getElapsedTime().asSeconds() >= 1) {
+        if(resourceClock_.getElapsedTime().asSeconds() >= 1){
+            //increasing resources
             int time_passed = (int)resourceClock_.getElapsedTime().asSeconds();
             rock_+=time_passed*levels_[5];
             wood_+=time_passed*levels_[4];
@@ -214,8 +220,9 @@ void HandleGame::clocks(int scene){
             if(wood_ >= levels_[7] * 1296){
                 wood_= levels_[7] * 1296;
                 lWood_.setColor(sf::Color::Red);
-            }else
+            }else{
                 lWood_.setColor(sf::Color::Black);
+            }
 
             if(iron_>=levels_[7]*1296){
                 iron_=levels_[7]*1296;
@@ -228,8 +235,9 @@ void HandleGame::clocks(int scene){
             if(human_ >= levels_[3] * 156){
                 human_= levels_[3] * 156;
                 lHuman_.setColor(sf::Color::Red);
-            }else
+            }else{
                 lHuman_.setColor(sf::Color::Black);
+            }
 
             //full safe
             if(money_>=levels_[8]*2048){
@@ -239,6 +247,7 @@ void HandleGame::clocks(int scene){
                 lMoney_.setColor(sf::Color::Black);
             }
 
+            //setting look of resource info
             if(scene==4){
                 lHuman_.setCaption(std::to_string(human_));
                 lRock_.setCaption(std::to_string(rock_));
@@ -269,7 +278,7 @@ void HandleGame::clocks(int scene){
 }
 
 void HandleGame::launch_th(sf::RenderWindow &window, int &scene){
-    thWindow_.main_loop(this->e_, window, scene);
+    thWindow_.main_loop(e_, window, scene);
 }
 
 void HandleGame::launch_farm(sf::RenderWindow &window, int &scene){
@@ -318,6 +327,7 @@ void HandleGame::set_levels(){
 }
 
 void HandleGame::set_resources(){
+    //set default resources (for new game)
     human_=10;
     wood_=100;
     rock_=100;

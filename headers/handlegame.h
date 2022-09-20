@@ -38,12 +38,34 @@ public:
     void do_stuff(sf::RenderWindow &window) override;
     void display(sf::RenderWindow &window) override;
 
+    /**
+     * Makes all buildings not clickable.
+     */
     void deactivate_buildings();
+    /**
+     * Makes all buildings clickable.
+     */
     void activate_buildings();
+    /**
+     * Loads textures, set level and position of every building.
+     */
     void prepare_buildings();
+    /**
+     * Loads saved file and calls prepare_buildings.
+     */
     void create_buildings();
+    /**
+     * Saves current progress of game.
+     */
     void save_game();
+    /**
+     * Assigns level of every building to main game array with levels.
+     */
     void assign_levels();
+    /**
+     * Function to maintain everything that changes in every second.
+     * @param scene Current game's scene.
+     */
     void clocks(int scene);
 
     /**
@@ -62,27 +84,43 @@ public:
     void launch_bank(sf::RenderWindow &window, int &scene);//bank
     void launch_irmine(sf::RenderWindow &window, int &scene);//iron mine
 
+    /**
+     * Sets time left for upgrading building in town hall.
+     * @param index Index of building.
+     * @param time Time left.
+     * @param th Town Hall level to proper drawing of progress bar.
+     */
     void set_ub_left(int index, float time, float th);
 
     //for making game
+    /**
+     * Sets starting levels of all buildings.
+     */
     void set_levels();
+    /**
+     * Sets starting resources' count.
+     */
     void set_resources();
+    /**
+     * Sets path to the save-file.
+     * @param path Path to the file with save.
+     */
     void set_path(std::string path);
 
 private:
     std::array<buildings,10> building_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank 9-iron mine
     std::array<int, 10> levels_;//0-academy 1-barracks 2-church 3-farm 4-lumber 5-stone 6-th 7-wh 8-bank 9-iron mine
-    std::map<int,std::string> numToNames{
-            {0,"Academy"},
-            {1,"Barracks"},
-            {2,"Church"},
-            {3,"Farm"},
-            {4,"Lumber Mill"},
-            {5,"Stone Pit"},
-            {6,"Town Hall"},
-            {7,"Warehouse"},
-            {8,"Bank"},
-            {9,"Iron Mine"}
+    std::array<std::string,10> numToNames_{
+            "Academy",
+            "Barracks",
+            "Church",
+            "Farm",
+            "Lumber Mill",
+            "Stone Pit",
+            "Town Hall",
+            "Warehouse",
+            "Bank",
+            "Iron Mine"
     };
     int human_, rock_, wood_, money_, iron_;
     ExitWindow exitWindow;
@@ -107,6 +145,12 @@ private:
     HandleBank bankWindow_;//bank
     HandleIronMine ironMineWindow_;//iron mine
 
+    /**
+     * Function to check if every building is clicked
+     * @param scene Scene of the game
+     * @param i x coordinate of mouse in click moment
+     * @param j y coordinate of mouse in click moment
+     */
     void check_building_clicked(int &scene, int i, int j);
 };
 
