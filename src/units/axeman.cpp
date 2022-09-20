@@ -62,5 +62,6 @@ int Axeman::attack_calculator(Type which) {
 }
 
 void Axeman::launch_window(sf::RenderWindow &window){
-    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Axeman",window);
+    int count;
+    window1_.create(nMoney_, nPeople_, nIron_, (int) upgradeTime_, "Axeman", window,count);
 }

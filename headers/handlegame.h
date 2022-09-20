@@ -32,10 +32,32 @@
 
 class HandleGame : public HandleWindow{
 public:
+    /**
+     * Create game
+     * @param path Path to the file with saved stats.
+     */
     void create(std::string path);
+    /**
+     * Main loop of the game.
+     * @param window Game's main window.
+     * @param scene Game's scene.
+     */
     void main_loop(sf::RenderWindow &window, int &scene) override;
+    /**
+     * Function to handling events.
+     * @param scene Game's scene.
+     * @param window Game's main window.
+     */
     void handle_event(int &scene, sf::RenderWindow &window) override;
+    /**
+     * Function to do stuff every frame.
+     * @param window Game's main window.
+     */
     void do_stuff(sf::RenderWindow &window) override;
+    /**
+     * Function responsible for drawing everything on the screen.
+     * @param window Game's main window.
+     */
     void display(sf::RenderWindow &window) override;
 
     /**
@@ -134,6 +156,9 @@ private:
     SaveSystem saveSystem_;
     HandleWoSaving wsWindow_;
 
+    /**
+     * Building windows.
+     */
     HandleTownHall thWindow_; //town hall
     HandleFarm farmWindow_;//farm
     HandleLumberMill lmWindow_;//lumber mill

@@ -4,7 +4,10 @@
 
 #include "../headers/trainingwindow.h"
 
-void TrainingWindow::create(int nMoney,int nPeople,int nIron,int upgTime,const std::string& unitName,sf::RenderWindow &W){
+#include <iostream>
+
+void TrainingWindow::create(int nMoney, int nPeople, int nIron, int upgTime, const std::string &unitName,
+                            sf::RenderWindow &W, int &count) {
     //assigning resources
     money_=nMoney;
     people_=nPeople;
@@ -17,24 +20,28 @@ void TrainingWindow::create(int nMoney,int nPeople,int nIron,int upgTime,const s
     sf::Vector2i windowPos=W.getPosition()+sf::Vector2i(175,150);
     window_.setPosition(windowPos);
 
-    //creating info_ to show in upgrade window
+    //creating info to show in upgrade window
     sure_.create(DEFAULT_FONT,225,100,"",30);
 
-    //info_ about quantity of units to train
+    //info about quantity of units to train
     count_.create(DEFAULT_FONT,90,155,"Quantity",30);
     counter_.create(DEFAULT_FONT,300,163,"1",30);
     counter_.center();
     plus_.create_element("Textures/plus.png",sf::Vector2f(320,155));
     minus_.create_element("Textures/minus.png",sf::Vector2f(250,155));
 
-    //info_ which is changed relatively to the quantity
+    //info which is changed relatively to the quantity
     set_captions();
 
+    //buttons to decide if train or not
+    train_.create(40,100,85,205,"Train");
+    cancel_.create(40,100,245,205,"Cancel");
+
     //starting window
-    main_loop();
+    main_loop(count);
 }
 
-void TrainingWindow::handle_event(){
+void TrainingWindow::handle_event(int &count) {
     while(window_.pollEvent(event_)){
         if(event_.type==sf::Event::Closed){
             window_.close();
@@ -56,13 +63,23 @@ void TrainingWindow::handle_event(){
                     set_captions();
                 }
             }
+
+            if(train_.onClick(mPosX,mPosY)){
+                window_.close();
+                count=quantity_;
+            }
+
+            if(cancel_.onClick(mPosX,mPosY)){
+                window_.close();
+                count=0;
+            }
         }
     }
 }
 
-void TrainingWindow::main_loop() {
+void TrainingWindow::main_loop(int &count) {
     while(window_.isOpen()){
-        handle_event();
+        handle_event(count);
         do_stuff();
         display();
     }
@@ -79,6 +96,10 @@ void TrainingWindow::display() {
     plus_.draw_it(window_);
     minus_.draw_it(window_);
 
+    //buttons
+    train_.show(window_);
+    cancel_.show(window_);
+
     window_.display();
 }
 
@@ -91,6 +112,10 @@ void TrainingWindow::do_stuff(){
 
     focused.push_back(plus_.onFocus(mPosX,mPosY));
     focused.push_back(minus_.onFocus(mPosX,mPosY));
+
+    //animate buttons
+    focused.push_back(train_.onFocus(mPosX,mPosY));
+    focused.push_back(cancel_.onFocus(mPosX,mPosY));
 
     if(std::count(focused.begin(),focused.end(),true)){
         cursor_.loadFromSystem(sf::Cursor::Hand);
@@ -106,7 +131,7 @@ void TrainingWindow::set_captions(){
 
     std::string firstLine="Required money: "+std::to_string(quantity_*money_)+"\n";
     std::string secondLine="Required people: "+std::to_string(quantity_*people_)+"\n";
-    std::string thirdLine="Required iron: "+std::to_string(quantity_*people_)+"\n";
+    std::string thirdLine="Required iron: "+std::to_string(quantity_*iron_)+"\n";
     std::string fourthLine="Upgrade time: "+std::to_string(quantity_*time_)+"\n";
     std::string sureCaption=firstLine+secondLine+thirdLine+fourthLine;
     sure_.setCaption(sureCaption);

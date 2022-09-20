@@ -62,5 +62,6 @@ int Swordsman::attack_calculator(Type which){
 }
 
 void Swordsman::launch_window(sf::RenderWindow &window){
-    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Swordsman",window);
+    int count;
+    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Swordsman",window,count);
 }

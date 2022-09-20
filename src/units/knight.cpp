@@ -62,5 +62,6 @@ int Knight::attack_calculator(Type which){
 }
 
 void Knight::launch_window(sf::RenderWindow &window){
-    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Knight",window);
+    int count;
+    window1_.create(nMoney_, nPeople_, nIron_, (int) upgradeTime_, "Knight", window,count);
 }

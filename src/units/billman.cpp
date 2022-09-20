@@ -61,5 +61,6 @@ int Billman::attack_calculator(Type which){
 }
 
 void Billman::launch_window(sf::RenderWindow &window){
-    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Billman",window);
+    int count;
+    window1_.create(nMoney_, nPeople_, nIron_, (int) upgradeTime_, "Billman", window, count);
 }

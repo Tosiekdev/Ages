@@ -62,5 +62,6 @@ int HeavyCavalry::attack_calculator(Type which){
 }
 
 void HeavyCavalry::launch_window(sf::RenderWindow &window){
-    window1_.create(nMoney_,nPeople_,nIron_,(int)upgradeTime_,"Heavy cavalry",window);
+    int count;
+    window1_.create(nMoney_, nPeople_, nIron_, (int) upgradeTime_, "Heavy cavalry", window, count);
 }
