@@ -94,14 +94,30 @@ public:
 
     void launch_game();//game
 
-    void launch_th();//town hall
-    void launch_farm();//farm
-    void launch_lm();//lumber mill
-    void launch_sp();//stone pit
-    void launch_wh();//warehouse
-    void launch_academy();//academy
-    void launch_barracks();//barracks
-    void launch_church();//church
+    void launch_th(){
+        gameWindow_.launch_th(screen_,scene_);
+    }
+    void launch_farm(){
+        gameWindow_.launch_farm(screen_,scene_);
+    }
+    void launch_lm(){
+        gameWindow_.launch_lm(screen_,scene_);
+    }
+    void launch_sp(){
+        gameWindow_.launch_sp(screen_,scene_);
+    }
+    void launch_wh(){
+        gameWindow_.launch_wh(screen_,scene_);
+    }
+    void launch_academy(){
+        gameWindow_.launch_academy(screen_,scene_);
+    }
+    void launch_barracks(){
+        gameWindow_.launch_barracks(screen_,scene_);
+    }
+    void launch_church(){
+        gameWindow_.launch_church(screen_,scene_);
+    }
     void launch_bank(){
         gameWindow_.launch_bank(screen_,scene_);
     }
