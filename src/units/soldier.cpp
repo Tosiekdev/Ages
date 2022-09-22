@@ -12,19 +12,21 @@ Soldier::Soldier(){
 }
 
 //this happens when player try to make train
-std::array<int,3> Soldier::train(int people, int iron, int money){
+std::array<int, 3> Soldier::train(int people, int iron, int money, int count) {
     //assign resources that we can return it
     std::array<int,3> resources{people,iron,money};
 
-    if(this->nPeople_ <= people && this->nMoney_ <= money && this->nIron_ <= iron){
+    std::array<int,3> needed{count*nPeople_,count*nIron_,count*nMoney_};
+
+    if(needed[0] <= people && needed[1] <= money && needed[2] <= iron){
         //take needed resources
-        resources[0]-=this->nPeople_;
-        resources[1]-=this->nIron_;
-        resources[2]-=this->nMoney_;
+        for(size_t i=0; i<3; i++){
+            resources[i]-=needed[i];
+        }
 
-        this->timeLeft_=this->upgradeTime_;
+        timeLeft_=upgradeTime_*static_cast<float>(count);
 
-        this->inUpgrade_=true;
+        inUpgrade_=true;
     }
 
     return resources;

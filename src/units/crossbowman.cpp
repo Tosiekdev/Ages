@@ -61,7 +61,8 @@ int Crossbowman::attack_calculator(Type which){
     }
 }
 
-void Crossbowman::launch_window(sf::RenderWindow &window){
+int Crossbowman::launch_window(sf::RenderWindow &window){
     int count;
     window1_.create(nMoney_, nPeople_, nIron_, (int) upgradeTime_, "Crossbowman", window, count);
+    return count;
 }

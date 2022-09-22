@@ -33,7 +33,13 @@ class HandleBarracks : public HandleBuildings{
     Clickable slideLeft_;
     Clickable slideRight_;
 
+    /**
+     * Sliding cards with units to the left
+     */
     void slide_to_left();
+    /**
+     * Sliding cards with units to the right
+     */
     void slide_to_right();
 
     /**
@@ -67,10 +73,38 @@ class HandleBarracks : public HandleBuildings{
             void launch_single(sf::Vector2i mPos, sf::RenderWindow& window, T& unit);
 
 public:
+    /**
+     * Function to create barracks' window
+     * @param lh Pointer to label containing quantity of humans
+     * @param lr Pointer to label containing quantity of rocks
+     * @param lw Pointer to label containing quantity of wood
+     * @param lm Pointer to label containing quantity of money
+     * @param li Pointer to label containing quantity of iron
+     * @param hn Pointer to label containing quantity of humans
+     * @param rk Pointer to quantity of human
+     * @param wd Pointer to quantity of wood
+     * @param moni Pointer to quantity of money
+     * @param iron Pointer to quantity of iron
+     * @param bld Pointer to barracks level
+     */
     void create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd, int *moni, int *iron,
                 int *bld) override;
+    /**
+     * Function to handle player's input
+     * @param event Main game's event (pretty unnecessary tbh)
+     * @param window Main game's window
+     * @param scene Main game's scene
+     */
     void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene) override;
+    /**
+     * This function do stuff every frame
+     * @param window Main game's window
+     */
     void do_stuff(sf::RenderWindow &window) override;
+    /**
+     * Function to display everything to game's window.
+     * @param window Main game's window.
+     */
     void display(sf::RenderWindow &window) override;
 };
 

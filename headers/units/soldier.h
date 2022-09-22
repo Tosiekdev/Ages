@@ -35,12 +35,12 @@ public:
     virtual void slide(float shift);
 
     //upgrading
-    virtual std::array<int,3> train(int people, int iron, int money);
+    virtual std::array<int, 3> train(int people, int iron, int money, int count);
     virtual void end_upgrade();
     virtual void reset_timer() { forUpgrade_.restart(); }
     virtual void get_time() { forUpgrade_.getElapsedTime().asSeconds(); }
     virtual void update_counter()=0;
-    virtual void launch_window(sf::RenderWindow &window)=0;
+    virtual int launch_window(sf::RenderWindow &window)=0;
 
     //saving&loading
     virtual float get_time_left() { return this->timeLeft_; }

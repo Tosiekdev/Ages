@@ -67,10 +67,12 @@ void TrainingWindow::handle_event(int &count) {
             if(train_.onClick(mPosX,mPosY)){
                 window_.close();
                 count=quantity_;
+                quantity_=1;
             }
 
             if(cancel_.onClick(mPosX,mPosY)){
                 window_.close();
+                quantity_=1;
                 count=0;
             }
         }
@@ -110,6 +112,7 @@ void TrainingWindow::do_stuff(){
 
     std::vector<bool> focused;
 
+    //animate icons increasing amount of units to train
     focused.push_back(plus_.onFocus(mPosX,mPosY));
     focused.push_back(minus_.onFocus(mPosX,mPosY));
 
@@ -117,6 +120,7 @@ void TrainingWindow::do_stuff(){
     focused.push_back(train_.onFocus(mPosX,mPosY));
     focused.push_back(cancel_.onFocus(mPosX,mPosY));
 
+    //setting elegant mouse cursor
     if(std::count(focused.begin(),focused.end(),true)){
         cursor_.loadFromSystem(sf::Cursor::Hand);
     }else{

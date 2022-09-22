@@ -61,7 +61,8 @@ int Archer::attack_calculator(Type which){
     }
 }
 
-void Archer::launch_window(sf::RenderWindow &window){
+int Archer::launch_window(sf::RenderWindow &window){
     int count;
     window1_.create(nMoney_, nPeople_, nIron_, (int) upgradeTime_, "Archer", window,count);
+    return count;
 }

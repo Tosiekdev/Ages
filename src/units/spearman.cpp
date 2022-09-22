@@ -60,7 +60,8 @@ int Spearman::attack_calculator(Type which){
     }
 }
 
-void Spearman::launch_window(sf::RenderWindow &window){
+int Spearman::launch_window(sf::RenderWindow &window){
     int count;
     window1_.create(nMoney_, nPeople_, nIron_, (int) upgradeTime_, "Spearman", window, count);
+    return count;
 }

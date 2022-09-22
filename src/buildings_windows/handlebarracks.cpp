@@ -186,6 +186,8 @@ void HandleBarracks::launch_windows(sf::Vector2i mPos, sf::RenderWindow& window)
 template<class T>
 void HandleBarracks::launch_single(sf::Vector2i mPos, sf::RenderWindow &window, T& unit){
     if(unit.train_click(mPos)){
-        unit.launch_window(window);
+        if(unit.launch_window(window)){
+            //stuff to do if player wants to train some units
+        }
     }
 }
