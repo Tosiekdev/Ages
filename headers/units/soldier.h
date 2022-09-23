@@ -39,6 +39,7 @@ public:
     virtual void end_upgrade();
     virtual void reset_timer() { forUpgrade_.restart(); }
     virtual void get_time() { forUpgrade_.getElapsedTime().asSeconds(); }
+    virtual void update_timer();
     virtual void update_counter()=0;
     virtual int launch_window(sf::RenderWindow &window)=0;
 
@@ -59,9 +60,10 @@ protected:
 
     std::vector<int> lives_;
 
-    float upgradeTime_{}, timeLeft_{};
+    int upgradeTime_{}, timeLeft_{}, unitTime_{};
     bool inUpgrade_=false;
     sf::Clock forUpgrade_;
+    Label left_;
     TrainingWindow window1_;
 
     sf::Sprite view_;

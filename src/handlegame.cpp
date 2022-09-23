@@ -269,11 +269,14 @@ void HandleGame::clocks(int scene){
         //upgrading buildings in town hall
         for(int i=0; i<10; i++){
             if(thWindow_.ub_get_time(i) >= 1){
-                if(thWindow_.ub_update_timer(i, this->thWindow_.ub_get_time(i)) == 3)
+                if(thWindow_.ub_update_timer(i,thWindow_.ub_get_time(i)) == 3)
                     assign_levels();
                 thWindow_.ub_reset_timer(i);
             }
         }
+
+        //training units
+        barracksWindow_.update_timer();
     }
 }
 

@@ -106,6 +106,10 @@ public:
      * @param window Main game's window.
      */
     void display(sf::RenderWindow &window) override;
+    /**
+     * Function to maintaining time of units in upgrade
+     */
+    void update_timer();
 };
 
 

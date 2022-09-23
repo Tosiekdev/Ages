@@ -53,7 +53,7 @@ int buildings::take_resources(int &human, int &rock, int &wood) {
     return 0;
 }
 
-//Draw building_
+//Draw building
 void buildings::show(sf::RenderWindow &W){
     if(level_ > 0){
         W.draw(view_);

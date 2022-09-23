@@ -76,6 +76,7 @@ void HandleBarracks::do_stuff(sf::RenderWindow &window){
     //cool animation
     anim.push_back(returnToGame_.onFocus(x, y));
 
+    //animating train button at every unit
     anim.push_back(swordsman_.animate_buttons(m_pos));
     anim.push_back(spearman_.animate_buttons(m_pos));
     anim.push_back(archer_.animate_buttons(m_pos));
@@ -186,8 +187,29 @@ void HandleBarracks::launch_windows(sf::Vector2i mPos, sf::RenderWindow& window)
 template<class T>
 void HandleBarracks::launch_single(sf::Vector2i mPos, sf::RenderWindow &window, T& unit){
     if(unit.train_click(mPos)){
-        if(unit.launch_window(window)){
+        int unitCount=unit.launch_window(window);
+        if(unitCount){
             //stuff to do if player wants to train some units
+            std::array<int,3> newResources=unit.train(*human_,*iron_,*money_,unitCount);
+            //assigning new
+            int h=newResources[0];
+            *human_=h;
+            int i=newResources[1];
+            *iron_=i;
+            int m=newResources[2];
+            *money_=m;
         }
     }
+}
+
+void HandleBarracks::update_timer(){
+    archer_.update_timer();
+    axeman_.update_timer();
+    billman_.update_timer();
+    crossbowman_.update_timer();
+    heavyCavalry_.update_timer();
+    knight_.update_timer();
+    lightCavalry_.update_timer();
+    spearman_.update_timer();
+    swordsman_.update_timer();
 }

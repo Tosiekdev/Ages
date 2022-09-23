@@ -9,6 +9,8 @@ Soldier::Soldier(){
     plank_.setTexture(pTexture_);
 
     plank_.setScale(0.186,0.186);
+
+    left_.create(DEFAULT_FONT,0,0,"0s",20);
 }
 
 //this happens when player try to make train
@@ -25,8 +27,12 @@ std::array<int, 3> Soldier::train(int people, int iron, int money, int count) {
         }
 
         timeLeft_=upgradeTime_*static_cast<float>(count);
-
+        unitTime_=0;
+        forUpgrade_.restart();
         inUpgrade_=true;
+
+        left_.setCaption(std::to_string((int)timeLeft_)+"s");
+        left_.center();
     }
 
     return resources;
@@ -50,6 +56,11 @@ void Soldier::show(sf::RenderWindow &window){
     lHp_.show(window);
     dmg_.show(window);
     arm_.show(window);
+
+    //timer
+    if(inUpgrade_){
+        left_.show(window);
+    }
 }
 
 //returns vector of damage to hurt others
@@ -69,7 +80,7 @@ void Soldier::end_upgrade(){
 }
 
 void Soldier::set_position(sf::Vector2f pos){
-    this->view_.setPosition(pos);
+    view_.setPosition(pos);
 
     sf::Vector2f name_pos=pos+sf::Vector2f(-1,113);
     name_.set_position(name_pos);
@@ -91,6 +102,9 @@ void Soldier::set_position(sf::Vector2f pos){
 
     sf::Vector2f arm_pos=dmg_pos+sf::Vector2f(0,17);
     arm_.setPosition(arm_pos);
+
+    sf::Vector2f timer_pos=arm_pos+sf::Vector2f(25,37);
+    left_.setPosition(timer_pos);
 }
 
 void Soldier::take_damage(std::vector<int> damage){
@@ -113,4 +127,29 @@ void Soldier::set_stats(){
     lHp_.create(DEFAULT_FONT, 0, 0, "HP: " + std::to_string(hp_), size);
     dmg_.create(DEFAULT_FONT, 0, 0,"Damage: "+std::to_string(attack_), size);
     arm_.create(DEFAULT_FONT, 0, 0,"Armor: "+std::to_string(armor_), size);
+}
+
+void Soldier::update_timer(){
+    auto elapsed=static_cast<int>(forUpgrade_.getElapsedTime().asSeconds());
+    if(elapsed>=1 && timeLeft_>=1){
+        //if at least second passes
+        forUpgrade_.restart();
+        timeLeft_-=elapsed;
+        left_.setCaption(std::to_string((int)timeLeft_)+"s");
+        left_.center();
+        sf::sleep(sf::milliseconds(100));
+
+        //increasing training time of one unit
+        unitTime_+=elapsed;
+        if(unitTime_==upgradeTime_){
+            unitTime_=0;
+            quantity_++;
+            update_counter();
+        }
+
+        //when upgrade time ends
+        if(timeLeft_<=0){
+            inUpgrade_=false;
+        }
+    }
 }
