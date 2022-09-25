@@ -205,9 +205,9 @@ void Application::prepare_focused_tablets(){
     }
 }
 
-//Removing save
+//Removing save_
 void Application::remove_save(){
-    //preparing save to delete
+    //preparing save_ to delete
     int removing=remove(savePath_.c_str());
 
     //updating all saves file

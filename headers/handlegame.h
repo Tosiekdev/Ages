@@ -124,8 +124,8 @@ public:
      */
     void set_resources();
     /**
-     * Sets path to the save-file.
-     * @param path Path to the file with save.
+     * Sets path to the save_-file.
+     * @param path Path to the file with save_.
      */
     void set_path(std::string path);
 
@@ -147,9 +147,9 @@ private:
     int human_, rock_, wood_, money_, iron_;
     ExitWindow exitWindow;
     sf::Event e_;
-    sf::Cursor cursor;
+    sf::Cursor cursor_;
     sf::Clock resourceClock_, humanClock_;
-    Button returnToMenu_, save;
+    Button returnToMenu_, save_;
     Obstacle resourcePlank_, resourceMan_, resourceWood_, resourceRock_, resourceMoney_, resourceIron_;
     Label lHuman_, lRock_, lWood_, lMoney_, lIron_;
     std::string savePath_, name_;

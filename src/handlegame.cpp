@@ -12,7 +12,7 @@ void HandleGame::create(std::string path){
 
     //buttons
     returnToMenu_.create(40, 100, 5, 5, "Return");
-    save.create(40,100,130,5,"Save");
+    save_.create(40, 100, 130, 5, "Save");
 
     //set clock to 0
     resourceClock_.restart();
@@ -38,8 +38,8 @@ void HandleGame::create(std::string path){
                                   sf::Vector2f(570, 61));
     resourceMoney_.create_obstacle("Textures/coin.png", sf::Vector2f(0.08, 0.08),
                                   sf::Vector2f(570, 87));
-    resourceIron_.create_obstacle("Textures/wood.png", sf::Vector2f(0.08, 0.08),
-                                   sf::Vector2f(570, 117));
+    resourceIron_.create_obstacle("Textures/iron.png", sf::Vector2f(0.1, 0.1),
+                                   sf::Vector2f(572, 109));
 
     //resource numbers
     lHuman_.create(DEFAULT_FONT, 620, 5, std::to_string(human_), 20);
@@ -80,7 +80,7 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
             check_building_clicked(scene,i,j);
 
             //saving game
-            if(this->save.onClick(i,j)) this->save_game();
+            if(save_.onClick(i, j)) save_game();
         }
     }
 }
@@ -95,15 +95,15 @@ void HandleGame::do_stuff(sf::RenderWindow &window){
         a.push_back(i.onFocus(x, y));
 
     //cool button animation
-    a.push_back(this->returnToMenu_.onFocus(x, y));
-    a.push_back(this->save.onFocus(x,y));
+    a.push_back(returnToMenu_.onFocus(x, y));
+    a.push_back(save_.onFocus(x, y));
 
     //cursor_ change
     if(std::any_of(a.begin(),a.end(),[](bool i){return i;}))
-        this->cursor.loadFromSystem(sf::Cursor::Hand);
+        cursor_.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(this->cursor);
+        cursor_.loadFromSystem(sf::Cursor::Arrow);
+    window.setMouseCursor(cursor_);
 
     this->activate_buildings();
 }
@@ -112,8 +112,8 @@ void HandleGame::display(sf::RenderWindow &window){
     window.clear(sf::Color::Green);
 
     //buttons
-    this->returnToMenu_.show(window);
-    this->save.show(window);
+    returnToMenu_.show(window);
+    save_.show(window);
 
     //resource plank_
     resourcePlank_.draw(window);
@@ -149,7 +149,7 @@ void HandleGame::activate_buildings(){
 void HandleGame::create_buildings(){
     //load data
     saveSystem_.load_save(savePath_, levels_, thWindow_, name_, human_, wood_, rock_, money_, iron_,
-                          building_);
+                          building_, barracksWindow_);
 
     //make everything done
     prepare_buildings();
@@ -185,7 +185,7 @@ void HandleGame::prepare_buildings(){
 }
 
 void HandleGame::save_game(){
-    saveSystem_.save_game(savePath_,levels_,thWindow_,name_,human_,wood_,rock_,money_,iron_);
+    saveSystem_.save_game(savePath_, levels_, thWindow_, name_, human_, wood_, rock_, money_, iron_, barracksWindow_);
 }
 
 void HandleGame::assign_levels(){

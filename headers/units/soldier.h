@@ -44,8 +44,8 @@ public:
     virtual int launch_window(sf::RenderWindow &window)=0;
 
     //saving&loading
-    virtual float get_time_left() { return this->timeLeft_; }
-    virtual void load_left(float time) { this->timeLeft_=time; }
+    virtual int get_time_left() { return timeLeft_; }
+    virtual void load_left(int time);
 
     //interacting with buttons
     virtual bool animate_buttons(sf::Vector2i mouse_pos) {

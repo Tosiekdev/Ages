@@ -110,6 +110,16 @@ public:
      * Function to maintaining time of units in upgrade
      */
     void update_timer();
+    /**
+     *Function to assign remaining time of upgrading all kind of units.
+     * @param time Vector with remaining time.
+     */
+    void set_remaining_time(std::vector<int> time);
+    /**
+     * Function to get remaining time of upgrade of any unit
+     * @return Vector with remaining time
+     */
+    std::vector<int> get_remaining_time();
 };
 
 

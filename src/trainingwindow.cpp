@@ -120,7 +120,7 @@ void TrainingWindow::do_stuff(){
     focused.push_back(train_.onFocus(mPosX,mPosY));
     focused.push_back(cancel_.onFocus(mPosX,mPosY));
 
-    //setting elegant mouse cursor
+    //setting elegant mouse cursor_
     if(std::count(focused.begin(),focused.end(),true)){
         cursor_.loadFromSystem(sf::Cursor::Hand);
     }else{

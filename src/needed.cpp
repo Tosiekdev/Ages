@@ -98,7 +98,7 @@ void Application::main_window(){
     forClocks.join();
 }
 
-//Creating city a' ka loading save
+//Creating city a' ka loading save_
 string Application::create_city(const string& calling){
 
     //creating needed variables

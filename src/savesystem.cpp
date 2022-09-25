@@ -6,11 +6,13 @@
 
 void
 SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, HandleTownHall &th_window, std::string &name,
-                      int &human, int &wood, int &rock, int &money, int &iron, std::array<buildings, 10> &b) {
+                      int &human, int &wood, int &rock, int &money, int &iron, std::array<buildings, 10> &b,
+                      HandleBarracks &b_window) {
     std::fstream s_path;
     s_path.open(save_path,std::ios::in);
     std::string input;
     int line_nr=0;
+    std::vector<int> unitsLeft; //vector with time left for training units
     while(!s_path.eof()){
         getline(s_path, input);
 
@@ -96,20 +98,28 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
             case 25:
                 th_window.set_ub_left(9,std::stof(input),levels[6]);
                 break;
+            default:
+                if(!input.empty()){
+                    unitsLeft.push_back(std::stoi(input));
+                }
         }
         line_nr++;
+    }
+    if(!unitsLeft.empty()){
+        b_window.set_remaining_time(unitsLeft);
     }
     s_path.close();
 }
 
 void
 SaveSystem::save_game(const std::string &save_path, std::array<int, 10> &levels, HandleTownHall &th_window,
-                      std::string &name, int &human, int &wood, int &rock, int &money, int &iron) {
-    //opening save
+                      std::string &name, int &human, int &wood, int &rock, int &money, int &iron,
+                      HandleBarracks &b_window) {
+    //opening save_
     std::fstream file;
     file.open(save_path, std::ios::out);
 
-    //save all data
+    //save_ all data
     //levels_
     file << name << std::endl;
     for(auto &j:levels)
@@ -125,6 +135,11 @@ SaveSystem::save_game(const std::string &save_path, std::array<int, 10> &levels,
     //upgrades time left
     for(int i=0; i<10; i++)
         file << th_window.get_ub_left(i) << std::endl;
+
+    //units training time left
+    for(auto &i:b_window.get_remaining_time()){
+        file << i << std::endl;
+    }
 
     file.close();
 }

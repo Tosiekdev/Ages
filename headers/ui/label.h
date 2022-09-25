@@ -14,7 +14,7 @@
 class Label
 {
     sf::Font label_font;
-    sf::Text label_text;
+    sf::Text labelText_;
     sf::Vector2f label_position;
     std::string label_caption;
     int label_height;

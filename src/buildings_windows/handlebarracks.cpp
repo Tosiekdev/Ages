@@ -213,3 +213,29 @@ void HandleBarracks::update_timer(){
     spearman_.update_timer();
     swordsman_.update_timer();
 }
+
+void HandleBarracks::set_remaining_time(std::vector<int> time){
+    archer_.load_left(time[0]);
+    axeman_.load_left(time[1]);
+    billman_.load_left(time[2]);
+    crossbowman_.load_left(time[3]);
+    heavyCavalry_.load_left(time[4]);
+    knight_.load_left(time[5]);
+    lightCavalry_.load_left(time[6]);
+    spearman_.load_left(time[7]);
+    swordsman_.load_left(time[8]);
+}
+
+std::vector<int> HandleBarracks::get_remaining_time() {
+    std::vector<int> times;
+    times.push_back(archer_.get_time_left());
+    times.push_back(axeman_.get_time_left());
+    times.push_back(billman_.get_time_left());
+    times.push_back(crossbowman_.get_time_left());
+    times.push_back(heavyCavalry_.get_time_left());
+    times.push_back(knight_.get_time_left());
+    times.push_back(lightCavalry_.get_time_left());
+    times.push_back(spearman_.get_time_left());
+    times.push_back(swordsman_.get_time_left());
+    return times;
+}

@@ -153,3 +153,14 @@ void Soldier::update_timer(){
         }
     }
 }
+
+void Soldier::load_left(int time){
+    unitTime_=time%upgradeTime_;
+    if(time>0){
+        timeLeft_=time;
+        inUpgrade_=true;
+        left_.setCaption(std::to_string((int)timeLeft_)+"s");
+        left_.center();
+        forUpgrade_.restart();
+    }
+}
