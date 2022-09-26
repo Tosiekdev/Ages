@@ -120,6 +120,16 @@ public:
      * @return Vector with remaining time
      */
     std::vector<int> get_remaining_time();
+    /**
+     * Function to get quantity of units
+     * @return Vector where every field is quantity of different unit.
+     */
+    std::vector<int> get_units_quantity();
+    /**
+     * Function to assign quantity of every unit.
+     * @param count Array with loaded quantities.
+     */
+    void set_units_quantity(std::array<int,9> count);
 };
 
 

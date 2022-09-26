@@ -13,6 +13,7 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
     std::string input;
     int line_nr=0;
     std::vector<int> unitsLeft; //vector with time left for training units
+    std::array<int,9> unitsQuantity{}; //array with quantity of every unit
     while(!s_path.eof()){
         getline(s_path, input);
 
@@ -98,6 +99,33 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
             case 25:
                 th_window.set_ub_left(9,std::stof(input),levels[6]);
                 break;
+            case 26:
+                unitsQuantity[0]=std::stoi(input);
+                break;
+            case 27:
+                unitsQuantity[1]=std::stoi(input);
+                break;
+            case 28:
+                unitsQuantity[2]=std::stoi(input);
+                break;
+            case 29:
+                unitsQuantity[3]=std::stoi(input);
+                break;
+            case 30:
+                unitsQuantity[4]=std::stoi(input);
+                break;
+            case 31:
+                unitsQuantity[5]=std::stoi(input);
+                break;
+            case 32:
+                unitsQuantity[6]=std::stoi(input);
+                break;
+            case 33:
+                unitsQuantity[7]=std::stoi(input);
+                break;
+            case 34:
+                unitsQuantity[8]=std::stoi(input);
+                break;
             default:
                 if(!input.empty()){
                     unitsLeft.push_back(std::stoi(input));
@@ -135,6 +163,11 @@ SaveSystem::save_game(const std::string &save_path, std::array<int, 10> &levels,
     //upgrades time left
     for(int i=0; i<10; i++)
         file << th_window.get_ub_left(i) << std::endl;
+
+    //quantity of units
+    for(auto &i:b_window.get_units_quantity()){
+        file << i << std::endl;
+    }
 
     //units training time left
     for(auto &i:b_window.get_remaining_time()){

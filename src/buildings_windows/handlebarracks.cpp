@@ -239,3 +239,29 @@ std::vector<int> HandleBarracks::get_remaining_time() {
     times.push_back(swordsman_.get_time_left());
     return times;
 }
+
+std::vector<int> HandleBarracks::get_units_quantity() {
+    std::vector<int> quantity;
+    quantity.push_back(archer_.get_quantity());
+    quantity.push_back(axeman_.get_quantity());
+    quantity.push_back(billman_.get_quantity());
+    quantity.push_back(crossbowman_.get_quantity());
+    quantity.push_back(heavyCavalry_.get_quantity());
+    quantity.push_back(knight_.get_quantity());
+    quantity.push_back(lightCavalry_.get_quantity());
+    quantity.push_back(spearman_.get_quantity());
+    quantity.push_back(swordsman_.get_quantity());
+    return quantity;
+}
+
+void HandleBarracks::set_units_quantity(std::array<int, 9> count){
+    archer_.set_quantity(count[0]);
+    axeman_.set_quantity(count[1]);
+    billman_.set_quantity(count[2]);
+    crossbowman_.set_quantity(count[3]);
+    heavyCavalry_.set_quantity(count[4]);
+    knight_.set_quantity(count[5]);
+    lightCavalry_.set_quantity(count[6]);
+    spearman_.set_quantity(count[7]);
+    swordsman_.set_quantity(count[8]);
+}

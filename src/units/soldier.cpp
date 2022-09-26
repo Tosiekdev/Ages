@@ -164,3 +164,8 @@ void Soldier::load_left(int time){
         forUpgrade_.restart();
     }
 }
+
+void Soldier::set_quantity(int count){
+    quantity_=count;
+    update_counter();
+}

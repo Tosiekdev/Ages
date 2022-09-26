@@ -46,6 +46,16 @@ public:
     //saving&loading
     virtual int get_time_left() { return timeLeft_; }
     virtual void load_left(int time);
+    /**
+     * Quantity getter.
+     * @return Returns unit's quantity.
+     */
+    virtual int get_quantity() const { return quantity_; }
+    /**
+     * Quantity setter.
+     * @param count New quantity.
+     */
+    virtual void set_quantity(int count);
 
     //interacting with buttons
     virtual bool animate_buttons(sf::Vector2i mouse_pos) {
