@@ -33,7 +33,7 @@ void Application::create_load(){
 
 //Main thread of app
 void Application::load(){
-    //event
+    //event_
     this->l_handle_event();
 
     //do sth

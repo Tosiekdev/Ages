@@ -70,7 +70,7 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
             int i = sf::Mouse::getPosition(window).x;
             int j = sf::Mouse::getPosition(window).y;
 
-            //Returning button event
+            //Returning button event_
             if(returnToMenu_.onClick(i, j)){
                 deactivate_buildings();
                 wsWindow_.create(window, scene);
@@ -336,6 +336,10 @@ void HandleGame::set_resources(){
     rock_=100;
     money_=200;
     iron_=50;
+
+    //set quantity of all units to 0
+    std::array<int,9> levels{};
+    barracksWindow_.set_units_quantity(levels);
 }
 
 void HandleGame::set_path(std::string path){

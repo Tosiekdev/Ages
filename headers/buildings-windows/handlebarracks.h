@@ -91,7 +91,7 @@ public:
                 int *bld) override;
     /**
      * Function to handle player's input
-     * @param event Main game's event (pretty unnecessary tbh)
+     * @param event Main game's event_ (pretty unnecessary tbh)
      * @param window Main game's window
      * @param scene Main game's scene
      */

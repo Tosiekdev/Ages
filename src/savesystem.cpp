@@ -14,6 +14,7 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
     int line_nr=0;
     std::vector<int> unitsLeft; //vector with time left for training units
     std::array<int,9> unitsQuantity{}; //array with quantity of every unit
+    auto town_hall=static_cast<float>(levels[6]);//level of town hall for proper progress bar drawing
     while(!s_path.eof()){
         getline(s_path, input);
 
@@ -70,34 +71,34 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
                 break;
                 //time left
             case 16:
-                th_window.set_ub_left(0, stof(input),levels[6]);
+                th_window.set_ub_left(0, stof(input),town_hall);
                 break;
             case 17:
-                th_window.set_ub_left(1,stof(input),levels[6]);
+                th_window.set_ub_left(1,stof(input),town_hall);
                 break;
             case 18:
-                th_window.set_ub_left(2,stof(input),levels[6]);
+                th_window.set_ub_left(2,stof(input),town_hall);
                 break;
             case 19:
-                th_window.set_ub_left(3,stof(input),levels[6]);
+                th_window.set_ub_left(3,stof(input),town_hall);
                 break;
             case 20:
-                th_window.set_ub_left(4,stof(input),levels[6]);
+                th_window.set_ub_left(4,stof(input),town_hall);
                 break;
             case 21:
-                th_window.set_ub_left(5,stof(input),levels[6]);
+                th_window.set_ub_left(5,stof(input),town_hall);
                 break;
             case 22:
-                th_window.set_ub_left(6,stof(input),levels[6]);
+                th_window.set_ub_left(6,stof(input),town_hall);
                 break;
             case 23:
-                th_window.set_ub_left(7,stof(input),levels[6]);
+                th_window.set_ub_left(7,stof(input),town_hall);
                 break;
             case 24:
-                th_window.set_ub_left(8,std::stof(input),levels[6]);
+                th_window.set_ub_left(8,std::stof(input),town_hall);
                 break;
             case 25:
-                th_window.set_ub_left(9,std::stof(input),levels[6]);
+                th_window.set_ub_left(9,std::stof(input),town_hall);
                 break;
             case 26:
                 unitsQuantity[0]=std::stoi(input);
@@ -136,6 +137,7 @@ SaveSystem::load_save(std::string save_path, std::array<int, 10> &levels, Handle
     if(!unitsLeft.empty()){
         b_window.set_remaining_time(unitsLeft);
     }
+    b_window.set_units_quantity(unitsQuantity);
     s_path.close();
 }
 

@@ -9,14 +9,17 @@
 
 class HandleWindow{
 public:
-    virtual void main_loop(sf::RenderWindow &window, int &scene)=0;
+    virtual void main_loop(sf::RenderWindow &window, int &scene){
+        handle_event(scene,window);
+        do_stuff(window);
+        display(window);
+    }
     virtual void handle_event(int &scene, sf::RenderWindow &window)=0;
     virtual void do_stuff(sf::RenderWindow &window)=0;
     virtual void display(sf::RenderWindow &window)=0;
 
 protected:
-    sf::Event event{};
+    sf::Event event_{};
 };
-
 
 #endif //AGES1_HANDLEWINDOW_H

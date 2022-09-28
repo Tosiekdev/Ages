@@ -32,7 +32,7 @@ void Application::create_create(){
 
 //Window
 void Application::create(){
-    //event
+    //event_
     this->c_handle_event();
 
     //do sth
