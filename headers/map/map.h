@@ -7,10 +7,14 @@
 
 #include "../handlewindow.h"
 #include "../ui/button.h"
+#include "../ui/obstacle.h"
 
 class Map : public HandleWindow {
     Button return_; //Button to return to main game
+    sf::View view_; //Camera in the map
+    sf::Cursor cursor_; //Window cursor
 
+    Obstacle world_; //Map of the world
 
 public:
     Map();
