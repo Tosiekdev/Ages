@@ -60,7 +60,7 @@ class HandleBarracks : public HandleBuildings{
 
     /**
      * Function to checking if train button of any unit is clicked
-     * @param mPos Mouse position in the moment of click
+     * @param mPos Mouse position_ in the moment of click
      */
     void launch_windows(sf::Vector2i mPos, sf::RenderWindow& window);
 

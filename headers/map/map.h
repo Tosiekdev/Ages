@@ -8,6 +8,7 @@
 #include "../handlewindow.h"
 #include "../ui/button.h"
 #include "../ui/obstacle.h"
+#include "../ui/clickable.h"
 
 class Map : public HandleWindow {
     Button return_; //Button to return to main game
@@ -16,8 +17,32 @@ class Map : public HandleWindow {
 
     Obstacle world_; //Map of the world
 
+    /**
+     * Controls
+     * @param left_ Navigation button to see left side of the map
+     * @param right_ Navigation button to see right side of the map
+     * @param top_ Navigation button to see top side of the map
+     * @param bottom_ Navigation button to see bottom side of the map
+     */
+    Clickable left_,right_,top_,bottom_;
+
+    /**
+     * Checking if any navigation bar is clicked
+     * @param window Game's window
+     */
+    void moving_map(sf::RenderWindow &window);
+    /**
+     * Function handling proper display of control buttons/
+     * @param shift Information about how map is shifted
+     */
+    void shift_controls(sf::Vector2f shift);
+
 public:
     Map();
+    /**
+     * Function to set all needed settings for map.
+     */
+    void create();
     /**
      * Function responsible for handling event.
      * @param scene Main game's scene

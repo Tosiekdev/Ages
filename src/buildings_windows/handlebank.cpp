@@ -67,7 +67,7 @@ void HandleBank::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, i
     this->crete_info();
     this->info_.setCaption("Bank is place where money are created. You can also\n"
                           "make deals with other villages here. Higher bank's level\n"
-                          "gives you more money and better position at marketplace.");
+                          "gives you more money and better position_ at marketplace.");
     int bank=*building_;
     this->f_current.create(DEFAULT_FONT,400,300,"Current Money growth: "+
                                                 std::to_string(bank*3*60)+"coins/minute",30);

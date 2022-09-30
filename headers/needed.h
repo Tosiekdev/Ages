@@ -36,9 +36,10 @@ private:
     int height_,width_,maxFps_;
     int scene_;
     /*
-    1-menu_ 2-create 3-load 4-game
-    5-town_hall 6-farm 7-lumber_mill 8-stone pit 9-ware house
-    10-academy 11-barracks 12-church 13-bank
+     1-menu_ 2-create 3-load 4-game
+     5-town_hall 6-farm 7-lumber_mill 8-stone pit 9-ware house
+     10-academy 11-barracks 12-church 13-bank 14-iron mine
+     15-map of the world
     */
 
     //village
@@ -123,6 +124,10 @@ public:
     }
     void launch_irmine(){
         gameWindow_.launch_irmine(screen_,scene_);
+    }
+
+    void launch_map(){
+        gameWindow_.launch_map(screen_,scene_);
     }
 
     //thread functions

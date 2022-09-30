@@ -47,6 +47,9 @@ void HandleGame::create(std::string path){
     lWood_.create(DEFAULT_FONT, 620, 61, std::to_string(wood_), 20);
     lMoney_.create(DEFAULT_FONT, 620, 89, std::to_string(money_), 20);
     lIron_.create(DEFAULT_FONT, 620, 117, std::to_string(iron_), 20);
+
+    //map
+    mapIcon_.create_element("Textures/default.png",sf::Vector2f(500,5));
 }
 
 void HandleGame::main_loop(sf::RenderWindow &window, int &scene){
@@ -76,6 +79,12 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
                 wsWindow_.create(window, scene);
             }
 
+            //map
+            if(mapIcon_.onClick(i,j)){
+                world_.create();
+                scene=15;
+            }
+
             //Checking if entered building
             check_building_clicked(scene,i,j);
 
@@ -97,6 +106,9 @@ void HandleGame::do_stuff(sf::RenderWindow &window){
     //cool button animation
     a.push_back(returnToMenu_.onFocus(x, y));
     a.push_back(save_.onFocus(x, y));
+
+    //other cool animations
+    a.push_back(mapIcon_.onFocus(x,y));
 
     //cursor_ change
     if(std::any_of(a.begin(),a.end(),[](bool i){return i;}))
@@ -128,6 +140,9 @@ void HandleGame::display(sf::RenderWindow &window){
     lWood_.show(window);
     lMoney_.show(window);
     lIron_.show(window);
+
+    //map
+    mapIcon_.draw_it(window);
 
     //buildings
     for(auto &i:building_)
@@ -247,7 +262,7 @@ void HandleGame::clocks(int scene){
                 lMoney_.setColor(sf::Color::Black);
             }
 
-            //setting look of resource info
+            //setting look_ of resource info
             if(scene==4){
                 lHuman_.setCaption(std::to_string(human_));
                 lRock_.setCaption(std::to_string(rock_));
@@ -278,46 +293,6 @@ void HandleGame::clocks(int scene){
         //training units
         barracksWindow_.update_timer();
     }
-}
-
-void HandleGame::launch_th(sf::RenderWindow &window, int &scene){
-    thWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_farm(sf::RenderWindow &window, int &scene){
-    farmWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_lm(sf::RenderWindow &window, int &scene){
-    lmWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_sp(sf::RenderWindow &window, int &scene){
-    spWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_wh(sf::RenderWindow &window, int &scene){
-    whWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_academy(sf::RenderWindow &window, int &scene){
-    academyWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_barracks(sf::RenderWindow &window, int &scene){
-    barracksWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_church(sf::RenderWindow &window, int &scene){
-    churchWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_bank(sf::RenderWindow &window, int &scene){
-    bankWindow_.main_loop(e_, window, scene);
-}
-
-void HandleGame::launch_irmine(sf::RenderWindow &window, int &scene){
-    ironMineWindow_.main_loop(e_,window,scene);
 }
 
 void HandleGame::set_ub_left(int index, float time, float th){

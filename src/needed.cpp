@@ -93,6 +93,9 @@ void Application::main_window(){
             case 14:
                 launch_irmine();
                 break;
+            case 15:
+                launch_map();
+                break;
         }
     }
     forClocks.join();

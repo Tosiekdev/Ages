@@ -29,6 +29,7 @@
 #include "buildings-windows/handlechurch.h"
 #include "buildings-windows/handlebank.h"
 #include "buildings-windows/handleironmine.h"
+#include "map/map.h"
 
 class HandleGame : public HandleWindow{
 public:
@@ -69,7 +70,7 @@ public:
      */
     void activate_buildings();
     /**
-     * Loads textures, set level and position of every building.
+     * Loads textures, set level and position_ of every building.
      */
     void prepare_buildings();
     /**
@@ -95,16 +96,45 @@ public:
      * @param window Window on which everything is displayed
      * @param scene Main window scene if need to be switched
      */
-    void launch_th(sf::RenderWindow &window, int &scene);//town hall
-    void launch_farm(sf::RenderWindow &window, int &scene);//farm
-    void launch_lm(sf::RenderWindow &window, int &scene);//lumber mill
-    void launch_sp(sf::RenderWindow &window, int &scene);//stone pit
-    void launch_wh(sf::RenderWindow &window, int &scene);//warehouse
-    void launch_academy(sf::RenderWindow &window, int &scene);//academy
-    void launch_barracks(sf::RenderWindow &window, int &scene);//barracks
-    void launch_church(sf::RenderWindow &window, int &scene);//church
-    void launch_bank(sf::RenderWindow &window, int &scene);//bank
-    void launch_irmine(sf::RenderWindow &window, int &scene);//iron mine
+    void launch_th(sf::RenderWindow &window, int &scene){
+        thWindow_.main_loop(e_, window, scene);
+    }//town hall
+    void launch_farm(sf::RenderWindow &window, int &scene){
+        farmWindow_.main_loop(e_, window, scene);
+    }//farm
+    void launch_lm(sf::RenderWindow &window, int &scene){
+        lmWindow_.main_loop(e_, window, scene);
+    }//lumber mill
+    void launch_sp(sf::RenderWindow &window, int &scene){
+        spWindow_.main_loop(e_, window, scene);
+    }//stone pit
+    void launch_wh(sf::RenderWindow &window, int &scene){
+        whWindow_.main_loop(e_, window, scene);
+    }//warehouse
+    void launch_academy(sf::RenderWindow &window, int &scene){
+        academyWindow_.main_loop(e_, window, scene);
+    }//academy
+    void launch_barracks(sf::RenderWindow &window, int &scene){
+        barracksWindow_.main_loop(e_, window, scene);
+    }//barracks
+    void launch_church(sf::RenderWindow &window, int &scene){
+        churchWindow_.main_loop(e_, window, scene);
+    }//church
+    void launch_bank(sf::RenderWindow &window, int &scene){
+        bankWindow_.main_loop(e_, window, scene);
+    }//bank
+    void launch_irmine(sf::RenderWindow &window, int &scene){
+        ironMineWindow_.main_loop(e_, window, scene);
+    }//iron mine
+
+    /**
+     * Function to launch map.
+     * @param window Main game's window
+     * @param scene Game's scene
+     */
+    void launch_map(sf::RenderWindow &window, int &scene){
+        world_.main_loop(window,scene);
+    }
 
     /**
      * Sets time left for upgrading building in town hall.
@@ -157,7 +187,7 @@ private:
     HandleWoSaving wsWindow_;
 
     /**
-     * Building windows.
+     * Buildings' windows.
      */
     HandleTownHall thWindow_; //town hall
     HandleFarm farmWindow_;//farm
@@ -169,6 +199,10 @@ private:
     HandleChurch churchWindow_;//church
     HandleBank bankWindow_;//bank
     HandleIronMine ironMineWindow_;//iron mine
+
+    //Map of the world
+    Clickable mapIcon_;
+    Map world_; //screen with map of the world
 
     /**
      * Function to check if every building is clicked

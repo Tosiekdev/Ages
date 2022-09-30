@@ -13,14 +13,16 @@
 class Clickable
 {
 private:
-    sf::Texture look;
-    sf::Sprite view;
-    sf::Vector2f position;
+    sf::Texture look_;
+    sf::Sprite view_;
+    sf::Vector2f position_;
 
 public:
-    void create_element(std::string path, sf::Vector2f pos);
-    bool onFocus(int mposx, int mposy);
-    bool onClick(int mposx, int mposy);
+    void create_element(const std::string& path, sf::Vector2f pos);
+    sf::Vector2f get_position() const{ return position_; }
+    void set_position(sf::Vector2f newPos) { position_=newPos; view_.setPosition(position_); }
+    bool onFocus(int mPosX, int mPosY);
+    bool onClick(int mPosX, int mPosY);
     void draw_it(sf::RenderWindow &W);
 };
 
