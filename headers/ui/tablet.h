@@ -15,13 +15,13 @@
 class tablet
 {
 private:
-    sf::Texture plank;
-    sf::Sprite look;
-    sf::Vector2f pos, sting_pos;
-    std::string name;
+    sf::Texture plank_;
+    sf::Sprite look_;
+    sf::Vector2f pos_, sting_pos_;
+    std::string name_;
     bool focus_=false;
-    sf::Font font;
-    sf::Text text;
+    sf::Font font_;
+    sf::Text text_;
 public:
     tablet();
     void create_tablet(std::string caption, sf::Vector2f position);

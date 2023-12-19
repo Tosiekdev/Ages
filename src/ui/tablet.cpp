@@ -10,57 +10,57 @@ using namespace sf;
 //Constructor
 tablet::tablet()
 {
-    this->plank.loadFromFile("Textures/plank.png");
-    this->look.setTexture(this->plank);
-    this->look.setScale(0.4,0.3);
-    this->font.loadFromFile(DEFAULT_FONT);
-    this->text.setFont(this->font);
+    plank_.loadFromFile("Textures/plank.png");
+    look_.setTexture(plank_);
+    look_.setScale(0.4,0.3);
+    font_.loadFromFile(DEFAULT_FONT);
+    text_.setFont(font_);
 }
 
 //This does constructor job
 void tablet::create_tablet(string label, Vector2f possition)
 {
-    this->pos=possition;
-    this->sting_pos=this->pos+Vector2f(40,10);
-    this->name=label;
-    this->text.setString("Nazwa: "+this->name);
-    this->text.setPosition(this->sting_pos);
-    this->look.setPosition(this->pos);
+    pos_=possition;
+    sting_pos_=pos_+Vector2f(40,10);
+    name_=label;
+    text_.setString("Nazwa: " + name_);
+    text_.setPosition(sting_pos_);
+    look_.setPosition(pos_);
 }
 
 //This draws everything
 void tablet::draw(RenderWindow &W)
 {
-    W.draw(this->look);
-    W.draw(this->text);
+    W.draw(look_);
+    W.draw(text_);
 }
 
 //cool animation background
 bool tablet::TRIGGERED(int mposx, int mposy)
 {
-    if(this->look.getGlobalBounds().contains(mposx,mposy))
+    if(look_.getGlobalBounds().contains(mposx,mposy))
     {
-        this->plank.loadFromFile("Textures/plank1.png");
-        this->look.setTexture(this->plank);
-        this->look.setScale(0.4,0.3);
+        plank_.loadFromFile("Textures/plank1.png");
+        look_.setTexture(this->plank_);
+        look_.setScale(0.4,0.3);
         return true;
     }
-    else
+
+    if(!focus_)
     {
-        if(!focus_)
-        {
-            this->plank.loadFromFile("Textures/plank.png");
-            this->look.setTexture(this->plank);
-            this->look.setScale(0.4,0.3);
-            return false;
-        }
+        plank_.loadFromFile("Textures/plank.png");
+        look_.setTexture(this->plank_);
+        look_.setScale(0.4,0.3);
+        return false;
     }
+
+    return true;
 }
 
 //check if tablet is clicked
 bool tablet::onClick(int mposx,int mposy)
 {
-    if(this->look.getGlobalBounds().contains(mposx,mposy))
+    if(look_.getGlobalBounds().contains(mposx,mposy))
         return true;
     else
         return false;
@@ -69,24 +69,25 @@ bool tablet::onClick(int mposx,int mposy)
 //changing texture_ if tablet has been clicked
 void tablet::focussed()
 {
-    this->focus_=true;
-    this->plank.loadFromFile("Textures/plank1.png");
-    this->look.setTexture(this->plank);
-    this->look.setScale(0.4,0.3);
+    focus_=true;
+    plank_.loadFromFile("Textures/plank1.png");
+    look_.setTexture(plank_);
+    look_.setScale(0.4,0.3);
 }
 
 
 //oposite of focussed
 void tablet::unfocused()
 {
-    this->focus_=false;
-    this->plank.loadFromFile("Textures/plank.png");
-    this->look.setTexture(this->plank);
-    this->look.setScale(0.4,0.3);
+    focus_=false;
+    plank_.loadFromFile("Textures/plank.png");
+    look_.setTexture(this->plank_);
+    look_.setScale(0.4,0.3);
 }
 
 //Returns name_ (wow)
 string tablet::return_name()
 {
-    return this->name;
+    return name_;
 }
+
