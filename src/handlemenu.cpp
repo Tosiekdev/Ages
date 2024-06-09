@@ -23,13 +23,13 @@ void HandleMenu::create(){
     this->iwa.create(DEFAULT_FONT,500,530,"Iwa",35);
 }
 
-void HandleMenu::main_loop(sf::RenderWindow &window, int &scene){
+void HandleMenu::main_loop(sf::RenderWindow &window, buildings::Scene &scene){
     this->handle_event(scene,window);
     this->do_stuff(window);
     this->display(window);
 }
 
-void HandleMenu::handle_event(int &scene, sf::RenderWindow &window){
+void HandleMenu::handle_event(buildings::Scene &scene, sf::RenderWindow &window){
     while(window.pollEvent(this->e)){
         if(this->e.type==sf::Event::Closed) window.close();
         if((sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))) this->exitWindow.create(window,scene);
@@ -42,12 +42,12 @@ void HandleMenu::handle_event(int &scene, sf::RenderWindow &window){
 
             //new game button
             if(this->new_game.onClick(a,b)){
-                scene=2;
+                scene=buildings::Scene::CREATE;
             }
 
             //load game button
             if(this->load_game.onClick(a,b)){
-                scene=3;
+                scene=buildings::Scene::LOAD;
             }
 
             //exit button

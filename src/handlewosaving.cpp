@@ -4,7 +4,7 @@
 
 #include "../headers/handlewosaving.h"
 
-void HandleWoSaving::create(sf::RenderWindow &W, int &scene){
+void HandleWoSaving::create(sf::RenderWindow &W, buildings::Scene &scene){
     //creating window
     this->w_saving.create(sf::VideoMode(300, 200), "Are you sure_?",sf::Style::Titlebar | sf::Style::Close);
     this->w_saving.setPosition(sf::Vector2i(250 + W.getPosition().x,200 + W.getPosition().y));
@@ -19,7 +19,7 @@ void HandleWoSaving::create(sf::RenderWindow &W, int &scene){
     this->main_loop(W,scene);
 }
 
-void HandleWoSaving::main_loop(sf::RenderWindow &window, int &scene){
+void HandleWoSaving::main_loop(sf::RenderWindow &window, buildings::Scene &scene){
     while(this->w_saving.isOpen()){
         this->handle_event(scene, window);
         this->do_stuff(window);
@@ -27,7 +27,7 @@ void HandleWoSaving::main_loop(sf::RenderWindow &window, int &scene){
     }
 }
 
-void HandleWoSaving::handle_event(int &scene, sf::RenderWindow &window){
+void HandleWoSaving::handle_event(buildings::Scene &scene, sf::RenderWindow &window){
     while (this->w_saving.pollEvent(this->e_save)) {
         //Exit
         if (this->e_save.type == sf::Event::Closed) this->w_saving.close();
@@ -40,7 +40,7 @@ void HandleWoSaving::handle_event(int &scene, sf::RenderWindow &window){
 
             //yes_ button
             if (this->am_sure.onClick(x, y)) {
-                scene = 1;
+                scene = buildings::Scene::MENU;
                 this->w_saving.close();
             }
 

@@ -55,7 +55,7 @@ void Application::c_handle_event(){
                 string erro=this->create_city(this->t1_.return_caption());
                 if(erro==""){
                     this->gameWindow_.create(this->savePath_);
-                    this->scene_=4;
+                    this->scene_=buildings::Scene::GAME;
                 }
                 this->label2_.setCaption(erro);
             }
@@ -67,8 +67,8 @@ void Application::c_handle_event(){
             int j=Mouse::getPosition(this->screen_).y;
 
             //doing nothing buttons
-            if(this->returnButton_.onClick(i, j)) this->scene_=1;
-            if(this->cancelButton_.onClick(i, j)) this->scene_=1;
+            if(this->returnButton_.onClick(i, j)) this->scene_=buildings::Scene::MENU;
+            if(this->cancelButton_.onClick(i, j)) this->scene_=buildings::Scene::MENU;
 
             //same as when you hit enter
             if(this->okButton_.onClick(i, j)){
@@ -76,7 +76,7 @@ void Application::c_handle_event(){
                     string erro=this->create_city(this->t1_.return_caption());
                     if(erro==""){
                         this->gameWindow_.create(this->savePath_);
-                        this->scene_=4;
+                        this->scene_=buildings::Scene::GAME;
                     }
                     this->label2_.setCaption(erro);
                 }

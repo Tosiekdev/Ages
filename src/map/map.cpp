@@ -24,7 +24,7 @@ void Map::create(){
     view_.setSize(800.f,600.f);
 }
 
-void Map::handle_event(int &scene, sf::RenderWindow &window){
+void Map::handle_event(buildings::Scene &scene, sf::RenderWindow &window){
     while(window.pollEvent(event_)){
         if(event_.type==sf::Event::Closed){
             window.close();
@@ -41,7 +41,7 @@ void Map::handle_event(int &scene, sf::RenderWindow &window){
                 view_.setSize(800.f,600.f);
                 window.setView(view_);
 
-                scene=4;
+                scene=buildings::Scene::GAME;
             }
         }
     }

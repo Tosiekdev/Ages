@@ -8,7 +8,7 @@ void HandleBuildings::create_return_button(){
     returnToGame_.create(40, 100, 5, 5, "Return");
 }
 
-void HandleBuildings::main_loop(sf::Event &event, sf::RenderWindow &window, int &scene){
+void HandleBuildings::main_loop(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene){
     handle_events(event,window,scene);
     do_stuff(window);
     display(window);
@@ -38,7 +38,7 @@ void HandleBuildings::show_resources(sf::RenderWindow &window){
     lIron_->show(window);
 }
 
-void HandleBuildings::return_to_village(int &scene){
+void HandleBuildings::return_to_village(buildings::Scene &scene){
     //default resource info_ _position
     lHuman_->setPosition(sf::Vector2f(620, 5));
     lRock_->setPosition(sf::Vector2f(620, 33));
@@ -53,7 +53,7 @@ void HandleBuildings::return_to_village(int &scene){
     lMoney_->setCaption(std::to_string(*money_));
     lIron_->setCaption(std::to_string(*iron_));
 
-    scene=4;
+    scene=buildings::Scene::GAME;
 }
 
 void HandleBuildings::crete_info(){

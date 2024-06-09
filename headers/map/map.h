@@ -48,7 +48,7 @@ public:
      * @param scene Main game's scene
      * @param window Main game's window
      */
-    void handle_event(int &scene, sf::RenderWindow &window) override;
+    void handle_event(buildings::Scene &scene, sf::RenderWindow &window) override;
     /**
      * Function to do some stuff in every frame
      * @param window Main game's window

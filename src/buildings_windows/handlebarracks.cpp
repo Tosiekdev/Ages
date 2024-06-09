@@ -41,7 +41,7 @@ HandleBarracks::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, in
     slideRight_.create_element("Textures/r_slide.png", sf::Vector2f(755, 275));
 }
 
-void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
+void HandleBarracks::handle_events(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene){
     while(window.pollEvent(event)){
         if(event.type==sf::Event::Closed) window.close();
 

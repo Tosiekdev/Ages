@@ -6,15 +6,16 @@
 #define AGES1_HANDLEWINDOW_H
 
 #include <SFML/Graphics.hpp>
+#include "buildings.h"
 
 class HandleWindow{
 public:
-    virtual void main_loop(sf::RenderWindow &window, int &scene){
+    virtual void main_loop(sf::RenderWindow &window, buildings::Scene &scene){
         handle_event(scene,window);
         do_stuff(window);
         display(window);
     }
-    virtual void handle_event(int &scene, sf::RenderWindow &window)=0;
+    virtual void handle_event(buildings::Scene &scene, sf::RenderWindow &window)=0;
     virtual void do_stuff(sf::RenderWindow &window)=0;
     virtual void display(sf::RenderWindow &window)=0;
 

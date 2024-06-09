@@ -57,7 +57,7 @@ void Application::l_handle_event(){
             int j=Mouse::getPosition(this->screen_).y;
 
             //return button
-            if(this->returningButton_.onClick(i, j)) this->scene_=1;
+            if(this->returningButton_.onClick(i, j)) scene_=buildings::Scene::MENU;
 
             //down_ button
             if(this->down_.onClick(i, j)){
@@ -83,8 +83,8 @@ void Application::l_handle_event(){
             //load button
             if(this->loadButton_.onClick(i, j)){
                 //this->create_game();
-                this->gameWindow_.create(this->savePath_);
-                this->scene_=4;
+                gameWindow_.create(this->savePath_);
+                scene_=buildings::Scene::GAME;
             }
 
             //tablets

@@ -15,6 +15,23 @@
 class buildings
 {
 public:
+    enum class Scene {
+        MENU=1,
+        CREATE=2,
+        LOAD=3,
+        GAME=4,
+        TOWN_HALL=5,
+        FARM=6,
+        LUMBER_MILL=7,
+        STONE_PIT=8,
+        WAREHOUSE=9,
+        ACADEMY=10,
+        BARRACKS=11,
+        CHURCH=12,
+        BANK=13,
+        IRON_MINE=14,
+        MAP=15
+    };
     int take_resources(int &human, int &rock, int &wood); //takes resources
     void end_upgrade(); //finalize upgrade
     void create_building(std::string nm,const std::string& tx_path,int lvl,sf::Vector2f pos,int ns,int nw,int np); //load asset for building_

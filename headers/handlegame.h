@@ -43,13 +43,13 @@ public:
      * @param window Game's main window.
      * @param scene Game's scene.
      */
-    void main_loop(sf::RenderWindow &window, int &scene) override;
+    void main_loop(sf::RenderWindow &window, buildings::Scene &scene) override;
     /**
      * Function to handling events.
      * @param scene Game's scene.
      * @param window Game's main window.
      */
-    void handle_event(int &scene, sf::RenderWindow &window) override;
+    void handle_event(buildings::Scene &scene, sf::RenderWindow &window) override;
     /**
      * Function to do stuff every frame.
      * @param window Game's main window.
@@ -89,41 +89,41 @@ public:
      * Function to maintain everything that changes in every second.
      * @param scene Current game's scene.
      */
-    void clocks(int scene);
+    void clocks(buildings::Scene scene);
 
     /**
      * Functions responsible for launching corresponding building-windows
      * @param window Window on which everything is displayed
      * @param scene Main window scene if need to be switched
      */
-    void launch_th(sf::RenderWindow &window, int &scene){
+    void launch_th(sf::RenderWindow &window, buildings::Scene &scene){
         thWindow_.main_loop(e_, window, scene);
     }//town hall
-    void launch_farm(sf::RenderWindow &window, int &scene){
+    void launch_farm(sf::RenderWindow &window, buildings::Scene &scene){
         farmWindow_.main_loop(e_, window, scene);
     }//farm
-    void launch_lm(sf::RenderWindow &window, int &scene){
+    void launch_lm(sf::RenderWindow &window, buildings::Scene &scene){
         lmWindow_.main_loop(e_, window, scene);
     }//lumber mill
-    void launch_sp(sf::RenderWindow &window, int &scene){
+    void launch_sp(sf::RenderWindow &window, buildings::Scene &scene){
         spWindow_.main_loop(e_, window, scene);
     }//stone pit
-    void launch_wh(sf::RenderWindow &window, int &scene){
+    void launch_wh(sf::RenderWindow &window, buildings::Scene &scene){
         whWindow_.main_loop(e_, window, scene);
     }//warehouse
-    void launch_academy(sf::RenderWindow &window, int &scene){
+    void launch_academy(sf::RenderWindow &window, buildings::Scene &scene){
         academyWindow_.main_loop(e_, window, scene);
     }//academy
-    void launch_barracks(sf::RenderWindow &window, int &scene){
+    void launch_barracks(sf::RenderWindow &window, buildings::Scene &scene){
         barracksWindow_.main_loop(e_, window, scene);
     }//barracks
-    void launch_church(sf::RenderWindow &window, int &scene){
+    void launch_church(sf::RenderWindow &window, buildings::Scene &scene){
         churchWindow_.main_loop(e_, window, scene);
     }//church
-    void launch_bank(sf::RenderWindow &window, int &scene){
+    void launch_bank(sf::RenderWindow &window, buildings::Scene &scene){
         bankWindow_.main_loop(e_, window, scene);
     }//bank
-    void launch_irmine(sf::RenderWindow &window, int &scene){
+    void launch_irmine(sf::RenderWindow &window, buildings::Scene &scene){
         ironMineWindow_.main_loop(e_, window, scene);
     }//iron mine
 
@@ -132,7 +132,7 @@ public:
      * @param window Main game's window
      * @param scene Game's scene
      */
-    void launch_map(sf::RenderWindow &window, int &scene){
+    void launch_map(sf::RenderWindow &window, buildings::Scene &scene){
         world_.main_loop(window,scene);
     }
 
@@ -210,7 +210,7 @@ private:
      * @param i x coordinate of mouse in click moment
      * @param j y coordinate of mouse in click moment
      */
-    void check_building_clicked(int &scene, int i, int j);
+    void check_building_clicked(buildings::Scene &scene, int i, int j);
 };
 
 

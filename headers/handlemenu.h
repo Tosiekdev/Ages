@@ -13,8 +13,8 @@
 class HandleMenu : public HandleWindow{
 public:
     void create();
-    void main_loop(sf::RenderWindow &window, int &scene) override;
-    void handle_event(int &scene, sf::RenderWindow &window) override;
+    void main_loop(sf::RenderWindow &window, buildings::Scene &scene) override;
+    void handle_event(buildings::Scene &scene, sf::RenderWindow &window) override;
     void do_stuff(sf::RenderWindow &window) override;
     void display(sf::RenderWindow &window) override;
 

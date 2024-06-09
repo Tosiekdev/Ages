@@ -6,11 +6,11 @@
 
 //thread to count time
 void Application::clocks(){
-    while(this->screen_.isOpen()){
-        this->gameWindow_.clocks(this->scene_);
+    while(screen_.isOpen()){
+        gameWindow_.clocks(scene_);
     }
 }
 
 void Application::launch_game(){
-    this->gameWindow_.main_loop(this->screen_, this->scene_);
+    this->gameWindow_.main_loop(screen_, scene_);
 }

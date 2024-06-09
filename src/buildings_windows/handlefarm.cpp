@@ -4,7 +4,7 @@
 
 #include "../../headers/buildings-windows/handlefarm.h"
 
-void HandleFarm::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
+void HandleFarm::handle_events(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene){
     while(window.pollEvent(event)){
         //closing window
         if(event.type==sf::Event::Closed){

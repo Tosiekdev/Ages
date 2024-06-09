@@ -30,7 +30,7 @@ HandleWarehouse::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, i
     this->create_return_button();
 }
 
-void HandleWarehouse::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
+void HandleWarehouse::handle_events(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene){
     while(window.pollEvent(event)){
         if(event.type==sf::Event::Closed) window.close();
 
@@ -39,7 +39,7 @@ void HandleWarehouse::handle_events(sf::Event &event, sf::RenderWindow &window, 
             int j=sf::Mouse::getPosition(window).y;
 
             if(this->returnToGame_.onClick(i, j)){
-                this->return_to_village(scene);
+                return_to_village(scene);
             }
         }
     }

@@ -24,7 +24,7 @@ void HandleAcademy::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li
     this->create_return_button();
 }
 
-void HandleAcademy::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
+void HandleAcademy::handle_events(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene){
     while(window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) window.close();
 

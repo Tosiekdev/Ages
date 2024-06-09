@@ -95,7 +95,7 @@ public:
      * @param window Main game's window
      * @param scene Main game's scene
      */
-    void handle_events(sf::Event &event, sf::RenderWindow &window, int &scene) override;
+    void handle_events(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene) override;
     /**
      * This function do stuff every frame
      * @param window Main game's window

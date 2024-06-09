@@ -4,7 +4,7 @@
 
 #include "../headers/exitwindow.h"
 
-void ExitWindow::create(sf::RenderWindow &W, int &scene){
+void ExitWindow::create(sf::RenderWindow &W, buildings::Scene &scene){
     //creating window
     sf::VideoMode mode=sf::VideoMode(300,200);
     wExit_.create(mode,"Are you sure?",sf::Style::Titlebar | sf::Style::Close);
@@ -19,7 +19,7 @@ void ExitWindow::create(sf::RenderWindow &W, int &scene){
     main_loop(W,scene);
 }
 
-void ExitWindow::main_loop(sf::RenderWindow &window, int &scene){
+void ExitWindow::main_loop(sf::RenderWindow &window, buildings::Scene &scene){
     while(wExit_.isOpen()) {
         handle_event(scene,window);
         do_stuff(window);
@@ -27,7 +27,7 @@ void ExitWindow::main_loop(sf::RenderWindow &window, int &scene){
     }
 }
 
-void ExitWindow::handle_event(int &scene, sf::RenderWindow &window){
+void ExitWindow::handle_event(buildings::Scene &scene, sf::RenderWindow &window){
     while(wExit_.pollEvent(exitE_)){
         //Exit
         if(exitE_.type == sf::Event::Closed) wExit_.close();

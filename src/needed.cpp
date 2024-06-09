@@ -41,7 +41,7 @@ Application::Application(){
     create_load();
 
     //Scenes
-    scene_=1;
+    scene_=buildings::Scene::MENU;
 }
 
 //Main thread of whole app
@@ -51,49 +51,49 @@ void Application::main_window(){
     //scenes switching
     while(screen_.isOpen()){
         switch(scene_){
-            case 1:
+            case buildings::Scene::MENU:
                 menu_.main_loop(screen_, scene_);
                 break;
-            case 2:
+            case buildings::Scene::CREATE:
                 create();
                 break;
-            case 3:
+            case buildings::Scene::LOAD:
                 load();
                 break;
-            case 4:
+            case buildings::Scene::GAME:
                 launch_game();
                 break;
-            case 5:
+            case buildings::Scene::TOWN_HALL:
                 launch_th();
                 break;
-            case 6:
+            case buildings::Scene::FARM:
                 launch_farm();
                 break;
-            case 7:
+            case buildings::Scene::LUMBER_MILL:
                 launch_lm();
                 break;
-            case 8:
+            case buildings::Scene::STONE_PIT:
                 launch_sp();
                 break;
-            case 9:
+            case buildings::Scene::WAREHOUSE:
                 launch_wh();
                 break;
-            case 10:
+            case buildings::Scene::ACADEMY:
                 launch_academy();
                 break;
-            case 11:
+            case buildings::Scene::BARRACKS:
                 launch_barracks();
                 break;
-            case 12:
+            case buildings::Scene::CHURCH:
                 launch_church();
                 break;
-            case 13:
+            case buildings::Scene::BANK:
                 launch_bank();
                 break;
-            case 14:
+            case buildings::Scene::IRON_MINE:
                 launch_irmine();
                 break;
-            case 15:
+            case buildings::Scene::MAP:
                 launch_map();
                 break;
         }

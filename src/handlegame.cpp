@@ -52,13 +52,13 @@ void HandleGame::create(std::string path){
     mapIcon_.create_element("Textures/default.png",sf::Vector2f(500,5));
 }
 
-void HandleGame::main_loop(sf::RenderWindow &window, int &scene){
+void HandleGame::main_loop(sf::RenderWindow &window, buildings::Scene &scene){
     handle_event(scene,window);
     do_stuff(window);
     display(window);
 }
 
-void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
+void HandleGame::handle_event(buildings::Scene &scene, sf::RenderWindow &window){
     while(window.pollEvent(e_)){
         //exit
         if(e_.type == sf::Event::Closed){
@@ -82,7 +82,7 @@ void HandleGame::handle_event(int &scene, sf::RenderWindow &window){
             //map
             if(mapIcon_.onClick(i,j)){
                 world_.create();
-                scene=15;
+                scene=buildings::Scene::MAP;
             }
 
             //Checking if entered building
@@ -208,8 +208,8 @@ void HandleGame::assign_levels(){
         levels_[i]=building_[i].get_level();
 }
 
-void HandleGame::clocks(int scene){
-    if(scene>3){
+void HandleGame::clocks(buildings::Scene scene){
+    if(scene > buildings::Scene::LOAD){
         if(humanClock_.getElapsedTime().asSeconds()>=10){
             //increasing amount of people
             float time_passed = (float)humanClock_.getElapsedTime().asSeconds();
@@ -263,7 +263,7 @@ void HandleGame::clocks(int scene){
             }
 
             //setting look_ of resource info
-            if(scene==4){
+            if(scene == buildings::Scene::GAME){
                 lHuman_.setCaption(std::to_string(human_));
                 lRock_.setCaption(std::to_string(rock_));
                 lWood_.setCaption(std::to_string(wood_));
@@ -321,55 +321,55 @@ void HandleGame::set_path(std::string path){
     savePath_=std::move(path);
 }
 
-void HandleGame::check_building_clicked(int &scene, int i, int j){
+void HandleGame::check_building_clicked(buildings::Scene &scene, int i, int j){
     if(building_[6].isClicked(i, j)){
         thWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                          &rock_,&wood_,&money_,&iron_, &levels_[6]);
-        scene=5;
+        scene=buildings::Scene::TOWN_HALL;
     }
     if(building_[3].isClicked(i, j)){
         farmWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                            &rock_,&wood_,&money_,&iron_, &levels_[3]);
-        scene=6;
+        scene=buildings::Scene::FARM;
     }
     if(building_[4].isClicked(i, j)){
         lmWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                          &rock_,&wood_,&money_,&iron_, &levels_[4]);
-        scene=7;
+        scene=buildings::Scene::LUMBER_MILL;
     }
     if(building_[5].isClicked(i, j)){
         spWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                          &rock_,&wood_,&money_,&iron_, &levels_[5]);
-        scene=8;
+        scene=buildings::Scene::STONE_PIT;
     }
     if(building_[7].isClicked(i, j)){
         whWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                          &rock_,&wood_,&money_,&iron_, &levels_[7]);
-        scene=9;
+        scene=buildings::Scene::WAREHOUSE;
     }
     if(building_[0].isClicked(i, j)){
         academyWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                               &rock_,&wood_,&money_,&iron_, &levels_[0]);
-        scene=10;
+        scene=buildings::Scene::ACADEMY;
     }
     if(building_[1].isClicked(i, j)){
         barracksWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                                &rock_,&wood_,&money_,&iron_, &levels_[1]);
-        scene=11;
+        scene=buildings::Scene::BARRACKS;
     }
     if(building_[2].isClicked(i, j)){
         churchWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                              &rock_,&wood_,&money_,&iron_, &levels_[2]);
-        scene=12;
+        scene=buildings::Scene::CHURCH;
     }
     if(building_[8].isClicked(i,j)){
         bankWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                            &rock_,&wood_,&money_,&iron_, &levels_[8]);
-        scene=13;
+        scene=buildings::Scene::BANK;
     }
     if(building_[9].isClicked(i,j)){
         ironMineWindow_.create(&lHuman_,&lRock_,&lWood_,&lMoney_,&lIron_,&human_,
                                &rock_,&wood_,&money_,&iron_, &levels_[8]);
-        scene=14;
+        scene=buildings::Scene::IRON_MINE;
     }
 }

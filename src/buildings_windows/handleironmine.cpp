@@ -4,7 +4,7 @@
 
 #include "../../headers/buildings-windows/handleironmine.h"
 
-void HandleIronMine::handle_events(sf::Event &event, sf::RenderWindow &window, int &scene){
+void HandleIronMine::handle_events(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene){
     while(window.pollEvent(event)){
         if(event.type==sf::Event::Closed) window.close();
 
