@@ -117,7 +117,7 @@ void HandleGame::do_stuff(sf::RenderWindow &window){
         cursor_.loadFromSystem(sf::Cursor::Arrow);
     window.setMouseCursor(cursor_);
 
-    this->activate_buildings();
+    activate_buildings();
 }
 
 void HandleGame::display(sf::RenderWindow &window){

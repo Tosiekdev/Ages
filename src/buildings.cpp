@@ -108,7 +108,7 @@ bool buildings::status() const {
 void buildings::end_upgrade(){
     level_++;
     inUpgrade_=false;
-    lvlLabel_.setCaption(std::to_string(this->level_));
+    lvlLabel_.setCaption(std::to_string(level_));
     lvlLabel_.center();
 }
 

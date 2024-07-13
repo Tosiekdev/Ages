@@ -9,54 +9,54 @@ using namespace sf;
 //you know what it is
 textbox::textbox(std::string font, int SIZE, int posx, int posy){
     //font&text
-    this->look.loadFromFile(font);
-    this->view.setFont(this->look);
-    this->view.setFillColor(Color::Black);
-    this->view.setCharacterSize(SIZE);
-    this->view.setPosition(Vector2f(posx,posy));
+    look.loadFromFile(font);
+    view.setFont(look);
+    view.setFillColor(Color::Black);
+    view.setCharacterSize(SIZE);
+    view.setPosition(Vector2f(posx,posy));
 
     //prepare what will be show
-    this->contains="";
-    this->output=contains+"_";
-    this->view.setString(this->output);
+    contains="";
+    output=contains+"_";
+    view.setString(output);
 }
 
 //drawing textbox
 void textbox::show(RenderWindow &W){
-    W.draw(this->view);
+    W.draw(view);
 }
 
 //setting _position
 void textbox::set_position(int x,int y){
-    this->view.setPosition(x,y);
+    view.setPosition(x,y);
 }
 
 //adding next characters
 void textbox::actualize(char sign){
-    this->contains+=sign;
-    this->output=this->contains+"_";
-    this->view.setString(this->output);
+    contains+=sign;
+    output=contains+"_";
+    view.setString(output);
 }
 
 //deleting last character
 void textbox::erase(){
-    this->contains=this->contains.substr(0, this->contains.length()-1);
-    this->output=this->contains+"_";
-    this->view.setString(this->output);
+    contains=contains.substr(0, contains.length()-1);
+    output=contains+"_";
+    view.setString(output);
 }
 
 //give back text(all object), idk why this is here
 Text textbox::return_text(){
-    return this->view;
+    return view;
 }
 
 //fit text in prepared place (by deleting from view_ 1. char)
 void textbox::hide(){
-    this->output=this->output.substr(1,this->output.length()-1);
-    this->view.setString(this->output);
+    output=output.substr(1,output.length()-1);
+    view.setString(output);
 }
 
 //return whole text
 std::string textbox::return_caption(){
-    return this->contains;
+    return contains;
 }

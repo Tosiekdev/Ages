@@ -57,7 +57,7 @@ void HandleBuildings::return_to_village(buildings::Scene &scene){
 }
 
 void HandleBuildings::crete_info(){
-    this->info_.create(DEFAULT_FONT, 5, 100, "", 30);
+    info_.create(DEFAULT_FONT, 5, 100, "", 30);
 }
 
 void HandleBuildings::assign_values(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, int *hn, int *rk, int *wd,

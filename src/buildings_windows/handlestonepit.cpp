@@ -12,8 +12,8 @@ void HandleStonePit::handle_events(sf::Event &event,sf::RenderWindow &window, bu
             int i=sf::Mouse::getPosition(window).x;
             int j=sf::Mouse::getPosition(window).y;
 
-            if(this->returnToGame_.onClick(i, j)){
-                this->return_to_village(scene);
+            if(returnToGame_.onClick(i, j)){
+                return_to_village(scene);
             }
         }
     }
@@ -25,29 +25,29 @@ void HandleStonePit::do_stuff(sf::RenderWindow &window){
     int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
-    a[0]=this->returnToGame_.onFocus(x, y);
+    a[0]=returnToGame_.onFocus(x, y);
 
     //changing cursor_
     if(a[0])
-        this->cursor_.loadFromSystem(sf::Cursor::Hand);
+        cursor_.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor_.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(this->cursor_);
+        cursor_.loadFromSystem(sf::Cursor::Arrow);
+    window.setMouseCursor(cursor_);
 }
 
 void HandleStonePit::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
-    this->returnToGame_.show(window);
+    returnToGame_.show(window);
 
     //resource info_
-    this->show_resources(window);
+    show_resources(window);
 
     //building_ info_
-    this->info_.show(window);
-    this->next.show(window);
-    this->current.show(window);
+    info_.show(window);
+    next.show(window);
+    current.show(window);
 
     window.display();
 }
@@ -60,20 +60,20 @@ HandleStonePit::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, in
     assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
-    this->resource_look();
+    resource_look();
 
     //info_
-    this->crete_info();
-    this->info_.setCaption("Stone Pit simply mine stone for upgrading buildings.\n"
+    crete_info();
+    info_.setCaption("Stone Pit simply mine stone for upgrading buildings.\n"
                           "Higher level means, obviously, more stone!");
-    int stone=*this->building_;
-    this->current.create(DEFAULT_FONT,400,300,"",30);
-    this->current.setCaption("Current stone growth: "+std::to_string(stone*60)+" rocks/minute");
-    this->current.center();
-    this->next.create(DEFAULT_FONT,400,350,"",30);
-    this->next.setCaption("Next level_ stone growth: "+std::to_string((stone+1)*60)+" rocks/minute");
-    this->next.center();
+    int stone=*building_;
+    current.create(DEFAULT_FONT,400,300,"",30);
+    current.setCaption("Current stone growth: "+std::to_string(stone*60)+" rocks/minute");
+    current.center();
+    next.create(DEFAULT_FONT,400,350,"",30);
+    next.setCaption("Next level_ stone growth: "+std::to_string((stone+1)*60)+" rocks/minute");
+    next.center();
 
     //buttons
-    this->create_return_button();
+    create_return_button();
 }

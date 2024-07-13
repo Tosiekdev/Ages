@@ -12,22 +12,22 @@ HandleWarehouse::create(Label *lh, Label *lr, Label *lw, Label *lm, Label *li, i
     assign_values(lh, lr, lw, lm, li, hn, rk, wd, bld, moni, iron);
 
     //change resource _look
-    this->resource_look();
+    resource_look();
 
     //info_
-    this->crete_info();
-    this->info_.setCaption("In Warehouse you store your goods. Upgrading it gives\n"
+    crete_info();
+    info_.setCaption("In Warehouse you store your goods. Upgrading it gives\n"
                           "you more space_!");
-    int warehouse=*this->building_;
-    this->current.create(DEFAULT_FONT,400,300,"",30);
-    this->current.setCaption("Current capacity: "+std::to_string(warehouse*1296));
-    this->current.center();
-    this->next.create(DEFAULT_FONT,400,350,"",30);
-    this->next.setCaption("Next level_ capacity: "+std::to_string((warehouse+1)*1296));
-    this->next.center();
+    int warehouse=*building_;
+    current.create(DEFAULT_FONT,400,300,"",30);
+    current.setCaption("Current capacity: "+std::to_string(warehouse*1296));
+    current.center();
+    next.create(DEFAULT_FONT,400,350,"",30);
+    next.setCaption("Next level_ capacity: "+std::to_string((warehouse+1)*1296));
+    next.center();
 
     //buttons
-    this->create_return_button();
+    create_return_button();
 }
 
 void HandleWarehouse::handle_events(sf::Event &event, sf::RenderWindow &window, buildings::Scene &scene){
@@ -38,7 +38,7 @@ void HandleWarehouse::handle_events(sf::Event &event, sf::RenderWindow &window, 
             int i=sf::Mouse::getPosition(window).x;
             int j=sf::Mouse::getPosition(window).y;
 
-            if(this->returnToGame_.onClick(i, j)){
+            if(returnToGame_.onClick(i, j)){
                 return_to_village(scene);
             }
         }
@@ -51,29 +51,29 @@ void HandleWarehouse::do_stuff(sf::RenderWindow &window){
     int y=sf::Mouse::getPosition(window).y;
 
     //cool animation
-    a[0]=this->returnToGame_.onFocus(x, y);
+    a[0]=returnToGame_.onFocus(x, y);
 
     //changing cursor_
     if(a[0])
-        this->cursor_.loadFromSystem(sf::Cursor::Hand);
+        cursor_.loadFromSystem(sf::Cursor::Hand);
     else
-        this->cursor_.loadFromSystem(sf::Cursor::Arrow);
-    window.setMouseCursor(this->cursor_);
+        cursor_.loadFromSystem(sf::Cursor::Arrow);
+    window.setMouseCursor(cursor_);
 }
 
 void HandleWarehouse::display(sf::RenderWindow &window){
     window.clear(sf::Color::White);
 
     //buttons
-    this->returnToGame_.show(window);
+    returnToGame_.show(window);
 
     //resource info_
-    this->show_resources(window);
+    show_resources(window);
 
     //building_ info_
-    this->info_.show(window);
-    this->next.show(window);
-    this->current.show(window);
+    info_.show(window);
+    next.show(window);
+    current.show(window);
 
     window.display();
 }

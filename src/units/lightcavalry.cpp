@@ -19,7 +19,7 @@ LightCavalry::LightCavalry(){
 
     //set _look
     texture_.loadFromFile("Textures/Units/l_cavalry.png");
-    view_.setTexture(this->texture_);
+    view_.setTexture(texture_);
 
     //name_ and button to training
     name_.create_obstacle("Textures/plank.png",sf::Vector2f(0.1,0.1),sf::Vector2f(0,0));

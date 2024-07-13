@@ -13,7 +13,7 @@ Application::Application(){
     maxFps_=60;
 
     //Preparing window
-    screen_.create(VideoMode(width_,this->height_),"Ages",Style::Titlebar | Style::Close);
+    screen_.create(VideoMode(width_,height_),"Ages",Style::Titlebar | Style::Close);
     screen_.setFramerateLimit(maxFps_);
     cursor_.loadFromSystem(Cursor::Arrow);
     screen_.setMouseCursor(cursor_);

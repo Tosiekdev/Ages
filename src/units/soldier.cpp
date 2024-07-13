@@ -40,7 +40,7 @@ std::array<int, 3> Soldier::train(int people, int iron, int money, int count) {
 
 //to make showing unit easier
 void Soldier::slide(float shift){
-    sf::Vector2f position=this->view_.getPosition();
+    sf::Vector2f position=view_.getPosition();
     position.x+=shift;
     set_position(position);
 }
@@ -65,8 +65,8 @@ void Soldier::show(sf::RenderWindow &window){
 
 //returns vector of damage to hurt others
 std::vector<int> Soldier::give_damage(Type which,std::vector<int> old_damage){
-    for(int i=0; i<this->quantity_; i++)
-        old_damage.push_back(this->attack_calculator(which));
+    for(int i=0; i<quantity_; i++)
+        old_damage.push_back(attack_calculator(which));
 
     return old_damage;
 }
@@ -74,7 +74,7 @@ std::vector<int> Soldier::give_damage(Type which,std::vector<int> old_damage){
 //this happens when time needed to train passed
 void Soldier::end_upgrade(){
     inUpgrade_=false;
-    lives_.push_back(this->hp_);
+    lives_.push_back(hp_);
     quantity_++;
     update_counter();
 }

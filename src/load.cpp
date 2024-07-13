@@ -8,88 +8,88 @@ using namespace sf;
 //Prepare everything
 void Application::create_load(){
     //creating return button
-    this->returningButton_.create(40, 100, 5, 5, "Return");
+    returningButton_.create(40, 100, 5, 5, "Return");
 
     //creating load button
-    this->loadButton_.create(40, 100, 45, 245, "Load Save");
-    this->loadButton_.setActive(false);
+    loadButton_.create(40, 100, 45, 245, "Load Save");
+    loadButton_.setActive(false);
 
     //creating remove button
-    this->removeButton_.create(40, 100, 45, 305, "Remove");
-    this->removeButton_.setActive(false);
+    removeButton_.create(40, 100, 45, 305, "Remove");
+    removeButton_.setActive(false);
 
     //preparing tablets
-    this->prepare_tablets();
+    prepare_tablets();
 
     //creating navigation arrows
-    this->down_.create_element("Textures/down.png", Vector2f(670, 500));
-    this->up_.create_element("Textures/up.png", Vector2f(670, 10));
+    down_.create_element("Textures/down.png", Vector2f(670, 500));
+    up_.create_element("Textures/up.png", Vector2f(670, 10));
 
     //creating error messege
-    this->errorMessage_.create(DEFAULT_FONT, 250, 10, "", 20);
+    errorMessage_.create(DEFAULT_FONT, 250, 10, "", 20);
 }
 
 //Main thread of app
 void Application::load(){
     //event_
-    this->l_handle_event();
+    l_handle_event();
 
     //do sth
-    this->l_stuff();
+    l_stuff();
 
     //display
-    this->display_load();
+    display_load();
 }
 
 //Handling user input
 void Application::l_handle_event(){
-    while(this->screen_.pollEvent(this->e_)){
+    while(screen_.pollEvent(e_)){
         //exit
-        if(this->e_.type == Event::Closed) this->screen_.close();
-        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow_.create(this->screen_, this->scene_);
+        if(e_.type == Event::Closed) screen_.close();
+        if((Keyboard::isKeyPressed(Keyboard::Escape))) exitWindow_.create(screen_, scene_);
 
         //events for pressing mouse
         if(Mouse::isButtonPressed(Mouse::Left)){
             //handling mouse pos
-            int i=Mouse::getPosition(this->screen_).x;
-            int j=Mouse::getPosition(this->screen_).y;
+            int i=Mouse::getPosition(screen_).x;
+            int j=Mouse::getPosition(screen_).y;
 
             //return button
-            if(this->returningButton_.onClick(i, j)) scene_=buildings::Scene::MENU;
+            if(returningButton_.onClick(i, j)) scene_=buildings::Scene::MENU;
 
             //down_ button
-            if(this->down_.onClick(i, j)){
-                this->downLevel_++;
-                this->focusedTablet_--;
-                this->prepare_tablets();
-                this->prepare_focused_tablets();
+            if(down_.onClick(i, j)){
+                downLevel_++;
+                focusedTablet_--;
+                prepare_tablets();
+                prepare_focused_tablets();
             }
 
             //up_ button
-            if(this->up_.onClick(i, j)){
-                if(this->downLevel_ > 0){
-                    this->downLevel_--;
-                    this->focusedTablet_++;
+            if(up_.onClick(i, j)){
+                if(downLevel_ > 0){
+                    downLevel_--;
+                    focusedTablet_++;
                 }
-                this->prepare_tablets();
-                this->prepare_focused_tablets();
+                prepare_tablets();
+                prepare_focused_tablets();
             }
 
             //remove button
-            if(this->removeButton_.onClick(i, j)) this->remove_save();
+            if(removeButton_.onClick(i, j)) remove_save();
 
             //load button
-            if(this->loadButton_.onClick(i, j)){
-                //this->create_game();
-                gameWindow_.create(this->savePath_);
+            if(loadButton_.onClick(i, j)){
+                //create_game();
+                gameWindow_.create(savePath_);
                 scene_=buildings::Scene::GAME;
             }
 
             //tablets
             for(int a=0;a<5;a++){
-                if(this->t_[a].onClick(i, j)){
-                    this->focusedTablet_=a;
-                    this->prepare_focused_tablets();
+                if(t_[a].onClick(i, j)){
+                    focusedTablet_=a;
+                    prepare_focused_tablets();
                 }
             }
         }
@@ -100,49 +100,49 @@ void Application::l_handle_event(){
 void Application::l_stuff(){
     bool a[10];
     //getting mouse _position
-    int x=Mouse::getPosition(this->screen_).x;
-    int y=Mouse::getPosition(this->screen_).y;
+    int x=Mouse::getPosition(screen_).x;
+    int y=Mouse::getPosition(screen_).y;
 
     //checking if any button is focussed
-    a[8]=this->up_.onFocus(x, y);
-    a[9]=this->down_.onFocus(x, y);
-    a[5]=this->returningButton_.onFocus(x, y);
-    a[6]=this->loadButton_.onFocus(x, y);
-    a[7]=this->removeButton_.onFocus(x, y);
+    a[8]=up_.onFocus(x, y);
+    a[9]=down_.onFocus(x, y);
+    a[5]=returningButton_.onFocus(x, y);
+    a[6]=loadButton_.onFocus(x, y);
+    a[7]=removeButton_.onFocus(x, y);
     for(int i=0;i<5;i++) //tablets
-        a[i]=this->t_[i].TRIGGERED(x, y);
+        a[i]=t_[i].TRIGGERED(x, y);
 
     //cursor_
     if(a[0] || a[1] || a[2] || a[3] || a[4] || a[5] || a[6] || a[7] || a[8] || a[9])
-        this->cursor_.loadFromSystem(Cursor::Hand);
+        cursor_.loadFromSystem(Cursor::Hand);
     else
-        this->cursor_.loadFromSystem(Cursor::Arrow);
-    this->screen_.setMouseCursor(this->cursor_);
+        cursor_.loadFromSystem(Cursor::Arrow);
+    screen_.setMouseCursor(cursor_);
 }
 
 //Frame drawing
 void Application::display_load(){
-    this->screen_.clear(Color::White);
+    screen_.clear(Color::White);
 
     //background
-    this->screen_.draw(this->backgroundMenuSprite_);
+    screen_.draw(backgroundMenuSprite_);
 
     //buttons
-    this->returningButton_.show(this->screen_);
-    this->loadButton_.show(this->screen_);
-    this->removeButton_.show(this->screen_);
+    returningButton_.show(screen_);
+    loadButton_.show(screen_);
+    removeButton_.show(screen_);
 
     //tablets
     for(int i=0;i<5;i++)
-        this->t_[i].draw(this->screen_);
+        t_[i].draw(screen_);
 
-    this->errorMessage_.show(this->screen_);
+    errorMessage_.show(screen_);
 
     //controls
-    this->down_.draw_it(this->screen_);
-    this->up_.draw_it(this->screen_);
+    down_.draw_it(screen_);
+    up_.draw_it(screen_);
 
-    this->screen_.display();
+    screen_.display();
 }
 
 //Reading data to create tablets
@@ -167,9 +167,9 @@ void Application::prepare_tablets(){
         std::getline(plik,save_name);
 
         //setting proper name_
-        if(nr_line-this->downLevel_ >= 0 && nr_line - this->downLevel_ <= 4){
+        if(nr_line-downLevel_ >= 0 && nr_line - downLevel_ <= 4){
             if(!save_name.empty())
-                this->t_[nr_line - this->downLevel_].create_tablet(save_name, pos);
+                t_[nr_line - downLevel_].create_tablet(save_name, pos);
             pos+=Vector2f(0,110);
         }
 
@@ -185,21 +185,21 @@ void Application::prepare_focused_tablets(){
     for(auto & i:t_) i.unfocused();
 
     //preparing to load
-    if(this->focusedTablet_ >= 0 && this->focusedTablet_ < 5){
-        this->t_[this->focusedTablet_].focussed();
-        if(this->t_[this->focusedTablet_].return_name() != "-:-"){
-            this->savePath_= this->t_[this->focusedTablet_].return_name() + ".txt";
-            this->loadButton_.setActive(true);
-            this->removeButton_.setActive(true);
+    if(focusedTablet_ >= 0 && focusedTablet_ < 5){
+        t_[focusedTablet_].focussed();
+        if(t_[focusedTablet_].return_name() != "-:-"){
+            savePath_= t_[focusedTablet_].return_name() + ".txt";
+            loadButton_.setActive(true);
+            removeButton_.setActive(true);
         }
         else{
-            this->loadButton_.setActive(false);
-            this->removeButton_.setActive(false);
+            loadButton_.setActive(false);
+            removeButton_.setActive(false);
         }
     }
     else{
-        this->loadButton_.setActive(false);
-        this->removeButton_.setActive(false);
+        loadButton_.setActive(false);
+        removeButton_.setActive(false);
     }
 }
 
@@ -217,7 +217,7 @@ void Application::remove_save(){
         std::string to_copy;
         while(!original.eof()){
             getline(original,to_copy);
-            if(to_copy!=this->t_[this->focusedTablet_].return_name() && !to_copy.empty())
+            if(to_copy!=t_[focusedTablet_].return_name() && !to_copy.empty())
                 copied << to_copy << std::endl;
         }
         original.close();
@@ -234,11 +234,11 @@ void Application::remove_save(){
         original.close();
         copied.close();
 
-        this->prepare_tablets();
-        this->errorMessage_.setCaption("File removed succesfully!");
+        prepare_tablets();
+        errorMessage_.setCaption("File removed succesfully!");
     }
     else{
-        this->errorMessage_.setCaption("Failed to remove file!"+ std::to_string(removing));
+        errorMessage_.setCaption("Failed to remove file!"+ std::to_string(removing));
     }
 }
 

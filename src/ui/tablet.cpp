@@ -40,7 +40,7 @@ bool tablet::TRIGGERED(int mposx, int mposy)
     if(look_.getGlobalBounds().contains(mposx,mposy))
     {
         plank_.loadFromFile("Textures/plank1.png");
-        look_.setTexture(this->plank_);
+        look_.setTexture(plank_);
         look_.setScale(0.4,0.3);
         return true;
     }
@@ -48,7 +48,7 @@ bool tablet::TRIGGERED(int mposx, int mposy)
     if(!focus_)
     {
         plank_.loadFromFile("Textures/plank.png");
-        look_.setTexture(this->plank_);
+        look_.setTexture(plank_);
         look_.setScale(0.4,0.3);
         return false;
     }
@@ -80,7 +80,7 @@ void tablet::unfocused()
 {
     focus_=false;
     plank_.loadFromFile("Textures/plank.png");
-    look_.setTexture(this->plank_);
+    look_.setTexture(plank_);
     look_.setScale(0.4,0.3);
 }
 

@@ -24,14 +24,14 @@ bool Clickable::onClick(int mPosX, int mPosY){
 //create object
 void Clickable::create_element(const std::string& path, Vector2f pos){
     look_.loadFromFile(path);
-    view_.setTexture(this->look_);
+    view_.setTexture(look_);
     view_.setScale(1, 1);
     position_=pos;
-    view_.setPosition(this->position_);
+    view_.setPosition(position_);
 }
 
 //Draw
 void Clickable::draw_it(RenderWindow &W){
-    W.draw(this->view_);
+    W.draw(view_);
 }
 

@@ -12,5 +12,5 @@ void Application::clocks(){
 }
 
 void Application::launch_game(){
-    this->gameWindow_.main_loop(screen_, scene_);
+    gameWindow_.main_loop(screen_, scene_);
 }

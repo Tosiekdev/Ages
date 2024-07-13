@@ -13,7 +13,7 @@ void HandleIronMine::handle_events(sf::Event &event, sf::RenderWindow &window, b
             int j=sf::Mouse::getPosition(window).y;
 
             if(returnToGame_.onClick(i, j)){
-                this->return_to_village(scene);
+                return_to_village(scene);
             }
         }
     }
