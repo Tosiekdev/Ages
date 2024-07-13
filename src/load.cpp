@@ -168,7 +168,7 @@ void Application::prepare_tablets(){
 
         //setting proper name_
         if(nr_line-this->downLevel_ >= 0 && nr_line - this->downLevel_ <= 4){
-            if(save_name.empty())
+            if(!save_name.empty())
                 this->t_[nr_line - this->downLevel_].create_tablet(save_name, pos);
             pos+=Vector2f(0,110);
         }
@@ -217,7 +217,7 @@ void Application::remove_save(){
         std::string to_copy;
         while(!original.eof()){
             getline(original,to_copy);
-            if(to_copy!=this->t_[this->focusedTablet_].return_name() && to_copy.empty())
+            if(to_copy!=this->t_[this->focusedTablet_].return_name() && !to_copy.empty())
                 copied << to_copy << std::endl;
         }
         original.close();

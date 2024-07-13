@@ -6,9 +6,9 @@
 
 void HandleMenu::create(){
     //Textures loading
-    this->background_menu_texture.loadFromFile("Textures/background.png");
-    this->background_menu_sprite.setTexture(this->background_menu_texture);
-    this->background_menu_sprite.setPosition(0,0);
+    background_menu_texture.loadFromFile("Textures/background.png");
+    background_menu_sprite.setTexture(background_menu_texture);
+    background_menu_sprite.setPosition(0,0);
 
     //Buttons
     this->new_game.create(40,100,40,130,"New Game");

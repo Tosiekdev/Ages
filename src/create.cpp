@@ -51,7 +51,7 @@ void Application::c_handle_event(){
 
         //starting game when proper name_ is entered
         if(Keyboard::isKeyPressed(Keyboard::Enter)){
-            if(t1_.return_caption().empty()){
+            if(!t1_.return_caption().empty()){
                 std::string erro = create_city(t1_.return_caption());
                 if(erro.empty()){
                     gameWindow_.create(savePath_);
@@ -72,8 +72,8 @@ void Application::c_handle_event(){
 
             //same as when you hit enter
             if(okButton_.onClick(i, j)){
-                if(t1_.return_caption().empty()){
-                    std::string erro=create_city(t1_.return_caption());
+                if(!t1_.return_caption().empty()){
+                    std::string erro = create_city(t1_.return_caption());
                     if(erro.empty()){
                         gameWindow_.create(savePath_);
                         scene_=buildings::Scene::GAME;
