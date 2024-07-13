@@ -5,7 +5,6 @@
 #include "../../headers/ui/clickable.h"
 
 using namespace sf;
-using namespace std;
 
 //Beautiful animation
 bool Clickable::onFocus(int mPosX, int mPosY){
@@ -23,7 +22,7 @@ bool Clickable::onClick(int mPosX, int mPosY){
 }
 
 //create object
-void Clickable::create_element(const string& path, Vector2f pos){
+void Clickable::create_element(const std::string& path, Vector2f pos){
     look_.loadFromFile(path);
     view_.setTexture(this->look_);
     view_.setScale(1, 1);

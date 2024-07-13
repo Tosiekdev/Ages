@@ -11,7 +11,6 @@
 
 #include "../constants.h"
 
-using namespace std;
 using namespace sf;
 
 class textbox
@@ -19,16 +18,16 @@ class textbox
 private:
     Font look;
     Text view;
-    string contains, output;
+    std::string contains, output;
 public:
-    textbox(string font=DEFAULT_FONT,int SIZE=25,int posx=0,int posy=0);
+    textbox(std::string font=DEFAULT_FONT,int SIZE=25,int posx=0,int posy=0);
     void show(RenderWindow &W);
     void set_position(int x,int y);
     void actualize(char sign);
     void erase();
     Text return_text();
     void hide();
-    string return_caption();
+    std::string return_caption();
 };
 
 

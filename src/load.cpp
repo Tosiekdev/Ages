@@ -5,8 +5,6 @@
 #include "../headers/needed.h"
 
 using namespace sf;
-using namespace std;
-
 //Prepare everything
 void Application::create_load(){
     //creating return button
@@ -158,19 +156,19 @@ void Application::prepare_tablets(){
     }
 
     //opening files and reading saves
-    fstream plik;
+    std::fstream plik;
     Vector2f pos=Vector2f(200,40);
-    string save_name;
-    plik.open("all_saves.txt",ios::in);
+    std::string save_name;
+    plik.open("all_saves.txt",std::ios::in);
     int nr_line=0;
     while(!plik.eof()){
 
         //reading line
-        getline(plik,save_name);
+        std::getline(plik,save_name);
 
         //setting proper name_
         if(nr_line-this->downLevel_ >= 0 && nr_line - this->downLevel_ <= 4){
-            if(save_name!="")
+            if(save_name.empty())
                 this->t_[nr_line - this->downLevel_].create_tablet(save_name, pos);
             pos+=Vector2f(0,110);
         }
@@ -213,25 +211,25 @@ void Application::remove_save(){
     //updating all saves file
     if(removing==0){
         //copying saves names
-        fstream original,copied;
-        original.open("all_saves.txt",ios::in);
-        copied.open("all_copies.txt",ios::out);
-        string to_copy;
+        std::fstream original,copied;
+        original.open("all_saves.txt",std::ios::in);
+        copied.open("all_copies.txt",std::ios::out);
+        std::string to_copy;
         while(!original.eof()){
             getline(original,to_copy);
-            if(to_copy!=this->t_[this->focusedTablet_].return_name() && to_copy != "")
-                copied << to_copy << endl;
+            if(to_copy!=this->t_[this->focusedTablet_].return_name() && to_copy.empty())
+                copied << to_copy << std::endl;
         }
         original.close();
         copied.close();
 
         //reloading tablets
-        original.open("all_saves.txt",ios::out);
-        copied.open("all_copies.txt",ios::in);
+        original.open("all_saves.txt",std::ios::out);
+        copied.open("all_copies.txt",std::ios::in);
         while(!copied.eof()){
             getline(copied,to_copy);
-            if(to_copy!="")
-                original << to_copy << endl;
+            if(to_copy.empty())
+                original << to_copy << std::endl;
         }
         original.close();
         copied.close();
@@ -240,7 +238,7 @@ void Application::remove_save(){
         this->errorMessage_.setCaption("File removed succesfully!");
     }
     else{
-        this->errorMessage_.setCaption("Failed to remove file!"+ to_string(removing));
+        this->errorMessage_.setCaption("Failed to remove file!"+ std::to_string(removing));
     }
 }
 

@@ -5,10 +5,9 @@
 #include "../../headers/ui/textbox.h"
 
 using namespace sf;
-using namespace std;
 
 //you know what it is
-textbox::textbox(string font, int SIZE, int posx, int posy){
+textbox::textbox(std::string font, int SIZE, int posx, int posy){
     //font&text
     this->look.loadFromFile(font);
     this->view.setFont(this->look);
@@ -58,6 +57,6 @@ void textbox::hide(){
 }
 
 //return whole text
-string textbox::return_caption(){
+std::string textbox::return_caption(){
     return this->contains;
 }

@@ -47,7 +47,7 @@ Application::Application(){
 //Main thread of whole app
 void Application::main_window(){
     //start clock thread
-    thread forClocks(&Application::clocks, this);
+    std::thread forClocks(&Application::clocks, this);
     //scenes switching
     while(screen_.isOpen()){
         switch(scene_){
@@ -102,7 +102,7 @@ void Application::main_window(){
 }
 
 //Creating city a' ka loading save_
-string Application::create_city(const string& calling){
+std::string Application::create_city(const std::string& calling){
 
     //creating needed variables
     std::fstream file;
@@ -129,7 +129,7 @@ string Application::create_city(const string& calling){
        gameWindow_.set_ub_left(i, 0, 1);
 
     //writing new name_ to all saves file
-    file.open("all_saves.txt",ios::out | ios::app);
+    file.open("all_saves.txt",std::ios::out | std::ios::app);
     file << calling << std::endl;
     file.close();
 

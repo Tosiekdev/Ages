@@ -32,13 +32,13 @@ private:
     sf::RenderWindow screen_;
     sf::Vector2i position_;
     sf::Cursor cursor_;
-    sf::Event e_;
+    sf::Event e_{};
     int height_,width_,maxFps_;
     buildings::Scene scene_;
 
     //village
-    string name,savePath_;
-    int human_,rock_,wood_;
+    std::string name,savePath_;
+    int human_{}, rock_{}, wood_{};
     sf::Texture backgroundMenuTexture_;
     sf::Sprite backgroundMenuSprite_;
 
@@ -57,7 +57,7 @@ private:
     tablet t_[5];
     Clickable down_,up_;
     Label errorMessage_;
-    int downLevel_=0, focusedTablet_;
+    int downLevel_=0, focusedTablet_{};
 
     //game
     HandleGame gameWindow_;
@@ -67,7 +67,7 @@ public:
     void main_window();
 
     //data interference
-    string create_city(const string& calling);
+    std::string create_city(const std::string& calling);
 
     //create
     void create_create();

@@ -4,7 +4,6 @@
 
 #include "../../headers/ui/tablet.h"
 
-using namespace std;
 using namespace sf;
 
 //Constructor
@@ -18,7 +17,7 @@ tablet::tablet()
 }
 
 //This does constructor job
-void tablet::create_tablet(string label, Vector2f possition)
+void tablet::create_tablet(std::string label, Vector2f possition)
 {
     pos_=possition;
     sting_pos_=pos_+Vector2f(40,10);
@@ -76,7 +75,7 @@ void tablet::focussed()
 }
 
 
-//oposite of focussed
+//opposite of focussed
 void tablet::unfocused()
 {
     focus_=false;
@@ -86,7 +85,7 @@ void tablet::unfocused()
 }
 
 //Returns name_ (wow)
-string tablet::return_name()
+std::string tablet::return_name()
 {
     return name_;
 }

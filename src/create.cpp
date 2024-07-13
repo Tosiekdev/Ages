@@ -9,87 +9,87 @@ using namespace sf;
 //prepare everything
 void Application::create_create(){
     //Buttons
-    this->returnButton_.create(40, 100, 5, 5, "Return");
-    this->cancelButton_.create(40, 100, 270, 310, "Cancel");
-    this->okButton_.create(40, 100, 405, 310, "OK");
+    returnButton_.create(40, 100, 5, 5, "Return");
+    cancelButton_.create(40, 100, 270, 310, "Cancel");
+    okButton_.create(40, 100, 405, 310, "OK");
 
     //Space for input
-    this->plank_.loadFromFile(PLANK);
-    this->space_.setPosition(Vector2f(250, 200));
-    this->space_.setTexture(this->plank_);
-    this->space_.setScale(0.5, 0.5);
+    plank_.loadFromFile(PLANK);
+    space_.setPosition(Vector2f(250, 200));
+    space_.setTexture(plank_);
+    space_.setScale(0.5, 0.5);
 
     //Caption
-    this->label1_.create(DEFAULT_FONT, 320, 205, "Enter name_:", 30);
-    this->label2_.create(DEFAULT_FONT, 275, 275, "", 20);
+    label1_.create(DEFAULT_FONT, 320, 205, "Enter name_:", 30);
+    label2_.create(DEFAULT_FONT, 275, 275, "", 20);
 
     //Textbox
-    this->t1_.set_position(320, 240);
-    this->obstacleT_.loadFromFile("Textures/przeszkoda.png");
-    this->obstacleS_.setTexture(this->obstacleT_);
-    this->obstacleS_.setPosition(Vector2f(480, 245));
+    t1_.set_position(320, 240);
+    obstacleT_.loadFromFile("Textures/przeszkoda.png");
+    obstacleS_.setTexture(obstacleT_);
+    obstacleS_.setPosition(Vector2f(480, 245));
 }
 
 //Window
 void Application::create(){
     //event_
-    this->c_handle_event();
+    c_handle_event();
 
     //do sth
-    this->c_stuff();
+    c_stuff();
 
     //display
-    this->display_create();
+    display_create();
 }
 
 //Event handling
 void Application::c_handle_event(){
-    while(this->screen_.pollEvent(this->e_)){
+    while(screen_.pollEvent(e_)){
         //closing
-        if(this->e_.type == Event::Closed) this->screen_.close();
-        if((Keyboard::isKeyPressed(Keyboard::Escape))) this->exitWindow_.create(this->screen_, this->scene_);
+        if(e_.type == Event::Closed) screen_.close();
+        if((Keyboard::isKeyPressed(Keyboard::Escape))) exitWindow_.create(screen_, scene_);
 
         //starting game when proper name_ is entered
         if(Keyboard::isKeyPressed(Keyboard::Enter)){
-            if(this->t1_.return_caption() != ""){
-                string erro=this->create_city(this->t1_.return_caption());
-                if(erro==""){
-                    this->gameWindow_.create(this->savePath_);
-                    this->scene_=buildings::Scene::GAME;
+            if(t1_.return_caption().empty()){
+                std::string erro = create_city(t1_.return_caption());
+                if(erro.empty()){
+                    gameWindow_.create(savePath_);
+                    scene_=buildings::Scene::GAME;
                 }
-                this->label2_.setCaption(erro);
+                label2_.setCaption(erro);
             }
         }
 
 
         if(Mouse::isButtonPressed(Mouse::Left)){
-            int i=Mouse::getPosition(this->screen_).x;
-            int j=Mouse::getPosition(this->screen_).y;
+            int i=Mouse::getPosition(screen_).x;
+            int j=Mouse::getPosition(screen_).y;
 
             //doing nothing buttons
-            if(this->returnButton_.onClick(i, j)) this->scene_=buildings::Scene::MENU;
-            if(this->cancelButton_.onClick(i, j)) this->scene_=buildings::Scene::MENU;
+            if(returnButton_.onClick(i, j)) scene_=buildings::Scene::MENU;
+            if(cancelButton_.onClick(i, j)) scene_=buildings::Scene::MENU;
 
             //same as when you hit enter
-            if(this->okButton_.onClick(i, j)){
-                if(this->t1_.return_caption() != ""){
-                    string erro=this->create_city(this->t1_.return_caption());
-                    if(erro==""){
-                        this->gameWindow_.create(this->savePath_);
-                        this->scene_=buildings::Scene::GAME;
+            if(okButton_.onClick(i, j)){
+                if(t1_.return_caption().empty()){
+                    std::string erro=create_city(t1_.return_caption());
+                    if(erro.empty()){
+                        gameWindow_.create(savePath_);
+                        scene_=buildings::Scene::GAME;
                     }
-                    this->label2_.setCaption(erro);
+                    label2_.setCaption(erro);
                 }
             }
         }
 
         //making textbox working
-        if(this->e_.type == Event::TextEntered){
-            if((this->e_.text.unicode > 47 && this->e_.text.unicode < 58) || (this->e_.text.unicode > 64 && this->e_.text.unicode < 91) || (this->e_.text.unicode > 96 && this->e_.text.unicode < 123)){
-                char a=static_cast<char>(this->e_.text.unicode);
-                this->t1_.actualize(a);
+        if(e_.type == Event::TextEntered){
+            if((e_.text.unicode > 47 && e_.text.unicode < 58) || (e_.text.unicode > 64 && e_.text.unicode < 91) || (e_.text.unicode > 96 && e_.text.unicode < 123)){
+                char a=static_cast<char>(e_.text.unicode);
+                t1_.actualize(a);
             }
-            if(this->e_.text.unicode == 8) this->t1_.erase();
+            if(e_.text.unicode == 8) t1_.erase();
         }
     }
 }
@@ -97,54 +97,54 @@ void Application::c_handle_event(){
 //Stuff to do
 void Application::c_stuff(){
     bool a[3];
-    int x=Mouse::getPosition(this->screen_).x;
-    int y=Mouse::getPosition(this->screen_).y;
+    int x=Mouse::getPosition(screen_).x;
+    int y=Mouse::getPosition(screen_).y;
 
     //cool animation
-    a[0]=this->returnButton_.onFocus(x, y);
-    a[1]=this->okButton_.onFocus(x, y);
-    a[2]=this->cancelButton_.onFocus(x, y);
+    a[0]=returnButton_.onFocus(x, y);
+    a[1]=okButton_.onFocus(x, y);
+    a[2]=cancelButton_.onFocus(x, y);
 
     //cursor_
     if(a[0] || a[1] || a[2])
-        this->cursor_.loadFromSystem(Cursor::Hand);
+        cursor_.loadFromSystem(Cursor::Hand);
     else
-        this->cursor_.loadFromSystem(Cursor::Arrow);
-    this->screen_.setMouseCursor(this->cursor_);
+        cursor_.loadFromSystem(Cursor::Arrow);
+    screen_.setMouseCursor(cursor_);
 
     //hiding extra text
-    while(this->textbox_rect()){
-        this->t1_.hide();
+    while(textbox_rect()){
+        t1_.hide();
     }
 }
 
 //Display everything
 void Application::display_create(){
-    this->screen_.clear(Color::White);
+    screen_.clear(Color::White);
 
     //back
-    this->screen_.draw(this->backgroundMenuSprite_);
-    this->screen_.draw(this->space_);
+    screen_.draw(backgroundMenuSprite_);
+    screen_.draw(space_);
 
     //labels
-    this->label1_.show(this->screen_);
-    this->label2_.show(this->screen_);
+    label1_.show(screen_);
+    label2_.show(screen_);
 
     //textbox
-    this->t1_.show(this->screen_);
-    this->screen_.draw(this->obstacleS_);
+    t1_.show(screen_);
+    screen_.draw(obstacleS_);
 
     //buttons
-    this->okButton_.show(this->screen_);
-    this->cancelButton_.show(this->screen_);
-    this->returnButton_.show(this->screen_);
+    okButton_.show(screen_);
+    cancelButton_.show(screen_);
+    returnButton_.show(screen_);
 
-    this->screen_.display();
+    screen_.display();
 }
 
 //Checking if entered text is too long
 bool Application::textbox_rect(){
-    if(this->t1_.return_text().getGlobalBounds().intersects(this->obstacleS_.getGlobalBounds()))
+    if(t1_.return_text().getGlobalBounds().intersects(obstacleS_.getGlobalBounds()))
         return true;
     return false;
 }
